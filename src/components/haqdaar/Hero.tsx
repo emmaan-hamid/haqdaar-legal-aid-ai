@@ -1,35 +1,8 @@
-import { useEffect, useState } from "react";
+import heroRobot from "@/assets/hero-robot.jpg";
 
 const headline = ["Know", "Your", "Rights.", "In", "Your", "Language.", "Resolved", "by", "AI."];
 
 export const Hero = () => {
-  const [typed, setTyped] = useState("");
-  const sentence = "I was thrown out of my home without notice.";
-  const [aiLines, setAiLines] = useState(0);
-  const ai = [
-    "Under the Pakistani Tenancy Law (1950), Section 6 —",
-    "you cannot be evicted without 30 days' written notice.",
-    "You may file a complaint at the Rent Controller's office.",
-  ];
-
-  useEffect(() => {
-    let i = 0;
-    const id = setInterval(() => {
-      setTyped(sentence.slice(0, ++i));
-      if (i >= sentence.length) clearInterval(id);
-    }, 55);
-    return () => clearInterval(id);
-  }, []);
-
-  useEffect(() => {
-    if (typed.length < sentence.length) return;
-    let i = 0;
-    const id = setInterval(() => {
-      setAiLines(++i);
-      if (i >= ai.length) clearInterval(id);
-    }, 700);
-    return () => clearInterval(id);
-  }, [typed]);
 
   return (
     <section className="relative grain min-h-[88vh] overflow-hidden pt-32 pb-16">
@@ -106,56 +79,80 @@ export const Hero = () => {
           </div>
         </div>
 
-        {/* RIGHT - chat mock, shifted right to mirror left padding */}
+        {/* RIGHT - animated robot showcase */}
         <div className="relative z-10 lg:pl-8 lg:pr-2">
-          <div className="relative" style={{ animation: "float-y 5s ease-in-out infinite" }}>
-            {/* back cards */}
-            <div className="absolute inset-0 rounded-2xl bg-surface gold-border-soft" style={{ transform: "rotate(2deg) translate(14px,14px)" }}/>
-            <div className="absolute inset-0 rounded-2xl bg-surface gold-border-soft" style={{ transform: "rotate(-3deg) translate(-12px,8px)" }}/>
+          <div className="relative mx-auto" style={{ maxWidth: 460 }}>
+            {/* orbiting glow rings */}
+            <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full"
+              style={{ background: "radial-gradient(circle, hsl(43 53% 54% / 0.25), transparent 65%)", animation: "pulse-scale 6s ease-in-out infinite" }}/>
+            <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[340px] w-[340px] rounded-full border border-gold/20"
+              style={{ transform: "translate(-50%,-50%)", animation: "drift-center 14s ease-in-out infinite" }}/>
+            <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[280px] w-[280px] rounded-full border border-gold/10"
+              style={{ transform: "translate(-50%,-50%)", animation: "drift-center 18s ease-in-out infinite reverse" }}/>
 
-            {/* front card */}
-            <div className="relative rounded-2xl bg-surface p-5 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]" style={{ border: "1px solid hsl(43 53% 54% / 0.45)", boxShadow: "0 0 0 1px hsl(43 53% 54% / 0.15), 0 30px 80px -20px rgba(0,0,0,0.6)" }}>
-              <div className="flex items-center justify-between border-b border-gold/15 pb-3">
-                <div className="flex items-center gap-2">
-                  <div className="h-7 w-7 rounded-md bg-gold/15 grid place-items-center">
-                    <span className="text-gold text-xs font-bold">H</span>
-                  </div>
-                  <div className="text-sm font-medium text-white">AI Legal Advisor</div>
-                </div>
-                <div className="flex items-center gap-1.5 text-[11px] text-emerald-400">
-                  <span className="relative inline-flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70"/>
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400"/>
-                  </span>
-                  Live
-                </div>
+            {/* orbiting dots */}
+            <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 h-2 w-2 rounded-full bg-gold" style={{ animation: "orbit 14s linear infinite", boxShadow: "0 0 12px hsl(43 53% 54%)" }}/>
+            <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 h-1.5 w-1.5 rounded-full bg-gold/70" style={{ animation: "orbit-rev 20s linear infinite" }}/>
+
+            {/* Pinterest stack — back cards */}
+            <div className="absolute inset-0 rounded-3xl bg-surface gold-border-soft" style={{ transform: "rotate(3deg) translate(16px,18px)" }}/>
+            <div className="absolute inset-0 rounded-3xl bg-surface gold-border-soft" style={{ transform: "rotate(-4deg) translate(-14px,10px)" }}/>
+
+            {/* main image card */}
+            <div
+              className="relative overflow-hidden rounded-3xl bg-surface"
+              style={{
+                border: "1px solid hsl(43 53% 54% / 0.5)",
+                boxShadow: "0 0 0 1px hsl(43 53% 54% / 0.15), 0 40px 100px -20px rgba(0,0,0,0.7), 0 0 60px -10px hsl(43 53% 54% / 0.35)",
+                animation: "float-y 6s ease-in-out infinite",
+              }}
+            >
+              <img
+                src={heroRobot}
+                alt="AI robot holding scales of justice — HaqDaar legal aid"
+                width={1024}
+                height={1280}
+                className="block h-auto w-full"
+              />
+              {/* gold gradient overlay */}
+              <div aria-hidden className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 50%, hsl(0 0% 4% / 0.85) 100%)" }}/>
+              {/* scanning gold line */}
+              <div aria-hidden className="pointer-events-none absolute inset-x-0 h-[2px]" style={{ background: "linear-gradient(90deg, transparent, hsl(43 53% 54% / 0.9), transparent)", boxShadow: "0 0 20px hsl(43 53% 54%)", animation: "scan-line 4s ease-in-out infinite" }}/>
+
+              {/* corner brackets */}
+              <span aria-hidden className="absolute left-3 top-3 h-5 w-5 border-l-2 border-t-2 border-gold/70"/>
+              <span aria-hidden className="absolute right-3 top-3 h-5 w-5 border-r-2 border-t-2 border-gold/70"/>
+              <span aria-hidden className="absolute left-3 bottom-3 h-5 w-5 border-l-2 border-b-2 border-gold/70"/>
+              <span aria-hidden className="absolute right-3 bottom-3 h-5 w-5 border-r-2 border-b-2 border-gold/70"/>
+
+              {/* live tag */}
+              <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full border border-gold/40 bg-background/70 px-2.5 py-1 text-[10.5px] uppercase tracking-[0.2em] text-ivory backdrop-blur-md">
+                <span className="relative inline-flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70"/>
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400"/>
+                </span>
+                AI · Live
               </div>
 
-              <div className="mt-4 space-y-3">
-                <div className="ml-auto max-w-[80%] rounded-2xl rounded-tr-sm bg-elevated px-3.5 py-2.5 text-[13.5px] text-ivory">
-                  {typed}
-                  <span className="ml-0.5 inline-block w-[1px] bg-ivory align-middle" style={{ height: "1em", animation: "blink-caret 1s steps(1) infinite" }}/>
-                </div>
-
-                <div className="max-w-[88%] rounded-2xl rounded-tl-sm bg-elevated px-3.5 py-3 text-[13px] leading-[1.6] text-ivory" style={{ borderLeft: "2px solid hsl(43 53% 54%)" }}>
-                  {ai.slice(0, aiLines).map((l, i) => (
-                    <div key={i} className="animate-fade-up">{l}</div>
-                  ))}
-                  {aiLines === 0 && typed.length >= sentence.length && (
-                    <div className="flex gap-1">
-                      <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-gold"/>
-                      <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-gold" style={{ animationDelay: "0.15s" }}/>
-                      <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-gold" style={{ animationDelay: "0.3s" }}/>
-                    </div>
-                  )}
-                </div>
+              {/* bottom caption */}
+              <div className="absolute inset-x-4 bottom-4">
+                <div className="font-display text-xl text-white">Justice, Reimagined.</div>
+                <div className="text-[11.5px] text-ivory/80">AI trained on Pakistani law.</div>
               </div>
+            </div>
 
-              <div className="mt-4 flex flex-wrap gap-2">
-                {["Generate Notice", "Find a Lawyer", "Know Your Rights"].map((c) => (
-                  <span key={c} className="rounded-full border border-gold/30 bg-background/40 px-3 py-1.5 text-[11.5px] text-ivory">{c}</span>
-                ))}
-              </div>
+            {/* floating chip — top right */}
+            <div className="absolute -right-4 top-6 hidden rounded-xl border border-gold/40 bg-surface/90 px-3 py-2 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.7)] backdrop-blur-md md:block"
+              style={{ animation: "float-y 4.5s ease-in-out infinite" }}>
+              <div className="text-[10px] uppercase tracking-[0.18em] text-gold">Rights</div>
+              <div className="text-[12.5px] font-medium text-white">Analyzed in 8s</div>
+            </div>
+
+            {/* floating chip — bottom left */}
+            <div className="absolute -left-4 bottom-12 hidden rounded-xl border border-gold/40 bg-surface/90 px-3 py-2 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.7)] backdrop-blur-md md:block"
+              style={{ animation: "float-y 5.5s ease-in-out infinite reverse" }}>
+              <div className="text-[10px] uppercase tracking-[0.18em] text-gold">Lawyer</div>
+              <div className="text-[12.5px] font-medium text-white">Matched · Free</div>
             </div>
           </div>
         </div>

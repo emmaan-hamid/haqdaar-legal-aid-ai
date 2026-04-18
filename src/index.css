@@ -190,3 +190,13 @@
   0%,100% { transform: translate(0,0); }
   50% { transform: translate(20px,-20px); }
 }
+@keyframes drift-center {
+  0%,100% { transform: translate(-50%,-50%) scale(1); }
+  50% { transform: translate(-50%,-50%) scale(1.05); }
+}
+@keyframes scan-line {
+  0% { top: 0%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
