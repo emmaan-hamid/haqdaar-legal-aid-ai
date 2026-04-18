@@ -85,10 +85,10 @@ export const Hero = () => {
             {/* orbiting glow rings */}
             <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full"
               style={{ background: "radial-gradient(circle, hsl(43 53% 54% / 0.25), transparent 65%)", animation: "pulse-scale 6s ease-in-out infinite" }}/>
-            <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[340px] w-[340px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-gold/20"
-              style={{ animation: "drift 14s ease-in-out infinite" }}/>
-            <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[280px] w-[280px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-gold/10"
-              style={{ animation: "drift 18s ease-in-out infinite reverse" }}/>
+            <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[340px] w-[340px] rounded-full border border-gold/20"
+              style={{ transform: "translate(-50%,-50%)", animation: "drift-center 14s ease-in-out infinite" }}/>
+            <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[280px] w-[280px] rounded-full border border-gold/10"
+              style={{ transform: "translate(-50%,-50%)", animation: "drift-center 18s ease-in-out infinite reverse" }}/>
 
             {/* orbiting dots */}
             <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 h-2 w-2 rounded-full bg-gold" style={{ animation: "orbit 14s linear infinite", boxShadow: "0 0 12px hsl(43 53% 54%)" }}/>
