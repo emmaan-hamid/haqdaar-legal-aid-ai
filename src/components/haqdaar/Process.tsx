@@ -21,6 +21,61 @@ const steps = [
 
 export const Process = () => (
   <section className="relative overflow-hidden border-t border-gold/15 py-24">
+    {/* Floating context chips */}
+    <div
+      className="absolute hidden md:block"
+      style={{
+        top: "10%",
+        right: "4%",
+        zIndex: 5,
+        background: "rgba(12,12,12,0.9)",
+        backdropFilter: "blur(12px)",
+        border: "1px solid rgba(201,168,76,0.3)",
+        borderLeft: "3px solid #C9A84C",
+        borderRadius: 8,
+        padding: "10px 16px",
+        animation: "chipFloat1 3.4s ease-in-out infinite alternate",
+      }}
+    >
+      <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, color: "#C9A84C", textTransform: "uppercase", letterSpacing: "0.12em" }}>Coverage</div>
+      <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "white", fontWeight: 700 }}>7 Legal Categories</div>
+    </div>
+    <div
+      className="absolute hidden md:block"
+      style={{
+        top: "44%",
+        left: "3%",
+        zIndex: 5,
+        background: "rgba(12,12,12,0.9)",
+        backdropFilter: "blur(12px)",
+        border: "1px solid rgba(201,168,76,0.3)",
+        borderLeft: "3px solid #C9A84C",
+        borderRadius: 8,
+        padding: "10px 16px",
+        animation: "chipFloat2 4.2s ease-in-out infinite alternate",
+      }}
+    >
+      <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, color: "#C9A84C", textTransform: "uppercase", letterSpacing: "0.12em" }}>Privacy</div>
+      <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "white", fontWeight: 700 }}>Anonymous Mode</div>
+    </div>
+    <div
+      className="absolute hidden md:block"
+      style={{
+        bottom: "10%",
+        right: "5%",
+        zIndex: 5,
+        background: "rgba(12,12,12,0.9)",
+        backdropFilter: "blur(12px)",
+        border: "1px solid rgba(201,168,76,0.3)",
+        borderLeft: "3px solid #C9A84C",
+        borderRadius: 8,
+        padding: "10px 16px",
+        animation: "chipFloat3 3.8s ease-in-out infinite alternate",
+      }}
+    >
+      <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, color: "#C9A84C", textTransform: "uppercase", letterSpacing: "0.12em" }}>Documents</div>
+      <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "white", fontWeight: 700 }}>Auto Legal Docs</div>
+    </div>
     {/* Minimalist animated background */}
     <div aria-hidden className="pointer-events-none absolute inset-0">
       {/* faint grid */}

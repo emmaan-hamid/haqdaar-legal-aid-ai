@@ -12,9 +12,9 @@ export const Categories = () => (
       </p>
 
       <div className="reveal relative mx-auto mt-10 max-w-2xl">
-        <div className="relative">
+        <div className="group relative">
           <svg
-            className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 text-gold"
+            className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 text-gold transition-transform duration-300 group-hover:scale-110 group-focus-within:scale-110"
             width="18"
             height="18"
             viewBox="0 0 24 24"
@@ -30,7 +30,7 @@ export const Categories = () => (
           <input
             type="text"
             placeholder="e.g. tenant rights, wrongful termination, domestic violence law..."
-            className="h-14 w-full rounded-full border border-gold/35 bg-surface pl-12 pr-5 text-[14px] text-ivory placeholder:text-muted-foreground transition-all duration-300 focus:border-gold focus:outline-none focus:shadow-[0_0_0_4px_hsl(43_53%_54%/0.15),0_0_40px_-5px_hsl(43_53%_54%/0.5)]"
+            className="h-14 w-full rounded-full border border-gold/35 bg-surface pl-12 pr-5 text-[14px] text-ivory placeholder:text-muted-foreground transition-all duration-300 hover:border-gold hover:shadow-[0_0_30px_-5px_hsl(43_53%_54%/0.45)] focus:border-gold focus:outline-none focus:shadow-[0_0_0_4px_hsl(43_53%_54%/0.15),0_0_50px_-5px_hsl(43_53%_54%/0.6)]"
           />
         </div>
       </div>
