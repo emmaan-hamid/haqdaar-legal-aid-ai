@@ -11,7 +11,13 @@ export const Footer = () => (
         <p className="mt-3 text-sm leading-relaxed text-ivory/85">Democratizing justice through AI for every Pakistani.</p>
         <div className="mt-5 flex gap-3">
           {["X", "in", "ig"].map((s) => (
-            <a key={s} href="#" className="grid h-9 w-9 place-items-center rounded-full border border-gold/30 text-xs text-ivory hover:border-gold hover:text-white">{s}</a>
+            <a
+              key={s}
+              href="#"
+              className="grid h-9 w-9 place-items-center rounded-full border border-gold/30 text-xs text-ivory transition-all duration-300 hover:scale-110 hover:border-gold hover:bg-gold/10 hover:text-gold hover:shadow-[0_0_18px_-3px_hsl(43_53%_54%/0.6)]"
+            >
+              {s}
+            </a>
           ))}
         </div>
         <p
