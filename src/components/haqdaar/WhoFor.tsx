@@ -34,11 +34,33 @@ export const WhoFor = () => {
 
           <ul className="mt-10 divide-y divide-gold/15">
             {audience.map((a) => (
-              <li key={a.title} className="group flex items-start justify-between gap-6 py-5">
-                <div>
-                  <div className="text-[15.5px] font-medium text-white">{a.title}</div>
-                  <div className="mt-1 text-sm text-ivory/80">{a.desc}</div>
+              <li
+                key={a.title}
+                className="group relative flex cursor-pointer items-start justify-between gap-6 overflow-hidden py-5 pl-4 pr-4 transition-all duration-300 hover:pl-6"
+              >
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 -z-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, hsl(43 53% 54% / 0.10), transparent 70%)",
+                    boxShadow: "inset 2px 0 0 hsl(43 53% 54%)",
+                  }}
+                />
+                <div className="relative z-10">
+                  <div className="text-[15.5px] font-medium text-white transition-colors duration-300 group-hover:text-gold">
+                    {a.title}
+                  </div>
+                  <div className="mt-1 text-sm text-ivory/80 transition-colors duration-300 group-hover:text-ivory">
+                    {a.desc}
+                  </div>
                 </div>
+                <span
+                  aria-hidden
+                  className="relative z-10 self-center text-gold opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100"
+                >
+                  →
+                </span>
               </li>
             ))}
           </ul>

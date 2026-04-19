@@ -28,7 +28,7 @@ export const Navbar = () => {
       }`}
       style={{ background: scrolled ? "rgba(10,10,10,0.92)" : "transparent", height: 72 }}
     >
-      <div className="mx-auto flex h-full w-full max-w-[1400px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-10">
+      <div className="mx-auto flex h-full w-full max-w-[1400px] items-center justify-between gap-4 px-3 sm:px-4 lg:px-6">
         <a
           href="#"
           className="group flex items-center font-display text-2xl font-bold tracking-tight text-white transition-colors duration-300 hover:text-gold"
