@@ -61,19 +61,17 @@ export const Process = () => (
         {steps.map((s, i) => (
           <div
             key={s.n}
-            className="reveal card-surface relative rounded-2xl p-7"
+            className="reveal card-surface relative flex h-full flex-col rounded-2xl p-7"
             style={{
               transitionDelay: `${i * 120}ms`,
               borderLeft: "3px solid hsl(43 53% 54%)",
-              maxWidth: 360,
-              marginLeft: `${i * 60}px`, // diagonal cascade right
-              marginTop: i === 0 ? 0 : `${i * 14}px`,
+              minHeight: 320,
             }}
           >
             <div className="font-display text-5xl font-bold text-gold">{s.n}</div>
             <h3 className="font-display mt-3 text-2xl font-semibold text-white">{s.title}</h3>
-            <p className="mt-3 text-[14.5px] leading-[1.65] text-ivory">{s.body}</p>
-            <div className="mt-5 inline-flex rounded-full border border-gold/30 bg-gold/5 px-3 py-1.5 text-[11px] text-ivory">
+            <p className="mt-3 flex-1 text-[14.5px] leading-[1.65] text-ivory">{s.body}</p>
+            <div className="mt-5 inline-flex w-fit rounded-full border border-gold/30 bg-gold/5 px-3 py-1.5 text-[11px] text-ivory">
               {s.chip}
             </div>
           </div>
