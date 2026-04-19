@@ -14,7 +14,15 @@ export const Footer = () => (
             <a key={s} href="#" className="grid h-9 w-9 place-items-center rounded-full border border-gold/30 text-xs text-ivory hover:border-gold hover:text-white">{s}</a>
           ))}
         </div>
-        <p className="mt-6 text-[12px] leading-relaxed text-muted-foreground">
+        <p
+          className="mt-6 text-[12px] leading-relaxed text-ivory/85"
+          style={{
+            background: "hsl(var(--emergency) / 0.08)",
+            borderLeft: "3px solid hsl(var(--emergency))",
+            padding: "10px 14px",
+            borderRadius: 4,
+          }}
+        >
           In danger? Use Quick Exit or call Rozan: <span className="text-ivory">051-2890505</span>
         </p>
       </div>
@@ -35,7 +43,6 @@ export const Footer = () => (
         <ul className="mt-4 space-y-2.5 text-sm text-ivory/85">
           <li>contact@haqdaar.pk</li>
           <li>Lahore, Pakistan</li>
-          <li className="text-muted-foreground">Supported by AGHS, Rozan, UMT</li>
         </ul>
       </div>
     </div>
