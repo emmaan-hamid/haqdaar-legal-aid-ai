@@ -41,9 +41,8 @@ export const Footer = () => (
               <li key={l}>
                 <a
                   href="#"
-                  className="group inline-flex items-center gap-2 text-sm text-ivory/85 transition-all duration-300 hover:translate-x-1 hover:text-gold"
+                  className="inline-block text-sm text-ivory/85 transition-all duration-300 hover:translate-x-1 hover:text-gold"
                 >
-                  <span className="inline-block h-px w-0 bg-gold transition-all duration-300 group-hover:w-3"/>
                   {l}
                 </a>
               </li>
