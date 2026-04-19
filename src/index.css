@@ -201,66 +201,34 @@
   100% { top: 100%; opacity: 0; }
 }
 
-/* Free-floating hero robot */
+/* Free-floating hero robot — clean, no glow, no background */
 .hero-robot-img {
   position: absolute;
-  right: -60px;
+  right: -40px;
   bottom: 0;
-  height: 92vh;
+  height: 100%;
+  max-height: 100vh;
   width: auto;
   object-fit: contain;
   object-position: bottom right;
   z-index: 3;
   pointer-events: auto;
-  mix-blend-mode: normal;
-  filter:
-    drop-shadow(0 0 120px rgba(201,168,76,0.4))
-    drop-shadow(0 0 60px rgba(201,168,76,0.25))
-    drop-shadow(0 0 20px rgba(201,168,76,0.35))
-    brightness(1.15)
-    contrast(1.08)
-    saturate(0.85);
-  transition: filter 0.5s ease;
+  mix-blend-mode: screen;
+  filter: brightness(1.08) contrast(1.05);
+  transition: transform 0.6s ease, filter 0.6s ease;
   animation:
-    robotEnter 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-    robotFloat 7s ease-in-out infinite 1.6s;
+    robotEnter 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+    robotFloat 7s ease-in-out infinite 1.4s;
 }
 .hero-robot-img:hover {
-  filter:
-    drop-shadow(0 0 140px rgba(201,168,76,0.5))
-    drop-shadow(0 0 60px rgba(201,168,76,0.3))
-    brightness(1.25)
-    contrast(1.1);
+  filter: brightness(1.15) contrast(1.08);
 }
 @keyframes robotFloat {
-  0%   { transform: translateY(0px) scale(1); }
-  50%  { transform: translateY(-16px) scale(1.005); }
-  100% { transform: translateY(0px) scale(1); }
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-14px); }
+  100% { transform: translateY(0px); }
 }
 @keyframes robotEnter {
-  0% {
-    opacity: 0;
-    transform: translateY(60px);
-    filter: drop-shadow(0 0 0px rgba(201,168,76,0)) brightness(0.3);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0px);
-    filter:
-      drop-shadow(0 0 80px rgba(201,168,76,0.35))
-      drop-shadow(0 0 30px rgba(201,168,76,0.2))
-      brightness(1.15);
-  }
-}
-@keyframes glowBreathe {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50%      { opacity: 1;   transform: scale(1.06); }
-}
-@keyframes chipFloat1 { from { transform: translateY(0px); } to { transform: translateY(-8px); } }
-@keyframes chipFloat2 { from { transform: translateY(0px); } to { transform: translateY(-11px); } }
-@keyframes chipFloat3 { from { transform: translateY(0px); } to { transform: translateY(-7px); } }
-@keyframes particleDrift {
-  0%   { opacity: 0;   transform: translateY(0px)   scale(0.5); }
-  40%  { opacity: 0.9; transform: translateY(-8px)  scale(1.2); }
-  100% { opacity: 0;   transform: translateY(-20px) scale(0.3); }
+  0%   { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0px); }
 }

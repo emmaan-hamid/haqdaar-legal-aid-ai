@@ -2,17 +2,6 @@ import heroRobot from "@/assets/hero-robot.jpg";
 
 const headline = ["Know", "Your", "Rights.", "In", "Your", "Language.", "Resolved", "by", "AI."];
 
-const particles = [
-  { top: "28%", right: "38%", duration: "2.8s", delay: "0s" },
-  { top: "32%", right: "33%", duration: "3.2s", delay: "0.3s" },
-  { top: "25%", right: "30%", duration: "2.5s", delay: "0.6s" },
-  { top: "38%", right: "36%", duration: "3.5s", delay: "0.9s" },
-  { top: "30%", right: "42%", duration: "2.9s", delay: "0.2s" },
-  { top: "22%", right: "35%", duration: "3.1s", delay: "0.5s" },
-  { top: "42%", right: "29%", duration: "2.7s", delay: "0.8s" },
-  { top: "35%", right: "40%", duration: "3.3s", delay: "0.4s" },
-];
-
 export const Hero = () => {
   return (
     <section className="relative grain min-h-[88vh] overflow-hidden pt-32 pb-16">
@@ -32,57 +21,7 @@ export const Hero = () => {
         </svg>
       </div>
 
-      {/* Urdu watermark */}
-      <div
-        aria-hidden
-        className="font-urdu pointer-events-none absolute right-[-40px] bottom-10 select-none text-[220px] text-white/[0.03]"
-        style={{ transform: "rotate(-8deg)" }}
-      >
-        حق دار
-      </div>
-
-      {/* Atmospheric glows behind the robot */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute"
-        style={{
-          right: 0,
-          bottom: 0,
-          width: "55%",
-          height: "100%",
-          background: "radial-gradient(ellipse at 60% 60%, rgba(201,168,76,0.10) 0%, rgba(201,168,76,0.04) 35%, transparent 65%)",
-          zIndex: 2,
-          animation: "glowBreathe 6s ease-in-out infinite",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute"
-        style={{
-          right: "20%",
-          top: "10%",
-          width: 280,
-          height: 280,
-          background: "radial-gradient(circle, rgba(201,168,76,0.18) 0%, rgba(201,168,76,0.05) 50%, transparent 70%)",
-          zIndex: 2,
-          animation: "glowBreathe 4s ease-in-out infinite 1s",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute"
-        style={{
-          right: "5%",
-          bottom: 0,
-          width: 500,
-          height: 60,
-          background: "radial-gradient(ellipse at center, rgba(201,168,76,0.15) 0%, transparent 70%)",
-          filter: "blur(24px)",
-          zIndex: 2,
-        }}
-      />
-
-      <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-16 px-6 lg:grid-cols-[58%_42%] lg:gap-8 lg:px-10">
+      <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-16 px-6 lg:grid-cols-[55%_45%] lg:gap-8 lg:px-10">
         {/* LEFT */}
         <div className="relative z-10">
           <div className="pill pill-gold inline-flex items-center gap-2">
@@ -131,93 +70,15 @@ export const Hero = () => {
         </div>
 
         {/* RIGHT - reserve grid space; actual robot is absolute on the section */}
-        <div className="relative z-10 hidden lg:block" style={{ minHeight: "70vh" }} />
+        <div className="relative z-10 hidden lg:block" style={{ minHeight: "78vh" }} />
       </div>
 
-      {/* FREE-FLOATING ROBOT */}
+      {/* FREE-FLOATING ROBOT - clean, large, no background */}
       <img
         src={heroRobot}
         alt="AI robot holding scales of justice — HaqDaar legal aid"
         className="hero-robot-img"
       />
-
-      {/* Floating chips */}
-      <div
-        className="absolute hidden md:block"
-        style={{
-          top: "14%",
-          right: "3%",
-          zIndex: 5,
-          background: "rgba(12,12,12,0.9)",
-          backdropFilter: "blur(12px)",
-          border: "1px solid rgba(201,168,76,0.3)",
-          borderLeft: "3px solid #C9A84C",
-          borderRadius: 8,
-          padding: "10px 16px",
-          animation: "chipFloat1 3.4s ease-in-out infinite alternate",
-        }}
-      >
-        <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, color: "#C9A84C", textTransform: "uppercase", letterSpacing: "0.12em" }}>Coverage</div>
-        <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "white", fontWeight: 700 }}>7 Legal Categories</div>
-      </div>
-
-      <div
-        className="absolute hidden md:block"
-        style={{
-          top: "44%",
-          right: "1%",
-          zIndex: 5,
-          background: "rgba(12,12,12,0.9)",
-          backdropFilter: "blur(12px)",
-          border: "1px solid rgba(201,168,76,0.3)",
-          borderLeft: "3px solid #C9A84C",
-          borderRadius: 8,
-          padding: "10px 16px",
-          animation: "chipFloat2 4.2s ease-in-out infinite alternate",
-        }}
-      >
-        <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, color: "#C9A84C", textTransform: "uppercase", letterSpacing: "0.12em" }}>Privacy</div>
-        <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "white", fontWeight: 700 }}>Anonymous Mode</div>
-      </div>
-
-      <div
-        className="absolute hidden md:block"
-        style={{
-          bottom: "20%",
-          right: "4%",
-          zIndex: 5,
-          background: "rgba(12,12,12,0.9)",
-          backdropFilter: "blur(12px)",
-          border: "1px solid rgba(201,168,76,0.3)",
-          borderLeft: "3px solid #C9A84C",
-          borderRadius: 8,
-          padding: "10px 16px",
-          animation: "chipFloat3 3.8s ease-in-out infinite alternate",
-        }}
-      >
-        <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, color: "#C9A84C", textTransform: "uppercase", letterSpacing: "0.12em" }}>Documents</div>
-        <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "white", fontWeight: 700 }}>Auto Legal Docs</div>
-      </div>
-
-      {/* Gold particles near scales */}
-      {particles.map((p, i) => (
-        <span
-          key={i}
-          aria-hidden
-          className="absolute pointer-events-none"
-          style={{
-            top: p.top,
-            right: p.right,
-            width: 3,
-            height: 3,
-            borderRadius: "50%",
-            background: "#C9A84C",
-            zIndex: 4,
-            boxShadow: "0 0 6px rgba(201,168,76,0.8)",
-            animation: `particleDrift ${p.duration} ease-in-out ${p.delay} infinite`,
-          }}
-        />
-      ))}
     </section>
   );
 };
