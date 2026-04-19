@@ -12,11 +12,27 @@ export const Categories = () => (
       </p>
 
       <div className="reveal relative mx-auto mt-10 max-w-2xl">
-        <input
-          type="text"
-          placeholder="e.g. tenant rights, wrongful termination, domestic violence law..."
-          className="h-14 w-full rounded-xl border border-gold/35 bg-surface px-5 text-[14px] text-ivory placeholder:text-muted-foreground focus:border-gold focus:outline-none"
-        />
+        <div className="relative">
+          <svg
+            className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 text-gold"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input
+            type="text"
+            placeholder="e.g. tenant rights, wrongful termination, domestic violence law..."
+            className="h-14 w-full rounded-full border border-gold/35 bg-surface pl-12 pr-5 text-[14px] text-ivory placeholder:text-muted-foreground transition-all duration-300 focus:border-gold focus:outline-none focus:shadow-[0_0_0_4px_hsl(43_53%_54%/0.15),0_0_40px_-5px_hsl(43_53%_54%/0.5)]"
+          />
+        </div>
       </div>
 
       <div className="reveal mt-10 flex flex-wrap justify-center gap-4">
