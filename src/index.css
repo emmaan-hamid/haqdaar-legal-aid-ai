@@ -95,14 +95,27 @@
   .btn-ghost {
     background: transparent; color: hsl(var(--ivory));
     border: 1px solid rgba(255,255,255,0.4);
-    transition: border-color .2s ease, color .2s ease;
+    transition: border-color .25s ease, color .25s ease, background .25s ease, box-shadow .25s ease, transform .25s ease;
   }
-  .btn-ghost:hover { border-color: white; color: white; }
-  .nav-link { position: relative; }
+  .btn-ghost:hover {
+    border-color: hsl(43 53% 54%);
+    color: white;
+    background: hsl(43 53% 54% / 0.08);
+    box-shadow: 0 8px 28px -10px hsl(43 53% 54% / 0.5);
+    transform: translateY(-2px);
+  }
+  .nav-link {
+    position: relative;
+    transition: color .25s ease, text-shadow .25s ease;
+  }
+  .nav-link:hover {
+    color: hsl(43 53% 54%);
+    text-shadow: 0 0 18px hsl(43 53% 54% / 0.5);
+  }
   .nav-link::after {
     content:''; position:absolute; left:0; bottom:-4px; height:1px; width:100%;
     background: hsl(43 53% 54%); transform: scaleX(0); transform-origin: right;
-    transition: transform .3s ease;
+    transition: transform .35s ease;
   }
   .nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
   .pill { border-radius: 9999px; padding: 8px 18px; font-size: 13px; }
