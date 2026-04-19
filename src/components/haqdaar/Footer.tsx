@@ -38,7 +38,15 @@ export const Footer = () => (
           <div className="label-accent">{c.label}</div>
           <ul className="mt-4 space-y-2.5">
             {c.links.map((l) => (
-              <li key={l}><a href="#" className="text-sm text-ivory/85 hover:text-white">{l}</a></li>
+              <li key={l}>
+                <a
+                  href="#"
+                  className="group inline-flex items-center gap-2 text-sm text-ivory/85 transition-all duration-300 hover:translate-x-1 hover:text-gold"
+                >
+                  <span className="inline-block h-px w-0 bg-gold transition-all duration-300 group-hover:w-3"/>
+                  {l}
+                </a>
+              </li>
             ))}
           </ul>
         </div>
@@ -58,8 +66,8 @@ export const Footer = () => (
         <div>© 2026 HaqDaar. Built for the people of Pakistan.</div>
         <div className="flex gap-4">
           <span>Not a law firm. An access to justice platform.</span>
-          <a href="#" className="hover:text-ivory">Privacy Policy</a>
-          <a href="#" className="hover:text-ivory">Terms</a>
+          <a href="#" className="transition-colors duration-300 hover:text-gold">Privacy Policy</a>
+          <a href="#" className="transition-colors duration-300 hover:text-gold">Terms</a>
         </div>
       </div>
     </div>
