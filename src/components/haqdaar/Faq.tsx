@@ -24,7 +24,7 @@ export const Faq = () => {
               <button
                 key={i}
                 onClick={() => setOpen(isOpen ? -1 : i)}
-                className="group block w-full px-4 py-5 text-left transition-all duration-300 hover:px-6"
+                className="block w-full px-4 py-5 text-left transition-all duration-300"
                 style={
                   isOpen
                     ? {
@@ -38,26 +38,13 @@ export const Faq = () => {
               >
                 <div className="flex items-center justify-between gap-6">
                   <span
-                    className={`text-[16px] font-medium transition-all duration-300 group-hover:text-gold ${
-                      isOpen ? "text-gold" : "text-white"
-                    }`}
-                    style={{ display: "inline-block" }}
-                  >
-                    <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 group-hover:scale-[1.02]">
-                      {f.q}
-                    </span>
-                  </span>
-                  <span className={`text-gold transition-transform duration-300 group-hover:scale-125 ${isOpen ? "rotate-45" : ""}`}>+</span>
-                </div>
-                <div className="flex items-center justify-between gap-6">
-                  <span
                     className={`text-[16px] font-medium transition-colors ${
                       isOpen ? "text-gold" : "text-white"
                     }`}
                   >
                     {f.q}
                   </span>
-                  <span className={`text-gold transition-transform duration-300 group-hover:scale-125 ${isOpen ? "rotate-45" : ""}`}>+</span>
+                  <span className={`text-gold transition-transform ${isOpen ? "rotate-45" : ""}`}>+</span>
                 </div>
                 <div
                   className="grid overflow-hidden transition-all duration-300"

@@ -11,13 +11,7 @@ export const Footer = () => (
         <p className="mt-3 text-sm leading-relaxed text-ivory/85">Democratizing justice through AI for every Pakistani.</p>
         <div className="mt-5 flex gap-3">
           {["X", "in", "ig"].map((s) => (
-            <a
-              key={s}
-              href="#"
-              className="grid h-9 w-9 place-items-center rounded-full border border-gold/30 text-xs text-ivory transition-all duration-300 hover:scale-110 hover:border-gold hover:bg-gold/10 hover:text-gold hover:shadow-[0_0_18px_-3px_hsl(43_53%_54%/0.6)]"
-            >
-              {s}
-            </a>
+            <a key={s} href="#" className="grid h-9 w-9 place-items-center rounded-full border border-gold/30 text-xs text-ivory hover:border-gold hover:text-white">{s}</a>
           ))}
         </div>
         <p
@@ -38,14 +32,7 @@ export const Footer = () => (
           <div className="label-accent">{c.label}</div>
           <ul className="mt-4 space-y-2.5">
             {c.links.map((l) => (
-              <li key={l}>
-                <a
-                  href="#"
-                  className="inline-block text-sm text-ivory/85 transition-all duration-300 hover:translate-x-1 hover:text-gold"
-                >
-                  {l}
-                </a>
-              </li>
+              <li key={l}><a href="#" className="text-sm text-ivory/85 hover:text-white">{l}</a></li>
             ))}
           </ul>
         </div>
@@ -65,8 +52,8 @@ export const Footer = () => (
         <div>© 2026 HaqDaar. Built for the people of Pakistan.</div>
         <div className="flex gap-4">
           <span>Not a law firm. An access to justice platform.</span>
-          <a href="#" className="transition-colors duration-300 hover:text-gold">Privacy Policy</a>
-          <a href="#" className="transition-colors duration-300 hover:text-gold">Terms</a>
+          <a href="#" className="hover:text-ivory">Privacy Policy</a>
+          <a href="#" className="hover:text-ivory">Terms</a>
         </div>
       </div>
     </div>
