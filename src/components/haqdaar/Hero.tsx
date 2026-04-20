@@ -73,18 +73,11 @@ export const Hero = () => {
         <div className="relative z-10 hidden lg:block" style={{ minHeight: "78vh" }} />
       </div>
 
-      {/* FREE-FLOATING ROBOT - clean, large, no background */}
+      {/* FREE-FLOATING ROBOT - transparent PNG, no blend tricks */}
       <img
         src={heroRobot}
         alt="AI robot holding scales of justice — HaqDaar legal aid"
         className="hero-robot-img"
-        style={{
-          mixBlendMode: "screen",
-          WebkitMaskImage:
-            "radial-gradient(ellipse 70% 85% at 55% 45%, #000 55%, rgba(0,0,0,0.6) 75%, transparent 95%)",
-          maskImage:
-            "radial-gradient(ellipse 70% 85% at 55% 45%, #000 55%, rgba(0,0,0,0.6) 75%, transparent 95%)",
-        }}
       />
     </section>
   );
