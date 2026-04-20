@@ -1,4 +1,4 @@
-import heroRobot from "@/assets/hero-robot.jpg";
+import heroRobot from "@/assets/hero-robot.png";
 
 const headline = ["Know", "Your", "Rights.", "In", "Your", "Language.", "Resolved", "by", "AI."];
 
