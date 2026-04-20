@@ -12,19 +12,18 @@ export const Features = () => (
     <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
       <div className="reveal text-center">
         <div className="label-accent">Powered by AI</div>
-        <h2 className="font-display mt-4 text-5xl font-bold text-white lg:text-6xl">What Our System Delivers</h2>
+        <h2 className="font-display mt-4 text-5xl font-bold text-white lg:text-6xl">Justice, Engineered Intelligently</h2>
       </div>
 
       <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {cards.map((c, i) => (
           <div
             key={i}
-            className="reveal feature-card group relative flex h-full flex-col rounded-xl p-6"
+            className="reveal card-surface group relative flex h-full flex-col rounded-xl p-6"
             style={{
               transitionDelay: `${i * 80}ms`,
               minHeight: 280,
-              border: "1.5px solid hsl(43 53% 54% / 0.45)",
-              boxShadow: "inset 0 0 0 1px hsl(43 53% 54% / 0.12)",
+              borderLeft: "3px solid hsl(43 53% 54%)",
             }}
           >
             <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-md bg-gold/15 text-[15px] font-semibold text-gold ring-1 ring-gold/40">
