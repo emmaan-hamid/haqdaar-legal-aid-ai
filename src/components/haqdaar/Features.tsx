@@ -20,12 +20,7 @@ export const Features = () => (
           <div
             key={i}
             className="reveal feature-card group relative flex h-full flex-col rounded-xl p-6"
-            style={{
-              transitionDelay: `${i * 80}ms`,
-              minHeight: 280,
-              border: "1.5px solid hsl(43 53% 54% / 0.45)",
-              boxShadow: "inset 0 0 0 1px hsl(43 53% 54% / 0.12)",
-            }}
+            style={{ transitionDelay: `${i * 80}ms`, minHeight: 280 }}
           >
             <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-md bg-gold/15 text-[15px] font-semibold text-gold ring-1 ring-gold/40 transition-all duration-300 group-hover:bg-gold/25 group-hover:ring-gold">
               {i + 1}

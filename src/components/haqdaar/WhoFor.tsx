@@ -55,6 +55,12 @@ export const WhoFor = () => {
                     {a.desc}
                   </div>
                 </div>
+                <span
+                  aria-hidden
+                  className="relative z-10 self-center text-gold opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100"
+                >
+                  →
+                </span>
               </li>
             ))}
           </ul>
