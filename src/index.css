@@ -228,48 +228,36 @@
   100% { top: 100%; opacity: 0; }
 }
 
-/* Free-floating hero robot — transparent PNG, large, animated */
+/* Free-floating hero robot — clean, no glow, no background */
 .hero-robot-img {
   position: absolute;
-  right: 2%;
+  right: -40px;
   bottom: 0;
-  height: 105%;
-  max-height: 110vh;
+  height: 100%;
+  max-height: 100vh;
   width: auto;
   object-fit: contain;
   object-position: bottom right;
   z-index: 3;
   pointer-events: auto;
-  filter: drop-shadow(0 30px 60px hsl(43 53% 54% / 0.25)) brightness(1.05);
+  mix-blend-mode: screen;
+  filter: brightness(1.08) contrast(1.05);
   transition: transform 0.6s ease, filter 0.6s ease;
   animation:
     robotEnter 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-    robotFloat 6s ease-in-out infinite 1.4s;
-}
-@media (min-width: 1280px) {
-  .hero-robot-img {
-    right: 4%;
-    height: 110%;
-  }
-}
-@media (min-width: 1600px) {
-  .hero-robot-img {
-    right: 8%;
-  }
+    robotFloat 7s ease-in-out infinite 1.4s;
 }
 .hero-robot-img:hover {
-  filter: drop-shadow(0 30px 60px hsl(43 53% 54% / 0.45)) brightness(1.1);
+  filter: brightness(1.15) contrast(1.08);
 }
 @keyframes robotFloat {
-  0%   { transform: translateY(0px) rotate(0deg); }
-  25%  { transform: translateY(-10px) rotate(-0.6deg); }
-  50%  { transform: translateY(-18px) rotate(0deg); }
-  75%  { transform: translateY(-10px) rotate(0.6deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-14px); }
+  100% { transform: translateY(0px); }
 }
 @keyframes robotEnter {
-  0%   { opacity: 0; transform: translateY(40px) scale(0.96); }
-  100% { opacity: 1; transform: translateY(0px) scale(1); }
+  0%   { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0px); }
 }
 @keyframes chipFloat1 { from { transform: translateY(0px); } to { transform: translateY(-8px); } }
 @keyframes chipFloat2 { from { transform: translateY(0px); } to { transform: translateY(-11px); } }
