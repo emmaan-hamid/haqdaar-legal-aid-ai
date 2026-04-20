@@ -12,7 +12,7 @@ export const Features = () => (
     <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
       <div className="reveal text-center">
         <div className="label-accent">Powered by AI</div>
-        <h2 className="font-display mt-4 text-5xl font-bold text-white lg:text-6xl">Six AI Engines. One Mission.</h2>
+        <h2 className="font-display mt-4 text-5xl font-bold text-white lg:text-6xl">What Our System Delivers</h2>
       </div>
 
       <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -27,7 +27,7 @@ export const Features = () => (
               boxShadow: "inset 0 0 0 1px hsl(43 53% 54% / 0.12)",
             }}
           >
-            <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-md bg-gold/15 text-[15px] font-semibold text-gold ring-1 ring-gold/40 transition-all duration-300 group-hover:bg-gold/25 group-hover:ring-gold">
+            <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-md bg-gold/15 text-[15px] font-semibold text-gold ring-1 ring-gold/40">
               {i + 1}
             </div>
             <h3 className="font-display text-xl font-semibold text-white">{c.title}</h3>
