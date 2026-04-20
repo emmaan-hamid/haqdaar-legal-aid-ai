@@ -12,7 +12,7 @@ export const Features = () => (
     <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
       <div className="reveal text-center">
         <div className="label-accent">Powered by AI</div>
-        <h2 className="font-display mt-4 text-5xl font-bold text-white lg:text-6xl">Three AI Engines. One Mission.</h2>
+        <h2 className="font-display mt-4 text-5xl font-bold text-white lg:text-6xl">Six AI Engines. One Mission.</h2>
       </div>
 
       <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
