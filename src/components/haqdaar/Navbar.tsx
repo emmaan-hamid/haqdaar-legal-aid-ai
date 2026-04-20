@@ -31,7 +31,7 @@ export const Navbar = () => {
       <div className="mx-auto flex h-full w-full max-w-[1400px] items-center justify-between gap-4 px-3 sm:px-4 lg:px-6">
         <a
           href="#"
-          className="group flex items-center font-display text-2xl font-bold tracking-tight text-white transition-colors duration-300 hover:text-gold"
+          className="group flex items-center font-display text-3xl font-bold tracking-tight text-white transition-colors duration-300 hover:text-gold lg:text-4xl"
         >
           <span className="relative inline-block leading-none">
             H
@@ -53,7 +53,7 @@ export const Navbar = () => {
 
         <nav className="hidden items-center gap-7 lg:flex xl:gap-8">
           {links.map((l) => (
-            <a key={l} href="#" className="nav-link whitespace-nowrap text-[13px] font-medium text-ivory">{l}</a>
+            <a key={l} href="#" className="nav-link whitespace-nowrap text-[15px] font-medium text-ivory">{l}</a>
           ))}
         </nav>
 

@@ -147,13 +147,14 @@
     transition: transform .4s cubic-bezier(0.22, 1, 0.36, 1), border-color .4s ease, box-shadow .4s ease, background .4s ease;
   }
   .feature-card:hover {
-    transform: translateY(-6px) scale(1.025);
-    border-color: hsl(43 53% 54% / 0.7);
+    transform: translateY(-10px) scale(1.04);
+    border-color: hsl(43 53% 54% / 0.95) !important;
     background: hsl(var(--elevated));
     box-shadow:
-      0 30px 70px -25px hsl(43 53% 54% / 0.45),
-      0 0 0 1px hsl(43 53% 54% / 0.4),
-      inset 0 1px 0 hsl(43 53% 54% / 0.15);
+      0 40px 90px -20px hsl(43 53% 54% / 0.6),
+      0 0 0 2px hsl(43 53% 54% / 0.55),
+      0 0 60px -10px hsl(43 53% 54% / 0.5),
+      inset 0 1px 0 hsl(43 53% 54% / 0.25);
   }
 }
   .grain::before {
