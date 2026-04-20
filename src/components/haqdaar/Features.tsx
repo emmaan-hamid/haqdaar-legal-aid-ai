@@ -3,8 +3,6 @@ const cards = [
   { title: "Rights Analyzer", body: "Retrieves the most relevant Pakistani law sections. Explains your rights and penalties in plain language.", tag: "Plain Language" },
   { title: "Smart Lawyer Matching", body: "Scores by specialty, availability, proximity, and rating. Returns your top 3 matches.", tag: "Top 3 Matches" },
   { title: "Legal Document Generator", body: "Auto-drafts FIR, legal notices, labor court applications, NADRA appeals, tenancy notices, and harassment complaints. PDF and Word.", tag: "Instant Download" },
-  { title: "Anonymous Mode", body: "Submit completely anonymously. Zero personal data. The system warns if you type personal details. Quick Exit closes the page instantly.", tag: "Full Privacy" },
-  { title: "Case Tracker and Alerts", body: "Track cases from submission to closure. Email and SMS reminders 3 days before deadlines. Rate your lawyer after closure.", tag: "Email, SMS, In-App" },
 ];
 
 export const Features = () => (
