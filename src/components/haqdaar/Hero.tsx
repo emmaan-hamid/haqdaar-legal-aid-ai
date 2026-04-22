@@ -21,7 +21,7 @@ export const Hero = () => {
         </svg>
       </div>
 
-      <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-16 px-6 lg:grid-cols-[55%_45%] lg:gap-8 lg:px-10">
+      <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-0 px-6 lg:grid-cols-[45fr_55fr] lg:px-10">
         {/* LEFT */}
         <div className="relative z-10">
           <div className="pill pill-gold inline-flex items-center gap-2">
@@ -58,14 +58,15 @@ export const Hero = () => {
             </button>
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 text-[12.5px] text-muted-foreground">
-            <span>Bank-Level Encryption</span>
-            <span className="h-1 w-1 rounded-full bg-gold/70"/>
-            <span>Urdu &amp; English</span>
-            <span className="h-1 w-1 rounded-full bg-gold/70"/>
-            <span>Rights in Under 10 Seconds</span>
-            <span className="h-1 w-1 rounded-full bg-gold/70"/>
-            <span>100% Free</span>
+          <div className="mt-8 flex flex-wrap items-center text-[13.5px]" style={{ color: "rgba(255,255,255,0.65)" }}>
+            {["Bank-Level Encryption", "Urdu & English", "Rights in Under 10 Seconds", "100% Free"].map((t, i, arr) => (
+              <span key={t} className="flex items-center" style={{ margin: "0 16px 0 0" }}>
+                <span style={{ marginRight: i < arr.length - 1 ? 0 : 0 }}>{t}</span>
+                {i < arr.length - 1 && (
+                  <span className="ml-4 inline-block h-1.5 w-1.5 rounded-full" style={{ background: "#C9A84C" }} />
+                )}
+              </span>
+            ))}
           </div>
         </div>
 
