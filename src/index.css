@@ -42,6 +42,7 @@
   * {
     border-color: hsl(43 53% 54% / 0.2);
   }
+  html { scroll-behavior: smooth; }
   html, body {
     @apply bg-background text-foreground;
     font-family: 'DM Sans', system-ui, sans-serif;
@@ -141,6 +142,7 @@
     border-color: hsl(43 53% 54% / 0.55);
     background: hsl(var(--elevated));
     box-shadow: 0 30px 60px -30px hsl(43 53% 54% / 0.35);
+  }
   .feature-card {
     background: hsl(var(--surface));
     border: 1px solid hsl(43 53% 54% / 0.18);
@@ -156,7 +158,6 @@
       0 0 60px -10px hsl(43 53% 54% / 0.5),
       inset 0 1px 0 hsl(43 53% 54% / 0.25);
   }
-}
   .grain::before {
     content:''; position:absolute; inset:0; pointer-events:none; opacity:0.5;
     background-image:
@@ -193,6 +194,10 @@
 @keyframes red-pulse {
   0%,100% { box-shadow: 0 0 0 0 rgba(192,57,43,0.55); }
   50% { box-shadow: 0 0 0 10px rgba(192,57,43,0); }
+}
+@keyframes qe-pulse {
+  0%,100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220,38,38,0.55); }
+  50% { transform: scale(1.03); box-shadow: 0 0 0 10px rgba(220,38,38,0); }
 }
 @keyframes blink-caret {
   0%,100% { opacity: 1; } 50% { opacity: 0; }
@@ -259,6 +264,13 @@
 @keyframes robotEnter {
   0%   { opacity: 0; transform: translateY(40px); }
   100% { opacity: 1; transform: translateY(0px); }
+}
+@media (min-width: 1440px) {
+  .hero-robot-img {
+    margin-left: -40px;
+    transform: scale(1.12);
+    transform-origin: bottom right;
+  }
 }
 @keyframes chipFloat1 { from { transform: translateY(0px); } to { transform: translateY(-8px); } }
 @keyframes chipFloat2 { from { transform: translateY(0px); } to { transform: translateY(-11px); } }
