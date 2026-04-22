@@ -4,7 +4,7 @@ const headline = ["Know", "Your", "Rights.", "In", "Your", "Language.", "Resolve
 
 export const Hero = () => {
   return (
-    <section className="relative grain min-h-[88vh] overflow-hidden pt-24 pb-16" style={{ background: "transparent" }}>
+    <section className="relative grain min-h-[88vh] overflow-hidden pt-32 pb-16">
       {/* Watermark scales */}
       <div
         aria-hidden
@@ -21,7 +21,7 @@ export const Hero = () => {
         </svg>
       </div>
 
-      <div className="relative mx-auto grid max-w-[1500px] grid-cols-1 items-center gap-0 px-6 lg:grid-cols-[45fr_55fr] lg:px-10">
+      <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-16 px-6 lg:grid-cols-[55%_45%] lg:gap-8 lg:px-10">
         {/* LEFT */}
         <div className="relative z-10">
           <div className="pill pill-gold inline-flex items-center gap-2">
@@ -58,21 +58,19 @@ export const Hero = () => {
             </button>
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-y-3" style={{ fontSize: 13.5, color: "rgba(255,255,255,0.65)" }}>
-            {["Bank-Level Encryption", "Urdu & English", "Rights in Under 10 Seconds", "100% Free"].map((t, i, arr) => (
-              <span key={t} className="inline-flex items-center">
-                <span className="px-4">{t}</span>
-                {i < arr.length - 1 && <span className="h-1.5 w-1.5 rounded-full" style={{ background: "#C9A84C" }}/>}
-              </span>
-            ))}
+          <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 text-[12.5px] text-muted-foreground">
+            <span>Bank-Level Encryption</span>
+            <span className="h-1 w-1 rounded-full bg-gold/70"/>
+            <span>Urdu &amp; English</span>
+            <span className="h-1 w-1 rounded-full bg-gold/70"/>
+            <span>Rights in Under 10 Seconds</span>
+            <span className="h-1 w-1 rounded-full bg-gold/70"/>
+            <span>100% Free</span>
           </div>
         </div>
 
         {/* RIGHT - reserve grid space; actual robot is absolute on the section */}
-        <div
-          className="relative z-10 hidden lg:block"
-          style={{ minHeight: "78vh", background: "transparent", backgroundColor: "transparent", backgroundImage: "none" }}
-        />
+        <div className="relative z-10 hidden lg:block" style={{ minHeight: "78vh" }} />
       </div>
 
       {/* FREE-FLOATING ROBOT - clean, large, no background */}

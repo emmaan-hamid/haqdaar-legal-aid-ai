@@ -1,11 +1,17 @@
 import { useEffect, useRef, useState } from "react";
-import { UserCircle2 } from "lucide-react";
 
 const links = ["Home", "How It Works", "Features", "For Lawyers", "For NGOs", "Know Your Rights"];
 
 export const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
@@ -17,48 +23,43 @@ export const Navbar = () => {
 
   return (
     <header
-      className="fixed inset-x-0 top-0 z-[1000] backdrop-blur-md"
-      style={{
-        background: "rgba(26,26,26,0.96)",
-        borderBottom: "1.5px solid rgba(201,168,76,0.6)",
-        minHeight: 72,
-      }}
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled ? "backdrop-blur-md border-b border-gold/25" : ""
+      }`}
+      style={{ background: scrolled ? "rgba(10,10,10,0.92)" : "transparent", height: 72 }}
     >
-      <div className="relative mx-auto flex h-full min-h-[72px] w-full max-w-[1500px] items-center justify-between gap-4 px-6 lg:px-8">
+      <div className="mx-auto flex h-full w-full max-w-[1400px] items-center justify-between gap-4 px-3 sm:px-4 lg:px-6">
         <a
           href="#"
-          className="group flex flex-shrink-0 items-center gap-2 font-display tracking-tight text-white transition-colors duration-300 hover:text-gold"
-          style={{ fontSize: 28, fontWeight: 800 }}
+          className="group flex items-center font-display text-3xl font-bold tracking-tight text-white transition-colors duration-300 hover:text-gold lg:text-4xl"
         >
-          <svg width="22" height="18" viewBox="0 0 24 16" fill="none" stroke="hsl(43 53% 54%)" strokeWidth="1.4" className="transition-transform duration-300 group-hover:-translate-y-0.5">
-            <path d="M12 2v12M4 6h16M6 6l-3 5h6zM18 6l-3 5h6z" />
-          </svg>
           <span className="relative inline-block leading-none">
-            HaqDaar
+            H
+            <svg
+              className="absolute left-1/2 -translate-x-1/2 transition-transform duration-300 group-hover:-translate-y-0.5"
+              style={{ top: -6 }}
+              width="14"
+              height="10"
+              viewBox="0 0 24 16"
+              fill="none"
+              stroke="hsl(43 53% 54%)"
+              strokeWidth="0.8"
+            >
+              <path d="M12 2v12M4 6h16M6 6l-3 5h6zM18 6l-3 5h6z" />
+            </svg>
           </span>
+          <span className="leading-none">aqDaar</span>
         </a>
 
-        <nav
-          className="pointer-events-auto absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 lg:flex xl:gap-9"
-        >
+        <nav className="hidden items-center gap-7 lg:flex xl:gap-8">
           {links.map((l) => (
-            <a
-              key={l}
-              href="#"
-              className="nav-link whitespace-nowrap font-medium text-white/85"
-              style={{ fontSize: 15.5, letterSpacing: "0.3px" }}
-            >
-              {l}
-            </a>
+            <a key={l} href="#" className="nav-link whitespace-nowrap text-[15px] font-medium text-ivory">{l}</a>
           ))}
         </nav>
 
         <div className="flex flex-shrink-0 items-center gap-2 sm:gap-3" ref={ref}>
-          <button className="btn-ghost hidden rounded-full px-5 py-2 md:inline-flex" style={{ fontSize: 14.5 }}>Login</button>
-          <button className="btn-gold hidden items-center gap-2 rounded-full px-5 py-2 font-semibold md:inline-flex" style={{ fontSize: 14.5 }}>
-            Get Started Free
-            <UserCircle2 size={16} className="ml-1" />
-          </button>
+          <button className="btn-ghost hidden rounded-full px-4 py-2 text-sm md:inline-flex lg:px-5">Login</button>
+          <button className="btn-gold hidden rounded-full px-4 py-2 text-sm font-semibold md:inline-flex lg:px-5">Get Started Free</button>
 
           <div className="relative">
             <button
