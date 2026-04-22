@@ -265,6 +265,13 @@
   0%   { opacity: 0; transform: translateY(40px); }
   100% { opacity: 1; transform: translateY(0px); }
 }
+@media (min-width: 1440px) {
+  .hero-robot-img {
+    margin-left: -40px;
+    transform: scale(1.12);
+    transform-origin: bottom right;
+  }
+}
 @keyframes chipFloat1 { from { transform: translateY(0px); } to { transform: translateY(-8px); } }
 @keyframes chipFloat2 { from { transform: translateY(0px); } to { transform: translateY(-11px); } }
 @keyframes chipFloat3 { from { transform: translateY(0px); } to { transform: translateY(-7px); } }
