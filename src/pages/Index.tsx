@@ -10,6 +10,9 @@ import { Categories } from "@/components/haqdaar/Categories";
 import { Faq } from "@/components/haqdaar/Faq";
 import { Testimonials } from "@/components/haqdaar/Testimonials";
 import { Banner } from "@/components/haqdaar/Banner";
+import { Comparison } from "@/components/haqdaar/Comparison";
+import { Impact } from "@/components/haqdaar/Impact";
+import { Safety } from "@/components/haqdaar/Safety";
 import { Footer } from "@/components/haqdaar/Footer";
 import { useReveal } from "@/components/haqdaar/useReveal";
 
@@ -27,6 +30,9 @@ const Index = () => {
       <WhoFor />
       <Categories />
       <Faq />
+      <Comparison />
+      <Impact />
+      <Safety />
       <Testimonials />
       <Banner />
       <Footer />
