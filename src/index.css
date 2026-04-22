@@ -252,6 +252,9 @@
 .hero-robot-img:hover {
   filter: brightness(1.15) contrast(1.08);
 }
+@media (min-width: 1440px) {
+  .hero-robot-img { margin-left: -40px; transform: scale(1.12); transform-origin: bottom right; }
+}
 @keyframes robotFloat {
   0%   { transform: translateY(0px); }
   50%  { transform: translateY(-14px); }
