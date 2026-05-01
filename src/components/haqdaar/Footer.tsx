@@ -1,4 +1,4 @@
-import { ArrowRight, Facebook, Twitter, Linkedin, Youtube } from "lucide-react";
+import { ArrowRight, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
 
 const informationLinks = ["Privacy Policy", "User Rights"];
 const legalDomains = ["Labor Law", "Domestic Violence", "Property Fraud", "Police Misconduct"];
