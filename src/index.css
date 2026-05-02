@@ -141,6 +141,7 @@
     border-color: hsl(43 53% 54% / 0.55);
     background: hsl(var(--elevated));
     box-shadow: 0 30px 60px -30px hsl(43 53% 54% / 0.35);
+  }
   .feature-card {
     background: hsl(var(--surface));
     border: 1px solid hsl(43 53% 54% / 0.18);
