@@ -37,7 +37,7 @@ export const Messages = () => {
           <div className="p-3 border-b border-[rgba(201,168,76,.18)] space-y-2">
             <div className="relative">
               <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#888]" />
-              <input className="lp-input" style={{ paddingLeft: 56, height: 36 }} style={{ height: 36 }} placeholder="Search conversations..." />
+              <input className="lp-input" style={{ paddingLeft: 56, height: 36, height: 36 }} placeholder="Search conversations..." />
             </div>
             <div className="flex gap-1">{(["All", "Unread", "Cases", "NGOs"] as const).map(f => (
               <button key={f} onClick={() => setFilter(f)} className="lp-tab" style={{ flex: 1, fontSize: 10, padding: "5px 4px", borderRadius: 8, color: filter === f ? "#C9A84C" : "#888", background: filter === f ? "rgba(201,168,76,.12)" : "transparent", textTransform: "uppercase", letterSpacing: ".06em", border: "1px solid " + (filter === f ? "#C9A84C" : "transparent"), transition: "all .2s" }}>{f}</button>
