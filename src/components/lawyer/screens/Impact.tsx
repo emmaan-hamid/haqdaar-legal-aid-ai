@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { AnimatedPie } from "../charts/AnimatedPie";
 import { AnimatedLine } from "../charts/AnimatedLine";
-import { AnimatedHistogram } from "../charts/AnimatedHistogram";
-import { Download, CheckCircle2 } from "lucide-react";
+import { Download, CheckCircle2, Users, Gavel, Clock, Star, HeartHandshake, ShieldCheck } from "lucide-react";
 
 const useCount = (target: number) => {
   const [v, setV] = useState(0);
@@ -17,6 +15,12 @@ const useCount = (target: number) => {
 
 export const Impact = () => {
   const a = useCount(124), b = useCount(86), c = useCount(412), d = useCount(48);
+  const kpis = [
+    { Icon: Users, l: "Citizens Helped", v: a, color: "#C9A84C" },
+    { Icon: CheckCircle2, l: "Cases Resolved", v: b, color: "#5BC68C", sq: "green" },
+    { Icon: Clock, l: "Pro Bono Hours", v: c, color: "#C9A84C" },
+    { Icon: Star, l: "Avg Rating", v: "4.8", color: "#C9A84C" },
+  ];
   return (
     <div className="lp-fade space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-3">
@@ -25,48 +29,55 @@ export const Impact = () => {
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {[{ l: "Citizens Helped", v: a }, { l: "Cases Resolved", v: b, c: "#5BC68C" }, { l: "Pro Bono Hours", v: c }, { l: "Avg Rating", v: "4.8★" }].map(k => (
-          <div key={k.l} className="lp-kpi">
-            <div className="text-[10px] uppercase tracking-[.12em] text-[#888]">{k.l}</div>
-            <div className="lp-display text-[36px] font-bold mt-1" style={{ color: k.c || "#C9A84C" }}>{typeof k.v === "number" ? k.v : k.v}</div>
+        {kpis.map(k => (
+          <div key={k.l} className={`lp-kpi ${k.sq === "green" ? "lp-kpi-green" : ""}`}>
+            <div className="flex items-start justify-between">
+              <div>
+                <div className="text-[10px] uppercase tracking-[.12em] text-[#888]">{k.l}</div>
+                <div className="lp-display text-[36px] font-bold mt-1 leading-none" style={{ color: k.color }}>{k.v}</div>
+              </div>
+              <div className={`lp-icon-sq ${k.sq || ""}`}><k.Icon size={18} /></div>
+            </div>
           </div>
         ))}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="lp-card p-5">
-          <div className="text-[11px] uppercase tracking-[.15em] text-[#C9A84C] font-semibold mb-3">Cases by Category</div>
-          <div className="grid grid-cols-[auto_1fr] gap-5 items-center">
-            <AnimatedPie size={220} label="Resolved" data={[
-              { label: "Labor", value: 28, color: "#C9A84C" },
-              { label: "Property", value: 18, color: "#7AA8DD" },
-              { label: "Domestic Violence", value: 14, color: "#E57367" },
-              { label: "Police", value: 10, color: "#5BC68C" },
-              { label: "NADRA", value: 8, color: "#E5BB3F" },
-              { label: "Consumer", value: 5, color: "#A37BC9" },
-              { label: "Harassment", value: 3, color: "#7BC9C0" },
-            ]} />
-            <ul className="space-y-1.5 text-[12px]">
-              {[["Labor", "#C9A84C"], ["Property", "#7AA8DD"], ["Domestic Violence", "#E57367"], ["Police", "#5BC68C"], ["NADRA", "#E5BB3F"], ["Consumer", "#A37BC9"], ["Harassment", "#7BC9C0"]].map(([l, c]) => (
-                <li key={l} className="flex items-center gap-2 text-[#aaa]"><span className="w-2.5 h-2.5 rounded-full" style={{ background: c }} /> {l}</li>
-              ))}
-            </ul>
+        <div className="lp-card p-6 lp-lift">
+          <div className="flex items-start justify-between mb-3">
+            <div>
+              <div className="text-[10.5px] uppercase tracking-[.2em] text-[#C9A84C] font-bold">Reach</div>
+              <div className="lp-display text-[26px] font-bold text-white leading-tight mt-0.5">Citizens Helped</div>
+            </div>
+            <div className="lp-icon-sq"><HeartHandshake size={18} /></div>
           </div>
+          <div className="lp-display text-[64px] font-bold text-[#C9A84C] leading-none lp-pop">{a}</div>
+          <div className="text-[12.5px] text-[#aaa] mt-3">Across Punjab, Sindh and Balochistan.</div>
+          <div className="mt-5 h-[2px] w-full rounded-full" style={{ background: "linear-gradient(90deg,#C9A84C,transparent)" }} />
         </div>
-
-        <div className="lp-card p-5">
-          <div className="text-[11px] uppercase tracking-[.15em] text-[#C9A84C] font-semibold mb-3">Weekly Case Activity</div>
-          <AnimatedHistogram labels={["W1", "W2", "W3", "W4", "W5", "W6", "W7", "W8"]} values={[3, 5, 4, 7, 6, 9, 8, 11]} color="#C9A84C" height={240} />
+        <div className="lp-card p-6 lp-lift">
+          <div className="flex items-start justify-between mb-3">
+            <div>
+              <div className="text-[10.5px] uppercase tracking-[.2em] text-[#C9A84C] font-bold">Outcomes</div>
+              <div className="lp-display text-[26px] font-bold text-white leading-tight mt-0.5">Cases Resolved</div>
+            </div>
+            <div className="lp-icon-sq green"><ShieldCheck size={18} /></div>
+          </div>
+          <div className="lp-display text-[64px] font-bold text-[#5BC68C] leading-none lp-pop">{b}</div>
+          <div className="text-[12.5px] text-[#aaa] mt-3">Justice delivered with no fee, no friction.</div>
+          <div className="mt-5 h-[2px] w-full rounded-full" style={{ background: "linear-gradient(90deg,#5BC68C,transparent)" }} />
         </div>
       </div>
 
       <div className="lp-card p-5">
         <div className="text-[11px] uppercase tracking-[.15em] text-[#C9A84C] font-semibold mb-3">Resolution Trend (last 5 months)</div>
-        <AnimatedLine labels={["Dec", "Jan", "Feb", "Mar", "Apr"]} series={[
-          { name: "Resolved", color: "#5BC68C", data: [12, 16, 18, 22, 18] },
-          { name: "New", color: "#C9A84C", data: [18, 20, 19, 24, 22] },
-          { name: "Pending", color: "#7AA8DD", data: [6, 8, 7, 9, 8] },
-        ]} />
+        <div className="lp-chart-glow">
+          <AnimatedLine labels={["Dec", "Jan", "Feb", "Mar", "Apr"]} series={[
+            { name: "Resolved", color: "#5BC68C", data: [12, 16, 18, 22, 18] },
+            { name: "New", color: "#C9A84C", data: [18, 20, 19, 24, 22] },
+            { name: "Pending", color: "#7AA8DD", data: [6, 8, 7, 9, 8] },
+          ]} />
+        </div>
       </div>
 
       <div className="lp-card p-5">

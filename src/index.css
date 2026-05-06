@@ -435,3 +435,22 @@ svg:hover .lp-line-path { filter: drop-shadow(0 0 6px var(--glow)); }
 /* Disable hover transform on specific cards */
 .lp-no-hover:hover { transform: none !important; box-shadow: none !important; border-color: rgba(201,168,76,.2) !important; background: #141414 !important; }
 
+/* Square icon badge (used in KPI / impact cards) */
+.lp-icon-sq { width:38px; height:38px; border-radius:10px; display:grid; place-items:center; border:1px solid rgba(201,168,76,.35); background:rgba(201,168,76,.12); color:#C9A84C; transition: all .3s ease; }
+.lp-icon-sq.green { border-color:rgba(44,122,77,.55); background:rgba(44,122,77,.14); color:#5BC68C; }
+.lp-icon-sq.red { border-color:rgba(192,57,43,.55); background:rgba(192,57,43,.14); color:#E57367; }
+.lp-icon-sq.blue { border-color:rgba(59,107,165,.55); background:rgba(59,107,165,.14); color:#7AA8DD; }
+
+/* Stat card mini glow */
+.lp-mini-stat { transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
+.lp-mini-stat:hover { transform: translateY(-3px); border-color:rgba(201,168,76,.7) !important; box-shadow: 0 12px 30px -10px rgba(201,168,76,.45); }
+.lp-mini-stat.green:hover { border-color:rgba(44,122,77,.75) !important; box-shadow: 0 12px 30px -10px rgba(44,122,77,.5); }
+
+/* Run-time count animation utility (just a fade) */
+@keyframes lp-pop { 0% { transform: scale(.92); opacity:0; } 100% { transform: scale(1); opacity:1; } }
+.lp-pop { animation: lp-pop .6s cubic-bezier(.22,1,.36,1) both; }
+
+/* Card lift on hover (saas style) */
+.lp-lift { transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease, border-color .35s ease; }
+.lp-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 50px -20px rgba(201,168,76,.4); border-color: rgba(201,168,76,.55); }
+

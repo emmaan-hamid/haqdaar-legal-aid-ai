@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Star, Upload, Check, X, FileCheck, AlertCircle } from "lucide-react";
+import { AvailabilityCockpit } from "../AvailabilityCockpit";
 
 const tabs = ["Profile", "Availability", "Specialization", "Certifications", "Reputation"] as const;
 type Tab = typeof tabs[number];
@@ -49,37 +50,15 @@ const Profile = () => (
   </div>
 );
 
-const Availability = () => {
-  const [s, setS] = useState<"avail" | "busy" | "unavail">("avail");
-  const [m, setM] = useState(5);
-  return (
-    <div className="lp-card p-6 space-y-5 lp-fade">
-      <div className="flex items-center justify-between">
-        <div className="text-[11px] uppercase tracking-[.15em] text-[#C9A84C] font-semibold">Your Status</div>
-        <div className="text-[11px] text-[#888]">Last updated: Today</div>
-      </div>
-      <div className="grid grid-cols-3 gap-3">
-        {([["avail", "Available", "lp-btn-green"], ["busy", "Busy", "lp-btn-amber"], ["unavail", "Unavailable", "lp-btn-red"]] as const).map(([k, lbl, cls]) => (
-          <button key={k} onClick={() => setS(k)} className={`lp-btn ${cls}`} style={{ height: 56, fontSize: 13, ...(s === k ? { background: cls.includes("green") ? "rgba(44,122,77,.18)" : cls.includes("amber") ? "rgba(212,160,23,.18)" : "rgba(192,57,43,.18)", boxShadow: `0 0 22px ${cls.includes("green") ? "rgba(44,122,77,.55)" : cls.includes("amber") ? "rgba(212,160,23,.55)" : "rgba(192,57,43,.55)"}` } : {}) }}>{lbl}</button>
-        ))}
-      </div>
-      <div className="rounded-xl px-4 py-3 text-[12.5px]" style={{ background: s === "avail" ? "rgba(44,122,77,.1)" : s === "busy" ? "rgba(212,160,23,.1)" : "rgba(192,57,43,.1)", border: `1px solid ${s === "avail" ? "rgba(44,122,77,.4)" : s === "busy" ? "rgba(212,160,23,.4)" : "rgba(192,57,43,.4)"}`, color: s === "avail" ? "#5BC68C" : s === "busy" ? "#E5BB3F" : "#E57367" }}>
-        {s === "avail" && "Accepting new pro bono cases."}
-        {s === "busy" && "At capacity. New requests on hold."}
-        {s === "unavail" && "Not accepting new cases right now."}
-      </div>
-      <div>
-        <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-2">Max Active Cases <span className="text-[#C9A84C] font-bold ml-2">{m}</span></div>
-        <input type="range" min={1} max={10} value={m} onChange={e => setM(+e.target.value)} className="lp-slider" />
-      </div>
-      <div>
-        <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">Typical Response Time</div>
-        <select className="lp-input"><option>Within 24 hours</option><option>Within 48 hours</option><option>Within a week</option></select>
-      </div>
-      <button className="lp-btn lp-btn-gold-solid">Update Availability</button>
+const Availability = () => (
+  <div className="space-y-5 lp-fade">
+    <AvailabilityCockpit initialMax={5} active={3} />
+    <div className="lp-card p-6">
+      <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">Typical Response Time</div>
+      <select className="lp-input"><option>Within 24 hours</option><option>Within 48 hours</option><option>Within a week</option></select>
     </div>
-  );
-};
+  </div>
+);
 
 const Specialization = () => {
   const cats = ["Labor Dispute", "Property Fraud", "Domestic Violence", "Police Misconduct", "NADRA Issues", "Consumer Rights", "Harassment"];
