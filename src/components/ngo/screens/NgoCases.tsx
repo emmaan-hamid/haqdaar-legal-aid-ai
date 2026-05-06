@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Search, Download, Star } from "lucide-react";
+import { ChevronDown, ChevronUp, Download, Star, FileText } from "lucide-react";
+import { CasesFilters, URGENCIES, STATUSES, OUTCOMES } from "@/components/lawyer/cases/CasesHeader";
 
 const STAFF = ["Ayesha M.", "Bilal K.", "Sana R.", "Hamza A.", "Unassigned"];
 
@@ -10,55 +11,48 @@ const requests = [
   { id: "HD-3110", title: "Property fraud complaint", cat: "Property Fraud", urgency: "low", city: "Multan", date: "2 days", summary: "Forged signature used to transfer ancestral land.", full: "Ancestral land transferred via forged signature. FIR filed; no progress.", laws: ["Pakistan Penal Code §420"], docs: ["fir_copy.pdf"] },
 ];
 
-const Filters = () => (
-  <div className="flex flex-wrap gap-2 items-center">
-    {["Category", "Date", "Urgency"].map(f => (
-      <select key={f} className="lp-input" style={{ width: 140, height: 36 }}><option>{f}</option><option>All</option></select>
-    ))}
-    <div className="relative flex-1 min-w-[160px]">
-      <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#888]" />
-      <input className="lp-input" style={{ paddingLeft: 56, height: 36 }} placeholder="Search..." />
-    </div>
-  </div>
-);
-
 export const NgoCaseRequests = () => {
   const [open, setOpen] = useState<string | null>(null);
   const [reject, setReject] = useState<string | null>(null);
   return (
     <div className="lp-fade space-y-5">
       <div className="flex items-center gap-3">
-        <h2 className="lp-display text-[28px] font-bold text-white">Incoming Requests</h2>
-        <span className="text-[11px] px-2 py-1 rounded-full bg-[rgba(201,168,76,.15)] text-[#C9A84C] font-semibold">{requests.length} new</span>
+        <div className="lp-display text-[20px] font-semibold text-white">Incoming Requests</div>
+        <span className="text-[11px] px-3 py-1 rounded-full font-bold tracking-wider" style={{ border: "1px solid #C9A84C", color: "#C9A84C" }}>{requests.length} NEW</span>
       </div>
-      <Filters />
-      <div className="space-y-3">
+      <CasesFilters second={{ label: "Urgency", options: URGENCIES }} />
+      <div className="space-y-4 max-h-[640px] overflow-y-auto lp-gold-scroll pr-2">
         {requests.map(r => {
           const ex = open === r.id;
           return (
-            <div key={r.id} className="lp-card p-5 lp-card-hover">
-              <button className="w-full flex items-start justify-between gap-3" onClick={() => setOpen(ex ? null : r.id)}>
-                <div className="text-left">
-                  <div className="flex flex-wrap gap-2 mb-2">
-                    <span className="lp-chip">{r.cat}</span>
-                    <span className={`lp-pill ${r.urgency === "high" ? "lp-pill-urgent" : r.urgency === "med" ? "lp-pill-med" : "lp-pill-low"}`} style={{ height: 20, fontSize: 9 }}>{r.urgency === "high" ? "High" : r.urgency === "med" ? "Med" : "Low"}</span>
-                    <span className="text-[11px] text-[#888]">{r.city} • {r.date}</span>
+            <div key={r.id} className="lp-case-card">
+              <button className="w-full text-left" onClick={() => setOpen(ex ? null : r.id)}>
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <span className="lp-cat-pill">{r.cat}</span>
+                    <span className={`lp-urg-pill ${r.urgency === "high" ? "lp-urg-high" : r.urgency === "med" ? "lp-urg-med" : "lp-urg-low"}`}>{r.urgency === "high" ? "High" : r.urgency === "med" ? "Medium" : "Low"}</span>
                   </div>
-                  <div className="text-[15px] font-semibold text-white">{r.title}</div>
-                  <p className="text-[12.5px] text-[#aaa] mt-1 max-w-2xl">{r.summary}</p>
+                  <div className="flex items-center gap-3 text-[12px] text-[#888]">
+                    <span>{r.id} · {r.date}</span>
+                    {ex ? <ChevronUp size={18} className="text-[#C9A84C]" /> : <ChevronDown size={18} className="text-[#C9A84C]" />}
+                  </div>
                 </div>
-                {ex ? <ChevronUp size={18} className="text-[#C9A84C] mt-1" /> : <ChevronDown size={18} className="text-[#C9A84C] mt-1" />}
+                <div className="mt-4">
+                  <div className="text-[18px] font-semibold text-white leading-tight">{r.title}</div>
+                  <div className="text-[12.5px] text-[#888] mt-0.5">{r.city}</div>
+                </div>
+                <p className="text-[13px] text-[#C9C4B0] mt-3 leading-relaxed">{r.summary}</p>
               </button>
               {ex && (
-                <div className="mt-4 pt-4 border-t border-[rgba(201,168,76,.2)] space-y-3 lp-fade">
-                  <div><div className="text-[10px] uppercase tracking-[.12em] text-[#C9A84C] font-semibold mb-1">Citizen's full description</div><p className="text-[12.5px] text-[#E8E0D0]">{r.full}</p></div>
-                  <div><div className="text-[10px] uppercase tracking-[.12em] text-[#C9A84C] font-semibold mb-1">Laws Retrieved</div><div className="flex flex-wrap gap-2">{r.laws.map(l => <span key={l} className="lp-chip">{l}</span>)}</div></div>
-                  <div><div className="text-[10px] uppercase tracking-[.12em] text-[#C9A84C] font-semibold mb-1">Documents</div><div className="flex flex-wrap gap-2">{r.docs.map(d => <span key={d} className="text-[11.5px] text-[#aaa] px-3 py-1 rounded-full border border-[#333]">{d}</span>)}</div></div>
+                <div className="mt-5 pt-5 border-t border-[rgba(201,168,76,.2)] space-y-5 lp-fade">
+                  <div><div className="text-[11px] uppercase tracking-[.18em] text-[#C9A84C] font-semibold mb-2">AI Analysis</div><p className="text-[13px] text-[#E8E0D0] leading-relaxed">{r.full}</p></div>
+                  <div><div className="text-[11px] uppercase tracking-[.18em] text-[#C9A84C] font-semibold mb-2">Laws Retrieved</div><div className="flex flex-wrap gap-2">{r.laws.map(l => <span key={l} className="lp-cat-pill" style={{ height: 32 }}>{l}</span>)}</div></div>
+                  <div><div className="text-[11px] uppercase tracking-[.18em] text-[#C9A84C] font-semibold mb-2">Uploaded Documents</div><div className="flex flex-wrap gap-2">{r.docs.map(d => <span key={d} className="inline-flex items-center gap-2 text-[12px] text-[#C9A84C] px-3 py-2 rounded-lg" style={{ border: "1px solid rgba(201,168,76,.4)" }}><FileText size={13} /> {d}</span>)}</div></div>
                 </div>
               )}
-              <div className="flex gap-2 mt-4">
-                <button className="lp-btn lp-btn-green">Approve</button>
-                <button className="lp-btn lp-btn-red" onClick={() => setReject(r.id)}>Reject</button>
+              <div className="grid grid-cols-2 gap-3 mt-5 max-w-[320px]">
+                <button className="lp-act-accept">Approve</button>
+                <button className="lp-act-decline" onClick={() => setReject(r.id)}>Reject</button>
               </div>
             </div>
           );
@@ -96,23 +90,39 @@ export const NgoActiveCases = () => {
   const assign = (id: string, s: string) => { setRows(rows.map(r => r.id === id ? { ...r, staff: s } : r)); setToast(`Assigned ${s} to ${id}`); setTimeout(() => setToast(""), 2200); };
   return (
     <div className="lp-fade space-y-5">
-      <h2 className="lp-display text-[28px] font-bold text-white">Active Cases</h2>
-      <Filters />
-      <div className="lp-card overflow-hidden">
-        <div className="grid grid-cols-[80px_1fr_110px_100px_120px_80px_90px] gap-3 px-5 py-3 text-[10px] uppercase tracking-[.12em] text-[#888] font-semibold border-b border-[rgba(201,168,76,.2)]">
-          <div>Case ID</div><div>Title</div><div>Category</div><div>Status</div><div>Assigned Staff</div><div>Deadline</div><div>Action</div>
+      <div className="lp-display text-[20px] font-semibold text-white">Active Cases <span className="text-[11px] px-3 py-1 rounded-full font-bold tracking-wider align-middle ml-2" style={{ border: "1px solid #C9A84C", color: "#C9A84C" }}>{rows.length}</span></div>
+      <CasesFilters second={{ label: "Status", options: STATUSES }} />
+      <div className="lp-case-card p-0 overflow-hidden">
+        <div className="overflow-x-auto lp-gold-scroll" style={{ maxHeight: 480, overflowY: "auto" }}>
+          <table className="w-full text-[12.5px]" style={{ borderCollapse: "separate", borderSpacing: 0, minWidth: 1000 }}>
+            <thead className="sticky top-0 z-10" style={{ background: "#141414" }}>
+              <tr className="text-[10.5px] uppercase tracking-[.16em] text-[#888] font-semibold">
+                {["Case ID", "Title", "Category", "Status", "Assigned Staff", "Deadline", "Action"].map(h => (
+                  <th key={h} className={`px-5 py-4 text-left ${h === "Action" ? "text-right" : ""}`}>{h}</th>
+                ))}
+              </tr>
+              <tr><td colSpan={7}><div className="h-px" style={{ background: "rgba(201,168,76,.2)" }} /></td></tr>
+            </thead>
+            <tbody>
+              {rows.map(c => {
+                const dnum = parseInt(c.deadline);
+                return (
+                  <tr key={c.id} className="lp-row-hover" style={{ borderTop: "1px solid rgba(201,168,76,.08)" }}>
+                    <td className="px-5 py-4 font-mono text-[13px] text-[#C9A84C] tracking-wide">{c.id}</td>
+                    <td className="px-5 py-4 text-white">{c.title}</td>
+                    <td className="px-5 py-4 text-[#C9C4B0]">{c.cat}</td>
+                    <td className="px-5 py-4"><span className={`lp-stat-pill ${c.status === "progress" ? "lp-stat-progress" : c.status === "await" ? "lp-stat-await" : "lp-stat-pending"}`}>{c.status === "progress" ? "In Progress" : c.status === "await" ? "Awaiting" : "Pending"}</span></td>
+                    <td className="px-5 py-4">
+                      <select value={c.staff} onChange={e => assign(c.id, e.target.value)} className="lp-filter-select" style={{ height: 34, fontSize: 12, minWidth: 130 }}>{STAFF.map(s => <option key={s}>{s}</option>)}</select>
+                    </td>
+                    <td className="px-5 py-4 font-semibold" style={{ color: dnum < 3 ? "#E57367" : "#C9C4B0" }}>{c.deadline}</td>
+                    <td className="px-5 py-4 text-right"><button onClick={() => setDetail(c)} className="lp-btn lp-btn-gold" style={{ height: 32, padding: "0 22px", borderRadius: 9999, fontSize: 11 }}>View</button></td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
-        {rows.map(c => (
-          <div key={c.id} className="grid grid-cols-[80px_1fr_110px_100px_120px_80px_90px] gap-3 items-center px-5 py-3 text-[12.5px] border-b border-[rgba(201,168,76,.1)] hover:bg-[rgba(201,168,76,.04)] transition-colors">
-            <div className="font-mono text-[#C9A84C]">{c.id}</div>
-            <div className="text-white truncate">{c.title}</div>
-            <div className="text-[#aaa]">{c.cat}</div>
-            <span className={`lp-pill ${c.status === "progress" ? "lp-pill-progress" : c.status === "await" ? "lp-pill-await" : "lp-pill-pending"}`} style={{ width: 90, justifyContent: "center", fontSize: 8, height: 20 }}>{c.status === "progress" ? "In Progress" : c.status === "await" ? "Awaiting" : "Pending"}</span>
-            <select value={c.staff} onChange={e => assign(c.id, e.target.value)} className="lp-input" style={{ height: 30, fontSize: 11, padding: "0 10px" }}>{STAFF.map(s => <option key={s}>{s}</option>)}</select>
-            <div className={+c.deadline.split(" ")[0] < 3 ? "text-[#E57367]" : "text-[#aaa]"}>{c.deadline}</div>
-            <button className="lp-btn lp-btn-gold-solid" style={{ height: 28, fontSize: 11 }} onClick={() => setDetail(c)}>View</button>
-          </div>
-        ))}
       </div>
       {toast && <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-[300] px-4 py-2 rounded-full text-[12px]" style={{ background: "#1E1E1E", border: "1px solid #C9A84C", color: "#C9A84C" }}>{toast}</div>}
     </div>
@@ -183,25 +193,35 @@ const completed = [
 
 export const NgoCompletedCases = () => (
   <div className="lp-fade space-y-5">
-    <h2 className="lp-display text-[28px] font-bold text-white">Completed Cases</h2>
-    <Filters />
-    <div className="lp-card overflow-hidden">
-      <div className="grid grid-cols-[70px_1fr_120px_100px_100px_70px_120px_80px] gap-3 px-5 py-3 text-[10px] uppercase tracking-[.12em] text-[#888] font-semibold border-b border-[rgba(201,168,76,.2)]">
-        <div>Case ID</div><div>Title</div><div>Category</div><div>Date</div><div>Resolution</div><div>Rating</div><div>Assigned Staff</div><div>Action</div>
+    <div className="lp-display text-[20px] font-semibold text-white">Completed Cases <span className="text-[11px] px-3 py-1 rounded-full font-bold tracking-wider align-middle ml-2" style={{ border: "1px solid #5BC68C", color: "#5BC68C" }}>{completed.length}</span></div>
+    <CasesFilters second={{ label: "Outcome", options: OUTCOMES }} />
+    <div className="lp-case-card p-0 overflow-hidden">
+      <div className="overflow-x-auto lp-gold-scroll" style={{ maxHeight: 480, overflowY: "auto" }}>
+        <table className="w-full text-[12.5px]" style={{ borderCollapse: "separate", borderSpacing: 0, minWidth: 1040 }}>
+          <thead className="sticky top-0 z-10" style={{ background: "#141414" }}>
+            <tr className="text-[10.5px] uppercase tracking-[.16em] text-[#888] font-semibold">
+              {["Case ID", "Title", "Category", "Resolved", "Outcome", "Rating", "Assigned Staff", "Export"].map(h => (
+                <th key={h} className={`px-5 py-4 text-left ${h === "Export" ? "text-right" : ""}`}>{h}</th>
+              ))}
+            </tr>
+            <tr><td colSpan={8}><div className="h-px" style={{ background: "rgba(201,168,76,.2)" }} /></td></tr>
+          </thead>
+          <tbody>
+            {completed.map(c => (
+              <tr key={c.id} className="lp-row-hover" style={{ borderTop: "1px solid rgba(201,168,76,.08)" }}>
+                <td className="px-5 py-4 font-mono text-[13px] text-[#C9A84C] tracking-wide">{c.id}</td>
+                <td className="px-5 py-4 text-white">{c.title}</td>
+                <td className="px-5 py-4 text-[#C9C4B0]">{c.cat}</td>
+                <td className="px-5 py-4 text-[#C9C4B0]">{c.date}</td>
+                <td className="px-5 py-4"><span className="lp-stat-pill lp-stat-resolved">{c.res}</span></td>
+                <td className="px-5 py-4"><div className="flex gap-0.5">{Array.from({ length: 5 }).map((_, i) => <Star key={i} size={14} className={i < c.rating ? "lp-star filled" : "lp-star"} fill={i < c.rating ? "currentColor" : "none"} />)}</div></td>
+                <td className="px-5 py-4 text-[#C9C4B0]">{c.staff}</td>
+                <td className="px-5 py-4 text-right"><button className="lp-btn lp-btn-gold" style={{ height: 32, padding: "0 18px", borderRadius: 9999, fontSize: 11 }}><Download size={11} /> PDF</button></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-      {completed.map(c => (
-        <div key={c.id} className="grid grid-cols-[70px_1fr_120px_100px_100px_70px_120px_80px] gap-3 items-center px-5 py-3 text-[12.5px] border-b border-[rgba(201,168,76,.1)] hover:bg-[rgba(201,168,76,.04)]">
-          <div className="font-mono text-[#C9A84C]">{c.id}</div>
-          <div className="text-white truncate">{c.title}</div>
-          <div className="text-[#aaa]">{c.cat}</div>
-          <div className="text-[#aaa]">{c.date}</div>
-          <span className="lp-pill lp-pill-resolved" style={{ justifyContent: "center", fontSize: 9 }}>{c.res}</span>
-          <div className="flex">{Array.from({ length: 5 }).map((_, i) => <Star key={i} size={12} className={i < c.rating ? "lp-star filled" : "lp-star"} fill={i < c.rating ? "currentColor" : "none"} />)}</div>
-          <div className="text-[#aaa] truncate">{c.staff}</div>
-          <button className="lp-btn lp-btn-gold lp-btn-sm">View</button>
-        </div>
-      ))}
     </div>
-    <button className="lp-btn lp-btn-gold-solid"><Download size={12} /> Download</button>
   </div>
 );

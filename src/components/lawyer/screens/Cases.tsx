@@ -1,28 +1,13 @@
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Search, Download, Star } from "lucide-react";
+import { ChevronDown, ChevronUp, Download, Star, FileText } from "lucide-react";
+import { CasesFilters, URGENCIES, STATUSES, OUTCOMES } from "../cases/CasesHeader";
 
 const requests = [
-  { id: "HD-2407", title: "Unpaid wages, factory workers", cat: "Labor Dispute", urgency: "high", city: "Faisalabad", date: "Today", summary: "12 workers report 3 months unpaid wages with documentation.", full: "Group of 12 textile workers at a factory in Faisalabad have not received salaries for the last 3 months. Owner refuses meetings.", laws: ["Payment of Wages Act 1936", "Industrial Relations Act 2012"], docs: ["pay_slips.pdf", "joint_letter.pdf"] },
-  { id: "HD-2408", title: "Domestic violence protection order", cat: "Domestic Violence", urgency: "high", city: "Lahore", date: "Today", summary: "Citizen requesting urgent court protection order.", full: "Victim of repeated domestic abuse seeks court-issued protection. Aurat Foundation has been notified.", laws: ["Punjab Protection of Women Against Violence Act 2016"], docs: ["medical_report.pdf", "police_complaint.pdf"] },
-  { id: "HD-2409", title: "NADRA ID rejection appeal", cat: "NADRA Issues", urgency: "med", city: "Karachi", date: "Yesterday", summary: "ID application rejected without clear reason. Appeal documents ready.", full: "Applicant rejected during biometric verification. Wants to file appeal.", laws: ["NADRA Ordinance 2000"], docs: ["rejection_letter.pdf"] },
-  { id: "HD-2410", title: "Property fraud, fake transfer", cat: "Property Fraud", urgency: "low", city: "Multan", date: "2 days", summary: "Forged transfer deed; FIR filed but no progress.", full: "Property in Multan transferred without owner consent through forged documents.", laws: ["Pakistan Penal Code §420", "Land Revenue Act"], docs: ["fir_copy.pdf", "transfer_deed.pdf"] },
+  { id: "REQ 1042", title: "Wrongful termination from textile mill", cat: "Labor", urgency: "high", city: "Faisalabad", date: "Today", time: "2h ago", summary: "Worker dismissed without notice or final dues after 6 years of service. Requests reinstatement and unpaid wages.", full: "Client worked at Crescent Textile Mill, Faisalabad from 2018 to 2024 as a quality control operator. On 14 March 2026 he was verbally dismissed without written notice, severance, or final settlement of dues totaling PKR 218,000. Witnesses confirm presence on site through gate logs.", laws: ["Industrial Relations Act 2012, §33", "West Pakistan Industrial & Commercial Employment Standing Orders 1968", "Payment of Wages Act 1936"], docs: ["ID copy.pdf", "Employment letter.pdf", "Last payslip.jpg"] },
+  { id: "REQ 1043", title: "Domestic violence protection order", cat: "Domestic Violence", urgency: "high", city: "Lahore", date: "Today", time: "4h ago", summary: "Citizen requesting urgent court protection order against spouse.", full: "Victim of repeated domestic abuse seeks court-issued protection. Aurat Foundation has been notified.", laws: ["Punjab Protection of Women Against Violence Act 2016"], docs: ["medical_report.pdf", "police_complaint.pdf"] },
+  { id: "REQ 1044", title: "NADRA ID rejection appeal", cat: "NADRA Issues", urgency: "med", city: "Karachi", date: "Yesterday", time: "1d ago", summary: "ID application rejected without clear reason. Appeal documents ready.", full: "Applicant rejected during biometric verification. Wants to file appeal.", laws: ["NADRA Ordinance 2000"], docs: ["rejection_letter.pdf"] },
+  { id: "REQ 1045", title: "Property fraud, fake transfer", cat: "Property Fraud", urgency: "low", city: "Multan", date: "2 days", time: "2d ago", summary: "Forged transfer deed; FIR filed but no progress.", full: "Property in Multan transferred without owner consent through forged documents.", laws: ["Pakistan Penal Code §420", "Land Revenue Act"], docs: ["fir_copy.pdf", "transfer_deed.pdf"] },
 ];
-
-const Filters = ({ children }: { children?: React.ReactNode }) => (
-  <div className="flex flex-wrap gap-2 items-center">
-    {["Category", "Date", "Urgency"].map(f => (
-      <select key={f} className="lp-input" style={{ width: 140, height: 36 }}>
-        <option>{f}</option>
-        <option>All</option>
-      </select>
-    ))}
-    <div className="relative flex-1 min-w-[160px]">
-      <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#888]" />
-      <input className="lp-input" style={{ paddingLeft: 56, height: 36 }} placeholder="Search..." />
-    </div>
-    {children}
-  </div>
-);
 
 export const CaseRequests = () => {
   const [open, setOpen] = useState<string | null>(null);
@@ -30,46 +15,51 @@ export const CaseRequests = () => {
   return (
     <div className="lp-fade space-y-5">
       <div className="flex items-center gap-3">
-        <h2 className="lp-display text-[28px] font-bold text-white">Case Requests</h2>
-        <span className="text-[11px] px-2 py-1 rounded-full bg-[rgba(201,168,76,.15)] text-[#C9A84C] font-semibold">{requests.length} new</span>
+        <div className="lp-display text-[20px] font-semibold text-white">Case Requests</div>
+        <span className="text-[11px] px-3 py-1 rounded-full font-bold tracking-wider" style={{ background: "transparent", border: "1px solid #C9A84C", color: "#C9A84C" }}>{requests.length} NEW</span>
       </div>
-      <Filters />
-      <div className="space-y-3">
+      <CasesFilters second={{ label: "Urgency", options: URGENCIES }} />
+      <div className="space-y-4 max-h-[640px] overflow-y-auto lp-gold-scroll pr-2">
         {requests.map(r => {
           const ex = open === r.id;
           return (
-            <div key={r.id} className="lp-card p-5 lp-card-hover">
-              <button className="w-full flex items-start justify-between gap-3" onClick={() => setOpen(ex ? null : r.id)}>
-                <div className="text-left">
-                  <div className="flex flex-wrap gap-2 mb-2">
-                    <span className="lp-chip">{r.cat}</span>
-                    <span className={`lp-pill ${r.urgency === "high" ? "lp-pill-urgent" : r.urgency === "med" ? "lp-pill-med" : "lp-pill-low"}`} style={{ height: 20, fontSize: 9 }}>{r.urgency === "high" ? "High" : r.urgency === "med" ? "Med" : "Low"}</span>
-                    <span className="text-[11px] text-[#888]">{r.city} • {r.date}</span>
+            <div key={r.id} className="lp-case-card">
+              <button className="w-full text-left" onClick={() => setOpen(ex ? null : r.id)}>
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <span className="lp-cat-pill">{r.cat}</span>
+                    <span className={`lp-urg-pill ${r.urgency === "high" ? "lp-urg-high" : r.urgency === "med" ? "lp-urg-med" : "lp-urg-low"}`}>{r.urgency === "high" ? "High" : r.urgency === "med" ? "Medium" : "Low"}</span>
                   </div>
-                  <div className="text-[15px] font-semibold text-white">{r.title}</div>
-                  <p className="text-[12.5px] text-[#aaa] mt-1 max-w-2xl">{r.summary}</p>
+                  <div className="flex items-center gap-3 text-[12px] text-[#888]">
+                    <span>{r.id} · {r.date} · {r.time}</span>
+                    {ex ? <ChevronUp size={18} className="text-[#C9A84C]" /> : <ChevronDown size={18} className="text-[#C9A84C]" />}
+                  </div>
                 </div>
-                {ex ? <ChevronUp size={18} className="text-[#C9A84C] mt-1" /> : <ChevronDown size={18} className="text-[#C9A84C] mt-1" />}
+                <div className="mt-4">
+                  <div className="text-[18px] font-semibold text-white leading-tight">{r.title}</div>
+                  <div className="text-[12.5px] text-[#888] mt-0.5">{r.city}</div>
+                </div>
+                <p className="text-[13px] text-[#C9C4B0] mt-3 leading-relaxed">{r.summary}</p>
               </button>
               {ex && (
-                <div className="mt-4 pt-4 border-t border-[rgba(201,168,76,.2)] space-y-3 lp-fade">
+                <div className="mt-5 pt-5 border-t border-[rgba(201,168,76,.2)] space-y-5 lp-fade">
                   <div>
-                    <div className="text-[10px] uppercase tracking-[.12em] text-[#C9A84C] font-semibold mb-1">Citizen's full description</div>
-                    <p className="text-[12.5px] text-[#E8E0D0]">{r.full}</p>
+                    <div className="text-[11px] uppercase tracking-[.18em] text-[#C9A84C] font-semibold mb-2">AI Analysis</div>
+                    <p className="text-[13px] text-[#E8E0D0] leading-relaxed">{r.full}</p>
                   </div>
                   <div>
-                    <div className="text-[10px] uppercase tracking-[.12em] text-[#C9A84C] font-semibold mb-1">Laws Retrieved</div>
-                    <div className="flex flex-wrap gap-2">{r.laws.map(l => <span key={l} className="lp-chip">{l}</span>)}</div>
+                    <div className="text-[11px] uppercase tracking-[.18em] text-[#C9A84C] font-semibold mb-2">Laws Retrieved</div>
+                    <div className="flex flex-wrap gap-2">{r.laws.map(l => <span key={l} className="lp-cat-pill" style={{ height: 32, padding: "0 14px" }}>{l}</span>)}</div>
                   </div>
                   <div>
-                    <div className="text-[10px] uppercase tracking-[.12em] text-[#C9A84C] font-semibold mb-1">Documents</div>
-                    <div className="flex flex-wrap gap-2">{r.docs.map(d => <span key={d} className="text-[11.5px] text-[#aaa] px-3 py-1 rounded-full border border-[#333]">{d}</span>)}</div>
+                    <div className="text-[11px] uppercase tracking-[.18em] text-[#C9A84C] font-semibold mb-2">Uploaded Documents</div>
+                    <div className="flex flex-wrap gap-2">{r.docs.map(d => <span key={d} className="inline-flex items-center gap-2 text-[12px] text-[#C9A84C] px-3 py-2 rounded-lg" style={{ border: "1px solid rgba(201,168,76,.4)" }}><FileText size={13} /> {d}</span>)}</div>
                   </div>
                 </div>
               )}
-              <div className="flex gap-2 mt-4">
-                <button className="lp-btn lp-btn-green">Accept</button>
-                <button className="lp-btn lp-btn-red" onClick={() => setDecline(r.id)}>Decline</button>
+              <div className="grid grid-cols-2 gap-3 mt-5 max-w-[320px]">
+                <button className="lp-act-accept">Accept</button>
+                <button className="lp-act-decline" onClick={() => setDecline(r.id)}>Decline</button>
               </div>
             </div>
           );
@@ -93,10 +83,12 @@ export const CaseRequests = () => {
 };
 
 const activeData = [
-  { id: "HD-2401", title: "Wrongful termination", cat: "Labor", status: "progress", deadline: "5 days" },
-  { id: "HD-2402", title: "Tenancy eviction notice", cat: "Property", status: "await", deadline: "2 days" },
-  { id: "HD-2403", title: "Police misconduct complaint", cat: "Police", status: "progress", deadline: "8 days" },
-  { id: "HD-2404", title: "Consumer fraud refund", cat: "Consumer", status: "pending", deadline: "12 days" },
+  { id: "HD 2401", title: "Wrongful termination", client: "Hassan Ali", cat: "Labor", status: "progress", deadline: "5d" },
+  { id: "HD 2402", title: "Domestic violence protection", client: "Anonymous", cat: "Domestic", status: "await", deadline: "2d" },
+  { id: "HD 2403", title: "Tenancy eviction notice", client: "Saima Bibi", cat: "Property", status: "progress", deadline: "8d" },
+  { id: "HD 2404", title: "Police misconduct complaint", client: "Faisal Khan", cat: "Police", status: "pending", deadline: "12d" },
+  { id: "HD 2405", title: "NADRA CNIC blocked", client: "Bilal Ahmed", cat: "NADRA", status: "await", deadline: "6d" },
+  { id: "HD 2406", title: "Workplace harassment", client: "Anonymous", cat: "Harassment", status: "progress", deadline: "4d" },
 ];
 
 export const ActiveCases = () => {
@@ -104,27 +96,39 @@ export const ActiveCases = () => {
   if (detail) return <CaseDetail c={detail} back={() => setDetail(null)} />;
   return (
     <div className="lp-fade space-y-5">
-      <h2 className="lp-display text-[28px] font-bold text-white">Active Cases</h2>
-      <div className="flex gap-2 mb-2">
-        {["Incoming Requests", "Active Cases", "Completed Cases"].map((t, i) => (
-          <button key={t} className="lp-btn lp-btn-gold" style={i === 1 ? { background: "rgba(201,168,76,.15)", boxShadow: "0 0 16px rgba(201,168,76,.5)" } : {}}>{t}</button>
-        ))}
-      </div>
-      <Filters />
-      <div className="lp-card overflow-hidden">
-        <div className="grid grid-cols-[80px_1fr_120px_110px_90px_100px] gap-3 px-5 py-3 text-[10px] uppercase tracking-[.12em] text-[#888] font-semibold border-b border-[rgba(201,168,76,.2)]">
-          <div>Case ID</div><div>Title</div><div>Category</div><div>Status</div><div>Deadline</div><div>Action</div>
+      <div className="lp-display text-[20px] font-semibold text-white">Active Cases <span className="text-[11px] px-3 py-1 rounded-full font-bold tracking-wider align-middle ml-2" style={{ border: "1px solid #C9A84C", color: "#C9A84C" }}>{activeData.length}</span></div>
+      <CasesFilters second={{ label: "Status", options: STATUSES }} />
+      <div className="lp-case-card p-0 overflow-hidden">
+        <div className="overflow-x-auto lp-gold-scroll" style={{ maxHeight: 480, overflowY: "auto" }}>
+          <table className="w-full text-[12.5px]" style={{ borderCollapse: "separate", borderSpacing: 0, minWidth: 880 }}>
+            <thead className="sticky top-0 z-10" style={{ background: "#141414" }}>
+              <tr className="text-[10.5px] uppercase tracking-[.16em] text-[#888] font-semibold">
+                {["Case ID", "Title", "Client", "Category", "Status", "Deadline", "Action"].map(h => (
+                  <th key={h} className={`px-5 py-4 text-left ${h === "Action" ? "text-right" : ""}`}>{h}</th>
+                ))}
+              </tr>
+              <tr><td colSpan={7}><div className="h-px" style={{ background: "rgba(201,168,76,.2)" }} /></td></tr>
+            </thead>
+            <tbody>
+              {activeData.map(c => {
+                const dnum = parseInt(c.deadline);
+                return (
+                  <tr key={c.id} className="lp-row-hover" style={{ borderTop: "1px solid rgba(201,168,76,.08)" }}>
+                    <td className="px-5 py-4 font-mono text-[13px] text-[#C9A84C] tracking-wide">{c.id}</td>
+                    <td className="px-5 py-4 text-white">{c.title}</td>
+                    <td className="px-5 py-4 text-[#C9C4B0]">{c.client}</td>
+                    <td className="px-5 py-4 text-[#C9C4B0]">{c.cat}</td>
+                    <td className="px-5 py-4"><span className={`lp-stat-pill ${c.status === "progress" ? "lp-stat-progress" : c.status === "await" ? "lp-stat-await" : "lp-stat-pending"}`}>{c.status === "progress" ? "In Progress" : c.status === "await" ? "Awaiting" : "Pending"}</span></td>
+                    <td className="px-5 py-4 font-semibold" style={{ color: dnum < 3 ? "#E57367" : "#C9C4B0" }}>{c.deadline}</td>
+                    <td className="px-5 py-4 text-right">
+                      <button onClick={() => setDetail(c)} className="lp-btn lp-btn-gold" style={{ height: 32, padding: "0 22px", borderRadius: 9999, fontSize: 11 }}>View</button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
-        {activeData.map(c => (
-          <div key={c.id} className="grid grid-cols-[80px_1fr_120px_110px_90px_100px] gap-3 items-center px-5 py-3 text-[12.5px] border-b border-[rgba(201,168,76,.1)] hover:bg-[rgba(201,168,76,.04)] transition-colors">
-            <div className="font-mono text-[#C9A84C]">{c.id}</div>
-            <div className="text-white truncate">{c.title}</div>
-            <div className="text-[#aaa]">{c.cat}</div>
-            <span className={`lp-pill ${c.status === "progress" ? "lp-pill-progress" : c.status === "await" ? "lp-pill-await" : "lp-pill-pending"}`} style={{ width: 100, justifyContent: "center", fontSize: 9 }}>{c.status === "progress" ? "In Progress" : c.status === "await" ? "Awaiting" : "Pending"}</span>
-            <div className={+c.deadline.split(" ")[0] < 3 ? "text-[#E57367]" : "text-[#aaa]"}>{c.deadline}</div>
-            <button className="lp-btn lp-btn-gold lp-btn-sm" onClick={() => setDetail(c)}>View Full</button>
-          </div>
-        ))}
       </div>
     </div>
   );
@@ -190,32 +194,46 @@ const CaseDetail = ({ c, back }: { c: any; back: () => void }) => {
 };
 
 const completed = [
-  { id: "HD-2399", title: "Harassment workplace", cat: "Harassment", date: "12 Apr 2026", res: "Settled", rating: 5 },
-  { id: "HD-2398", title: "Wrongful arrest", cat: "Police Misconduct", date: "08 Apr 2026", res: "Court Order", rating: 5 },
-  { id: "HD-2397", title: "Consumer fraud refund", cat: "Consumer Rights", date: "01 Apr 2026", res: "Settled", rating: 4 },
-  { id: "HD-2396", title: "Tenancy dispute", cat: "Property Fraud", date: "27 Mar 2026", res: "Withdrawn", rating: 4 },
+  { id: "HD 2299", title: "Unpaid wages recovery", cat: "Labor", date: "12 Mar 2026", res: "Settled", rating: 5 },
+  { id: "HD 2287", title: "Domestic protection order", cat: "Domestic", date: "02 Mar 2026", res: "Court Order", rating: 5 },
+  { id: "HD 2271", title: "Consumer refund dispute", cat: "Consumer", date: "24 Feb 2026", res: "Settled", rating: 4 },
+  { id: "HD 2256", title: "NADRA appeal", cat: "NADRA", date: "11 Feb 2026", res: "Resolved", rating: 5 },
+  { id: "HD 2240", title: "Tenancy eviction defense", cat: "Property", date: "30 Jan 2026", res: "Court Order", rating: 4 },
+  { id: "HD 2218", title: "Workplace harassment", cat: "Harassment", date: "18 Jan 2026", res: "Settled", rating: 5 },
 ];
 
 export const CompletedCases = () => (
   <div className="lp-fade space-y-5">
-    <h2 className="lp-display text-[28px] font-bold text-white">Completed Cases</h2>
-    <Filters />
-    <div className="lp-card overflow-hidden">
-      <div className="grid grid-cols-[80px_1fr_140px_110px_110px_90px_110px] gap-3 px-5 py-3 text-[10px] uppercase tracking-[.12em] text-[#888] font-semibold border-b border-[rgba(201,168,76,.2)]">
-        <div>Case ID</div><div>Title</div><div>Category</div><div>Resolution Date</div><div>Resolution</div><div>Rating</div><div>Action</div>
+    <div className="lp-display text-[20px] font-semibold text-white">Completed Cases <span className="text-[11px] px-3 py-1 rounded-full font-bold tracking-wider align-middle ml-2" style={{ border: "1px solid #5BC68C", color: "#5BC68C" }}>{completed.length}</span></div>
+    <CasesFilters second={{ label: "Outcome", options: OUTCOMES }} />
+    <div className="lp-case-card p-0 overflow-hidden">
+      <div className="overflow-x-auto lp-gold-scroll" style={{ maxHeight: 480, overflowY: "auto" }}>
+        <table className="w-full text-[12.5px]" style={{ borderCollapse: "separate", borderSpacing: 0, minWidth: 920 }}>
+          <thead className="sticky top-0 z-10" style={{ background: "#141414" }}>
+            <tr className="text-[10.5px] uppercase tracking-[.16em] text-[#888] font-semibold">
+              {["Case ID", "Title", "Category", "Resolved", "Outcome", "Rating", "Export"].map(h => (
+                <th key={h} className={`px-5 py-4 text-left ${h === "Export" ? "text-right" : ""}`}>{h}</th>
+              ))}
+            </tr>
+            <tr><td colSpan={7}><div className="h-px" style={{ background: "rgba(201,168,76,.2)" }} /></td></tr>
+          </thead>
+          <tbody>
+            {completed.map(c => (
+              <tr key={c.id} className="lp-row-hover" style={{ borderTop: "1px solid rgba(201,168,76,.08)" }}>
+                <td className="px-5 py-4 font-mono text-[13px] text-[#C9A84C] tracking-wide">{c.id}</td>
+                <td className="px-5 py-4 text-white">{c.title}</td>
+                <td className="px-5 py-4 text-[#C9C4B0]">{c.cat}</td>
+                <td className="px-5 py-4 text-[#C9C4B0]">{c.date}</td>
+                <td className="px-5 py-4"><span className="lp-stat-pill lp-stat-resolved">{c.res}</span></td>
+                <td className="px-5 py-4"><div className="flex gap-0.5">{Array.from({ length: 5 }).map((_, i) => <Star key={i} size={14} className={i < c.rating ? "lp-star filled" : "lp-star"} fill={i < c.rating ? "currentColor" : "none"} />)}</div></td>
+                <td className="px-5 py-4 text-right">
+                  <button className="lp-btn lp-btn-gold" style={{ height: 32, padding: "0 18px", borderRadius: 9999, fontSize: 11 }}><Download size={11} /> PDF</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-      {completed.map(c => (
-        <div key={c.id} className="grid grid-cols-[80px_1fr_140px_110px_110px_90px_110px] gap-3 items-center px-5 py-3 text-[12.5px] border-b border-[rgba(201,168,76,.1)] hover:bg-[rgba(201,168,76,.04)]">
-          <div className="font-mono text-[#C9A84C]">{c.id}</div>
-          <div className="text-white truncate">{c.title}</div>
-          <div className="text-[#aaa]">{c.cat}</div>
-          <div className="text-[#aaa]">{c.date}</div>
-          <span className="lp-pill lp-pill-resolved" style={{ justifyContent: "center", fontSize: 9 }}>{c.res}</span>
-          <div className="flex">{Array.from({ length: 5 }).map((_, i) => <Star key={i} size={12} className={i < c.rating ? "lp-star filled" : "lp-star"} fill={i < c.rating ? "currentColor" : "none"} />)}</div>
-          <button className="lp-btn lp-btn-gold lp-btn-sm">View</button>
-        </div>
-      ))}
     </div>
-    <button className="lp-btn lp-btn-gold-solid"><Download size={12} /> Export PDF</button>
   </div>
 );

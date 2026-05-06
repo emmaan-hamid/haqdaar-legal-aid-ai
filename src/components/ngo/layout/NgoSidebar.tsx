@@ -16,32 +16,29 @@ export const NgoSidebar = ({ section, setSection, collapsed, toggle }: { section
 
   return (
     <aside className="fixed top-0 left-0 h-screen z-40 flex flex-col" style={{ width: collapsed ? 72 : 260, background: "#141414", borderRight: "1px solid rgba(201,168,76,0.22)", transition: "width .3s cubic-bezier(.22,1,.36,1)" }}>
-      <div className="px-5 pt-6 pb-4" style={{ borderBottom: "1px solid rgba(201,168,76,0.15)" }}>
-        {collapsed ? (
-          <div className="flex justify-center"><Scale size={26} className="text-[#C9A84C]" /></div>
-        ) : (
-          <div className="flex items-center gap-2">
-            <Scale size={22} className="text-[#C9A84C]" />
-            <span className="lp-display text-[26px] font-bold text-white leading-none">HaqDaar</span>
+      <div className="flex items-center gap-3 px-4" style={{ height: 72, borderBottom: "1px solid rgba(201,168,76,0.15)", flexShrink: 0 }}>
+        <button onClick={toggle} className="grid place-items-center w-9 h-9 rounded-xl shrink-0" style={{ background: "rgba(201,168,76,.1)", color: "#C9A84C", transition: "all .25s ease" }}
+          onMouseEnter={e => { e.currentTarget.style.background = "rgba(201,168,76,.22)"; e.currentTarget.style.boxShadow = "0 0 14px rgba(201,168,76,.5)"; }}
+          onMouseLeave={e => { e.currentTarget.style.background = "rgba(201,168,76,.1)"; e.currentTarget.style.boxShadow = "none"; }}>
+          <Menu size={18} />
+        </button>
+        {!collapsed && (
+          <div className="flex items-center gap-2 overflow-hidden">
+            <Scale size={22} className="text-[#C9A84C] shrink-0" />
+            <span className="lp-display text-[24px] font-bold text-white leading-none whitespace-nowrap">HaqDaar</span>
           </div>
         )}
       </div>
 
-      <button onClick={toggle} className="mx-auto mt-3 mb-2 grid place-items-center w-9 h-9 rounded-xl" style={{ background: "rgba(201,168,76,.1)", color: "#C9A84C", transition: "all .25s ease" }}
-        onMouseEnter={e => { e.currentTarget.style.background = "rgba(201,168,76,.22)"; e.currentTarget.style.boxShadow = "0 0 14px rgba(201,168,76,.5)"; }}
-        onMouseLeave={e => { e.currentTarget.style.background = "rgba(201,168,76,.1)"; e.currentTarget.style.boxShadow = "none"; }}>
-        <Menu size={18} />
-      </button>
-
-      <nav className="flex-1 mt-2 lp-noscroll" style={{ overflow: "hidden" }}>
+      <nav key={collapsed ? "c" : "e"} className="flex-1 mt-3 lp-noscroll lp-side-anim" style={{ overflow: "hidden" }}>
         {item("dashboard", LayoutDashboard, "Dashboard")}
 
-        <button onClick={() => setSection("cases-requests")} className={`lp-nav-item w-full text-left ${isCase ? "active" : ""}`} style={collapsed ? { justifyContent: "center", padding: "12px 0", margin: "3px 8px" } : {}} title={collapsed ? "My Cases" : ""}>
+        <button onClick={() => setSection("cases-requests")} className={`lp-nav-item w-full text-left ${isCase ? "active" : ""}`} style={collapsed ? { justifyContent: "center", padding: "12px 0", margin: "3px 8px" } : { marginTop: 8 }} title={collapsed ? "My Cases" : ""}>
           <FolderOpen size={19} />
           {!collapsed && (<><span className="flex-1">My Cases</span><ChevronDown size={14} className={isCase ? "rotate-180 transition-transform" : "transition-transform"} /></>)}
         </button>
         {!collapsed && isCase && (
-          <div className="lp-fade">
+          <div className="lp-fade" style={{ marginTop: 6, marginBottom: 6 }}>
             <button onClick={() => setSection("cases-requests")} className={`lp-nav-sub w-full text-left ${section === "cases-requests" ? "active" : ""}`}>Incoming Requests</button>
             <button onClick={() => setSection("cases-active")} className={`lp-nav-sub w-full text-left ${section === "cases-active" ? "active" : ""}`}>Active Cases</button>
             <button onClick={() => setSection("cases-completed")} className={`lp-nav-sub w-full text-left ${section === "cases-completed" ? "active" : ""}`}>Completed Cases</button>
@@ -55,6 +52,7 @@ export const NgoSidebar = ({ section, setSection, collapsed, toggle }: { section
         {item("impact", Heart, "Impact Dashboard")}
       </nav>
 
+      <div className="lp-side-divider" />
       <button className="lp-nav-item lp-glow-red mb-4" style={collapsed ? { justifyContent: "center", padding: "12px 0", margin: "3px 8px" } : {}}
         onMouseEnter={e => { e.currentTarget.style.color = "#E57367"; e.currentTarget.style.background = "rgba(192,57,43,.1)"; e.currentTarget.style.boxShadow = "0 0 18px rgba(192,57,43,.45)"; }}
         onMouseLeave={e => { e.currentTarget.style.color = ""; e.currentTarget.style.background = ""; e.currentTarget.style.boxShadow = ""; }}>
