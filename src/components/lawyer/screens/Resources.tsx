@@ -54,8 +54,8 @@ export const Resources = () => {
         <Search size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#888]" />
         <input value={q} onChange={e => setQ(e.target.value)} className="lp-input" style={{ paddingLeft: 60, height: 46 }} placeholder="Search resources..." />
       </div>
-      <div className="flex flex-wrap gap-2">{TYPES.map(t => <button key={t} onClick={() => setType(t)} className="lp-btn lp-btn-gold lp-tab" style={type === t ? { background: "rgba(201,168,76,.18)", boxShadow: "0 0 16px rgba(201,168,76,.5)" } : {}}>{t}</button>)}</div>
-      <div className="flex flex-wrap gap-2">{CATS.map(c => <button key={c} onClick={() => setCat(c)} className="lp-btn lp-btn-gold lp-btn-sm lp-tab" style={cat === c ? { background: "rgba(201,168,76,.18)", boxShadow: "0 0 14px rgba(201,168,76,.4)" } : {}}>{c}</button>)}</div>
+      <div className="flex flex-wrap gap-6 border-b border-[rgba(201,168,76,.2)]">{TYPES.map(t => <button key={t} onClick={() => setType(t)} className={`lp-utab ${type === t ? "active" : ""}`}>{t}</button>)}</div>
+      <div className="flex flex-wrap gap-5 border-b border-[rgba(201,168,76,.15)]">{CATS.map(c => <button key={c} onClick={() => setCat(c)} className={`lp-utab ${cat === c ? "active" : ""}`} style={{ fontSize: 12 }}>{c}</button>)}</div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {items.length === 0 && <div className="col-span-full text-center text-[#666] py-12">No resources match your filters.</div>}
