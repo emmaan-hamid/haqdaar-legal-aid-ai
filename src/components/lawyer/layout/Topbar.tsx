@@ -1,4 +1,4 @@
-import { Bell, Search, ChevronDown } from "lucide-react";
+import { Bell, Search, ChevronDown, Scale } from "lucide-react";
 import { useState } from "react";
 
 export const Topbar = ({ sidebarW, name = "Irtiza Rayan", initials = "IR" }: { sidebarW: number; name?: string; initials?: string }) => {
@@ -16,7 +16,10 @@ export const Topbar = ({ sidebarW, name = "Irtiza Rayan", initials = "IR" }: { s
 
   return (
     <header className="fixed top-0 right-0 z-30 flex items-center justify-between px-6" style={{ left: sidebarW, height: 64, background: "rgba(10,10,10,0.92)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(201,168,76,0.22)", transition: "left .3s cubic-bezier(.22,1,.36,1)" }}>
-      <div />
+      <div className="flex items-center gap-2 pl-1">
+        <Scale size={22} className="text-[#C9A84C]" />
+        <span className="lp-display text-[22px] font-bold text-white leading-none whitespace-nowrap">HaqDaar</span>
+      </div>
       <div className="flex-1 max-w-[360px] mx-6 relative">
         <Search size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#888]" />
         <input className="lp-input" style={{ paddingLeft: 60 }} placeholder="Search cases, clients..." />
