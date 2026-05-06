@@ -1,12 +1,13 @@
 import { Linkedin, Instagram, Twitter, Facebook } from "lucide-react";
+import { Link } from "react-router-dom";
 
-const Col = ({ title, links }: { title: string; links: string[] }) => (
+const Col = ({ title, links }: { title: string; links: { label: string; to: string }[] }) => (
   <div>
     <h4 className="text-white font-semibold text-[13px] mb-4 tracking-wide">{title}</h4>
     <ul className="space-y-2.5">
       {links.map(l => (
-        <li key={l}>
-          <a href="#" className="text-[12.5px] text-[#888] hover:text-[#C9A84C] transition-all duration-200 inline-block hover:translate-x-1">{l}</a>
+        <li key={l.label}>
+          <Link to={l.to} className="text-[12.5px] text-[#888] hover:text-[#C9A84C] transition-all duration-200 inline-block hover:translate-x-1">{l.label}</Link>
         </li>
       ))}
     </ul>
@@ -22,8 +23,18 @@ export const PortalFooter = () => (
         <div className="text-white font-semibold text-[13px] mb-2">Access to justice for every citizen of Pakistan.</div>
         <p className="text-[#888] text-[12px] leading-relaxed">An AI powered platform connecting verified lawyers, NGOs, and citizens for free legal aid.</p>
       </div>
-      <Col title="Platform" links={["Dashboard", "My Cases", "Messages", "Availability & Settings"]} />
-      <Col title="Legal Resources" links={["Pakistani Laws", "Legal Templates", "Court Procedures", "Practice Guides"]} />
+      <Col title="Platform" links={[
+        { label: "Lawyer Portal", to: "/lawyer" },
+        { label: "NGO Portal", to: "/ngo" },
+        { label: "About Us", to: "/about" },
+        { label: "Contact", to: "/contact" },
+      ]} />
+      <Col title="Legal Resources" links={[
+        { label: "Browse Pakistani Laws", to: "/browse-law" },
+        { label: "Articles & Blog", to: "/articles" },
+        { label: "FAQs", to: "/faq" },
+        { label: "Contact Us", to: "/contact" },
+      ]} />
       <div>
         <h4 className="text-white font-semibold text-[13px] mb-4">Contact</h4>
         <a href="mailto:support@haqdaar.pk" className="text-[12.5px] text-[#888] hover:text-[#C9A84C] transition-colors">support@haqdaar.pk</a>
@@ -56,8 +67,14 @@ export const PortalFooter = () => (
 
     {/* Explore links */}
     <div className="px-12 py-5 flex flex-wrap items-center justify-center gap-6 text-[12px]" style={{ background: "#0c0b0a", borderTop: "1px solid rgba(255,255,255,.04)" }}>
-      {["About Us", "FAQs", "Contact", "Articles", "Browse Laws"].map(l => (
-        <a key={l} href="#" className="text-[#888] hover:text-[#C9A84C] transition-colors">{l}</a>
+      {[
+        { label: "About Us", to: "/about" },
+        { label: "FAQs", to: "/faq" },
+        { label: "Contact", to: "/contact" },
+        { label: "Articles", to: "/articles" },
+        { label: "Browse Laws", to: "/browse-law" },
+      ].map(l => (
+        <Link key={l.label} to={l.to} className="text-[#888] hover:text-[#C9A84C] transition-colors">{l.label}</Link>
       ))}
     </div>
 
