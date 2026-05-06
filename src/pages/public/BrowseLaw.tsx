@@ -47,9 +47,9 @@ const BrowseLaw = () => {
           <input value={q} onChange={e => setQ(e.target.value)} className="lp-input" style={{ paddingLeft: 70, height: 56 }} placeholder="Search by keyword, law name, or topic..." />
         </div>
 
-        <div className="flex flex-wrap gap-2 justify-center">
+        <div className="flex flex-wrap gap-6 justify-center border-b border-[rgba(201,168,76,.2)]">
           {CATS.map(c => (
-            <button key={c} onClick={() => setCat(c)} className="lp-btn lp-btn-gold lp-tab" style={cat === c ? { background: "rgba(201,168,76,.18)", boxShadow: "0 0 16px rgba(201,168,76,.5)" } : {}}>{c}</button>
+            <button key={c} onClick={() => setCat(c)} className={`lp-utab ${cat === c ? "active" : ""}`}>{c}</button>
           ))}
         </div>
 
