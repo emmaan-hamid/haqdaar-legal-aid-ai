@@ -33,7 +33,7 @@ const Profile = () => (
       {["Full Name", "City + District", "Bar Council Number", "Years of Experience"].map((l, i) => (
         <div key={l}>
           <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">{l} {i === 2 && <span className="lp-doc-badge lp-doc-verified ml-2">Verified</span>}</div>
-          <input className="lp-input" defaultValue={["Usman Ahmed", "Lahore, Punjab", "BC-LHR-12345", "8"][i]} />
+          <input className="lp-input" defaultValue={["Irtiza Rayan", "Lahore, Punjab", "BC-LHR-12345", "8"][i]} />
         </div>
       ))}
     </div>
