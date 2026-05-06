@@ -1,7 +1,7 @@
 import { Bell, Search, ChevronDown } from "lucide-react";
 import { useState } from "react";
 
-export const Topbar = ({ sidebarW }: { sidebarW: number }) => {
+export const Topbar = ({ sidebarW, name = "Irtiza Rayan", initials = "IR" }: { sidebarW: number; name?: string; initials?: string }) => {
   const [open, setOpen] = useState(false);
   const [notifOpen, setNotifOpen] = useState(false);
   const [filter, setFilter] = useState<"All" | "Messages" | "Responses" | "Requests">("All");
@@ -55,8 +55,8 @@ export const Topbar = ({ sidebarW }: { sidebarW: number }) => {
           <button onClick={() => setOpen(o => !o)} className="flex items-center gap-2 pl-1 pr-3 h-10 rounded-full" style={{ background: "#141414", border: "1px solid rgba(201,168,76,.3)", transition: "all .25s ease" }}
             onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 0 14px rgba(201,168,76,.45)"; }}
             onMouseLeave={e => { e.currentTarget.style.boxShadow = ""; }}>
-            <span className="w-8 h-8 rounded-full grid place-items-center font-bold text-[#0A0A0A] bg-[#C9A84C]">IR</span>
-            <span className="text-[12px] text-white">Irtiza Rayan</span>
+            <span className="w-8 h-8 rounded-full grid place-items-center font-bold text-[#0A0A0A] bg-[#C9A84C]">{initials}</span>
+            <span className="text-[12px] text-white">{name}</span>
             <ChevronDown size={12} className="text-[#888]" />
           </button>
           {open && (
