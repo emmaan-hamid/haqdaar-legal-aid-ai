@@ -60,6 +60,10 @@ export const Dashboard = ({ goto }: { goto: (s: any) => void }) => {
     { id: "HD-2402", title: "Tenancy eviction notice", status: "await", deadline: 2 },
     { id: "HD-2403", title: "Police misconduct complaint", status: "progress", deadline: 8 },
     { id: "HD-2404", title: "Consumer fraud refund", status: "pending", deadline: 12 },
+    { id: "HD-2405", title: "Inheritance dispute", status: "progress", deadline: 9 },
+    { id: "HD-2406", title: "Workplace harassment claim", status: "await", deadline: 4 },
+    { id: "HD-2411", title: "NADRA appeal hearing", status: "pending", deadline: 14 },
+    { id: "HD-2412", title: "Domestic violence order", status: "progress", deadline: 1 },
   ];
   const acts = [
     { Icon: CheckCircle2, color: "#5BC68C", title: "Case Accepted", desc: "You accepted the case", id: "HD-2406", time: "10m" },
@@ -222,7 +226,7 @@ export const Dashboard = ({ goto }: { goto: (s: any) => void }) => {
       {/* Recent + Trend */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="lp-card p-5" style={{ borderColor: "#C9A84C" }}>
-          <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2">
               <Calendar size={18} className="text-[#C9A84C]" />
               <h3 className="lp-display text-[20px] text-white font-bold">Recent Activities</h3>
