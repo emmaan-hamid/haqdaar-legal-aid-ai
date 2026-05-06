@@ -48,11 +48,25 @@ export const AnimatedPie = ({ data, size = 220, label = "Total" }: { data: PieSl
           <g key={i} transform={`translate(${s.ox} ${s.oy})`} style={{ color: s.color }}>
             <path d={s.path} fill={s.color} className="lp-pie-slice"
               onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(null)}
-              style={{ filter: hover === i ? `drop-shadow(0 0 14px ${s.color})` : "none" }} />
+              style={{
+                filter: hover === i ? `drop-shadow(0 0 16px ${s.color}) drop-shadow(0 0 28px ${s.color})` : "none",
+                opacity: hover === null ? 1 : (hover === i ? 1 : 0.18),
+                transition: "opacity .25s ease, filter .25s ease"
+              }} />
           </g>
         ))}
-        <text x={cx} y={cy - 6} textAnchor="middle" fill="#C9A84C" fontFamily="Cormorant Garamond" fontSize="28" fontWeight="700">{total}</text>
-        <text x={cx} y={cy + 14} textAnchor="middle" fill="#888880" fontSize="10" letterSpacing="2">{label.toUpperCase()}</text>
+        {hover === null ? (
+          <>
+            <text x={cx} y={cy - 6} textAnchor="middle" fill="#fff" fontFamily="Cormorant Garamond" fontSize="28" fontWeight="700">{total}</text>
+            <text x={cx} y={cy + 14} textAnchor="middle" fill="#888880" fontSize="10" letterSpacing="2">{label.toUpperCase()}</text>
+          </>
+        ) : (
+          <>
+            <text x={cx} y={cy - 8} textAnchor="middle" fill={slices[hover].color} fontFamily="Cormorant Garamond" fontSize="26" fontWeight="700">{slices[hover].value}</text>
+            <text x={cx} y={cy + 12} textAnchor="middle" fill="#fff" fontSize="10" fontWeight="600" letterSpacing="1">{slices[hover].label.toUpperCase()}</text>
+            <text x={cx} y={cy + 28} textAnchor="middle" fill="#888" fontSize="10">{slices[hover].pct}%</text>
+          </>
+        )}
       </svg>
       {hover !== null && (
         <div className="absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full bg-[#1E1E1E] border border-[#C9A84C]/60 rounded-xl px-3 py-2 text-xs whitespace-nowrap shadow-xl z-10">
