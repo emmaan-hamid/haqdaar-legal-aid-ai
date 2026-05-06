@@ -52,7 +52,7 @@ export const Resources = () => {
       </div>
       <div className="relative">
         <Search size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#888]" />
-        <input value={q} onChange={e => setQ(e.target.value)} className="lp-input pl-10" style={{ height: 46 }} placeholder="Search resources..." />
+        <input value={q} onChange={e => setQ(e.target.value)} className="lp-input" style={{ paddingLeft: 60 }} style={{ height: 46 }} placeholder="Search resources..." />
       </div>
       <div className="flex flex-wrap gap-2">{TYPES.map(t => <button key={t} onClick={() => setType(t)} className="lp-btn lp-btn-gold lp-tab" style={type === t ? { background: "rgba(201,168,76,.18)", boxShadow: "0 0 16px rgba(201,168,76,.5)" } : {}}>{t}</button>)}</div>
       <div className="flex flex-wrap gap-2">{CATS.map(c => <button key={c} onClick={() => setCat(c)} className="lp-btn lp-btn-gold lp-btn-sm lp-tab" style={cat === c ? { background: "rgba(201,168,76,.18)", boxShadow: "0 0 14px rgba(201,168,76,.4)" } : {}}>{c}</button>)}</div>

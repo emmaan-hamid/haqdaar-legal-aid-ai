@@ -46,7 +46,7 @@ const Articles = () => {
 
         <div className="relative max-w-[600px] mx-auto">
           <Search size={16} className="absolute left-5 top-1/2 -translate-y-1/2 text-[#C9A84C] pointer-events-none" />
-          <input value={q} onChange={e => setQ(e.target.value)} className="lp-input pl-12" style={{ height: 56 }} placeholder="Search articles..." />
+          <input value={q} onChange={e => setQ(e.target.value)} className="lp-input" style={{ paddingLeft: 70 }} style={{ height: 56 }} placeholder="Search articles..." />
         </div>
 
         <div className="flex flex-wrap gap-2 items-center justify-between">

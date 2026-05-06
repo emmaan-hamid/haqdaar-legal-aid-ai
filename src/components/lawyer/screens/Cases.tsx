@@ -18,7 +18,7 @@ const Filters = ({ children }: { children?: React.ReactNode }) => (
     ))}
     <div className="relative flex-1 min-w-[160px]">
       <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#888]" />
-      <input className="lp-input pl-9" style={{ height: 36 }} placeholder="Search..." />
+      <input className="lp-input" style={{ paddingLeft: 56, height: 36 }} style={{ height: 36 }} placeholder="Search..." />
     </div>
     {children}
   </div>
