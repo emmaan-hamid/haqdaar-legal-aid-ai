@@ -454,3 +454,67 @@ svg:hover .lp-line-path { filter: drop-shadow(0 0 6px var(--glow)); }
 .lp-lift { transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease, border-color .35s ease; }
 .lp-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 50px -20px rgba(201,168,76,.4); border-color: rgba(201,168,76,.55); }
 
+/* Golden scrollbar */
+.lp-gold-scroll { scrollbar-width: thin; scrollbar-color: #C9A84C transparent; }
+.lp-gold-scroll::-webkit-scrollbar { width:8px; height:8px; }
+.lp-gold-scroll::-webkit-scrollbar-track { background: rgba(201,168,76,.05); border-radius: 8px; }
+.lp-gold-scroll::-webkit-scrollbar-thumb { background: linear-gradient(180deg,#C9A84C,#8a7330); border-radius: 8px; box-shadow: 0 0 6px rgba(201,168,76,.5); }
+.lp-gold-scroll::-webkit-scrollbar-thumb:hover { background: #f3d98a; }
+
+/* Page header (MY CASES / Case Management style) */
+.lp-page-eyebrow { font-size: 11px; letter-spacing:.22em; font-weight:600; color:#C9A84C; text-transform:uppercase; }
+.lp-page-title { font-family:'Cormorant Garamond',serif; font-size:44px; font-weight:700; color:#fff; line-height:1.05; }
+.lp-tab-link { position:relative; padding: 8px 0; font-size:14px; font-weight:500; color:#888; transition: color .25s ease; cursor:none; background:transparent; border:0; }
+.lp-tab-link:hover { color:#C9A84C; }
+.lp-tab-link.active { color:#C9A84C; }
+.lp-tab-link.active::after { content:''; position:absolute; left:0; right:0; bottom:-1px; height:2px; background:#C9A84C; box-shadow:0 0 8px rgba(201,168,76,.6); }
+
+/* Filter "select" buttons (rectangular-rounded) */
+.lp-filter-select { background:#0F0F0F; border:1px solid rgba(201,168,76,.3); color:#E8E0D0; height:42px; padding:0 16px; border-radius:10px; font-size:13px; outline:none; transition: all .25s ease; cursor:none; min-width: 150px; }
+.lp-filter-select:hover { border-color:#C9A84C; box-shadow: 0 0 12px rgba(201,168,76,.3); }
+.lp-filter-select:focus { border-color:#C9A84C; box-shadow: 0 0 0 3px rgba(201,168,76,.18); }
+
+/* Outlined accept/decline (image 8 style) */
+.lp-act-accept { display:inline-flex; align-items:center; justify-content:center; height:44px; border-radius:10px; border:1px solid #5BC68C; color:#5BC68C; background:transparent; font-size:13px; font-weight:600; transition: all .25s ease; cursor:none; }
+.lp-act-accept:hover { background:rgba(91,198,140,.1); box-shadow: 0 0 18px rgba(91,198,140,.35); }
+.lp-act-decline { display:inline-flex; align-items:center; justify-content:center; height:44px; border-radius:10px; border:1px solid #E57367; color:#E57367; background:transparent; font-size:13px; font-weight:600; transition: all .25s ease; cursor:none; }
+.lp-act-decline:hover { background:rgba(229,115,103,.1); box-shadow: 0 0 18px rgba(229,115,103,.35); }
+
+/* Outlined status / outcome pills */
+.lp-stat-pill { display:inline-flex; align-items:center; justify-content:center; min-width:120px; height:32px; padding:0 14px; border-radius:8px; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; border:1px solid; }
+.lp-stat-progress { border-color:#7AA8DD; color:#7AA8DD; }
+.lp-stat-await { border-color:#E5BB3F; color:#E5BB3F; }
+.lp-stat-pending { border-color:#C9A84C; color:#C9A84C; }
+.lp-stat-resolved { border-color:#5BC68C; color:#5BC68C; }
+.lp-stat-court { border-color:#5BC68C; color:#5BC68C; }
+.lp-stat-settled { border-color:#5BC68C; color:#5BC68C; }
+.lp-stat-withdrawn { border-color:#888; color:#aaa; }
+
+/* Case detail card (image 8) */
+.lp-case-card { background:#141414; border:1px solid rgba(201,168,76,.25); border-radius:18px; padding: 26px 28px; transition: all .3s ease; }
+.lp-case-card:hover { border-color: rgba(201,168,76,.55); box-shadow: 0 20px 60px -20px rgba(201,168,76,.4); }
+.lp-cat-pill { display:inline-flex; align-items:center; height:30px; padding:0 16px; border-radius:8px; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; border:1px solid #C9A84C; color:#C9A84C; background:rgba(201,168,76,.05); }
+.lp-urg-pill { display:inline-flex; align-items:center; height:30px; padding:0 16px; border-radius:8px; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; border:1px solid; }
+.lp-urg-high { border-color:#E57367; color:#E57367; background:rgba(229,115,103,.06); }
+.lp-urg-med { border-color:#E59A40; color:#E59A40; background:rgba(229,154,64,.06); }
+.lp-urg-low { border-color:#C9A84C; color:#C9A84C; background:rgba(201,168,76,.06); }
+
+/* Chart hover backdrop glow */
+.lp-chart-bg { position:relative; border-radius: 16px; transition: background .35s ease, box-shadow .35s ease; }
+.lp-chart-bg:hover { background: radial-gradient(ellipse at center, rgba(201,168,76,.12), transparent 70%); box-shadow: inset 0 0 60px rgba(201,168,76,.1); }
+
+/* Sidebar separator */
+.lp-side-divider { height:1px; margin: 10px 18px; background: linear-gradient(90deg, transparent, rgba(201,168,76,.35), transparent); }
+
+/* Sidebar expand-from-below animation */
+@keyframes lp-side-expand { from { opacity:0; transform: translateY(-6px); } to { opacity:1; transform: translateY(0); } }
+.lp-side-anim > * { animation: lp-side-expand .35s cubic-bezier(.22,1,.36,1) both; }
+.lp-side-anim > *:nth-child(1) { animation-delay: .02s; }
+.lp-side-anim > *:nth-child(2) { animation-delay: .06s; }
+.lp-side-anim > *:nth-child(3) { animation-delay: .10s; }
+.lp-side-anim > *:nth-child(4) { animation-delay: .14s; }
+.lp-side-anim > *:nth-child(5) { animation-delay: .18s; }
+.lp-side-anim > *:nth-child(6) { animation-delay: .22s; }
+.lp-side-anim > *:nth-child(7) { animation-delay: .26s; }
+.lp-side-anim > *:nth-child(8) { animation-delay: .30s; }
+
