@@ -34,7 +34,7 @@ export const AnimatedHistogram = ({ labels, values, color = "#C9A84C", height = 
           <g key={i} onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(null)} style={{ cursor: "none" }}>
             <rect x={x} y={padT + innerH} width={bw} height={drawn ? h : 0} rx="4"
               fill={`url(#barGrad-${color.replace('#','')})`}
-              style={{ transition: `height .9s cubic-bezier(.22,1,.36,1) ${i * 0.06}s, y .9s cubic-bezier(.22,1,.36,1) ${i * 0.06}s, filter .25s ease`, filter: active ? `drop-shadow(0 0 12px ${color})` : `drop-shadow(0 0 4px ${color}88)` }}
+              style={{ transition: `height .9s cubic-bezier(.22,1,.36,1) ${i * 0.06}s, y .9s cubic-bezier(.22,1,.36,1) ${i * 0.06}s, filter .25s ease`, filter: active ? `drop-shadow(0 0 14px ${color})` : "none" }}
               {...(drawn ? { y } : {})} />
             <text x={x + bw / 2} y={height - 10} textAnchor="middle" fill="#888" fontSize="10">{labels[i]}</text>
             {active && <text x={x + bw / 2} y={y - 6} textAnchor="middle" fill={color} fontSize="11" fontWeight="600">{v}</text>}
