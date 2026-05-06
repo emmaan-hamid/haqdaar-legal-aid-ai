@@ -399,7 +399,7 @@
 .lp-slider::-moz-range-thumb { width:18px; height:18px; border-radius:50%; background:#C9A84C; cursor:none; border:0; }
 
 /* Modal */
-.lp-modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.85); backdrop-filter: blur(4px); z-index:200; display:flex; padding:24px; }
+.lp-modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.85); backdrop-filter: blur(4px); z-index:200; display:flex; align-items:center; justify-content:center; padding:24px; }
 .lp-modal { background:#141414; border:1px solid rgba(201,168,76,.4); border-radius:24px; max-width:720px; width:100%; max-height:80vh; overflow-y:auto; padding:32px; box-shadow:0 30px 80px -20px rgba(201,168,76,.3); animation: lp-fade-up .35s ease both; }
 
 /* Dotted upload zone */
@@ -409,4 +409,8 @@
 /* Welcome banner border-pulse */
 @keyframes lp-welcome-glow { 0%,100% { box-shadow: 0 0 0 1px rgba(201,168,76,.4), 0 0 22px rgba(201,168,76,.18);} 50% { box-shadow: 0 0 0 1px rgba(201,168,76,.7), 0 0 36px rgba(201,168,76,.3); } }
 .lp-welcome { animation: lp-welcome-glow 3.5s ease-in-out infinite; }
+
+/* Chart hover-only glow */
+.lp-line-path { filter: none; }
+svg:hover .lp-line-path { filter: drop-shadow(0 0 6px var(--glow)); }
 

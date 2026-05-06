@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Search, Bookmark, Download, X } from "lucide-react";
 
 const ALL = [
@@ -25,7 +25,6 @@ export const Resources = () => {
   const [open, setOpen] = useState<typeof ALL[number] | null>(null);
   const [toast, setToast] = useState("");
   const [bookmarked, setBookmarked] = useState<Set<string>>(new Set());
-  const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => { const t = setTimeout(() => setDebounced(q), 300); return () => clearTimeout(t); }, [q]);
   useEffect(() => { setPage(1); }, [type, cat, debounced]);
@@ -35,18 +34,7 @@ export const Resources = () => {
   const pages = Math.max(1, Math.ceil(filtered.length / perPage));
   const items = filtered.slice((page - 1) * perPage, page * perPage);
 
-  const openModal = (r: typeof ALL[number]) => {
-    setOpen(r);
-    // scroll overlay to current viewport center
-    setTimeout(() => {
-      if (overlayRef.current) {
-        const y = window.scrollY;
-        overlayRef.current.style.position = "absolute";
-        overlayRef.current.style.top = `${y}px`;
-        overlayRef.current.style.height = `${window.innerHeight}px`;
-      }
-    }, 0);
-  };
+  const openModal = (r: typeof ALL[number]) => setOpen(r);
 
   const download = (name: string) => {
     setToast("Preparing PDF...");
@@ -98,8 +86,8 @@ export const Resources = () => {
       </div>
 
       {open && (
-        <div ref={overlayRef} className="lp-modal-overlay" onClick={() => setOpen(null)}>
-          <div className="lp-modal m-auto" onClick={e => e.stopPropagation()}>
+        <div className="lp-modal-overlay" onClick={() => setOpen(null)}>
+          <div className="lp-modal" onClick={e => e.stopPropagation()}>
             <div className="flex items-start justify-between gap-3 mb-3">
               <div>
                 <span className="lp-chip">{open.type}</span>

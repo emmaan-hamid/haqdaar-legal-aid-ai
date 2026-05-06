@@ -42,11 +42,11 @@ export const PortalFooter = () => (
     {/* Three portal cards strip */}
     <div className="px-12 py-6 grid grid-cols-1 md:grid-cols-3 gap-4" style={{ background: "#141310", borderTop: "1px solid rgba(255,255,255,.05)" }}>
       {[
-        { title: "Admin Portal", sub: "Verify lawyers & moderate" },
-        { title: "NGO Portal", sub: "Manage volunteer outreach" },
-        { title: "Lawyer Portal", sub: "Take cases pro bono" },
+        { title: "Admin Portal", sub: "Verify lawyers & moderate", href: "#" },
+        { title: "NGO Portal", sub: "Manage volunteer outreach", href: "/ngo" },
+        { title: "Lawyer Portal", sub: "Take cases pro bono", href: "/lawyer" },
       ].map(c => (
-        <a key={c.title} href="#" className="rounded-2xl p-5 text-center transition-all duration-300 lp-card-hover" style={{ background: "#0F0E0D", border: "1px solid #2a2a2a" }}>
+        <a key={c.title} href={c.href} className="rounded-2xl p-5 text-center transition-all duration-300 lp-card-hover" style={{ background: "#0F0E0D", border: "1px solid #C9A84C" }}>
           <div className="w-10 h-10 mx-auto mb-3 rounded-full grid place-items-center" style={{ background: "rgba(201,168,76,.12)", color: "#C9A84C" }}>◈</div>
           <div className="text-[12px] uppercase tracking-[.15em] font-semibold text-[#C9A84C]">{c.title}</div>
           <div className="text-[11px] text-[#888] mt-1">{c.sub}</div>

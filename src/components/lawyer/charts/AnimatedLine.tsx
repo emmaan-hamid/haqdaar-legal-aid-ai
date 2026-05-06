@@ -40,7 +40,8 @@ export const AnimatedLine = ({ labels, series, height = 240 }: { labels: string[
         return (
           <g key={si}>
             <path d={path} fill="none" stroke={s.color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-              style={{ strokeDasharray: 2000, strokeDashoffset: drawn ? 0 : 2000, transition: `stroke-dashoffset 1.6s ease ${si * 0.2}s`, filter: `drop-shadow(0 0 6px ${s.color})` }} />
+              className="lp-line-path"
+              style={{ ['--glow' as any]: s.color, strokeDasharray: 2000, strokeDashoffset: drawn ? 0 : 2000, transition: `stroke-dashoffset 1.6s ease ${si * 0.2}s, filter .25s ease` }} />
             {s.data.map((v, i) => (
               <circle key={i} cx={x(i)} cy={y(v)} r={hover === i ? 5 : 3.2} fill={s.color}
                 style={{ transition: "r .2s ease, filter .2s ease", filter: hover === i ? `drop-shadow(0 0 8px ${s.color})` : "none", cursor: "none" }}
