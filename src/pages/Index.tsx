@@ -10,7 +10,7 @@ import { Categories } from "@/components/haqdaar/Categories";
 import { Faq } from "@/components/haqdaar/Faq";
 import { Testimonials } from "@/components/haqdaar/Testimonials";
 import { Banner } from "@/components/haqdaar/Banner";
-import { Footer } from "@/components/haqdaar/Footer";
+import { PortalFooter } from "@/components/lawyer/layout/PortalFooter";
 import { useReveal } from "@/components/haqdaar/useReveal";
 
 const Index = () => {
@@ -29,7 +29,7 @@ const Index = () => {
       <Faq />
       <Testimonials />
       <Banner />
-      <Footer />
+      <PortalFooter />
     </main>
   );
 };
