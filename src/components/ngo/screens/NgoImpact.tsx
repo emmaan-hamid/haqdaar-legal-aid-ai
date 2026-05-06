@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatedPie } from "@/components/lawyer/charts/AnimatedPie";
 import { AnimatedHistogram } from "@/components/lawyer/charts/AnimatedHistogram";
-import { Download } from "lucide-react";
+import { Download, Users, CheckCircle2, UsersRound, Clock } from "lucide-react";
 
 const useCount = (target: number) => {
   const [v, setV] = useState(0);
@@ -16,6 +16,12 @@ const useCount = (target: number) => {
 
 export const NgoImpact = () => {
   const a = useCount(312), b = useCount(187), c = useCount(6), d = useCount(14);
+  const kpis = [
+    { Icon: Users, l: "Citizens Helped", v: a, color: "#C9A84C" },
+    { Icon: CheckCircle2, l: "Cases Resolved", v: b, color: "#5BC68C", sq: "green" },
+    { Icon: UsersRound, l: "Active Staff Members", v: c, color: "#C9A84C" },
+    { Icon: Clock, l: "Avg Resolution (days)", v: d, color: "#C9A84C" },
+  ];
   return (
     <div className="lp-fade space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-3">
@@ -23,15 +29,20 @@ export const NgoImpact = () => {
         <button className="lp-btn lp-btn-gold-solid"><Download size={12} /> Download</button>
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {[{ l: "Citizens Helped", v: a }, { l: "Cases Resolved", v: b, c: "#5BC68C" }, { l: "Active Staff Members", v: c }, { l: "Avg Resolution (days)", v: d }].map(k => (
-          <div key={k.l} className="lp-kpi">
-            <div className="text-[10px] uppercase tracking-[.12em] text-[#888]">{k.l}</div>
-            <div className="lp-display text-[36px] font-bold mt-1" style={{ color: k.c || "#C9A84C" }}>{k.v}</div>
+        {kpis.map(k => (
+          <div key={k.l} className={`lp-kpi ${k.sq === "green" ? "lp-kpi-green" : ""}`}>
+            <div className="flex items-start justify-between">
+              <div>
+                <div className="text-[10px] uppercase tracking-[.12em] text-[#888]">{k.l}</div>
+                <div className="lp-display text-[36px] font-bold mt-1 leading-none" style={{ color: k.color }}>{k.v}</div>
+              </div>
+              <div className={`lp-icon-sq ${k.sq || ""}`}><k.Icon size={18} /></div>
+            </div>
           </div>
         ))}
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="lp-card p-5">
+        <div className="lp-card p-5 lp-lift">
           <div className="text-[11px] uppercase tracking-[.15em] text-[#C9A84C] font-semibold mb-3">Cases by Category</div>
           <div className="grid grid-cols-[auto_1fr] gap-5 items-center">
             <AnimatedPie size={220} label="Resolved" data={[
@@ -50,9 +61,9 @@ export const NgoImpact = () => {
             </ul>
           </div>
         </div>
-        <div className="lp-card p-5">
+        <div className="lp-card p-5 lp-lift">
           <div className="text-[11px] uppercase tracking-[.15em] text-[#C9A84C] font-semibold mb-3">Weekly Case Activity</div>
-          <AnimatedHistogram labels={["W1", "W2", "W3", "W4", "W5", "W6", "W7", "W8"]} values={[6, 9, 7, 12, 10, 14, 13, 17]} color="#C9A84C" height={240} />
+          <div className="lp-chart-glow"><AnimatedHistogram labels={["W1", "W2", "W3", "W4", "W5", "W6", "W7", "W8"]} values={[6, 9, 7, 12, 10, 14, 13, 17]} color="#C9A84C" height={240} /></div>
         </div>
       </div>
     </div>
