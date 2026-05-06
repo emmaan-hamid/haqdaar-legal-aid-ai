@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Inbox, Clock, Gavel, Users, Bell, MessageCircle, FileUp, AlertTriangle, Calendar, ChevronRight, CheckCircle2, UserPlus } from "lucide-react";
+import { Inbox, Clock, Gavel, Users, Bell, MessageCircle, FileUp, AlertTriangle, Calendar, ChevronRight, CheckCircle2, UserPlus, HeartHandshake } from "lucide-react";
 import { AnimatedPie } from "@/components/lawyer/charts/AnimatedPie";
+import { AvailabilityCockpit } from "@/components/lawyer/AvailabilityCockpit";
 
 const useCount = (target: number, dur = 1200) => {
   const [v, setV] = useState(0);
@@ -14,8 +15,6 @@ const useCount = (target: number, dur = 1200) => {
 };
 
 export const NgoDashboard = ({ goto }: { goto: (s: any) => void }) => {
-  const [status, setStatus] = useState<"active" | "limited" | "closed">("active");
-  const [maxCases, setMaxCases] = useState(12);
   const helped = useCount(312);
   const resolved = useCount(187);
 
@@ -42,50 +41,62 @@ export const NgoDashboard = ({ goto }: { goto: (s: any) => void }) => {
 
   return (
     <div className="lp-fade space-y-6">
-      <div className="rounded-2xl px-5 py-3 flex items-center gap-3 text-[12.5px]" style={{ background: "rgba(212,160,23,.1)", border: "1px solid rgba(212,160,23,.5)", color: "#E5BB3F" }}>
-        <AlertTriangle size={16} /> Your organization registration is under review. You can browse the platform but cannot manage cases yet.
+      <div className="rounded-2xl px-5 py-4 flex items-stretch gap-4" style={{ background: "rgba(212,160,23,.08)", border: "1px solid rgba(212,160,23,.5)" }}>
+        <div className="w-10 h-10 rounded-full grid place-items-center shrink-0" style={{ background: "rgba(212,160,23,.18)", color: "#E5BB3F" }}>
+          <AlertTriangle size={20} />
+        </div>
+        <div className="flex-1 min-w-0 self-center">
+          <div className="text-[13px] font-semibold text-[#E5BB3F]">Verification Pending</div>
+          <div className="text-[12px] text-[#C9C4B0] mt-0.5">Your organization registration is under review. You can browse the platform but cannot manage cases yet.</div>
+        </div>
+        <div className="flex items-center"><button disabled className="lp-btn lp-btn-amber" style={{ opacity: .85, cursor: "not-allowed", pointerEvents: "none" }}>Under Review</button></div>
       </div>
 
-      <div className="lp-card lp-welcome rounded-2xl px-6 py-5">
-        <div className="lp-display text-[28px] text-[#C9A84C] font-bold leading-tight">Welcome, Aurat Foundation. Your work changes lives.</div>
-        <div className="text-[#E8E0D0] text-[13px] mt-1">Your work changes lives.</div>
+      <div className="lp-card lp-welcome rounded-2xl px-7 py-7 flex items-center gap-5">
+        <div className="w-14 h-14 rounded-2xl grid place-items-center shrink-0" style={{ background: "rgba(201,168,76,.15)", border: "1px solid rgba(201,168,76,.5)", color: "#C9A84C", boxShadow: "0 0 22px rgba(201,168,76,.3)" }}>
+          <HeartHandshake size={26} />
+        </div>
+        <div className="flex-1">
+          <div className="lp-display text-[36px] text-[#C9A84C] font-bold leading-[1.1]">Welcome, Aurat Foundation.</div>
+          <div className="lp-display text-[36px] text-[#C9A84C] font-bold leading-[1.1]">Your work changes lives.</div>
+          <div className="text-white text-[14px] mt-3 leading-relaxed">Communities depend on your dedication. Continue empowering citizens through compassion and law.</div>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-6">
-        <div className="lp-card p-6">
-          <div className="flex items-center justify-between mb-4">
-            <div className="text-[11px] uppercase tracking-[.15em] text-[#C9A84C] font-semibold">Organization Status</div>
-            <div className="text-[11px] text-[#888]">Last updated: Today</div>
-          </div>
-          <div className="flex flex-wrap gap-2 mb-5">
-            {([["active", "Active", "lp-btn-green"], ["limited", "Limited Capacity", "lp-btn-amber"], ["closed", "Temporarily Closed", "lp-btn-red"]] as const).map(([k, lbl, cls]) => (
-              <button key={k} onClick={() => setStatus(k)} className={`lp-btn ${cls}`} style={status === k ? { background: cls.includes("green") ? "rgba(44,122,77,.18)" : cls.includes("amber") ? "rgba(212,160,23,.18)" : "rgba(192,57,43,.18)", boxShadow: `0 0 18px ${cls.includes("green") ? "rgba(44,122,77,.55)" : cls.includes("amber") ? "rgba(212,160,23,.55)" : "rgba(192,57,43,.55)"}` } : {}}>{lbl}</button>
-            ))}
-          </div>
-          <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-2">Max Active Cases: <span className="text-[#C9A84C] font-bold text-[14px]">{maxCases}</span></div>
-          <input type="range" min={1} max={20} value={maxCases} onChange={e => setMaxCases(+e.target.value)} className="lp-slider" />
-          <div className="mt-5 rounded-xl px-4 py-3 text-[12.5px]" style={{ background: status === "active" ? "rgba(44,122,77,.1)" : status === "limited" ? "rgba(212,160,23,.1)" : "rgba(192,57,43,.1)", border: `1px solid ${status === "active" ? "rgba(44,122,77,.4)" : status === "limited" ? "rgba(212,160,23,.4)" : "rgba(192,57,43,.4)"}`, color: status === "active" ? "#5BC68C" : status === "limited" ? "#E5BB3F" : "#E57367" }}>
-            {status === "active" && "Accepting new help requests."}
-            {status === "limited" && "Operating at limited capacity."}
-            {status === "closed" && "Temporarily not accepting new cases."}
-          </div>
-          <button className="lp-btn lp-btn-gold-solid mt-5">Update Status</button>
-        </div>
+        <AvailabilityCockpit
+          initialMax={12}
+          active={8}
+          title="Operations Cockpit"
+          capacityLabel="Active Case Capacity"
+          labels={{ avail: "Active", busy: "Limited", unavail: "Closed" }}
+          helperText={{
+            avail: "Accepting new help requests across all categories.",
+            busy: "Operating at limited capacity. New requests will queue.",
+            unavail: "Temporarily not accepting new cases.",
+          }}
+        />
 
-        <div className="lp-card p-6 lp-card-hover" style={{ borderColor: "#C9A84C", borderWidth: 2 }}>
-          <div className="text-[11px] uppercase tracking-[.15em] text-[#C9A84C] font-semibold mb-2">Our Impact</div>
+        <div className="lp-card p-6 lp-lift" style={{ borderColor: "#C9A84C", borderWidth: 2 }}>
+          <div className="flex items-start justify-between mb-2">
+            <div>
+              <div className="text-[10.5px] uppercase tracking-[.2em] text-[#C9A84C] font-bold">Our Impact</div>
+              <div className="lp-display text-[26px] font-bold text-white leading-tight mt-0.5">Lives Touched</div>
+            </div>
+            <div className="lp-icon-sq"><HeartHandshake size={18} /></div>
+          </div>
           <div className="flex items-center gap-6">
             <AnimatedPie size={170} label="Cases" data={[
               { label: "Resolved", value: 187, color: "#C9A84C" },
               { label: "Active", value: 28, color: "#7AA8DD" },
               { label: "Pending", value: 12, color: "#E5BB3F" },
             ]} />
-            <div className="space-y-3">
-              <div>
+            <div className="space-y-3 flex-1">
+              <div className="rounded-2xl p-3 lp-mini-stat" style={{ background: "#0F0F0F", border: "1px solid rgba(201,168,76,.25)" }}>
                 <div className="lp-display text-[40px] text-[#C9A84C] font-bold leading-none">{helped}</div>
                 <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mt-1">Citizens Helped</div>
               </div>
-              <div>
+              <div className="rounded-2xl p-3 lp-mini-stat green" style={{ background: "#0F0F0F", border: "1px solid rgba(44,122,77,.35)" }}>
                 <div className="lp-display text-[40px] text-[#5BC68C] font-bold leading-none">{resolved}</div>
                 <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mt-1">Cases Resolved</div>
               </div>
@@ -100,18 +111,22 @@ export const NgoDashboard = ({ goto }: { goto: (s: any) => void }) => {
           { Icon: Clock, label: "Pending Review", val: 12, sub: "4 high urgency", subColor: "#E57367", cls: "lp-kpi-red" },
           { Icon: Gavel, label: "Active Cases", val: 28, sub: "Across 6 staff", subColor: "#7AA8DD" },
           { Icon: Users, label: "Citizens Helped", val: 312, sub: "+24 this month", subColor: "#5BC68C", cls: "lp-kpi-green" },
-        ].map((k) => (
+        ].map((k) => {
+          const sqCls = k.cls?.includes("green") ? "green" : k.cls?.includes("red") ? "red" : "";
+          const accent = k.cls?.includes("green") ? "#5BC68C" : k.cls?.includes("red") ? "#E57367" : "#C9A84C";
+          return (
           <div key={k.label} className={`lp-kpi ${k.cls || ""}`}>
             <div className="flex items-start justify-between">
               <div>
                 <div className="text-[10px] uppercase tracking-[.12em] text-[#888] font-semibold">{k.label}</div>
-                <div className="lp-display text-[34px] font-bold mt-1 leading-none" style={{ color: k.cls?.includes("green") ? "#5BC68C" : k.cls?.includes("red") ? "#E57367" : "#C9A84C" }}>{k.val}</div>
+                <div className="lp-display text-[34px] font-bold mt-1 leading-none" style={{ color: accent }}>{k.val}</div>
               </div>
-              <k.Icon size={22} style={{ color: k.cls?.includes("green") ? "#5BC68C" : k.cls?.includes("red") ? "#E57367" : "#C9A84C" }} />
+              <div className={`lp-icon-sq ${sqCls}`}><k.Icon size={18} /></div>
             </div>
             <div className="text-[10.5px] mt-2" style={{ color: k.subColor }}>{k.sub}</div>
           </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
