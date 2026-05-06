@@ -47,7 +47,7 @@ export const NgoDashboard = ({ goto }: { goto: (s: any) => void }) => {
       </div>
 
       <div className="lp-card lp-welcome rounded-2xl px-6 py-5">
-        <div className="lp-display text-[28px] text-[#C9A84C] font-bold leading-tight">Welcome, Aurat Foundation.</div>
+        <div className="lp-display text-[28px] text-[#C9A84C] font-bold leading-tight">Welcome, Aurat Foundation. Your work changes lives.</div>
         <div className="text-[#E8E0D0] text-[13px] mt-1">Your work changes lives.</div>
       </div>
 

@@ -22,7 +22,7 @@ const NgoPortal = () => {
     <div className="lp-root min-h-screen">
       <LawyerCursor />
       <NgoSidebar section={section} setSection={setSection} collapsed={collapsed} toggle={() => setCollapsed(c => !c)} />
-      <Topbar sidebarW={sidebarW} />
+      <Topbar sidebarW={sidebarW} name="Aurat Foundation" initials="AF" />
       <main style={{ marginLeft: sidebarW, paddingTop: 88, paddingLeft: 28, paddingRight: 28, paddingBottom: 80, transition: "margin-left .3s cubic-bezier(.22,1,.36,1)" }}>
         {section === "dashboard" && <NgoDashboard goto={setSection} />}
         {section === "cases-requests" && <NgoCaseRequests />}

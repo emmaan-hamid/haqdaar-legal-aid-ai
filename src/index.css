@@ -414,3 +414,24 @@
 .lp-line-path { filter: none; }
 svg:hover .lp-line-path { filter: drop-shadow(0 0 6px var(--glow)); }
 
+/* Page link with animated underline */
+.lp-page-link { display:inline-flex; align-items:center; gap:4px; transition: transform .25s ease, color .25s ease; }
+.lp-page-link .lp-underline { position:absolute; left:0; right:0; bottom:-3px; height:1px; background:#C9A84C; transform: scaleX(0); transform-origin:right; transition: transform .35s ease; }
+.lp-page-link:hover { transform: scale(1.06); color:#E5C97A; }
+.lp-page-link:hover .lp-underline { transform: scaleX(1); transform-origin:left; }
+
+/* Sub-card glow on hover */
+.lp-sub-glow { transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
+.lp-sub-glow:hover { transform: translateY(-2px); border-color: rgba(201,168,76,.65) !important; box-shadow: 0 16px 40px -16px rgba(201,168,76,.5), 0 0 0 1px rgba(201,168,76,.4); }
+
+/* Active cases table row hover */
+.lp-row-hover { transition: background .25s ease, box-shadow .25s ease; }
+.lp-row-hover:hover { background: rgba(201,168,76,.07); box-shadow: inset 0 0 0 1px rgba(201,168,76,.35), 0 0 18px rgba(201,168,76,.18); }
+
+/* Chart card always-on light glow, intensifies on hover */
+.lp-chart-glow { filter: drop-shadow(0 0 6px rgba(201,168,76,.18)); transition: filter .35s ease; }
+.lp-chart-glow:hover { filter: drop-shadow(0 0 14px rgba(201,168,76,.45)); }
+
+/* Disable hover transform on specific cards */
+.lp-no-hover:hover { transform: none !important; box-shadow: none !important; border-color: rgba(201,168,76,.2) !important; background: #141414 !important; }
+
