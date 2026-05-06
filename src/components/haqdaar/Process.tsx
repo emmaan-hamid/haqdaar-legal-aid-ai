@@ -61,7 +61,7 @@ export const Process = () => (
         {steps.map((s, i) => (
           <div
             key={s.n}
-            className="reveal card-surface relative flex h-full flex-col rounded-2xl p-7"
+            className="reveal feature-card relative flex h-full flex-col rounded-2xl p-7"
             style={{
               transitionDelay: `${i * 120}ms`,
               borderLeft: "3px solid hsl(43 53% 54%)",
