@@ -1,0 +1,17 @@
+import { ReactNode } from "react";
+import { LawyerCursor } from "@/components/lawyer/LawyerCursor";
+import { QuickExit } from "@/components/lawyer/layout/QuickExit";
+import { PortalFooter } from "@/components/lawyer/layout/PortalFooter";
+import { PublicNav } from "./PublicNav";
+
+export const PublicLayout = ({ children }: { children: ReactNode }) => (
+  <div className="lp-root min-h-screen">
+    <LawyerCursor />
+    <PublicNav />
+    <main style={{ paddingTop: 96, paddingBottom: 64 }}>
+      <div className="mx-auto w-full max-w-[1280px] px-6">{children}</div>
+    </main>
+    <PortalFooter />
+    <QuickExit />
+  </div>
+);
