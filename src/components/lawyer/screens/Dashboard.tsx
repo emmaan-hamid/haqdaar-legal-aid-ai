@@ -176,9 +176,9 @@ export const Dashboard = ({ goto }: { goto: (s: any) => void }) => {
                 </div>
                 <div className="flex flex-wrap gap-2 mb-2"><span className="lp-chip">{p.cat}</span><span className="text-[11px] text-[#888]">{p.city} · {p.date}</span></div>
                 <p className="text-[12px] text-[#aaa] line-clamp-2 mb-3">{p.summary}</p>
-                <div className="flex gap-2">
-                  <button className="lp-btn lp-btn-green lp-btn-sm">Accept</button>
-                  <button className="lp-btn lp-btn-red lp-btn-sm">Decline</button>
+                <div className="grid grid-cols-2 gap-3 mt-3">
+                  <button className="lp-act-accept">Accept</button>
+                  <button className="lp-act-decline">Decline</button>
                 </div>
               </div>
             ))}
@@ -259,7 +259,7 @@ export const Dashboard = ({ goto }: { goto: (s: any) => void }) => {
               <div className="lp-display text-[22px] text-white font-bold leading-tight mt-0.5">This Quarter</div>
             </div>
           </div>
-          <div className="lp-chart-glow">
+          <div className="lp-chart-glow lp-chart-bg p-3">
             <AnimatedLine
               labels={["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"]}
               series={[
