@@ -160,10 +160,10 @@ export const Dashboard = ({ goto }: { goto: (s: any) => void }) => {
                   <div className="text-[13px] text-white truncate">{c.title}</div>
                   <div className="text-[10.5px] text-[#888]">{c.cat} • Due {c.deadline}</div>
                 </div>
-                <span className={`lp-pill ${c.status === "progress" ? "lp-pill-progress" : c.status === "await" ? "lp-pill-await" : "lp-pill-pending"}`} style={{ width: 84, justifyContent: "center", height: 22, fontSize: 9, padding: "0 6px" }}>
+                <span className={`lp-pill ${c.status === "progress" ? "lp-pill-progress" : c.status === "await" ? "lp-pill-await" : "lp-pill-pending"}`} style={{ width: 70, justifyContent: "center", height: 18, fontSize: 8, padding: "0 4px" }}>
                   {c.status === "progress" ? "In Progress" : c.status === "await" ? "Awaiting" : "Pending"}
                 </span>
-                <button className="lp-btn lp-btn-gold lp-btn-md">View</button>
+                <button className="lp-btn lp-btn-gold-solid" style={{ height: 34, padding: "0 22px", fontSize: 12 }}>View</button>
               </div>
             ))}
           </div>
