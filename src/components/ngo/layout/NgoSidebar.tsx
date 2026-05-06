@@ -16,18 +16,12 @@ export const NgoSidebar = ({ section, setSection, collapsed, toggle }: { section
 
   return (
     <aside className="fixed top-0 left-0 h-screen z-40 flex flex-col" style={{ width: collapsed ? 72 : 260, background: "#141414", borderRight: "1px solid rgba(201,168,76,0.22)", transition: "width .3s cubic-bezier(.22,1,.36,1)" }}>
-      <div className="flex items-center gap-3 px-4" style={{ height: 72, borderBottom: "1px solid rgba(201,168,76,0.15)", flexShrink: 0 }}>
+      <div className="flex items-center px-4" style={{ height: 64, borderBottom: "1px solid rgba(201,168,76,0.15)", flexShrink: 0 }}>
         <button onClick={toggle} className="grid place-items-center w-9 h-9 rounded-xl shrink-0" style={{ background: "rgba(201,168,76,.1)", color: "#C9A84C", transition: "all .25s ease" }}
           onMouseEnter={e => { e.currentTarget.style.background = "rgba(201,168,76,.22)"; e.currentTarget.style.boxShadow = "0 0 14px rgba(201,168,76,.5)"; }}
           onMouseLeave={e => { e.currentTarget.style.background = "rgba(201,168,76,.1)"; e.currentTarget.style.boxShadow = "none"; }}>
           <Menu size={18} />
         </button>
-        {!collapsed && (
-          <div className="flex items-center gap-2 overflow-hidden">
-            <Scale size={22} className="text-[#C9A84C] shrink-0" />
-            <span className="lp-display text-[24px] font-bold text-white leading-none whitespace-nowrap">HaqDaar</span>
-          </div>
-        )}
       </div>
 
       <nav key={collapsed ? "c" : "e"} className="flex-1 mt-3 lp-noscroll lp-side-anim" style={{ overflow: "hidden" }}>
