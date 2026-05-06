@@ -9,10 +9,13 @@ export const Settings = () => {
   const [tab, setTab] = useState<Tab>("Profile");
   return (
     <div className="lp-fade space-y-5">
-      <h2 className="lp-display text-[28px] font-bold text-white">Settings</h2>
-      <div className="flex flex-wrap gap-2 border-b border-[rgba(201,168,76,.2)] pb-1">
+      <div>
+        <div className="text-[11px] uppercase tracking-[.18em] text-[#C9A84C] font-semibold">Settings</div>
+        <h2 className="lp-display text-[40px] font-bold text-white leading-tight mt-1">Lawyer Profile</h2>
+      </div>
+      <div className="flex flex-wrap gap-6 border-b border-[rgba(201,168,76,.2)]">
         {tabs.map(t => (
-          <button key={t} onClick={() => setTab(t)} className="lp-btn lp-btn-gold lp-tab" style={tab === t ? { background: "rgba(201,168,76,.18)", boxShadow: "0 0 18px rgba(201,168,76,.5)" } : {}}>{t}</button>
+          <button key={t} onClick={() => setTab(t)} className={`lp-utab ${tab === t ? "active" : ""}`}>{t}</button>
         ))}
       </div>
       {tab === "Profile" && <Profile />}
@@ -25,30 +28,55 @@ export const Settings = () => {
 };
 
 const Profile = () => (
-  <div className="lp-card p-6 space-y-5 lp-fade">
-    <div className="flex items-center gap-5">
-      <div className="w-24 h-24 rounded-full bg-[#C9A84C] grid place-items-center text-[#0A0A0A] text-3xl font-bold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(201,168,76,.6)] border-2 border-transparent hover:border-[#C9A84C]">UA</div>
-      <button className="lp-btn lp-btn-gold">Upload Photo</button>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      {["Full Name", "City + District", "Bar Council Number", "Years of Experience"].map((l, i) => (
-        <div key={l}>
-          <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">{l} {i === 2 && <span className="lp-doc-badge lp-doc-verified ml-2">Verified</span>}</div>
-          <input className="lp-input" defaultValue={["Irtiza Rayan", "Lahore, Punjab", "BC-LHR-12345", "8"][i]} />
-        </div>
-      ))}
-    </div>
-    <div>
-      <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">Biography</div>
-      <textarea className="lp-textarea" maxLength={500} defaultValue="Civil and labor law advocate with 8+ years working pro bono with marginalized communities across Punjab." />
-    </div>
-    <div>
-      <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-2">Languages</div>
-      <div className="flex gap-2">{["Urdu", "English", "Both"].map(l => <button key={l} className="lp-btn lp-btn-gold">{l}</button>)}</div>
-    </div>
-    <button className="lp-btn lp-btn-gold-solid">Save Profile</button>
-  </div>
+  <ProfileInner />
 );
+
+const ProfileInner = () => {
+  const [lang, setLang] = useState("Both");
+  const fields: [string, string][] = [
+    ["Full Name", "Irtiza Rayan"],
+    ["City", "Lahore"],
+    ["District", "Lahore"],
+    ["Bar Council Number", "PK 2024 8821"],
+  ];
+  return (
+    <div className="lp-card p-6 lp-fade">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_280px] gap-8 items-start">
+        {/* Forms LEFT */}
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {fields.map(([l, v]) => (
+              <div key={l}>
+                <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">{l}</div>
+                <input className="lp-input lp-field-zoom" defaultValue={v} />
+              </div>
+            ))}
+          </div>
+          <div>
+            <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">Biography</div>
+            <textarea className="lp-textarea lp-field-zoom" maxLength={500} defaultValue="Civil and labor law advocate with 8+ years working pro bono with marginalized communities across Punjab." />
+          </div>
+          <div>
+            <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-2">Languages</div>
+            <div className="flex flex-wrap gap-3">
+              {["Urdu", "English", "Both"].map(l => (
+                <button key={l} onClick={() => setLang(l)} className={`lp-lang ${lang === l ? "selected" : ""}`}>{l}</button>
+              ))}
+            </div>
+          </div>
+          <button className="lp-btn lp-btn-gold-solid">Save Profile</button>
+        </div>
+
+        {/* Avatar RIGHT */}
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-44 h-44 rounded-full grid place-items-center text-[#0A0A0A] text-5xl font-bold transition-all duration-300 hover:scale-105"
+            style={{ background: "linear-gradient(180deg,#F0D77D,#C9A84C)", boxShadow: "0 0 36px rgba(201,168,76,.55), 0 12px 30px -8px rgba(0,0,0,.6)", fontFamily: "'Cormorant Garamond', serif" }}>IR</div>
+          <button className="lp-btn lp-btn-gold">Change Photo</button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Availability = () => (
   <div className="space-y-5 lp-fade">
@@ -72,7 +100,7 @@ const Specialization = () => {
           return (
             <div key={c} className="flex items-center justify-between gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-[rgba(201,168,76,.06)]" style={{ border: "1px solid " + (isSel ? "rgba(201,168,76,.5)" : "#222") }}>
               <button onClick={() => setSel(isSel ? sel.filter(x => x !== c) : [...sel, c])} className="flex items-center gap-3 flex-1">
-                <span className={`lp-check ${isSel ? "checked" : ""}`}>{isSel && <Check size={13} className="text-[#0A0A0A]" />}</span>
+                <span className={`lp-check-circle ${isSel ? "checked" : ""}`}>{isSel && <Check size={12} className="text-[#0A0A0A]" />}</span>
                 <span className="text-[13px] text-white">{c}</span>
               </button>
               <button onClick={() => setPrimary(c)} disabled={!isSel} className={`lp-btn ${isPri ? "lp-btn-gold-solid" : "lp-btn-gold"} lp-btn-sm`} style={{ opacity: isSel ? 1 : .35 }}>{isPri ? "Primary" : "Set Primary"}</button>
