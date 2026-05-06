@@ -50,9 +50,9 @@ const Articles = () => {
         </div>
 
         <div className="flex flex-wrap gap-2 items-center justify-between">
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-6 border-b border-[rgba(201,168,76,.2)] pr-4">
             {CATS.map(c => (
-              <button key={c} onClick={() => setCat(c)} className="lp-btn lp-btn-gold lp-tab" style={cat === c ? { background: "rgba(201,168,76,.18)", boxShadow: "0 0 16px rgba(201,168,76,.5)" } : {}}>{c}</button>
+              <button key={c} onClick={() => setCat(c)} className={`lp-utab ${cat === c ? "active" : ""}`}>{c}</button>
             ))}
           </div>
           <select value={sort} onChange={e => setSort(e.target.value)} className="lp-input" style={{ width: "auto", height: 36, paddingRight: 28 }}>
