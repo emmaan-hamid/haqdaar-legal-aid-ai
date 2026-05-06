@@ -19,7 +19,7 @@ export const Topbar = ({ sidebarW }: { sidebarW: number }) => {
       <div />
       <div className="flex-1 max-w-[360px] mx-6 relative">
         <Search size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#888]" />
-        <input className="lp-input pl-10" placeholder="Search cases, clients..." />
+        <input className="lp-input" style={{ paddingLeft: 60 }} placeholder="Search cases, clients..." />
       </div>
       <div className="flex items-center gap-3">
         <div className="relative">
@@ -55,8 +55,8 @@ export const Topbar = ({ sidebarW }: { sidebarW: number }) => {
           <button onClick={() => setOpen(o => !o)} className="flex items-center gap-2 pl-1 pr-3 h-10 rounded-full" style={{ background: "#141414", border: "1px solid rgba(201,168,76,.3)", transition: "all .25s ease" }}
             onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 0 14px rgba(201,168,76,.45)"; }}
             onMouseLeave={e => { e.currentTarget.style.boxShadow = ""; }}>
-            <span className="w-8 h-8 rounded-full grid place-items-center font-bold text-[#0A0A0A] bg-[#C9A84C]">UA</span>
-            <span className="text-[12px] text-white">Usman A.</span>
+            <span className="w-8 h-8 rounded-full grid place-items-center font-bold text-[#0A0A0A] bg-[#C9A84C]">IR</span>
+            <span className="text-[12px] text-white">Irtiza Rayan</span>
             <ChevronDown size={12} className="text-[#888]" />
           </button>
           {open && (
