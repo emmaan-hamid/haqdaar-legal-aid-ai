@@ -38,15 +38,17 @@ export const AnimatedLine = ({ labels, series, height = 240 }: { labels: string[
       {series.map((s, si) => {
         const path = s.data.map((v, i) => `${i === 0 ? "M" : "L"} ${x(i)} ${y(v)}`).join(" ");
         return (
-          <g key={si}>
+          <g key={si} className="lp-line-group">
             <path d={path} fill="none" stroke={s.color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-              className="lp-line-path"
-              style={{ ['--glow' as any]: s.color, strokeDasharray: 2000, strokeDashoffset: drawn ? 0 : 2000, transition: `stroke-dashoffset 1.6s ease ${si * 0.2}s, filter .25s ease` }} />
+              style={{ strokeDasharray: 2000, strokeDashoffset: drawn ? 0 : 2000, transition: `stroke-dashoffset 1.6s ease ${si * 0.2}s, filter .3s ease` }} />
             {s.data.map((v, i) => (
-              <circle key={i} cx={x(i)} cy={y(v)} r={hover === i ? 5 : 3.2} fill={s.color}
-                style={{ transition: "r .2s ease, filter .2s ease", filter: hover === i ? `drop-shadow(0 0 8px ${s.color})` : "none", cursor: "none" }}
+              <circle key={i} cx={x(i)} cy={y(v)} r={hover === i ? 6 : 3.2} fill={s.color}
+                style={{ transition: "r .2s ease, filter .2s ease", filter: hover === i ? `drop-shadow(0 0 10px ${s.color})` : "none", cursor: "none" }}
                 onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(null)} />
             ))}
+            <style>{`
+              .lp-line-group:hover path { filter: drop-shadow(0 0 10px ${s.color}) drop-shadow(0 0 18px ${s.color}); }
+            `}</style>
           </g>
         );
       })}
