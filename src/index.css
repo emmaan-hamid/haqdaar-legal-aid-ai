@@ -410,3 +410,7 @@
 @keyframes lp-welcome-glow { 0%,100% { box-shadow: 0 0 0 1px rgba(201,168,76,.4), 0 0 22px rgba(201,168,76,.18);} 50% { box-shadow: 0 0 0 1px rgba(201,168,76,.7), 0 0 36px rgba(201,168,76,.3); } }
 .lp-welcome { animation: lp-welcome-glow 3.5s ease-in-out infinite; }
 
+/* Chart hover-only glow */
+.lp-line-path { filter: none; }
+svg:hover .lp-line-path { filter: drop-shadow(0 0 6px var(--glow)); }
+
