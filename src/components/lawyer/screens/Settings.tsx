@@ -72,13 +72,6 @@ const ProfileInner = () => {
           </div>
           <button className="lp-btn lp-btn-gold-solid">Save Profile</button>
         </div>
-
-        {/* Avatar RIGHT */}
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-44 h-44 rounded-full grid place-items-center text-[#0A0A0A] text-5xl font-bold transition-all duration-300 hover:scale-105"
-            style={{ background: "linear-gradient(180deg,#F0D77D,#C9A84C)", boxShadow: "0 0 36px rgba(201,168,76,.55), 0 12px 30px -8px rgba(0,0,0,.6)", fontFamily: "'Cormorant Garamond', serif" }}>IR</div>
-          <button className="lp-btn lp-btn-gold">Change Photo</button>
-        </div>
       </div>
     </div>
   );
