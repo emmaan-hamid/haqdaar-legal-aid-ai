@@ -25,33 +25,40 @@ export const NgoProfile = () => {
 const ProfileTab = () => {
   const [preview, setPreview] = useState(false);
   return (
-    <div className="lp-card p-6 space-y-5 lp-fade">
-      <div className="flex items-center gap-5">
-        <div className="w-24 h-24 rounded-full bg-[#C9A84C] grid place-items-center text-[#0A0A0A] text-3xl font-bold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(201,168,76,.6)] border-2 border-transparent hover:border-[#C9A84C]">AF</div>
-        <button className="lp-btn lp-btn-gold">Upload Logo</button>
-        <button onClick={() => setPreview(true)} className="lp-btn lp-btn-gold ml-auto"><Eye size={12} /> Public Preview</button>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {[["Organization Name", "Aurat Foundation"], ["Registration Number", "NGO-LHR-7821"], ["Founded Year", "1986"], ["Headquarters City", "Lahore, Punjab"], ["Office Hours", "Mon–Fri 9:00–17:00"], ["Contact Phone", "042-35870834"], ["Contact Email", "info@af.org.pk"], ["Website URL", "https://af.org.pk"]].map(([l, v]) => (
-          <div key={l}>
-            <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">{l}</div>
-            <input className="lp-input" defaultValue={v} />
+    <div className="lp-card p-6 lp-fade">
+      <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-8 items-start">
+        {/* Logo LEFT */}
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-44 h-44 rounded-full grid place-items-center text-[#0A0A0A] text-5xl font-bold transition-all duration-300 hover:scale-105"
+            style={{ background: "linear-gradient(180deg,#F0D77D,#C9A84C)", boxShadow: "0 0 36px rgba(201,168,76,.55), 0 12px 30px -8px rgba(0,0,0,.6)", fontFamily: "'Cormorant Garamond', serif" }}>AF</div>
+          <button className="lp-btn lp-btn-gold">Upload Logo</button>
+          <button onClick={() => setPreview(true)} className="lp-btn lp-btn-gold"><Eye size={12} /> Public Preview</button>
+        </div>
+        {/* Form RIGHT */}
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[["Organization Name", "Aurat Foundation"], ["Registration Number", "NGO-LHR-7821"], ["Founded Year", "1986"], ["Headquarters City", "Lahore, Punjab"], ["Office Hours", "Mon–Fri 9:00–17:00"], ["Contact Phone", "042-35870834"], ["Contact Email", "info@af.org.pk"], ["Website URL", "https://af.org.pk"]].map(([l, v]) => (
+              <div key={l}>
+                <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">{l}</div>
+                <input className="lp-input lp-field-zoom" defaultValue={v} />
+              </div>
+            ))}
           </div>
-        ))}
+          <div>
+            <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">Mission Statement</div>
+            <textarea className="lp-textarea lp-field-zoom" maxLength={500} defaultValue="To advance women's rights in Pakistan through legal aid, advocacy, and community education." />
+          </div>
+          <div>
+            <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">Services Offered</div>
+            <textarea className="lp-textarea lp-field-zoom" defaultValue="Free legal aid, shelter referrals, counseling, advocacy training." />
+          </div>
+          <div>
+            <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">Eligibility / Who We Help</div>
+            <textarea className="lp-textarea lp-field-zoom" defaultValue="Women, children, and marginalized communities across Pakistan." />
+          </div>
+          <button className="lp-btn lp-btn-gold-solid">Save Profile</button>
+        </div>
       </div>
-      <div>
-        <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">Mission Statement</div>
-        <textarea className="lp-textarea" maxLength={500} defaultValue="To advance women's rights in Pakistan through legal aid, advocacy, and community education." />
-      </div>
-      <div>
-        <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">Services Offered</div>
-        <textarea className="lp-textarea" defaultValue="Free legal aid, shelter referrals, counseling, advocacy training." />
-      </div>
-      <div>
-        <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">Eligibility / Who We Help</div>
-        <textarea className="lp-textarea" defaultValue="Women, children, and marginalized communities across Pakistan." />
-      </div>
-      <button className="lp-btn lp-btn-gold-solid">Save Profile</button>
       {preview && (
         <div className="lp-modal-overlay" onClick={() => setPreview(false)}>
           <div className="lp-modal max-w-[520px]" onClick={e => e.stopPropagation()}>
