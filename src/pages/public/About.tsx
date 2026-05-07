@@ -1,36 +1,34 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { PublicLayout } from "@/components/public/PublicLayout";
-import { AlertCircle, Search, Users, MessageSquare, Brain, ShieldCheck, Building2, HeartHandshake, Scale } from "lucide-react";
+import { Shield, Users, Briefcase, FileText, Gavel, Building2, MessageSquareQuote, Check, Scale } from "lucide-react";
 
-const PROBLEMS = [
-  { title: "People do not know their rights", desc: "Most citizens never read the laws that protect them, leaving them exposed to exploitation." },
-  { title: "People cannot navigate legal processes", desc: "Even when rights exist, the procedures and language make justice feel out of reach." },
-  { title: "People cannot find free legal help", desc: "Pro bono lawyers exist but stay invisible. Most never connect with the people who need them." },
+const EXPLAINS = [
+  { Icon: Scale, title: "Child Abuse", desc: "Understand the laws that protect children from abuse, neglect, and exploitation. Know your rights and how to take legal action." },
+  { Icon: Users, title: "Domestic Abuse", desc: "Learn about your legal protections against domestic violence and abuse. We help you understand the law and your options." },
+  { Icon: Briefcase, title: "Employee Disputes", desc: "Facing issues at work? We explain your rights related to unfair treatment, harassment, wrongful termination, and workplace disputes." },
 ];
 
-const SOLUTION = [
-  { n: "01", title: "Describe Your Problem", desc: "Type in plain Urdu or English. No legal terms required." },
-  { n: "02", title: "AI Reads Pakistani Law", desc: "We classify your case, retrieve the law, and explain your rights." },
-  { n: "03", title: "Act With Confidence", desc: "Get matched to a free lawyer. Generate documents. Track your case." },
+const MILESTONES = [
+  { Icon: FileText, title: "Legal Awareness Campaigns", desc: "Community outreach and legal education programs conducted.", value: "12", year: "2026" },
+  { Icon: Gavel, title: "People Empowered", desc: "Individuals guided with legal knowledge and rights awareness.", value: "2,450+", year: "2026" },
+  { Icon: Building2, title: "Rights Explained", desc: "Legal topics simplified and explained in easy language.", value: "150+", year: "2026", highlight: true },
+  { Icon: Users, title: "Support Queries Addressed", desc: "Legal queries received and responded with clear explanations.", value: "3,200+", year: "2026" },
+  { Icon: Scale, title: "Trusted Legal Information", desc: "Accurate and reliable legal information shared for public benefit.", value: "98%", year: "2026" },
 ];
 
 const TEAM = [
-  { name: "Eman Hamid", initials: "EH" },
-  { name: "Muntaha Shahab", initials: "MS" },
-  { name: "Tehreem Naveed", initials: "TN" },
-];
-const TEAM_ROLE = "Software Engineer";
-const TEAM_DESC = "Full stack development, requirement gathering, and architecture across the platform.";
-
-const PARTNERS = [
-  { name: "AGHS Legal Aid Cell", note: "Legal aid services for women across Punjab.", Icon: ShieldCheck },
-  { name: "Rozan", note: "Mental health, gender, and rights based programming.", Icon: HeartHandshake },
-  { name: "Aurat Foundation", note: "Women's empowerment and citizen advocacy.", Icon: Building2 },
+  { name: "Eman Hamid", initials: "EH", role: "Software Engineer", desc: "Designing, developing, implementing, testing, and integrating solutions that empower legal understanding for all." },
+  { name: "Muntaha Shahab", initials: "MS", role: "Software Engineer", desc: "Designing, developing, implementing, testing, and integrating solutions that empower legal understanding for all." },
+  { name: "Tehreem Naveed", initials: "TN", role: "Software Engineer", desc: "Designing, developing, implementing, testing, and integrating solutions that empower legal understanding for all." },
 ];
 
-const PROBLEM_ICONS = [Search, AlertCircle, Users];
-const SOLUTION_ICONS = [MessageSquare, Brain, Scale];
+const TESTIMONIALS = [
+  { name: "Ayesha Khan", city: "Lahore, Pakistan", initials: "AK" },
+  { name: "Usman Ali", city: "Karachi, Pakistan", initials: "UA" },
+  { name: "Sana Fatima", city: "Islamabad, Pakistan", initials: "SF" },
+  { name: "Bilal Ahmed", city: "Rawalpindi, Pakistan", initials: "BA" },
+];
 
 const useDotFollow = () => {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -45,107 +43,190 @@ const useDotFollow = () => {
 const About = () => {
   const dotRef = useDotFollow();
   return (
-  <PublicLayout>
-    <div ref={dotRef} className="haq-dot-follow" style={{ left: -100, top: -100 }} />
-    <div className="lp-fade space-y-20">
-      {/* Hero */}
-      <div className="text-center space-y-4 pt-4">
-        <h1 className="lp-display text-[44px] md:text-[60px] font-bold text-white leading-[1.05] max-w-4xl mx-auto">Justice Was Never Meant to Be Only for the Rich.</h1>
-        <p className="text-[16px] text-[#E8E0D0] max-w-2xl mx-auto">HaqDaar is democratizing access to justice through AI. Free. Anonymous. For every Pakistani.</p>
-      </div>
-
-      {/* Problem */}
-      <section className="space-y-8">
-        <div className="text-center">
-          <div className="text-[11px] uppercase tracking-[.22em] text-[#C9A84C] font-semibold">The Problem</div>
-          <h2 className="lp-display text-[40px] text-white font-bold mt-2">The Problem</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PROBLEMS.map((p, i) => {
-            const Icon = PROBLEM_ICONS[i];
-            return (
-              <div key={p.title} className="haq-card">
-                <div className="haq-card-icon mb-5"><Icon size={20} /></div>
-                <h3 className="text-[18px] text-white font-semibold leading-snug">{p.title}</h3>
-                <p className="text-[13.5px] text-[#B0B3B8] leading-relaxed mt-3">{p.desc}</p>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Solution */}
-      <section className="space-y-8">
-        <div className="text-center">
-          <div className="text-[11px] uppercase tracking-[.22em] text-[#C9A84C] font-semibold">Our Solution</div>
-          <h2 className="lp-display text-[40px] text-white font-bold mt-2">Our Solution</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SOLUTION.map((s, i) => {
-            const Icon = SOLUTION_ICONS[i];
-            return (
-              <div key={s.n} className="haq-card">
-                <span className="haq-step-num">{s.n}</span>
-                <div className="haq-card-icon mb-5"><Icon size={20} /></div>
-                <h3 className="text-[18px] text-white font-semibold">{s.title}</h3>
-                <p className="text-[13.5px] text-[#B0B3B8] leading-relaxed mt-3">{s.desc}</p>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Team */}
-      <section className="space-y-8">
-        <div className="text-center space-y-2">
-          <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[.22em] text-[#C9A84C] font-semibold">
-            <span className="h-px w-10" style={{ background: "linear-gradient(90deg,transparent,#D4AF37)" }} />
-            Our Team
-            <span className="h-px w-10" style={{ background: "linear-gradient(90deg,#D4AF37,transparent)" }} />
+    <PublicLayout>
+      <div ref={dotRef} className="haq-dot-follow" style={{ left: -100, top: -100 }} />
+      <div className="lp-fade space-y-20">
+        {/* Page title */}
+        <div className="text-center space-y-3 pt-2">
+          <h1 className="lp-display text-[44px] md:text-[56px] font-semibold text-white leading-tight">About Us</h1>
+          <div className="flex items-center justify-center gap-2 text-[13px] text-[#A8A39A]">
+            <Link to="/" className="hover:text-[#C9A84C] transition-colors">Home</Link>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C9A84C]" />
+            <span className="text-white">About Us</span>
           </div>
-          <h2 className="lp-display text-[44px] text-white font-bold">The Team</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {TEAM.map(m => (
-            <div key={m.name} className="haq-card text-center">
-              <div className="haq-avatar">{m.initials}</div>
-              <h3 className="text-[20px] text-white font-semibold mt-5">{m.name}</h3>
-              <div className="text-[13px] text-[#D4AF37] mt-1">{TEAM_ROLE}</div>
-              <div className="haq-divider" />
-              <p className="text-[13px] text-[#B0B3B8] leading-relaxed">{TEAM_DESC}</p>
-            </div>
-          ))}
-        </div>
-      </section>
 
-      {/* Partners */}
-      <section className="space-y-8" style={{ paddingTop: 20, paddingBottom: 20 }}>
-        <div className="text-center max-w-[600px] mx-auto">
-          <h2 className="lp-display text-[40px] text-white font-bold">Partner Organizations</h2>
-          <p className="text-[15px] text-[#A0A0A0] mt-3">We work alongside organizations on the ground delivering rights based programming.</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-          {PARTNERS.map(p => (
-            <div key={p.name} className="haq-card">
-              <div className="haq-card-icon mb-5"><p.Icon size={20} /></div>
-              <div className="text-[19px] text-white font-medium">{p.name}</div>
-              <div className="text-[14px] text-[#C0C0C0] mt-2 leading-relaxed">{p.note}</div>
+        {/* Hero: Justice image left, We Explain right, side panel "What We Explain" */}
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Image card */}
+          <div className="lg:col-span-5 relative rounded-[20px] overflow-hidden" style={{ border: "1px solid rgba(201,168,76,.3)", minHeight: 460 }}>
+            <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 30% 30%, rgba(201,168,76,.18), transparent 60%), linear-gradient(180deg,#1a1410,#0a0908)" }} />
+            <div className="absolute inset-0 grid place-items-center opacity-[.18]">
+              <Scale size={280} className="text-[#C9A84C]" strokeWidth={0.6} />
             </div>
-          ))}
-        </div>
-      </section>
+            {/* Associate Partner's overlay */}
+            <div className="absolute left-5 right-5 bottom-5 rounded-xl px-5 py-4" style={{ border: "1px solid rgba(201,168,76,.5)", background: "rgba(10,10,10,.8)", backdropFilter: "blur(6px)" }}>
+              <div className="text-[12px] text-white font-semibold mb-3">Associate Partner's</div>
+              <div className="grid grid-cols-4 gap-3 text-center">
+                {[
+                  { t: "Law Firm", s: "Legal Solutions" },
+                  { t: "Justice", s: "" },
+                  { t: "Attorney", s: "At Law" },
+                  { t: "Lawyer", s: "" },
+                ].map(p => (
+                  <div key={p.t} className="text-[#C9A84C]">
+                    <Scale size={18} className="mx-auto mb-1.5" />
+                    <div className="text-[9px] uppercase tracking-[.12em] text-white font-semibold">{p.t}</div>
+                    {p.s && <div className="text-[8px] uppercase tracking-[.1em] text-[#A8A39A]">{p.s}</div>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
 
-      {/* CTA */}
-      <section className="haq-cta">
-        <h2 className="haq-cta-title">Join the Movement</h2>
-        <p className="haq-cta-sub">Help us deliver justice to every Pakistani.</p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8 items-center">
-          <Link to="/ngo" className="haq-btn-primary">Register as NGO Partner</Link>
-          <Link to="/lawyer" className="haq-btn-secondary">Register as Volunteer Lawyer</Link>
-        </div>
-      </section>
-    </div>
-  </PublicLayout>
+          {/* Center content + side panel */}
+          <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-[1fr_220px] gap-6">
+            <div className="space-y-5">
+              <div className="haq-eyebrow">About Us</div>
+              <h2 className="lp-display text-[34px] md:text-[40px] font-semibold text-white leading-[1.15]">
+                We Explain <span className="text-[#C9A84C]">The Law.</span><br />
+                You Understand Your <span className="text-[#C9A84C]">Rights.</span>
+              </h2>
+              <p className="text-[13.5px] text-[#A8A39A] leading-relaxed max-w-[480px]">
+                At HaqDaar, we simplify complex legal matters and help you understand your rights in clear, easy-to-understand language. Whether you are facing a legal challenge or just need clarity, we are here to guide you with trusted legal knowledge.
+              </p>
+              <div className="space-y-5 pt-2">
+                {EXPLAINS.map(e => (
+                  <div key={e.title} className="haq-feature-row group">
+                    <div className="haq-feature-ico transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_18px_rgba(201,168,76,.5)]"><e.Icon size={20} /></div>
+                    <div>
+                      <div className="text-[15px] text-white font-semibold mb-1">{e.title}</div>
+                      <p className="text-[12.5px] text-[#A8A39A] leading-relaxed">{e.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* What We Explain side panel */}
+            <div className="space-y-4 md:pl-5" style={{ borderLeft: "1px solid rgba(201,168,76,.2)" }}>
+              <Scale size={26} className="text-[#C9A84C]" />
+              <div className="text-[16px] text-white font-semibold">What We Explain</div>
+              <p className="text-[12px] text-[#A8A39A] leading-relaxed">We provide clear legal explanations on:</p>
+              <ul className="space-y-3">
+                {[
+                  { t: "FIR", d: "Your rights when filing or facing an FIR." },
+                  { t: "Police Misconduct", d: "Know your rights against abuse of power and unlawful behavior." },
+                ].map(i => (
+                  <li key={i.t} className="flex gap-2">
+                    <Check size={14} className="text-[#C9A84C] mt-0.5 shrink-0" />
+                    <div>
+                      <div className="text-[12px] text-white font-semibold">{i.t}</div>
+                      <div className="text-[11px] text-[#A8A39A] leading-relaxed">{i.d}</div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <div className="h-px" style={{ background: "linear-gradient(90deg,transparent,rgba(201,168,76,.5),transparent)" }} />
+              <div className="text-[13px] text-white font-semibold">This is not a consultation.</div>
+              <p className="text-[11.5px] text-[#A8A39A] leading-relaxed">We discuss the problem and explain the relevant laws and your rights in simple terms.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Milestones */}
+        <section className="space-y-10 pt-4" style={{ borderTop: "1px solid rgba(201,168,76,.15)" }}>
+          <div className="text-center space-y-3 pt-10">
+            <div className="haq-eyebrow">| My HaqDaar Proposal |</div>
+            <h2 className="lp-display text-[36px] md:text-[42px] font-semibold text-white">Success Of <span className="text-[#C9A84C]">Milestone</span> Year</h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+            {MILESTONES.map(m => (
+              <div key={m.title} className="text-center group transition-all duration-300 hover:-translate-y-1">
+                <div className={`mx-auto w-16 h-16 rounded-xl grid place-items-center mb-4 transition-all duration-300 ${m.highlight ? "" : "group-hover:bg-[rgba(201,168,76,.1)]"}`}
+                  style={m.highlight ? { background: "linear-gradient(180deg,#E5C975,#C9A84C)", color: "#0A0A0A", boxShadow: "0 0 26px rgba(201,168,76,.55)" } : { color: "#C9A84C", border: "1px solid rgba(201,168,76,.3)" }}>
+                  <m.Icon size={24} />
+                </div>
+                <div className="text-[13px] text-white font-semibold leading-tight px-2">{m.title}</div>
+                <p className="text-[11px] text-[#A8A39A] mt-2 px-2 leading-relaxed">{m.desc}</p>
+              </div>
+            ))}
+          </div>
+          {/* Dotted timeline with dots + values */}
+          <div className="relative pt-4">
+            <div className="haq-milestone-line" />
+            <div className="absolute inset-x-0 top-2 grid grid-cols-5">
+              {MILESTONES.map((_, i) => (
+                <div key={i} className="flex justify-center"><div className="haq-milestone-dot" /></div>
+              ))}
+            </div>
+            <div className="grid grid-cols-5 mt-6 text-center">
+              {MILESTONES.map(m => (
+                <div key={m.value}>
+                  <div className="lp-display text-[32px] md:text-[40px] font-bold text-white">{m.value}</div>
+                  <div className="text-[11px] text-[#A8A39A] mt-1">{m.year}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Meet Our Team — with card swap (3D flip) animation */}
+        <section className="space-y-10">
+          <div className="text-center space-y-3">
+            <div className="haq-eyebrow">| Our Team |</div>
+            <h2 className="lp-display text-[36px] md:text-[42px] font-semibold text-white">Meet Our <span className="text-[#C9A84C]">Team</span></h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {TEAM.map(m => (
+              <div key={m.name} className="haq-flip" style={{ height: 250 }}>
+                <div className="haq-flip-inner">
+                  {/* Front */}
+                  <div className="haq-flip-face">
+                    <div className="w-14 h-14 rounded-lg grid place-items-center mb-4" style={{ background: "rgba(201,168,76,.08)", border: "1px solid rgba(201,168,76,.4)", color: "#C9A84C" }}>
+                      <Users size={22} />
+                    </div>
+                    <div className="lp-display text-[20px] text-[#C9A84C] font-semibold mb-3">{m.name}</div>
+                    <p className="text-[12.5px] text-[#A8A39A] leading-relaxed max-w-[260px]">{m.desc}</p>
+                    <div className="haq-divider mt-3" />
+                  </div>
+                  {/* Back */}
+                  <div className="haq-flip-face haq-flip-back">
+                    <div className="haq-avatar mb-3" style={{ width: 64, height: 64, fontSize: 22 }}>{m.initials}</div>
+                    <div className="lp-display text-[22px] text-white font-semibold">{m.name}</div>
+                    <div className="text-[12px] text-[#C9A84C] uppercase tracking-[.18em] mt-1">{m.role}</div>
+                    <p className="text-[12px] text-[#E8E0D0] mt-3 max-w-[240px]">Building HaqDaar with care, code, and conviction.</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* What People Say */}
+        <section className="space-y-10">
+          <div className="text-center space-y-3">
+            <div className="haq-eyebrow">| What People Say |</div>
+            <h2 className="lp-display text-[36px] md:text-[42px] font-semibold text-white">What Our <span className="text-[#C9A84C]">Community</span> Says</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {TESTIMONIALS.map(t => (
+              <div key={t.name} className="haq-quote-card">
+                <MessageSquareQuote size={22} className="text-[#C9A84C] mb-3" />
+                <p className="text-[12.5px] text-[#E8E0D0] leading-relaxed mb-5">HaqDaar helped me understand my rights in a very difficult time. The explanation was clear, simple and easy to follow.</p>
+                <div className="flex items-center gap-3 pt-3" style={{ borderTop: "1px solid rgba(201,168,76,.15)" }}>
+                  <div className="w-9 h-9 rounded-full grid place-items-center text-[#0A0A0A] text-[12px] font-bold" style={{ background: "linear-gradient(180deg,#F0D77D,#C9A84C)" }}>{t.initials}</div>
+                  <div>
+                    <div className="text-[13px] text-white font-semibold">{t.name}</div>
+                    <div className="text-[11px] text-[#A8A39A]">{t.city}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+    </PublicLayout>
   );
 };
 
