@@ -1,96 +1,142 @@
-import { Linkedin, Instagram, Twitter, Facebook } from "lucide-react";
+import { ArrowRight, Facebook, Twitter, Instagram, Youtube, Scale } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const Col = ({ title, links }: { title: string; links: { label: string; to: string }[] }) => (
-  <div>
-    <h4 className="text-white font-semibold text-[13px] mb-4 tracking-wide">{title}</h4>
-    <ul className="space-y-2.5">
-      {links.map(l => (
-        <li key={l.label}>
-          <Link to={l.to} className="text-[12.5px] text-[#888] hover:text-[#C9A84C] transition-all duration-200 inline-block hover:translate-x-1">{l.label}</Link>
-        </li>
-      ))}
-    </ul>
-  </div>
+const BORDER = "1px solid rgba(201,168,76,.18)";
+
+const ColLink = ({ to, children }: { to: string; children: React.ReactNode }) => (
+  <Link to={to} className="text-[13px] text-[#A8A39A] hover:text-[#C9A84C] transition-all duration-200 inline-block hover:translate-x-0.5">{children}</Link>
 );
 
 export const PortalFooter = () => (
-  <footer style={{ background: "#0F0E0D", borderTop: "1px solid rgba(201,168,76,.2)" }}>
-    {/* Main 4-column */}
-    <div className="px-12 pt-14 pb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-      <div>
-        <div className="lp-display text-[26px] font-bold text-[#C9A84C] mb-3">HaqDaar</div>
-        <div className="text-white font-semibold text-[13px] mb-2">Access to justice for every citizen of Pakistan.</div>
-        <p className="text-[#888] text-[12px] leading-relaxed">An AI powered platform connecting verified lawyers, NGOs, and citizens for free legal aid.</p>
+  <footer style={{ background: "#0B0A09", borderTop: BORDER }}>
+    <div className="mx-auto max-w-[1400px] px-8 lg:px-12 pt-12 pb-8">
+      {/* Top grid: 5 columns on lg */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
+        {/* Brand */}
+        <div className="lg:col-span-3">
+          <div className="flex items-center gap-2.5 mb-4">
+            <div className="w-10 h-10 rounded-lg grid place-items-center" style={{ background: "rgba(201,168,76,.12)", border: "1px solid rgba(201,168,76,.4)" }}>
+              <Scale size={18} className="text-[#C9A84C]" />
+            </div>
+            <div>
+              <div className="lp-display text-[20px] font-bold text-white leading-none">HaqDaar</div>
+              <div className="text-[10px] text-[#C9A84C] tracking-[.2em] uppercase mt-0.5">Your Right, AI</div>
+            </div>
+          </div>
+          <p className="text-[12.5px] text-[#A8A39A] leading-relaxed">
+            Empowering justice for everyone. AI-driven legal assistance, transparent and accessible.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-x-3 gap-y-2 text-[12.5px] text-[#A8A39A]">
+            <a href="#" className="hover:text-[#C9A84C] transition-colors underline-offset-4 hover:underline">About Us</a>
+            <span className="text-[#3a3631]">|</span>
+            <a href="#" className="hover:text-[#C9A84C] transition-colors underline-offset-4 hover:underline">Careers</a>
+            <span className="text-[#3a3631]">|</span>
+            <a href="#" className="hover:text-[#C9A84C] transition-colors underline-offset-4 hover:underline">Press</a>
+          </div>
+          <div className="mt-2 flex flex-wrap gap-x-3 gap-y-2 text-[12.5px] text-[#A8A39A]">
+            <a href="#" className="hover:text-[#C9A84C] transition-colors underline-offset-4 hover:underline">Privacy Policy</a>
+            <span className="text-[#3a3631]">|</span>
+            <a href="#" className="hover:text-[#C9A84C] transition-colors underline-offset-4 hover:underline">Terms Of Use</a>
+          </div>
+        </div>
+
+        {/* Newsletter + contact blocks */}
+        <div className="lg:col-span-4 lg:px-6" style={{ borderLeft: BORDER, borderRight: BORDER }}>
+          <h4 className="text-center text-white text-[15px] font-medium mb-4">Subscribe To Our Newsletter</h4>
+          <form onSubmit={e => e.preventDefault()} className="space-y-3 max-w-[320px] mx-auto">
+            <input type="email" placeholder="Enter Your Email ID" className="w-full px-4 h-11 rounded-full text-[13px] text-white placeholder:text-[#666] outline-none transition-all duration-300"
+              style={{ background: "transparent", border: "1px solid rgba(201,168,76,.3)" }}
+              onFocus={e => { e.currentTarget.style.borderColor = "#C9A84C"; e.currentTarget.style.boxShadow = "0 0 14px rgba(201,168,76,.3)"; }}
+              onBlur={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,.3)"; e.currentTarget.style.boxShadow = ""; }}
+            />
+            <button type="submit" className="w-full h-11 rounded-full inline-flex items-center justify-center gap-2 text-[11.5px] font-bold uppercase tracking-[.2em] text-[#0A0A0A] transition-all duration-300 hover:scale-[1.02]"
+              style={{ background: "linear-gradient(180deg,#E5C975,#C9A84C)", boxShadow: "0 6px 20px -6px rgba(201,168,76,.6)" }}>
+              Submit Now <ArrowRight size={13} />
+            </button>
+          </form>
+          <div className="mt-6 grid grid-cols-3 gap-4 text-center">
+            <div>
+              <div className="text-[12px] text-white font-semibold mb-1.5">Reg Office</div>
+              <p className="text-[11px] text-[#A8A39A] leading-relaxed">24 Constitution Avenue<br />Islamabad, Pakistan<br />44000</p>
+            </div>
+            <div>
+              <div className="text-[12px] text-white font-semibold mb-1.5">Contact No</div>
+              <p className="text-[11px] text-[#A8A39A] leading-relaxed">+92 300 1234567<br />+92 51 1234567</p>
+            </div>
+            <div>
+              <div className="text-[12px] text-white font-semibold mb-1.5">Email Id</div>
+              <p className="text-[11px] text-[#A8A39A] leading-relaxed break-all">info@haqdaar.pk</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Our Expertise */}
+        <div className="lg:col-span-2">
+          <h4 className="text-[12px] uppercase tracking-[.18em] text-[#C9A84C] font-bold mb-4">Our Expertise</h4>
+          <ul className="space-y-2.5">
+            <li><ColLink to="#">Child Abuse</ColLink></li>
+            <li><ColLink to="#">Domestic Abuse</ColLink></li>
+            <li><ColLink to="#">Employee Disputes</ColLink></li>
+            <li><ColLink to="#">FIR</ColLink></li>
+            <li><ColLink to="#">Police Misconduct</ColLink></li>
+          </ul>
+        </div>
+
+        {/* Public Pages */}
+        <div className="lg:col-span-2">
+          <h4 className="text-[12px] uppercase tracking-[.18em] text-[#C9A84C] font-bold mb-4">Public Pages</h4>
+          <ul className="space-y-2.5">
+            <li><ColLink to="/about">About Us</ColLink></li>
+            <li><ColLink to="/faq">FAQ</ColLink></li>
+            <li><ColLink to="/contact">Contact Us</ColLink></li>
+            <li><ColLink to="/browse-law">Browse Laws</ColLink></li>
+            <li><ColLink to="/articles">Articles</ColLink></li>
+          </ul>
+        </div>
+
+        {/* Our Portals */}
+        <div className="lg:col-span-1">
+          <h4 className="text-[12px] uppercase tracking-[.18em] text-[#C9A84C] font-bold mb-4 whitespace-nowrap">Our Portals</h4>
+          <ul className="space-y-2.5">
+            <li><ColLink to="#">Admin Portal</ColLink></li>
+            <li><ColLink to="/ngo">NGO Portal</ColLink></li>
+            <li><ColLink to="/lawyer">Lawyer Portal</ColLink></li>
+          </ul>
+        </div>
       </div>
-      <Col title="Platform" links={[
-        { label: "Lawyer Portal", to: "/lawyer" },
-        { label: "NGO Portal", to: "/ngo" },
-        { label: "About Us", to: "/about" },
-        { label: "Contact", to: "/contact" },
-      ]} />
-      <Col title="Legal Resources" links={[
-        { label: "Browse Pakistani Laws", to: "/browse-law" },
-        { label: "Articles & Blog", to: "/articles" },
-        { label: "FAQs", to: "/faq" },
-        { label: "Contact Us", to: "/contact" },
-      ]} />
-      <div>
-        <h4 className="text-white font-semibold text-[13px] mb-4">Contact</h4>
-        <a href="mailto:support@haqdaar.pk" className="text-[12.5px] text-[#888] hover:text-[#C9A84C] transition-colors">support@haqdaar.pk</a>
-        <div className="flex gap-2 mt-4">
-          {[Linkedin, Instagram, Twitter, Facebook].map((Icon, i) => (
-            <a key={i} href="#" aria-label="social" className="w-9 h-9 rounded-full grid place-items-center text-[#888] transition-all duration-200" style={{ border: "1px solid #2a2a2a" }}
-              onMouseEnter={e => { e.currentTarget.style.color = "#C9A84C"; e.currentTarget.style.borderColor = "#C9A84C"; e.currentTarget.style.boxShadow = "0 0 14px rgba(201,168,76,.4)"; }}
-              onMouseLeave={e => { e.currentTarget.style.color = "#888"; e.currentTarget.style.borderColor = "#2a2a2a"; e.currentTarget.style.boxShadow = ""; }}>
-              <Icon size={14} />
+
+      {/* Mid divider with portal pills */}
+      <div className="mt-10 pt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[12.5px]" style={{ borderTop: BORDER }}>
+        <Link to="#" className="text-[#A8A39A] hover:text-[#C9A84C] transition-colors">Admin Portal</Link>
+        <span className="text-[#3a3631]">|</span>
+        <Link to="/ngo" className="text-[#A8A39A] hover:text-[#C9A84C] transition-colors">NGO Portal</Link>
+        <span className="text-[#3a3631]">|</span>
+        <Link to="/lawyer" className="text-[#A8A39A] hover:text-[#C9A84C] transition-colors">Lawyer Portal</Link>
+      </div>
+    </div>
+
+    {/* Bottom bar */}
+    <div className="px-8 lg:px-12 py-5 grid grid-cols-1 md:grid-cols-3 gap-4 items-center" style={{ background: "#080706", borderTop: BORDER }}>
+      <div className="text-[12px] text-[#A8A39A]">
+        Hire One Of Our Legal Experts This Very Day.<br />
+        <span className="text-white">Emergency Call:</span> <a href="tel:+923174288665" className="text-[#C9A84C] hover:underline">+92-317-4288665</a>
+      </div>
+      <div className="flex flex-col items-center gap-2.5">
+        <span className="text-[12px] text-[#A8A39A]">Follow Us</span>
+        <div className="flex items-center gap-2.5">
+          {[Facebook, Twitter, Instagram, Youtube].map((Icon, i) => (
+            <a key={i} href="#" aria-label="social" className="w-8 h-8 rounded-full grid place-items-center text-[#C9A84C] transition-all duration-300 hover:scale-110"
+              style={{ background: "rgba(201,168,76,.08)", border: "1px solid rgba(201,168,76,.35)" }}
+              onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 0 14px rgba(201,168,76,.5)"; e.currentTarget.style.background = "rgba(201,168,76,.18)"; }}
+              onMouseLeave={e => { e.currentTarget.style.boxShadow = ""; e.currentTarget.style.background = "rgba(201,168,76,.08)"; }}>
+              <Icon size={13} />
             </a>
           ))}
         </div>
       </div>
-    </div>
-
-    {/* Three portal cards strip */}
-    <div className="px-12 py-6 grid grid-cols-1 md:grid-cols-3 gap-4" style={{ background: "#141310", borderTop: "1px solid rgba(255,255,255,.05)" }}>
-      {[
-        { title: "Admin Portal", sub: "Verify lawyers & moderate", href: "#" },
-        { title: "NGO Portal", sub: "Manage volunteer outreach", href: "/ngo" },
-        { title: "Lawyer Portal", sub: "Take cases pro bono", href: "/lawyer" },
-      ].map(c => (
-        <a key={c.title} href={c.href} className="rounded-2xl p-5 text-center transition-all duration-300 lp-card-hover" style={{ background: "#0F0E0D", border: "1px solid #C9A84C" }}>
-          <div className="w-10 h-10 mx-auto mb-3 rounded-full grid place-items-center" style={{ background: "rgba(201,168,76,.12)", color: "#C9A84C" }}>◈</div>
-          <div className="text-[12px] uppercase tracking-[.15em] font-semibold text-[#C9A84C]">{c.title}</div>
-          <div className="text-[11px] text-[#888] mt-1">{c.sub}</div>
-        </a>
-      ))}
-    </div>
-
-    {/* Explore links */}
-    <div className="px-12 py-5 flex flex-wrap items-center justify-center gap-6 text-[12px]" style={{ background: "#0c0b0a", borderTop: "1px solid rgba(255,255,255,.04)" }}>
-      {[
-        { label: "About Us", to: "/about" },
-        { label: "FAQs", to: "/faq" },
-        { label: "Contact", to: "/contact" },
-        { label: "Articles", to: "/articles" },
-        { label: "Browse Laws", to: "/browse-law" },
-      ].map(l => (
-        <Link key={l.label} to={l.to} className="text-[#888] hover:text-[#C9A84C] transition-colors">{l.label}</Link>
-      ))}
-    </div>
-
-    {/* Bottom bar */}
-    <div className="px-12 py-4 flex flex-col md:flex-row items-center justify-between gap-3 text-[11.5px] text-[#888]" style={{ background: "#0A0908", borderTop: "1px solid rgba(255,255,255,.04)" }}>
-      <span>© 2026 HaqDaar. Built for the people of Pakistan.</span>
-      <span className="text-center">Not a law firm. An access to justice platform. <a href="#" className="hover:text-[#C9A84C]">Privacy Policy</a> | <a href="#" className="hover:text-[#C9A84C]">Terms</a></span>
-    </div>
-
-    {/* Emergency strip */}
-    <div className="px-6 py-3 flex flex-wrap items-center justify-center gap-6 text-[11px]" style={{ background: "#050504" }}>
-      <span><span className="text-[#C9A84C] font-bold">Rozan</span> <span className="text-white">051 2890505</span></span>
-      <span className="text-[#333]">|</span>
-      <span><span className="text-[#C9A84C] font-bold">Umang</span> <span className="text-white">0317 4288665</span></span>
-      <span className="text-[#333]">|</span>
-      <span><span className="text-[#C9A84C] font-bold">Police</span> <span className="text-white">15</span></span>
+      <div className="text-[12px] text-[#A8A39A] md:text-right">
+        Copyright @HaqDaar.com, All Rights Reserved 2026
+      </div>
     </div>
   </footer>
 );
