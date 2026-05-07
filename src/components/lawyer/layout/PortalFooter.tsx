@@ -83,7 +83,7 @@ export const PortalFooter = () => (
         </div>
 
         {/* Public Pages */}
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-3">
           <h4 className="text-[12px] uppercase tracking-[.18em] text-[#C9A84C] font-bold mb-4">Public Pages</h4>
           <ul className="space-y-2.5">
             <li><ColLink to="/about">About Us</ColLink></li>
@@ -93,25 +93,23 @@ export const PortalFooter = () => (
             <li><ColLink to="/articles">Articles</ColLink></li>
           </ul>
         </div>
-
-        {/* Our Portals */}
-        <div className="lg:col-span-1">
-          <h4 className="text-[12px] uppercase tracking-[.18em] text-[#C9A84C] font-bold mb-4 whitespace-nowrap">Our Portals</h4>
-          <ul className="space-y-2.5">
-            <li><ColLink to="#">Admin Portal</ColLink></li>
-            <li><ColLink to="/ngo">NGO Portal</ColLink></li>
-            <li><ColLink to="/lawyer">Lawyer Portal</ColLink></li>
-          </ul>
-        </div>
       </div>
 
-      {/* Mid divider with portal pills */}
-      <div className="mt-10 pt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[12.5px]" style={{ borderTop: BORDER }}>
-        <Link to="#" className="text-[#A8A39A] hover:text-[#C9A84C] transition-colors">Admin Portal</Link>
-        <span className="text-[#3a3631]">|</span>
-        <Link to="/ngo" className="text-[#A8A39A] hover:text-[#C9A84C] transition-colors">NGO Portal</Link>
-        <span className="text-[#3a3631]">|</span>
-        <Link to="/lawyer" className="text-[#A8A39A] hover:text-[#C9A84C] transition-colors">Lawyer Portal</Link>
+      {/* Our Portals — full row below */}
+      <div className="mt-10 pt-6" style={{ borderTop: BORDER }}>
+        <h4 className="text-[12px] uppercase tracking-[.18em] text-[#C9A84C] font-bold mb-4 text-center">Our Portals</h4>
+        <div className="flex flex-wrap items-center justify-center gap-6">
+          {[
+            { label: "Admin Portal", to: "#" },
+            { label: "NGO Portal", to: "/ngo" },
+            { label: "Lawyer Portal", to: "/lawyer" },
+          ].map(p => (
+            <Link key={p.label} to={p.to} className="px-5 h-10 inline-flex items-center rounded-full text-[12.5px] text-[#E8E0D0] hover:text-[#C9A84C] transition-all duration-300 hover:scale-105"
+              style={{ border: "1px solid rgba(201,168,76,.3)", background: "rgba(201,168,76,.04)" }}>
+              {p.label}
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
 
