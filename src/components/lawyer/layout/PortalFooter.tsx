@@ -46,7 +46,7 @@ export const PortalFooter = () => {
             Empowering justice for everyone. AI-driven legal assistance, transparent and accessible.
           </p>
           <div className="mt-5 flex flex-wrap gap-x-3 gap-y-2 text-[12.5px] text-[#A8A39A]">
-            <a href="#" className="hover:text-[#C9A84C] transition-colors underline-offset-4 hover:underline">About Us</a>
+            <Link to="/about" className="hover:text-[#C9A84C] transition-colors underline-offset-4 hover:underline">About Us</Link>
             <span className="text-[#3a3631]">|</span>
             <a href="#" className="hover:text-[#C9A84C] transition-colors underline-offset-4 hover:underline">Careers</a>
             <span className="text-[#3a3631]">|</span>

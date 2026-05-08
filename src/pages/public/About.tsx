@@ -42,12 +42,23 @@ const useDotFollow = () => {
 
 const About = () => {
   const dotRef = useDotFollow();
+  useEffect(() => {
+    const els = document.querySelectorAll<HTMLElement>(".haq-reveal,.haq-reveal-l,.haq-reveal-r");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add("in"); }
+        else { e.target.classList.remove("in"); }
+      });
+    }, { threshold: 0.12 });
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
   return (
     <PublicLayout>
       <div ref={dotRef} className="haq-dot-follow" style={{ left: -100, top: -100 }} />
       <div className="lp-fade space-y-20">
         {/* Page title */}
-        <div className="text-center space-y-3 pt-2">
+        <div className="text-center space-y-3 pt-2 haq-reveal">
           <h1 className="lp-display text-[44px] md:text-[56px] font-semibold text-white leading-tight">About Us</h1>
           <div className="flex items-center justify-center gap-2 text-[13px] text-[#A8A39A]">
             <Link to="/" className="hover:text-[#C9A84C] transition-colors">Home</Link>
@@ -59,7 +70,7 @@ const About = () => {
         {/* Hero: Justice image left, We Explain right, side panel "What We Explain" */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Image card */}
-          <div className="lg:col-span-5 relative rounded-[20px] overflow-hidden" style={{ border: "1px solid rgba(201,168,76,.3)", minHeight: 460 }}>
+          <div className="lg:col-span-5 relative rounded-[20px] overflow-hidden haq-reveal-l" style={{ border: "1px solid rgba(201,168,76,.3)", minHeight: 460 }}>
             <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 30% 30%, rgba(201,168,76,.18), transparent 60%), linear-gradient(180deg,#1a1410,#0a0908)" }} />
             <div className="absolute inset-0 grid place-items-center opacity-[.18]">
               <Scale size={280} className="text-[#C9A84C]" strokeWidth={0.6} />
@@ -85,7 +96,7 @@ const About = () => {
           </div>
 
           {/* Center content + side panel */}
-          <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-[1fr_220px] gap-6">
+          <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-[1fr_220px] gap-6 haq-reveal-r">
             <div className="space-y-5">
               <div className="haq-eyebrow">About Us</div>
               <h2 className="lp-display text-[34px] md:text-[40px] font-semibold text-white leading-[1.15]">
@@ -135,7 +146,7 @@ const About = () => {
         </section>
 
         {/* Milestones */}
-        <section className="space-y-10 pt-4" style={{ borderTop: "1px solid rgba(201,168,76,.15)" }}>
+        <section className="space-y-10 pt-4 haq-reveal" style={{ borderTop: "1px solid rgba(201,168,76,.15)" }}>
           <div className="text-center space-y-3 pt-10">
             <div className="haq-eyebrow">| My HaqDaar Proposal |</div>
             <h2 className="lp-display text-[36px] md:text-[42px] font-semibold text-white">Success Of <span className="text-[#C9A84C]">Milestone</span> Year</h2>
@@ -173,13 +184,13 @@ const About = () => {
 
         {/* Meet Our Team — with card swap (3D flip) animation */}
         <section className="space-y-10">
-          <div className="text-center space-y-3">
+          <div className="text-center space-y-3 haq-reveal">
             <div className="haq-eyebrow">| Our Team |</div>
             <h2 className="lp-display text-[36px] md:text-[42px] font-semibold text-white">Meet Our <span className="text-[#C9A84C]">Team</span></h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {TEAM.map(m => (
-              <div key={m.name} className="haq-flip" style={{ height: 250 }}>
+            {TEAM.map((m, i) => (
+              <div key={m.name} className={`haq-flip ${i % 2 === 0 ? "haq-reveal-l" : "haq-reveal-r"}`} style={{ height: 250, transitionDelay: `${i * 120}ms` }}>
                 <div className="haq-flip-inner">
                   {/* Front */}
                   <div className="haq-flip-face">
@@ -205,20 +216,30 @@ const About = () => {
 
         {/* What People Say */}
         <section className="space-y-10">
-          <div className="text-center space-y-3">
+          <div className="text-center space-y-3 haq-reveal">
             <div className="haq-eyebrow">| What People Say |</div>
             <h2 className="lp-display text-[36px] md:text-[42px] font-semibold text-white">What Our <span className="text-[#C9A84C]">Community</span> Says</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {TESTIMONIALS.map(t => (
-              <div key={t.name} className="haq-quote-card">
-                <MessageSquareQuote size={22} className="text-[#C9A84C] mb-3" />
-                <p className="text-[12.5px] text-[#E8E0D0] leading-relaxed mb-5">HaqDaar helped me understand my rights in a very difficult time. The explanation was clear, simple and easy to follow.</p>
-                <div className="flex items-center gap-3 pt-3" style={{ borderTop: "1px solid rgba(201,168,76,.15)" }}>
-                  <div className="w-9 h-9 rounded-full grid place-items-center text-[#0A0A0A] text-[12px] font-bold" style={{ background: "linear-gradient(180deg,#F0D77D,#C9A84C)" }}>{t.initials}</div>
-                  <div>
-                    <div className="text-[13px] text-white font-semibold">{t.name}</div>
-                    <div className="text-[11px] text-[#A8A39A]">{t.city}</div>
+            {TESTIMONIALS.map((t, i) => (
+              <div key={t.name} className="haq-qflip haq-reveal" style={{ height: 230, transitionDelay: `${i * 100}ms` }}>
+                <div className="haq-qflip-inner">
+                  <div className="haq-qflip-face">
+                    <MessageSquareQuote size={22} className="text-[#C9A84C] mb-3" />
+                    <p className="text-[12.5px] text-[#E8E0D0] leading-relaxed mb-5 flex-1">HaqDaar helped me understand my rights in a very difficult time. The explanation was clear, simple and easy to follow.</p>
+                    <div className="flex items-center gap-3 pt-3" style={{ borderTop: "1px solid rgba(201,168,76,.15)" }}>
+                      <div className="w-9 h-9 rounded-full grid place-items-center text-[#0A0A0A] text-[12px] font-bold" style={{ background: "linear-gradient(180deg,#F0D77D,#C9A84C)" }}>{t.initials}</div>
+                      <div>
+                        <div className="text-[13px] text-white font-semibold">{t.name}</div>
+                        <div className="text-[11px] text-[#A8A39A]">{t.city}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="haq-qflip-face haq-qflip-back">
+                    <div className="haq-avatar mb-3" style={{ width: 56, height: 56, fontSize: 18 }}>{t.initials}</div>
+                    <div className="text-[14px] text-white font-semibold">{t.name}</div>
+                    <div className="text-[11px] text-[#C9A84C] uppercase tracking-[.18em] mt-1">{t.city}</div>
+                    <p className="text-[11.5px] text-[#E8E0D0] mt-3 max-w-[220px]">"Clarity, courage, and trusted guidance — every step of the way."</p>
                   </div>
                 </div>
               </div>
