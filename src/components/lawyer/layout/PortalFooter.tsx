@@ -1,5 +1,6 @@
 import { ArrowRight, Facebook, Twitter, Instagram, Youtube, Scale } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 
 const BORDER = "1px solid rgba(201,168,76,.18)";
 
@@ -7,13 +8,31 @@ const ColLink = ({ to, children }: { to: string; children: React.ReactNode }) =>
   <Link to={to} className="text-[13px] text-[#A8A39A] hover:text-[#C9A84C] transition-all duration-200 inline-block hover:translate-x-0.5">{children}</Link>
 );
 
-export const PortalFooter = () => (
-  <footer style={{ background: "#0B0A09", borderTop: BORDER }}>
+export const PortalFooter = () => {
+  const ref = useRef<HTMLElement | null>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.08 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  const reveal = (delay = 0): React.CSSProperties => ({
+    opacity: visible ? 1 : 0,
+    transform: visible ? "translateY(0)" : "translateY(28px)",
+    transition: `opacity .7s cubic-bezier(.22,1,.36,1) ${delay}ms, transform .8s cubic-bezier(.22,1,.36,1) ${delay}ms`,
+  });
+  return (
+  <footer ref={ref} style={{ background: "#0B0A09", borderTop: BORDER }}>
     <div className="mx-auto max-w-[1400px] px-8 lg:px-12 pt-12 pb-8">
       {/* Top grid: 5 columns on lg */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
         {/* Brand */}
-        <div className="lg:col-span-3">
+        <div className="lg:col-span-3" style={reveal(0)}>
           <div className="flex items-center gap-2.5 mb-4">
             <div className="w-10 h-10 rounded-lg grid place-items-center" style={{ background: "rgba(201,168,76,.12)", border: "1px solid rgba(201,168,76,.4)" }}>
               <Scale size={18} className="text-[#C9A84C]" />
@@ -41,7 +60,7 @@ export const PortalFooter = () => (
         </div>
 
         {/* Newsletter + contact blocks */}
-        <div className="lg:col-span-4 lg:px-6" style={{ borderLeft: BORDER, borderRight: BORDER }}>
+        <div className="lg:col-span-4 lg:px-6" style={{ borderLeft: BORDER, borderRight: BORDER, ...reveal(120) }}>
           <h4 className="text-center text-white text-[15px] font-medium mb-4">Subscribe To Our Newsletter</h4>
           <form onSubmit={e => e.preventDefault()} className="space-y-3 max-w-[320px] mx-auto">
             <input type="email" placeholder="Enter Your Email ID" className="w-full px-4 h-11 rounded-full text-[13px] text-white placeholder:text-[#666] outline-none transition-all duration-300"
@@ -71,7 +90,7 @@ export const PortalFooter = () => (
         </div>
 
         {/* Our Expertise */}
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2" style={reveal(240)}>
           <h4 className="text-[12px] uppercase tracking-[.18em] text-[#C9A84C] font-bold mb-4">Our Expertise</h4>
           <ul className="space-y-2.5">
             <li><ColLink to="#">Child Abuse</ColLink></li>
@@ -83,7 +102,7 @@ export const PortalFooter = () => (
         </div>
 
         {/* Public Pages */}
-        <div className="lg:col-span-3">
+        <div className="lg:col-span-3" style={reveal(320)}>
           <h4 className="text-[12px] uppercase tracking-[.18em] text-[#C9A84C] font-bold mb-4">Public Pages</h4>
           <ul className="space-y-2.5">
             <li><ColLink to="/about">About Us</ColLink></li>
@@ -96,7 +115,7 @@ export const PortalFooter = () => (
       </div>
 
       {/* Our Portals — full row below */}
-      <div className="mt-10 pt-6" style={{ borderTop: BORDER }}>
+      <div className="mt-10 pt-6" style={{ borderTop: BORDER, ...reveal(420) }}>
         <h4 className="text-[12px] uppercase tracking-[.18em] text-[#C9A84C] font-bold mb-4 text-center">Our Portals</h4>
         <div className="flex flex-wrap items-center justify-center gap-6">
           {[
@@ -114,7 +133,7 @@ export const PortalFooter = () => (
     </div>
 
     {/* Bottom bar */}
-    <div className="px-8 lg:px-12 py-5 grid grid-cols-1 md:grid-cols-3 gap-4 items-center" style={{ background: "#080706", borderTop: BORDER }}>
+    <div className="px-8 lg:px-12 py-5 grid grid-cols-1 md:grid-cols-3 gap-4 items-center" style={{ background: "#080706", borderTop: BORDER, ...reveal(520) }}>
       <div className="text-[12px] text-[#A8A39A]">
         Hire One Of Our Legal Experts This Very Day.<br />
         <span className="text-white">Emergency Call:</span> <a href="tel:+923174288665" className="text-[#C9A84C] hover:underline">+92-317-4288665</a>
@@ -137,4 +156,5 @@ export const PortalFooter = () => (
       </div>
     </div>
   </footer>
-);
+  );
+};
