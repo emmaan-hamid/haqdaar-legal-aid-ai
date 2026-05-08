@@ -8,8 +8,8 @@ export const PublicLayout = ({ children }: { children: ReactNode }) => (
   <div className="lp-root min-h-screen">
     <LawyerCursor />
     <PublicNav />
-    <main style={{ paddingTop: 96, paddingBottom: 64 }}>
-      <div className="mx-auto w-full max-w-[1280px] px-6">{children}</div>
+    <main style={{ paddingTop: 80, paddingBottom: 48 }}>
+      <div className="mx-auto w-full max-w-[1100px] px-4 sm:px-6">{children}</div>
     </main>
     <PortalFooter />
     <QuickExit />
