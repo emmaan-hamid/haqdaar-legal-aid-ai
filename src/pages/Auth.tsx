@@ -569,7 +569,7 @@ const Auth = () => {
         <span>Your Bar Council number will be verified by our admin team within 24 hours. You can browse the platform in the meantime.</span>
       </div>}
 
-      <button className="hd-link" style={{ marginTop: 14, display: "inline-block" }} onClick={() => go("signup_details")}>← Back to previous step</button>
+      
     </div>
   );
 
