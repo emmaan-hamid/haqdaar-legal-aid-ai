@@ -691,7 +691,8 @@ const Auth = () => {
         {toast && <div className="hd-toast"><CheckCircle2 size={16}/> {toast}</div>}
         <div className="hd-rpanel">
           <div className="hd-mob-logo">
-            <div style={{ fontFamily:"'Noto Nastaliq Urdu',serif",fontSize:14,color:"var(--gold)",direction:"rtl" }}>حق · عدل · انصاف</div>
+            <Brand size={28} onClick={() => navigate("/")} />
+            <div style={{ fontFamily:"'Noto Nastaliq Urdu',serif",fontSize:13,color:"var(--gold)",direction:"rtl",marginTop:4 }}>حق · عدل · انصاف</div>
           </div>
           <div key={animKey} className="hd-stage">
             {state === "login" && renderLogin()}
@@ -702,11 +703,27 @@ const Auth = () => {
             {state === "reset" && renderReset()}
           </div>
         </div>
-        <div className="hd-foot">
-          <span>© 2026 HaqDaar — All rights reserved</span>
-          <span><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Help Center</a><a href="/contact">Contact Us</a></span>
+      </div>
+      <div className="hd-foot">
+        <div className="stats">
+          <span><b>12.4k+</b> citizens helped</span>
+          <span className="sep">·</span>
+          <span><b>340</b> volunteer lawyers</span>
+        </div>
+        <div>© 2026 HaqDaar — All rights reserved</div>
+        <div className="links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Help Center</a>
+          <a href="/contact">Contact Us</a>
         </div>
       </div>
+      <button className="hd-quickexit" onClick={() => { window.location.href = "https://www.weather.com"; }} aria-label="Quick Exit">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        Quick Exit
+      </button>
     </div>
   );
 };
