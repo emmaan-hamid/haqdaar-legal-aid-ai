@@ -61,7 +61,7 @@ export const NgoCaseRequests = () => {
                 </div>
               )}
               <div className="grid grid-cols-2 gap-3 mt-4 max-w-[300px]">
-                <button className="lp-act-accept" style={{ height: 38 }} onClick={() => approve(r.id)}><Check size={14} className="mr-1.5" />Approve</button>
+                <button className="lp-act-accept" style={{ height: 38 }} onClick={() => approve(r.id)}>Approve</button>
                 <button className="lp-act-decline" style={{ height: 38 }} onClick={() => setReject(r.id)}>Reject</button>
               </div>
             </div>
