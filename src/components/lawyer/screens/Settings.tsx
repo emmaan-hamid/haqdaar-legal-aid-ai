@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Star, Upload, Check, X, FileCheck, AlertCircle } from "lucide-react";
+import { Star, Upload, Check, X, FileCheck, AlertCircle, MessageCircle, Phone, Video, Calendar, Clock, Edit3, Plus, Folder, User, CheckCircle2, Shield, ChevronDown } from "lucide-react";
 import { AvailabilityCockpit } from "../AvailabilityCockpit";
 
 const tabs = ["Profile", "Availability", "Specialization", "Certifications", "Reputation"] as const;
@@ -77,21 +77,199 @@ const ProfileInner = () => {
   );
 };
 
-const Availability = () => (
-  <div className="lp-fade">
-    <div className="grid grid-cols-1 md:grid-cols-[minmax(0,420px)_minmax(0,1fr)] gap-5 items-stretch">
-      <div className="aspect-square max-w-[420px]">
-        <AvailabilityCockpit initialMax={5} active={3} />
-      </div>
-      <div className="lp-card p-6 flex flex-col justify-center">
-        <div className="text-[10px] uppercase tracking-[.2em] text-[#C9A84C] font-bold mb-1">Response</div>
-        <div className="lp-display text-[20px] font-bold text-white leading-tight mb-4">Typical Response Time</div>
-        <select className="lp-input"><option>Within 24 hours</option><option>Within 48 hours</option><option>Within a week</option></select>
-        <div className="text-[11px] text-[#888] mt-3 leading-relaxed">Citizens see your usual response window before sending a request. Faster response improves matching priority.</div>
+const Availability = () => {
+  const [mode, setMode] = useState("In-App Chat");
+  const [emergency, setEmergency] = useState(true);
+  const days = [
+    { d: "Monday", on: true, from: "09:00 AM", to: "06:00 PM", meeting: { title: "Client Consultation", time: "10:30 AM – 11:30 AM" } },
+    { d: "Tuesday", on: false, from: "--:-- --", to: "--:-- --" },
+    { d: "Wednesday", on: false, from: "--:-- --", to: "--:-- --" },
+    { d: "Thursday", on: false, from: "--:-- --", to: "--:-- --" },
+    { d: "Friday", on: true, from: "09:30 AM", to: "05:30 PM" },
+    { d: "Saturday", on: true, from: "10:00 AM", to: "02:00 PM" },
+    { d: "Sunday", on: false, from: "--:-- --", to: "--:-- --" },
+  ];
+  const modes = [
+    { k: "In-App Chat", icon: MessageCircle },
+    { k: "Voice Call", icon: Phone },
+    { k: "Video Consultation", icon: Video },
+    { k: "WhatsApp", icon: MessageCircle },
+  ];
+
+  return (
+    <div className="lp-fade relative">
+      <div className="lp-av-glow" />
+      <div className="lp-av-grain" />
+      <div className="lp-av-enter grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,360px)] gap-5 relative">
+        {/* LEFT COLUMN === Cockpit */}
+        <div className="from-left aspect-square max-w-[560px]">
+          <AvailabilityCockpit initialMax={5} active={3} />
+        </div>
+
+        {/* RIGHT === Response */}
+        <div className="from-right lp-card lp-av-card p-5">
+          <div className="flex items-center justify-between mb-2">
+            <div className="text-[10px] uppercase tracking-[.2em] text-[#C9A84C] font-bold">Response</div>
+            <Clock size={14} className="text-[#C9A84C]" />
+          </div>
+          <div className="lp-display text-[20px] font-bold text-white leading-tight mb-3">Typical Response Time</div>
+          <div className="relative">
+            <select className="lp-input appearance-none pr-10 cursor-none">
+              <option>Within 24 hours</option><option>Within 48 hours</option><option>Within a week</option>
+            </select>
+            <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-[#C9A84C] pointer-events-none" />
+          </div>
+          <div className="text-[11px] text-[#888] mt-3 leading-relaxed">Citizens see your usual response window before sending a request. Faster response improves matching priority.</div>
+        </div>
+
+        {/* LEFT === Working Hours (full width left column row 2) */}
+        <div className="from-left lp-card lp-av-card p-5 lg:row-start-2">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <Calendar size={16} className="text-[#C9A84C]" />
+              <div>
+                <div className="text-[10px] uppercase tracking-[.2em] text-[#C9A84C] font-bold">Working Hours</div>
+                <div className="lp-display text-[18px] font-bold text-white leading-tight">Availability Schedule</div>
+              </div>
+            </div>
+            <button className="lp-btn lp-btn-gold lp-btn-sm">Set Unavailable Dates</button>
+          </div>
+          <div className="space-y-2">
+            {days.map((day, i) => (
+              <div key={day.d}>
+                <div className="grid grid-cols-[24px_110px_90px_1fr_1fr_36px] items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-300 hover:bg-[rgba(201,168,76,.04)]" style={{ border: "1px solid #1f1f1f" }}>
+                  <span className={`lp-check-circle ${day.on ? "checked" : ""}`}>{day.on && <Check size={11} className="text-[#0A0A0A]" />}</span>
+                  <span className="text-[12.5px] text-white">{day.d}</span>
+                  <span className={`text-[10.5px] flex items-center gap-1.5 ${day.on ? "text-[#5BC68C]" : "text-[#888]"}`}>
+                    <span className="w-1.5 h-1.5 rounded-full" style={{ background: day.on ? "#5BC68C" : "#666" }} />
+                    {day.on ? "Available" : "Unavailable"}
+                  </span>
+                  <div className="relative">
+                    <select className="lp-input cursor-none" style={{ height: 30, fontSize: 11 }} defaultValue={day.from}><option>{day.from}</option></select>
+                  </div>
+                  <div className="relative">
+                    <select className="lp-input cursor-none" style={{ height: 30, fontSize: 11 }} defaultValue={day.to}><option>{day.to}</option></select>
+                  </div>
+                  <button className="grid place-items-center w-8 h-8 rounded-md text-[#C9A84C] transition-all hover:bg-[rgba(201,168,76,.1)] hover:shadow-[0_0_12px_rgba(201,168,76,.4)]">
+                    {day.on ? <Edit3 size={13} /> : <Plus size={13} />}
+                  </button>
+                </div>
+                {day.meeting && (
+                  <div className="ml-9 mt-2 mb-1 rounded-xl p-3 relative overflow-hidden" style={{ background: "rgba(201,168,76,.05)", border: "1px solid rgba(201,168,76,.25)" }}>
+                    <span className="absolute left-0 top-2 bottom-2 w-[3px] rounded-r" style={{ background: "linear-gradient(180deg,#F0D77D,#C9A84C)", boxShadow: "0 0 10px rgba(201,168,76,.6)" }} />
+                    <div className="flex items-center justify-between pl-2">
+                      <div>
+                        <div className="text-[10px] uppercase tracking-[.18em] text-[#C9A84C] font-bold">Meeting Scheduled</div>
+                        <div className="text-[12px] text-white mt-0.5">{day.meeting.title}</div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-[11.5px] text-[#C9A84C] flex items-center gap-1.5"><Clock size={11} /> {day.meeting.time}</div>
+                        <div className="text-[9.5px] text-[#888] mt-0.5">This time slot is not available for new bookings.</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="mt-4 rounded-xl p-3 flex items-center justify-between" style={{ background: "#0F0F0F", border: "1px solid rgba(201,168,76,.15)" }}>
+            <div className="flex items-center gap-2">
+              <Calendar size={14} className="text-[#C9A84C]" />
+              <div>
+                <div className="text-[10px] uppercase tracking-[.18em] text-[#C9A84C] font-bold">Schedule Summary</div>
+                <div className="text-[11px] text-[#aaa]">You are available <span className="text-[#5BC68C] font-semibold">4 days</span> this week</div>
+              </div>
+            </div>
+            <div className="text-right text-[10.5px]">
+              <div className="text-[#5BC68C] flex items-center gap-1.5 justify-end"><span className="w-1.5 h-1.5 rounded-full bg-[#5BC68C]" /> Next Available: Tomorrow, 09:30 AM</div>
+              <div className="text-[#888] mt-0.5">Time Zone: (PKT) Pakistan Standard Time</div>
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT === Consultation Modes */}
+        <div className="from-right lp-card lp-av-card p-5">
+          <div className="flex items-center gap-2 mb-3"><MessageCircle size={14} className="text-[#C9A84C]" />
+            <div className="text-[10px] uppercase tracking-[.2em] text-[#C9A84C] font-bold">Consultation Modes</div>
+          </div>
+          <div className="grid grid-cols-2 gap-2.5">
+            {modes.map(({ k, icon: Icon }) => (
+              <button key={k} onClick={() => setMode(k)} className={`lp-av-tile ${mode === k ? "selected" : ""}`}>
+                <div className="flex items-center gap-2">
+                  <Icon size={15} className="tile-icon" />
+                  <span className="text-[11.5px] text-white">{k}</span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* RIGHT === AI Match Priority */}
+        <div className="from-right lp-card lp-av-card p-5">
+          <div className="flex items-center gap-2 mb-4"><Star size={14} className="text-[#C9A84C]" fill="currentColor" />
+            <div className="text-[10px] uppercase tracking-[.2em] text-[#C9A84C] font-bold">AI Match Priority</div>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="relative w-[88px] h-[88px] shrink-0">
+              <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
+                <circle cx="50" cy="50" r="42" fill="none" stroke="#222" strokeWidth="6" />
+                <circle cx="50" cy="50" r="42" fill="none" stroke="url(#gold)" strokeWidth="6" strokeLinecap="round" strokeDasharray={2 * Math.PI * 42} strokeDashoffset={2 * Math.PI * 42 * (1 - 0.85)} style={{ transition: "stroke-dashoffset 1.4s cubic-bezier(.22,1,.36,1)", filter: "drop-shadow(0 0 6px rgba(201,168,76,.6))" }} />
+                <defs><linearGradient id="gold" x1="0" x2="1"><stop offset="0%" stopColor="#F0D77D" /><stop offset="100%" stopColor="#C9A84C" /></linearGradient></defs>
+              </svg>
+              <div className="absolute inset-0 grid place-items-center">
+                <div className="text-center">
+                  <div className="lp-display text-[22px] font-bold text-[#C9A84C] leading-none">85</div>
+                  <div className="text-[8px] text-[#888] tracking-[.2em]">/100</div>
+                </div>
+              </div>
+            </div>
+            <div className="flex-1 space-y-2">
+              {[["Match Score", 85, "85/100"], ["Visibility Increase", 34, "+34%"], ["Trust Rating", 92, "4.6/5"]].map(([l, v, r]) => (
+                <div key={l as string}>
+                  <div className="flex justify-between text-[10.5px] mb-1"><span className="text-[#aaa]">{l}</span><span className="text-[#C9A84C]">{r}</span></div>
+                  <div className="h-1 rounded-full bg-[#222] overflow-hidden">
+                    <div style={{ width: `${v}%`, height: "100%", background: "linear-gradient(90deg,#C9A84C,#F0D77D)", boxShadow: "0 0 8px rgba(201,168,76,.5)", transition: "width 1.4s cubic-bezier(.22,1,.36,1)" }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="text-[10.5px] text-[#888] mt-3">High priority lawyers get more client matches.</div>
+        </div>
+
+        {/* RIGHT === Current Queue Status */}
+        <div className="from-right lp-card lp-av-card p-5">
+          <div className="flex items-center gap-2 mb-3"><User size={14} className="text-[#C9A84C]" />
+            <div className="text-[10px] uppercase tracking-[.2em] text-[#C9A84C] font-bold">Current Queue Status</div>
+          </div>
+          <div className="grid grid-cols-3 gap-3">
+            {[[Folder, 3, "Pending Requests"], [User, 2, "Active Consultations"], [CheckCircle2, 11, "Resolved Today"]].map(([Icon, n, l]: any, i) => (
+              <div key={i} className="lp-av-tile text-center">
+                <Icon size={18} className="tile-icon mx-auto mb-1" />
+                <div className="lp-display text-[22px] font-bold text-[#C9A84C] leading-none">{n}</div>
+                <div className="text-[9.5px] text-[#888] mt-1 leading-tight">{l}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* RIGHT === Emergency Availability */}
+        <div className="from-right lp-card lp-av-card p-5">
+          <div className="flex items-center gap-2 mb-3"><Shield size={14} className="text-[#C9A84C]" />
+            <div className="text-[10px] uppercase tracking-[.2em] text-[#C9A84C] font-bold">Emergency Availability</div>
+          </div>
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <div className="text-[12.5px] text-white font-semibold">Available for urgent legal matters</div>
+              <div className="text-[10.5px] text-[#888] mt-1 leading-relaxed">You will be shown in priority listing for FIR, Arrest, Domestic Abuse and other urgent cases.</div>
+            </div>
+            <button onClick={() => setEmergency(e => !e)} className={`lp-av-toggle ${emergency ? "on" : ""}`}><span className="knob" /></button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const Specialization = () => {
   const cats = ["Labor Dispute", "Property Fraud", "Domestic Violence", "Police Misconduct", "NADRA Issues", "Consumer Rights", "Harassment"];
