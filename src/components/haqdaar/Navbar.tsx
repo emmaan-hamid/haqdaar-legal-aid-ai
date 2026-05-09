@@ -58,8 +58,8 @@ export const Navbar = () => {
         </nav>
 
         <div className="flex flex-shrink-0 items-center gap-2 sm:gap-3" ref={ref}>
-          <button className="btn-ghost hidden rounded-full px-4 py-2 text-sm md:inline-flex lg:px-5">Login</button>
-          <button className="btn-gold hidden rounded-full px-4 py-2 text-sm font-semibold md:inline-flex lg:px-5">Get Started Free</button>
+          <a href="/auth" className="btn-ghost hidden rounded-full px-4 py-2 text-sm md:inline-flex lg:px-5">Login</a>
+          <a href="/auth?mode=signup_role" className="btn-gold hidden rounded-full px-4 py-2 text-sm font-semibold md:inline-flex lg:px-5">Get Started Free</a>
 
           <div className="relative">
             <button

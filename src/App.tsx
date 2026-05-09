@@ -12,6 +12,7 @@ import Articles from "./pages/public/Articles.tsx";
 import FaqPage from "./pages/public/Faq.tsx";
 import Contact from "./pages/public/Contact.tsx";
 import About from "./pages/public/About.tsx";
+import Auth from "./pages/Auth.tsx";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,9 @@ const App = () => (
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/login" element={<Auth />} />
+          <Route path="/signup" element={<Auth />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
