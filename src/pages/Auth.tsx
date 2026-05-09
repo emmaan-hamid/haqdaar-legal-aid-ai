@@ -215,8 +215,9 @@ const Auth = () => {
   // ---------- styles ----------
   const css = `
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
-    .hd-auth { --bg-base:#090909;--bg-left:#0C0A07;--bg-right:#0F0E0C;--bg-card:#141210;--bg-input:#1A1815;--bg-hover:#1F1D1A;--gold:#C9A84C;--gold-light:#E2C97E;--gold-dim:#8A6E32;--gold-glow:rgba(201,168,76,0.12);--gold-border:rgba(201,168,76,0.25);--gold-border-strong:rgba(201,168,76,0.6);--text-primary:#F2EDE4;--text-secondary:#9A9080;--text-muted:#5C5650;--success:#5AB07A;--error:#D95B5B;
-      font-family:'DM Sans',sans-serif;color:var(--text-primary);background:var(--bg-base);min-height:100vh;display:flex;}
+    .hd-auth { --ink:#07090D;--surface:#0D1117;--raised:#111820;--border:#1C2535;--gold:#C9A84C;--gold-light:#E2C97E;--gold-soft:rgba(201,168,76,0.12);--gold-glow:rgba(201,168,76,0.20);--text:#EDE9E0;--muted:#7A8999;--dim:#3D4E61;--success:#4ADE80;--error:#F87171;
+      --bg-base:var(--ink);--bg-left:var(--ink);--bg-right:var(--surface);--bg-card:var(--raised);--bg-input:var(--raised);--bg-hover:#161E29;--gold-dim:#8A6E32;--gold-border:var(--border);--gold-border-strong:rgba(201,168,76,0.45);--text-primary:var(--text);--text-secondary:var(--muted);--text-muted:var(--dim);
+      font-family:'DM Sans',sans-serif;color:var(--text-primary);background:var(--bg-base);height:100vh;overflow:hidden;display:flex;}
     .hd-left{width:45%;background:var(--bg-left);position:relative;overflow:hidden;}
     .hd-left::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 60% 45%, rgba(180,130,40,0.13) 0%, transparent 70%);pointer-events:none;}
     .hd-right{width:55%;background:var(--bg-right);position:relative;overflow:hidden;}
