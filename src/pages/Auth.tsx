@@ -660,18 +660,10 @@ const Auth = () => {
       <style>{css}</style>
       {Left}
       <div className="hd-right">
-        <div className="hd-langtoggle">
-          <button className={lang === "en" ? "on" : ""} onClick={() => setLang("en")}>EN</button>
-          <button className={lang === "ur" ? "on" : ""} onClick={() => setLang("ur")}>اردو</button>
-        </div>
         {toast && <div className="hd-toast"><CheckCircle2 size={16}/> {toast}</div>}
         <div className="hd-rpanel">
           <div className="hd-mob-logo">
-            <div style={{ display:"flex",alignItems:"center",gap:8 }}>
-              <Scale size={22} color="var(--gold)"/>
-              <span style={{ fontFamily:"'Cormorant Garamond',serif",fontWeight:600,fontSize:22,color:"var(--gold)" }}>HaqDaar</span>
-            </div>
-            <div style={{ fontFamily:"'Noto Nastaliq Urdu',serif",fontSize:12,color:"var(--gold-dim)",direction:"rtl" }}>حق · عدل · انصاف</div>
+            <div style={{ fontFamily:"'Noto Nastaliq Urdu',serif",fontSize:14,color:"var(--gold)",direction:"rtl" }}>حق · عدل · انصاف</div>
           </div>
           <div key={animKey} className="hd-stage">
             {state === "login" && renderLogin()}
@@ -684,7 +676,7 @@ const Auth = () => {
         </div>
         <div className="hd-foot">
           <span>© 2026 HaqDaar — All rights reserved</span>
-          <span><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Help Center</a></span>
+          <span><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Help Center</a><a href="/contact">Contact Us</a></span>
         </div>
       </div>
     </div>
