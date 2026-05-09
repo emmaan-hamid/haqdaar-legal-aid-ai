@@ -473,7 +473,7 @@ const Auth = () => {
       <div className="hd-divrow">CREATE ACCOUNT</div>
       <h1 className="hd-h1" style={{ fontSize: "1.7rem" }}>Your details</h1>
 
-      <div className="hd-scroll" style={{ marginTop: 14, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+      <div className="hd-scroll" style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 8 }}>
         <Field label="Full Name" icon={<User2 size={16}/>} value={form.fullName} onChange={v => setF("fullName", v)} />
         <div>
           <label className="hd-label">Email Address</label>
