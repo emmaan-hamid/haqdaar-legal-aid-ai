@@ -80,6 +80,30 @@ export const NgoImpact = () => {
           </div>
         </div>
       </div>
+      {settingsOpen && (
+        <div className="lp-modal-overlay" onClick={() => setSettingsOpen(false)}>
+          <div className="lp-modal m-auto max-w-[460px]" onClick={e => e.stopPropagation()}>
+            <h3 className="lp-display text-[22px] text-white font-bold mb-4">Impact Dashboard Settings</h3>
+            <div className="space-y-3">
+              <div>
+                <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">Reporting Period</div>
+                <select className="lp-input"><option>Last 7 days</option><option>Last 30 days</option><option>Quarter</option><option>Year</option></select>
+              </div>
+              <div>
+                <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">Visible KPIs</div>
+                <select className="lp-input" multiple style={{ height: 110 }}>
+                  <option>Citizens Helped</option><option>Cases Resolved</option><option>Active Staff</option><option>Avg Resolution Time</option>
+                </select>
+              </div>
+            </div>
+            <div className="flex gap-2 justify-end mt-4">
+              <button className="lp-btn lp-btn-gold" onClick={() => setSettingsOpen(false)}>Cancel</button>
+              <button className="lp-btn lp-btn-gold-solid" onClick={() => { setSettingsOpen(false); showToast("Settings saved"); }}>Save</button>
+            </div>
+          </div>
+        </div>
+      )}
+      {toast && <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-[300] px-4 py-2 rounded-full text-[12px]" style={{ background: "#1E1E1E", border: "1px solid #C9A84C", color: "#C9A84C" }}>{toast}</div>}
     </div>
   );
 };
