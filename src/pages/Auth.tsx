@@ -665,6 +665,7 @@ const Auth = () => {
 
   const renderReset = () => (
     <form className="hd-form" onSubmit={submitReset}>
+      <button type="button" className="hd-back" onClick={() => go("login")}><ArrowLeft size={14}/> Back to Login</button>
       <div style={{ textAlign: "center" }}>
         <ShieldCheck size={32} color="var(--gold)" style={{ margin: "0 auto" }}/>
         <div className="hd-divrow">NEW PASSWORD</div>
