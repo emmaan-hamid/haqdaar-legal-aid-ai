@@ -586,10 +586,8 @@ const Auth = () => {
     </div>
   );
 
-      <div style={{ marginTop: 18 }}>
-        <button className="hd-btn primary" style={{ width: "100%" }} disabled={!detailsValid} onClick={submitDetails}>Next</button>
-      </div>
-    </div>
+  const renderVerifyHeader = (
+    <button className="hd-back" onClick={() => go("signup_details")}><ArrowLeft size={14}/> Back</button>
   );
 
   const renderVerify = () => (
