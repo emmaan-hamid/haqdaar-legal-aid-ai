@@ -436,7 +436,7 @@ const Auth = () => {
       <h1 className="hd-h1" style={{ fontSize: "1.7rem" }}>Who are you?</h1>
       <p className="hd-sub">Select your role to create your account.</p>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 24 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 18 }}>
         {[
           { id: "citizen" as Role, icon: <User2 size={20}/>, t: "Citizen / User", d: "I need legal help or information" },
           { id: "lawyer" as Role, icon: <Scale size={20}/>, t: "Volunteer Lawyer", d: "I want to offer free legal help" },
