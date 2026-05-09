@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LawyerCursor } from "@/components/lawyer/LawyerCursor";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Sidebar, type Section } from "@/components/lawyer/layout/Sidebar";
 import { Topbar } from "@/components/lawyer/layout/Topbar";
 import { EmergencyStrip } from "@/components/lawyer/layout/EmergencyStrip";
@@ -17,6 +18,8 @@ const LawyerPortal = () => {
   const [section, setSection] = useState<Section>("dashboard");
   const [collapsed, setCollapsed] = useState(false);
   const sidebarW = collapsed ? 72 : 260;
+  const mainRef = useRef<HTMLElement>(null);
+  useScrollReveal(mainRef, section);
 
   useEffect(() => { window.scrollTo({ top: 0, behavior: "auto" }); }, [section]);
 
@@ -29,7 +32,7 @@ const LawyerPortal = () => {
       <LawyerCursor />
       <Sidebar section={section} setSection={setSection} collapsed={collapsed} toggle={() => setCollapsed(c => !c)} />
       <Topbar sidebarW={sidebarW} />
-      <main style={{ marginLeft: sidebarW, paddingTop: 88, paddingLeft: 28, paddingRight: 28, paddingBottom: 80, transition: "margin-left .3s cubic-bezier(.22,1,.36,1)" }}>
+      <main ref={mainRef} style={{ marginLeft: sidebarW, paddingTop: 88, paddingLeft: 28, paddingRight: 28, paddingBottom: 80, transition: "margin-left .3s cubic-bezier(.22,1,.36,1)" }}>
         {section === "dashboard" && <Dashboard goto={setSection} />}
         {inCases && (
           <div className="space-y-6">
