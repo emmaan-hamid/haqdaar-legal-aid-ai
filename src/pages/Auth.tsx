@@ -696,6 +696,7 @@ const Auth = () => {
       <style>{css}</style>
       <Cursor />
       {Left}
+      <div className="hd-divider-glow" aria-hidden />
       <div className="hd-right">
         {toast && <div className="hd-toast"><CheckCircle2 size={16}/> {toast}</div>}
         <div className="hd-rpanel">
