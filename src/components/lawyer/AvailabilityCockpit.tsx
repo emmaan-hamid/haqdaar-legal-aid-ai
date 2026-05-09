@@ -33,19 +33,19 @@ export const AvailabilityCockpit = ({
   const dot = status === "avail" ? "#5BC68C" : status === "busy" ? "#E5BB3F" : "#E57367";
 
   return (
-    <div className="lp-card p-5 lp-lift h-full flex flex-col">
-      <div className="flex items-start justify-between mb-4">
-        <div className="flex items-start gap-3">
+    <div className="lp-card p-4 lp-lift h-full flex flex-col">
+      <div className="flex items-start justify-between mb-3">
+        <div className="flex items-start gap-2.5">
           <span className="mt-1.5 inline-block w-2 h-2 rounded-full" style={{ background: dot, boxShadow: `0 0 10px ${dot}` }} />
           <div>
-            <div className="text-[10px] uppercase tracking-[.2em] text-[#C9A84C] font-bold">Live Status</div>
-            <div className="lp-display text-[22px] font-bold text-white leading-tight mt-0.5">{title}</div>
+            <div className="text-[9.5px] uppercase tracking-[.2em] text-[#C9A84C] font-bold">Live Status</div>
+            <div className="lp-display text-[18px] font-bold text-white leading-tight mt-0.5">{title}</div>
           </div>
         </div>
-        <div className="text-[10.5px] text-[#888]">Updated · just now</div>
+        <div className="text-[10px] text-[#888]">Updated · just now</div>
       </div>
 
-      <div className="rounded-2xl p-1.5 flex gap-1 mb-4" style={{ background: "#0F0F0F", border: "1px solid rgba(201,168,76,.18)" }}>
+      <div className="rounded-xl p-1 flex gap-1 mb-3" style={{ background: "#0F0F0F", border: "1px solid rgba(201,168,76,.18)" }}>
         {([
           ["avail", labels.avail, "#5BC68C"],
           ["busy", labels.busy, "#E5BB3F"],
@@ -54,12 +54,12 @@ export const AvailabilityCockpit = ({
           const sel = status === k;
           return (
             <button key={k} onClick={() => setStatus(k as Status)}
-              className="flex-1 flex items-center justify-center gap-2 h-9 rounded-xl text-[12px] font-semibold transition-all"
+              className="flex-1 flex items-center justify-center gap-1.5 h-8 rounded-lg text-[11px] font-semibold transition-all"
               style={{
                 color: sel ? col : "#E8E0D0",
                 border: `1px solid ${sel ? col : "transparent"}`,
                 background: sel ? `${col}15` : "transparent",
-                boxShadow: sel ? `0 0 22px ${col}66, inset 0 0 12px ${col}22` : "none",
+                boxShadow: sel ? `0 0 18px ${col}55, inset 0 0 10px ${col}22` : "none",
               }}
               onMouseEnter={e => { if (!sel) { e.currentTarget.style.borderColor = col; e.currentTarget.style.color = col; } }}
               onMouseLeave={e => { if (!sel) { e.currentTarget.style.borderColor = "transparent"; e.currentTarget.style.color = "#E8E0D0"; } }}>
@@ -69,28 +69,28 @@ export const AvailabilityCockpit = ({
         })}
       </div>
 
-      <div className="rounded-2xl p-4" style={{ background: "#0F0F0F", border: "1px solid rgba(201,168,76,.2)" }}>
-        <div className="flex items-start justify-between mb-2.5">
+      <div className="rounded-xl p-3" style={{ background: "#0F0F0F", border: "1px solid rgba(201,168,76,.2)" }}>
+        <div className="flex items-start justify-between mb-2">
           <div>
-            <div className="text-[10px] uppercase tracking-[.2em] text-[#888] font-semibold">{capacityLabel}</div>
-            <div className="text-[12px] text-[#C9C4B0] mt-1">Currently handling {active} of {maxCases}</div>
+            <div className="text-[9.5px] uppercase tracking-[.2em] text-[#888] font-semibold">{capacityLabel}</div>
+            <div className="text-[11.5px] text-[#C9C4B0] mt-0.5">Currently handling {active} of {maxCases}</div>
           </div>
           <div className="text-right">
-            <div className="lp-display text-[28px] font-bold text-[#C9A84C] leading-none">{maxCases}</div>
-            <div className="text-[9px] uppercase tracking-[.18em] text-[#888] mt-1">Max Slots</div>
+            <div className="lp-display text-[22px] font-bold text-[#C9A84C] leading-none">{maxCases}</div>
+            <div className="text-[8.5px] uppercase tracking-[.18em] text-[#888] mt-0.5">Max Slots</div>
           </div>
         </div>
         <input type="range" min={1} max={maxLimit} step={1} value={Math.min(maxCases, maxLimit)} onChange={e => setMaxCases(+e.target.value)} className="lp-slider" />
-        <div className="flex justify-between text-[10px] text-[#666] mt-2 px-1">
+        <div className="flex justify-between text-[9.5px] text-[#666] mt-1.5 px-1">
           {Array.from({ length: maxLimit }, (_, i) => i + 1).map((n) => (
             <span key={n} style={n === maxCases ? { color: "#C9A84C", fontWeight: 700 } : {}}>{n}</span>
           ))}
         </div>
       </div>
 
-      <div className="flex items-center justify-between mt-4 gap-3">
-        <div className="text-[11.5px] flex-1" style={{ color: dot }}>{helperText[status]}</div>
-        <button className="lp-btn lp-btn-gold-solid" style={{ height: 34, padding: "0 20px" }}>Save</button>
+      <div className="flex items-center justify-between mt-3 gap-3">
+        <div className="text-[11px] flex-1" style={{ color: dot }}>{helperText[status]}</div>
+        <button className="lp-btn lp-btn-gold-solid" style={{ height: 30, padding: "0 16px", fontSize: 11 }}>Save</button>
       </div>
     </div>
   );

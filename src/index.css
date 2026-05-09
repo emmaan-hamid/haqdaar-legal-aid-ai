@@ -638,3 +638,17 @@ select.contact-field { appearance:none; background-image: linear-gradient(45deg,
 .lp-cases-tab.active { color:#C9A84C; transform: translateY(-2px); }
 .lp-cases-tab.active::after { content:''; position:absolute; left:0; right:0; bottom:-1px; height:2.5px; background: linear-gradient(90deg,transparent,#C9A84C,transparent); box-shadow: 0 0 12px rgba(201,168,76,.7); animation: lp-shift-in .45s cubic-bezier(.22,1,.36,1); }
 @keyframes lp-shift-in { from { transform: translateX(-30px) scaleX(.4); opacity:0; } to { transform: translateX(0) scaleX(1); opacity:1; } }
+
+/* === extra helpers === */
+.lp-btn-shine { position:relative; overflow:hidden; }
+.lp-btn-shine::before { content:''; position:absolute; top:0; left:-120%; width:60%; height:100%; background: linear-gradient(120deg, transparent 20%, rgba(255,255,255,.55) 50%, transparent 80%); transform: skewX(-20deg); transition: left .7s cubic-bezier(.22,1,.36,1); pointer-events:none; }
+.lp-btn-shine:hover::before { left:130%; }
+.lp-btn-view { display:inline-flex; align-items:center; justify-content:center; height:30px; min-width:78px; padding:0 14px; border-radius:9999px; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#0A0A0A; background: linear-gradient(180deg,#E5C975,#C9A84C); border:1px solid #C9A84C; transition: transform .25s ease, box-shadow .3s ease; cursor:none; position:relative; overflow:hidden; }
+.lp-btn-view:hover { transform: translateY(-1px) scale(1.04); box-shadow: 0 0 18px rgba(201,168,76,.6); }
+.lp-btn-view::before { content:''; position:absolute; top:0; left:-120%; width:60%; height:100%; background: linear-gradient(120deg, transparent 20%, rgba(255,255,255,.7) 50%, transparent 80%); transform: skewX(-20deg); transition: left .7s cubic-bezier(.22,1,.36,1); }
+.lp-btn-view:hover::before { left:130%; }
+.lp-stat-eq { min-width:104px; width:104px; height:26px; padding:0 8px; font-size:10px; }
+.lp-act-btn { display:inline-flex; align-items:center; justify-content:center; gap:6px; height:36px; padding:0 16px; border-radius:9999px; font-size:11.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; border:1px solid rgba(201,168,76,.45); color:#C9A84C; background: rgba(201,168,76,.05); transition: all .25s ease; cursor:none; }
+.lp-act-btn:hover { background: rgba(201,168,76,.12); box-shadow: 0 0 16px rgba(201,168,76,.35); transform: translateY(-1px); }
+.lp-act-btn-red { border-color:#C0392B; color:#E57367; background: rgba(192,57,43,.06); }
+.lp-act-btn-red:hover { background: rgba(192,57,43,.14); box-shadow: 0 0 16px rgba(192,57,43,.45); color:#F08A7E; }

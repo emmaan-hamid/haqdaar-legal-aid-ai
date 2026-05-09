@@ -8,10 +8,13 @@ export const NgoProfile = () => {
   const [tab, setTab] = useState<Tab>("Profile");
   return (
     <div className="lp-fade space-y-5">
-      <h2 className="lp-display text-[28px] font-bold text-white">NGO Profile & Verification</h2>
-      <div className="flex flex-wrap gap-2 border-b border-[rgba(201,168,76,.2)] pb-1">
+      <div>
+        <div className="text-[11px] uppercase tracking-[.18em] text-[#C9A84C] font-semibold">Settings</div>
+        <h2 className="lp-display text-[40px] font-bold text-white leading-tight mt-1">NGO Profile & Verification</h2>
+      </div>
+      <div className="flex flex-wrap gap-6 border-b border-[rgba(201,168,76,.2)]">
         {tabs.map(t => (
-          <button key={t} onClick={() => setTab(t)} className="lp-btn lp-btn-gold lp-tab" style={tab === t ? { background: "rgba(201,168,76,.18)", boxShadow: "0 0 18px rgba(201,168,76,.5)" } : {}}>{t}</button>
+          <button key={t} onClick={() => setTab(t)} className={`lp-utab ${tab === t ? "active" : ""}`}>{t}</button>
         ))}
       </div>
       {tab === "Profile" && <ProfileTab />}

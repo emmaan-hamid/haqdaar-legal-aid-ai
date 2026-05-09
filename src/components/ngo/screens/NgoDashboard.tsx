@@ -130,49 +130,71 @@ export const NgoDashboard = ({ goto }: { goto: (s: any) => void }) => {
         })}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="lp-card p-5 lp-glow-red lp-card-hover" style={{ borderColor: "rgba(192,57,43,.4)" }}>
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="lp-display text-[20px] text-white font-bold">Incoming Help Requests</h3>
-            <button onClick={() => goto("cases-requests")} className="text-[11px] text-[#E57367] hover:text-[#F08A7E] uppercase tracking-[.12em]">View All</button>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-2">
+        <div className="lp-card p-6" style={{ borderColor: "rgba(192,57,43,.4)" }}>
+          <div className="flex items-end justify-between mb-6">
+            <div>
+              <div className="text-[10.5px] uppercase tracking-[.2em] text-[#E57367] font-bold">Incoming</div>
+              <div className="lp-display text-[26px] text-white font-bold leading-tight mt-1">Help Requests</div>
+            </div>
+            <button onClick={() => goto("cases-requests")} className="lp-page-link text-[11px] text-[#E57367] uppercase tracking-[.14em] font-semibold relative">
+              View All<span className="lp-underline" />
+            </button>
           </div>
-          <div className="space-y-3 max-h-[420px] overflow-y-auto lp-scroll pr-2">
+          <div className="space-y-4 max-h-[460px] overflow-y-auto lp-scroll pr-2">
             {pending.map(p => (
-              <div key={p.id} className="rounded-xl p-4 transition-all duration-300 lp-card-hover lp-glow-red" style={{ background: "#0F0F0F", border: "1px solid rgba(192,57,43,.25)" }}>
+              <div key={p.id} className="rounded-xl p-4 transition-colors duration-300" style={{ background: "#0F0F0F", border: "1px solid rgba(192,57,43,.25)" }}>
                 <div className="flex items-start justify-between gap-2 mb-2">
                   <div className="text-[14px] font-semibold text-white leading-tight">{p.title}</div>
-                  <span className={`lp-pill ${p.urgency === "high" ? "lp-pill-urgent" : p.urgency === "med" ? "lp-pill-med" : "lp-pill-low"}`} style={{ height: 18, padding: "0 7px", fontSize: 8.5 }}>{p.urgency === "high" ? "High" : p.urgency === "med" ? "Med" : "Low"}</span>
+                  <span className={`lp-pill ${p.urgency === "high" ? "lp-pill-urgent" : p.urgency === "med" ? "lp-pill-med" : "lp-pill-low"}`} style={{ height: 20, padding: "0 8px", fontSize: 9 }}>{p.urgency === "high" ? "High" : p.urgency === "med" ? "Med" : "Low"}</span>
                 </div>
-                <div className="flex flex-wrap gap-2 mb-2"><span className="lp-chip" style={{ fontSize: 9 }}>{p.cat}</span><span className="text-[11px] text-[#888]">{p.city} • {p.date}</span></div>
+                <div className="flex flex-wrap gap-2 mb-2"><span className="lp-chip">{p.cat}</span><span className="text-[11px] text-[#888]">{p.city} · {p.date}</span></div>
                 <p className="text-[12px] text-[#aaa] line-clamp-2 mb-3">{p.summary}</p>
-                <div className="flex gap-2">
-                  <button className="lp-btn lp-btn-green lp-btn-sm">Approve</button>
-                  <button className="lp-btn lp-btn-red lp-btn-sm">Reject</button>
+                <div className="grid grid-cols-2 gap-3 mt-3">
+                  <button className="lp-act-accept">Approve</button>
+                  <button className="lp-act-decline">Reject</button>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="lp-card p-5">
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="lp-display text-[20px] text-white font-bold">Active Cases</h3>
-            <button onClick={() => goto("cases-active")} className="text-[11px] text-[#C9A84C] uppercase tracking-[.12em]">View All</button>
+        <div className="lp-card p-6">
+          <div className="flex items-end justify-between mb-2">
+            <div>
+              <div className="text-[10.5px] uppercase tracking-[.2em] text-[#C9A84C] font-bold">Ongoing</div>
+              <div className="lp-display text-[28px] text-white font-bold leading-tight mt-1">Active Cases</div>
+            </div>
+            <button onClick={() => goto("cases-active")} className="lp-page-link text-[11px] text-[#C9A84C] uppercase tracking-[.14em] font-semibold relative">
+              View All<span className="lp-underline" />
+            </button>
           </div>
-          <div className="space-y-2">
-            {active.map(c => (
-              <div key={c.id} className="flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 hover:bg-[rgba(201,168,76,.05)]">
-                <div className="text-[11px] text-[#C9A84C] font-mono w-[58px]">{c.id}</div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-[13px] text-white truncate">{c.title}</div>
-                  <div className="text-[10.5px] text-[#888]">{c.cat} • {c.staff} • Due {c.deadline}</div>
+          <div className="h-px w-full mb-5" style={{ background: "rgba(201,168,76,.25)" }} />
+          <div className="overflow-hidden rounded-xl" style={{ border: "1px solid rgba(201,168,76,.18)" }}>
+            <div className="grid grid-cols-[64px_1fr_104px_72px_82px] gap-2 px-4 py-2.5 text-[10px] uppercase tracking-[.14em] text-[#888] font-semibold" style={{ background: "#0F0F0F" }}>
+              <div>Case ID</div><div>Title</div><div className="text-center">Status</div><div className="text-center">Deadline</div><div className="text-right">Action</div>
+            </div>
+            {active.map((c) => {
+              const dnum = parseInt(c.deadline);
+              return (
+              <div key={c.id}>
+                <div className="h-px" style={{ background: "rgba(201,168,76,.15)" }} />
+                <div className="grid grid-cols-[64px_1fr_104px_72px_82px] gap-2 items-center px-4 py-3.5 transition-all lp-row-hover">
+                  <div className="text-[11px] text-[#C9A84C] font-mono">{c.id}</div>
+                  <div className="text-[13.5px] text-white truncate font-medium">{c.title}</div>
+                  <div className="flex justify-center">
+                    <span className={`lp-pill ${c.status === "progress" ? "lp-pill-progress" : c.status === "await" ? "lp-pill-await" : "lp-pill-pending"}`} style={{ width: 92, justifyContent: "center", height: 26, fontSize: 9 }}>
+                      {c.status === "progress" ? "In Progress" : c.status === "await" ? "Awaiting" : "Pending"}
+                    </span>
+                  </div>
+                  <div className="text-center text-[12px] font-semibold whitespace-nowrap" style={{ color: dnum < 3 ? "#E57367" : "#C9C4B0" }}>{c.deadline}</div>
+                  <div className="flex justify-end">
+                    <button onClick={() => goto("cases-active")} className="lp-btn-view">View</button>
+                  </div>
                 </div>
-                <span className={`lp-pill ${c.status === "progress" ? "lp-pill-progress" : c.status === "await" ? "lp-pill-await" : "lp-pill-pending"}`} style={{ width: 70, justifyContent: "center", height: 18, fontSize: 8, padding: "0 4px" }}>
-                  {c.status === "progress" ? "In Progress" : c.status === "await" ? "Awaiting" : "Pending"}
-                </span>
-                <button className="lp-btn lp-btn-gold-solid" style={{ height: 34, padding: "0 22px", fontSize: 12 }}>View</button>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

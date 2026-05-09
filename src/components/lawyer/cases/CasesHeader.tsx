@@ -69,10 +69,13 @@ const FilterDropdown = ({ value, options, onChange }: { value: string; options: 
   );
 };
 
-export const CasesFilters = ({ second }: { second: { label: string; options: string[] } }) => {
+export type FilterState = { cat: string; date: string; sec: string; q: string };
+export const CasesFilters = ({ second, onFilter }: { second: { label: string; options: string[] }; onFilter?: (s: FilterState) => void }) => {
   const [cat, setCat] = useState(CATEGORIES[0]);
   const [date, setDate] = useState(DATES[0]);
   const [sec, setSec] = useState(second.options[0]);
+  const [q, setQ] = useState("");
+  useEffect(() => { onFilter?.({ cat, date, sec, q }); }, [cat, date, sec, q]); // eslint-disable-line
   return (
     <div className="grid grid-cols-1 md:grid-cols-[180px_180px_180px_1fr] gap-3">
       <FilterDropdown value={cat} options={CATEGORIES} onChange={setCat} />
@@ -80,8 +83,25 @@ export const CasesFilters = ({ second }: { second: { label: string; options: str
       <FilterDropdown value={sec} options={second.options} onChange={setSec} />
       <div className="relative">
         <Search size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#888]" />
-        <input className="lp-filter-select w-full" style={{ paddingLeft: 56 }} placeholder="Search cases..." />
+        <input value={q} onChange={e => setQ(e.target.value)} className="lp-filter-select w-full" style={{ paddingLeft: 56 }} placeholder="Search cases..." />
       </div>
     </div>
   );
+};
+
+export const matchFilters = <T extends Record<string, any>>(items: T[], f: FilterState, getters: { cat?: (i: T) => string; sec?: (i: T) => string; text: (i: T) => string }) => {
+  return items.filter(i => {
+    if (f.cat && f.cat !== "All Categories" && getters.cat) {
+      const v = getters.cat(i)?.toLowerCase() || "";
+      if (!v.includes(f.cat.toLowerCase().split(" ")[0])) return false;
+    }
+    if (f.sec && !f.sec.startsWith("All") && getters.sec) {
+      const v = getters.sec(i)?.toLowerCase() || "";
+      if (!v.includes(f.sec.toLowerCase().split(" ")[0])) return false;
+    }
+    if (f.q.trim()) {
+      if (!getters.text(i).toLowerCase().includes(f.q.toLowerCase())) return false;
+    }
+    return true;
+  });
 };
