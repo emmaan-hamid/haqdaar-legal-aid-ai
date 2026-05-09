@@ -449,14 +449,22 @@ const Auth = () => {
     </form>
   );
 
+  const SignupHead = () => (
+    <div className="hd-signup-head">
+      <h2>Create your account</h2>
+      <p>Join us and begin your journey</p>
+    </div>
+  );
+
   const renderRole = () => (
     <div className="hd-form">
+      <SignupHead />
       <ProgressBar step={1} />
       <div className="hd-divrow">JOIN</div>
-      <h1 className="hd-h1" style={{ fontSize: "1.7rem" }}>Who are you?</h1>
+      <h1 className="hd-h1" style={{ fontSize: "1.55rem" }}>Who are you?</h1>
       <p className="hd-sub">Select your role to create your account.</p>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 18 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 14 }}>
         {[
           { id: "citizen" as Role, icon: <User2 size={20}/>, t: "Citizen / User", d: "I need legal help or information" },
           { id: "lawyer" as Role, icon: <Scale size={20}/>, t: "Volunteer Lawyer", d: "I want to offer free legal help" },
@@ -475,15 +483,15 @@ const Auth = () => {
         ))}
       </div>
 
-      <div style={{ display:"flex",alignItems:"center",gap:6,marginTop:14,fontSize:".72rem",color:"var(--text-muted)" }}>
+      <div style={{ display:"flex",alignItems:"center",gap:6,marginTop:12,fontSize:".72rem",color:"var(--text-muted)" }}>
         <AlertCircle size={12} color="var(--gold)"/> Role cannot be changed after registration
       </div>
 
-      <div style={{ textAlign:"center",margin:"18px 0",fontSize:".82rem",color:"var(--text-secondary)" }}>
+      <button className="hd-btn primary" style={{ marginTop: 16 }} disabled={!role} onClick={() => go("signup_details")}>Next</button>
+
+      <div style={{ textAlign:"center",marginTop:14,fontSize:".82rem",color:"var(--text-secondary)" }}>
         Already have an account? <button className="hd-link" onClick={() => go("login")}>Log in</button>
       </div>
-
-      <button className="hd-btn primary" disabled={!role} onClick={() => go("signup_details")}>Next</button>
     </div>
   );
 
