@@ -178,8 +178,8 @@ export const NgoDashboard = ({ goto }: { goto: (s: any) => void }) => {
             </button>
           </div>
           <div className="h-px w-full mb-5" style={{ background: "rgba(201,168,76,.25)" }} />
-          <div className="overflow-hidden rounded-xl" style={{ border: "1px solid rgba(201,168,76,.18)" }}>
-            <div className="grid grid-cols-[58px_1fr_78px_36px_58px] gap-2 px-3 py-2.5 text-[10px] uppercase tracking-[.14em] text-[#888] font-semibold" style={{ background: "#0F0F0F" }}>
+          <div>
+            <div className="grid grid-cols-[68px_1fr_92px_44px_64px] gap-3 px-3 py-3 text-[10px] uppercase tracking-[.14em] text-[#888] font-semibold rounded-lg" style={{ background: "#0F0F0F" }}>
               <div>Case ID</div><div>Title</div><div className="text-center">Status</div><div className="text-center">Due</div><div className="text-right">Action</div>
             </div>
             {active.map((c) => {
@@ -187,17 +187,17 @@ export const NgoDashboard = ({ goto }: { goto: (s: any) => void }) => {
               return (
               <div key={c.id}>
                 <div className="h-px" style={{ background: "rgba(201,168,76,.15)" }} />
-                <div className="grid grid-cols-[58px_1fr_78px_36px_58px] gap-2 items-center px-3 py-2.5 transition-all lp-row-hover">
-                  <div className="text-[10.5px] text-[#C9A84C] font-mono">{c.id}</div>
-                  <div className="text-[12.5px] text-white truncate font-medium">{c.title}</div>
+                <div className="grid grid-cols-[68px_1fr_92px_44px_64px] gap-3 items-center px-3 py-4 transition-all lp-row-hover">
+                  <div className="text-[11px] text-[#C9A84C] font-mono">{c.id}</div>
+                  <div className="text-[13.5px] text-white truncate font-medium">{c.title}</div>
                   <div className="flex justify-center">
-                    <span className={`lp-pill ${c.status === "progress" ? "lp-pill-progress" : c.status === "await" ? "lp-pill-await" : "lp-pill-pending"}`} style={{ width: 74, justifyContent: "center", height: 20, fontSize: 8.5, padding: "0 6px" }}>
+                    <span className={`lp-pill ${c.status === "progress" ? "lp-pill-progress" : c.status === "await" ? "lp-pill-await" : "lp-pill-pending"}`} style={{ width: 86, justifyContent: "center", height: 22, fontSize: 9.5, padding: "0 8px" }}>
                       {c.status === "progress" ? "In Progress" : c.status === "await" ? "Awaiting" : "Pending"}
                     </span>
                   </div>
-                  <div className="text-center text-[11.5px] font-semibold whitespace-nowrap" style={{ color: dnum < 3 ? "#E57367" : "#C9C4B0" }}>{dnum}d</div>
+                  <div className="text-center text-[12px] font-semibold whitespace-nowrap" style={{ color: dnum < 3 ? "#E57367" : "#C9C4B0" }}>{dnum}d</div>
                   <div className="flex justify-end">
-                    <button onClick={() => goto("cases-active")} className="lp-btn-view" style={{ height: 24, minWidth: 54, padding: "0 10px", fontSize: 10 }}>View</button>
+                    <button onClick={() => goto("cases-active")} className="lp-btn-view" style={{ height: 26, minWidth: 58, padding: "0 12px", fontSize: 10.5 }}>View</button>
                   </div>
                 </div>
               </div>
