@@ -501,18 +501,6 @@ const Auth = () => {
             {[0,1,2,3].map(i => <div key={i} style={{ background: i < score ? STRENGTH_COLOR[score] : "#2a2723" }} />)}
           </div>
           <div style={{ fontSize: ".72rem", color: STRENGTH_COLOR[score] || "var(--text-muted)", marginTop: 4 }}>{STRENGTH_LABEL[score] || " "}</div>
-          <div className="hd-reqs">
-            {[
-              { t: "At least 8 characters", ok: form.password.length >= 8 },
-              { t: "One uppercase letter", ok: /[A-Z]/.test(form.password) },
-              { t: "One number", ok: /\d/.test(form.password) },
-              { t: "One special character", ok: /[!@#$%^&*]/.test(form.password) },
-            ].map(r => (
-              <div key={r.t} style={{ color: r.ok ? "var(--success)" : "var(--text-muted)" }}>
-                {r.ok ? <CheckCircle2 size={12}/> : <Circle size={12}/>} {r.t}
-              </div>
-            ))}
-          </div>
         </div>
 
         <div>
