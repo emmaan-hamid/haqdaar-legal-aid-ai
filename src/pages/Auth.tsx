@@ -335,6 +335,8 @@ const Auth = () => {
   const Left = (
     <div className="hd-left">
       <div className="hd-logo">
+        <Scale size={16} className="scale" />
+        <div className="name">HaqDaar</div>
         <div className="ur">حق · عدل · انصاف</div>
       </div>
       <div className="hd-quote-wrap">
