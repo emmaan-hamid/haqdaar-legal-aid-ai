@@ -732,6 +732,7 @@ const Auth = () => {
           <span><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Help Center</a><a href="/contact">Contact Us</a></span>
         </div>
       </div>
+      <QuickExitBtn />
     </div>
   );
 };
