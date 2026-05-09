@@ -83,26 +83,36 @@ export const NgoImpact = () => {
         </div>
       </div>
       {settingsOpen && (
-        <div className="lp-modal-overlay" onClick={() => setSettingsOpen(false)}>
-          <div className="lp-modal m-auto max-w-[460px]" onClick={e => e.stopPropagation()}>
-            <h3 className="lp-display text-[22px] text-white font-bold mb-4">Impact Dashboard Settings</h3>
-            <div className="space-y-3">
-              <div>
-                <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">Reporting Period</div>
-                <select className="lp-input"><option>Last 7 days</option><option>Last 30 days</option><option>Quarter</option><option>Year</option></select>
-              </div>
-              <div>
-                <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">Visible KPIs</div>
-                <select className="lp-input" multiple style={{ height: 110 }}>
-                  <option>Citizens Helped</option><option>Cases Resolved</option><option>Active Staff</option><option>Avg Resolution Time</option>
-                </select>
-              </div>
+        <div className="lp-fade rounded-xl p-5" style={{ background: "#141414", border: "1px solid rgba(201,168,76,.4)", boxShadow: "0 18px 50px -20px rgba(201,168,76,.35)" }}>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="lp-display text-[20px] text-white font-bold">Impact Dashboard Settings</h3>
+            <button onClick={() => setSettingsOpen(false)} className="text-[#888] hover:text-[#C9A84C] text-[12px] uppercase tracking-[.14em]">Close</button>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">Reporting Period</div>
+              <select className="lp-input"><option>Last 7 days</option><option>Last 30 days</option><option>Quarter</option><option>Year</option></select>
             </div>
-            <div className="flex gap-2 justify-end mt-4">
-              <button className="lp-btn lp-btn-gold" onClick={() => setSettingsOpen(false)}>Cancel</button>
-              <button className="lp-btn lp-btn-gold-solid" onClick={() => { setSettingsOpen(false); showToast("Settings saved"); }}>Save</button>
+            <div>
+              <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">Visible KPIs</div>
+              <select className="lp-input" multiple style={{ height: 96 }}>
+                <option>Citizens Helped</option><option>Cases Resolved</option><option>Active Staff</option><option>Avg Resolution Time</option>
+              </select>
             </div>
           </div>
+          <div className="flex gap-2 justify-end mt-4">
+            <button className="lp-btn lp-btn-gold" onClick={() => setSettingsOpen(false)}>Cancel</button>
+            <button className="lp-btn lp-btn-gold-solid" onClick={() => { setSettingsOpen(false); showToast("Settings saved"); }}>Save</button>
+          </div>
+        </div>
+      )}
+      {dlPhase !== "idle" && (
+        <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-[300] px-5 py-3 rounded-xl text-[12px] flex items-center gap-3" style={{ background: "#141414", border: "1px solid #C9A84C", boxShadow: "0 12px 40px -10px rgba(201,168,76,.4)" }}>
+          {dlPhase === "loading" ? (
+            <><div className="w-3 h-3 rounded-full border-2 border-[#C9A84C] border-t-transparent animate-spin" /><span className="text-[#C9A84C]">Downloading impact_report.pdf…</span></>
+          ) : (
+            <><span className="text-[#5BC68C]">✓</span><span className="text-[#5BC68C]">Successfully downloaded impact_report.pdf</span></>
+          )}
         </div>
       )}
       {toast && <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-[300] px-4 py-2 rounded-full text-[12px]" style={{ background: "#1E1E1E", border: "1px solid #C9A84C", color: "#C9A84C" }}>{toast}</div>}
