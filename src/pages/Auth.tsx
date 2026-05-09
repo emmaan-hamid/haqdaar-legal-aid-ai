@@ -344,13 +344,9 @@ const Auth = () => {
   // ---------- left panel ----------
   const Left = (
     <div className="hd-left">
-      <div className="hd-logo">
-        <Scale size={16} className="scale" />
-        <div className="name">HaqDaar</div>
-        <div className="ur">حق · عدل · انصاف</div>
-      </div>
       <div className="hd-quote-wrap">
         <span className="hd-bigq">&ldquo;</span>
+        <span className="hd-bigq r">&rdquo;</span>
         <div style={{ position: "relative", minHeight: 320 }}>
           {QUOTES.map((q, i) => (
             <div key={i} className={`hd-quote ${i === quoteIndex ? "active" : ""}`}>
