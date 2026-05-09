@@ -15,7 +15,6 @@ export const CaseRequests = () => {
   return (
     <div className="lp-fade space-y-5">
       <div className="flex items-center gap-3">
-        <div className="lp-display text-[20px] font-semibold text-white">Case Requests</div>
         <span className="text-[11px] px-3 py-1 rounded-full font-bold tracking-wider" style={{ background: "transparent", border: "1px solid #C9A84C", color: "#C9A84C" }}>{requests.length} NEW</span>
       </div>
       <CasesFilters second={{ label: "Urgency", options: URGENCIES }} />
@@ -96,7 +95,7 @@ export const ActiveCases = () => {
   if (detail) return <CaseDetail c={detail} back={() => setDetail(null)} />;
   return (
     <div className="lp-fade space-y-5">
-      <div className="lp-display text-[20px] font-semibold text-white">Active Cases <span className="text-[11px] px-3 py-1 rounded-full font-bold tracking-wider align-middle ml-2" style={{ border: "1px solid #C9A84C", color: "#C9A84C" }}>{activeData.length}</span></div>
+      <div><span className="text-[11px] px-3 py-1 rounded-full font-bold tracking-wider align-middle" style={{ border: "1px solid #C9A84C", color: "#C9A84C" }}>{activeData.length} ACTIVE</span></div>
       <CasesFilters second={{ label: "Status", options: STATUSES }} />
       <div className="lp-case-card p-0 overflow-hidden">
         <div className="overflow-x-auto lp-gold-scroll" style={{ maxHeight: 480, overflowY: "auto" }}>
@@ -204,7 +203,7 @@ const completed = [
 
 export const CompletedCases = () => (
   <div className="lp-fade space-y-5">
-    <div className="lp-display text-[20px] font-semibold text-white">Completed Cases <span className="text-[11px] px-3 py-1 rounded-full font-bold tracking-wider align-middle ml-2" style={{ border: "1px solid #5BC68C", color: "#5BC68C" }}>{completed.length}</span></div>
+    <div><span className="text-[11px] px-3 py-1 rounded-full font-bold tracking-wider align-middle" style={{ border: "1px solid #5BC68C", color: "#5BC68C" }}>{completed.length} COMPLETED</span></div>
     <CasesFilters second={{ label: "Outcome", options: OUTCOMES }} />
     <div className="lp-case-card p-0 overflow-hidden">
       <div className="overflow-x-auto lp-gold-scroll" style={{ maxHeight: 480, overflowY: "auto" }}>

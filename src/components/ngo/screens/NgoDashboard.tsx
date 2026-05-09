@@ -67,6 +67,7 @@ export const NgoDashboard = ({ goto }: { goto: (s: any) => void }) => {
         <AvailabilityCockpit
           initialMax={12}
           active={8}
+          maxLimit={20}
           title="Operations Cockpit"
           capacityLabel="Active Case Capacity"
           labels={{ avail: "Active", busy: "Limited", unavail: "Closed" }}

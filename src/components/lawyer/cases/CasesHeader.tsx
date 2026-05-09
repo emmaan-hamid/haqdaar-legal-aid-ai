@@ -29,14 +29,14 @@ export const CasesPageHeader = ({
     { id: "completed", label: "Completed Cases" },
   ];
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 lp-fade">
       <div>
         <div className="lp-page-eyebrow mb-2">My Cases</div>
         <h1 className="lp-page-title">Case Management</h1>
       </div>
-      <div className="flex items-end gap-8 border-b border-[rgba(201,168,76,.18)]">
+      <div className="flex flex-wrap items-end gap-x-10 gap-y-2 border-b border-[rgba(201,168,76,.18)] pb-1">
         {tabs.map(t => (
-          <button key={t.id} onClick={() => onTab(t.id)} className={`lp-tab-link ${tab === t.id ? "active" : ""}`}>{t.label}</button>
+          <button key={t.id} onClick={() => onTab(t.id)} className={`lp-cases-tab ${tab === t.id ? "active" : ""}`}>{t.label}</button>
         ))}
       </div>
     </div>

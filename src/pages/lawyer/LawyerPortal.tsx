@@ -7,6 +7,7 @@ import { QuickExit } from "@/components/lawyer/layout/QuickExit";
 import { PortalFooter } from "@/components/lawyer/layout/PortalFooter";
 import { Dashboard } from "@/components/lawyer/screens/Dashboard";
 import { CaseRequests, ActiveCases, CompletedCases } from "@/components/lawyer/screens/Cases";
+import { CasesPageHeader, type CasesTab } from "@/components/lawyer/cases/CasesHeader";
 import { Settings } from "@/components/lawyer/screens/Settings";
 import { Messages } from "@/components/lawyer/screens/Messages";
 import { Resources } from "@/components/lawyer/screens/Resources";
@@ -19,6 +20,10 @@ const LawyerPortal = () => {
 
   useEffect(() => { window.scrollTo({ top: 0, behavior: "auto" }); }, [section]);
 
+  const inCases = section.startsWith("cases-");
+  const tab: CasesTab = section === "cases-active" ? "active" : section === "cases-completed" ? "completed" : "requests";
+  const setTab = (t: CasesTab) => setSection(t === "active" ? "cases-active" : t === "completed" ? "cases-completed" : "cases-requests");
+
   return (
     <div className="lp-root min-h-screen">
       <LawyerCursor />
@@ -26,9 +31,14 @@ const LawyerPortal = () => {
       <Topbar sidebarW={sidebarW} />
       <main style={{ marginLeft: sidebarW, paddingTop: 88, paddingLeft: 28, paddingRight: 28, paddingBottom: 80, transition: "margin-left .3s cubic-bezier(.22,1,.36,1)" }}>
         {section === "dashboard" && <Dashboard goto={setSection} />}
-        {section === "cases-requests" && <CaseRequests />}
-        {section === "cases-active" && <ActiveCases />}
-        {section === "cases-completed" && <CompletedCases />}
+        {inCases && (
+          <div className="space-y-6">
+            <CasesPageHeader tab={tab} onTab={setTab} />
+            {tab === "requests" && <CaseRequests />}
+            {tab === "active" && <ActiveCases />}
+            {tab === "completed" && <CompletedCases />}
+          </div>
+        )}
         {section === "settings" && <Settings />}
         {section === "messages" && <Messages />}
         {section === "resources" && <Resources />}

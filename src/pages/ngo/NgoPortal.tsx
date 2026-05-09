@@ -9,6 +9,7 @@ import { Resources } from "@/components/lawyer/screens/Resources";
 import { NgoSidebar, type NgoSection } from "@/components/ngo/layout/NgoSidebar";
 import { NgoDashboard } from "@/components/ngo/screens/NgoDashboard";
 import { NgoCaseRequests, NgoActiveCases, NgoCompletedCases } from "@/components/ngo/screens/NgoCases";
+import { CasesPageHeader, type CasesTab } from "@/components/lawyer/cases/CasesHeader";
 import { NgoProfile } from "@/components/ngo/screens/NgoProfile";
 import { NgoTeam } from "@/components/ngo/screens/NgoTeam";
 import { NgoImpact } from "@/components/ngo/screens/NgoImpact";
@@ -18,6 +19,9 @@ const NgoPortal = () => {
   const [collapsed, setCollapsed] = useState(false);
   const sidebarW = collapsed ? 72 : 260;
   useEffect(() => { window.scrollTo({ top: 0, behavior: "auto" }); }, [section]);
+  const inCases = section.startsWith("cases-");
+  const tab: CasesTab = section === "cases-active" ? "active" : section === "cases-completed" ? "completed" : "requests";
+  const setTab = (t: CasesTab) => setSection(t === "active" ? "cases-active" : t === "completed" ? "cases-completed" : "cases-requests");
   return (
     <div className="lp-root min-h-screen">
       <LawyerCursor />
@@ -25,9 +29,14 @@ const NgoPortal = () => {
       <Topbar sidebarW={sidebarW} name="Aurat Foundation" initials="AF" />
       <main style={{ marginLeft: sidebarW, paddingTop: 88, paddingLeft: 28, paddingRight: 28, paddingBottom: 80, transition: "margin-left .3s cubic-bezier(.22,1,.36,1)" }}>
         {section === "dashboard" && <NgoDashboard goto={setSection} />}
-        {section === "cases-requests" && <NgoCaseRequests />}
-        {section === "cases-active" && <NgoActiveCases />}
-        {section === "cases-completed" && <NgoCompletedCases />}
+        {inCases && (
+          <div className="space-y-6">
+            <CasesPageHeader tab={tab} onTab={setTab} ngo />
+            {tab === "requests" && <NgoCaseRequests />}
+            {tab === "active" && <NgoActiveCases />}
+            {tab === "completed" && <NgoCompletedCases />}
+          </div>
+        )}
         {section === "team" && <NgoTeam />}
         {section === "profile" && <NgoProfile />}
         {section === "messages" && <Messages />}

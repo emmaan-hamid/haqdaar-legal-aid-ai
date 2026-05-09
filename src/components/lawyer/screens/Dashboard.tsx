@@ -102,7 +102,7 @@ export const Dashboard = ({ goto }: { goto: (s: any) => void }) => {
 
       {/* Cockpit + Pro Bono Ring */}
       <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-6">
-        <AvailabilityCockpit initialMax={5} active={3} />
+        <AvailabilityCockpit initialMax={5} active={3} maxLimit={10} />
 
         {/* Pro Bono Ring */}
         <div className="lp-card p-6 lp-lift">
