@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LawyerCursor } from "@/components/lawyer/LawyerCursor";
 import { Topbar } from "@/components/lawyer/layout/Topbar";
 import { EmergencyStrip } from "@/components/lawyer/layout/EmergencyStrip";
@@ -13,12 +13,15 @@ import { CasesPageHeader, type CasesTab } from "@/components/lawyer/cases/CasesH
 import { NgoProfile } from "@/components/ngo/screens/NgoProfile";
 import { NgoTeam } from "@/components/ngo/screens/NgoTeam";
 import { NgoImpact } from "@/components/ngo/screens/NgoImpact";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const NgoPortal = () => {
   const [section, setSection] = useState<NgoSection>("dashboard");
   const [collapsed, setCollapsed] = useState(false);
   const sidebarW = collapsed ? 72 : 260;
+  const mainRef = useRef<HTMLElement>(null);
   useEffect(() => { window.scrollTo({ top: 0, behavior: "auto" }); }, [section]);
+  useScrollReveal(mainRef, section);
   const inCases = section.startsWith("cases-");
   const tab: CasesTab = section === "cases-active" ? "active" : section === "cases-completed" ? "completed" : "requests";
   const setTab = (t: CasesTab) => setSection(t === "active" ? "cases-active" : t === "completed" ? "cases-completed" : "cases-requests");
@@ -27,7 +30,7 @@ const NgoPortal = () => {
       <LawyerCursor />
       <NgoSidebar section={section} setSection={setSection} collapsed={collapsed} toggle={() => setCollapsed(c => !c)} />
       <Topbar sidebarW={sidebarW} name="Aurat Foundation" initials="AF" />
-      <main style={{ marginLeft: sidebarW, paddingTop: 88, paddingLeft: 28, paddingRight: 28, paddingBottom: 80, transition: "margin-left .3s cubic-bezier(.22,1,.36,1)" }}>
+      <main ref={mainRef} style={{ marginLeft: sidebarW, paddingTop: 88, paddingLeft: 28, paddingRight: 28, paddingBottom: 80, transition: "margin-left .3s cubic-bezier(.22,1,.36,1)" }}>
         {section === "dashboard" && <NgoDashboard goto={setSection} />}
         {inCases && (
           <div className="space-y-6">
