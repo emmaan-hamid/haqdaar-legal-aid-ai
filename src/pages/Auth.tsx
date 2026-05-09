@@ -389,9 +389,12 @@ const Auth = () => {
 
   const renderLogin = () => (
     <form className="hd-form" onSubmit={handleLogin}>
-      <div style={{ textAlign: "center", marginBottom: 32 }}>
-        <Scale size={28} color="var(--gold)" style={{ margin: "0 auto" }} />
-        <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 600, fontSize: 26, color: "var(--gold)", marginTop: 4 }}>HaqDaar</div>
+      <div style={{ textAlign: "center", marginBottom: 22 }}>
+        <div className="hd-signlogo">
+          <Scale size={20} color="var(--gold)" />
+          <div className="name">HaqDaar</div>
+          <div className="ur">حق · عدل · انصاف</div>
+        </div>
         <div className="hd-divrow">SIGN IN</div>
         <h1 className="hd-h1">Your rights are waiting <em style={{ color: "var(--gold-light)", fontStyle: "italic" }}>for you.</em></h1>
         <p className="hd-sub">Pakistan's free legal aid network — built for every citizen.</p>
