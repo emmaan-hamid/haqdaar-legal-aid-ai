@@ -341,10 +341,24 @@ const Auth = () => {
   const Q = QUOTES[quoteIndex];
   const score = passwordScore(form.password);
 
+  // ---------- brand logo (matches Navbar style) ----------
+  const Brand = ({ size = 32, onClick }: { size?: number; onClick?: () => void }) => (
+    <a className="hd-brand" style={{ fontSize: size }} onClick={onClick} role={onClick ? "button" : undefined}>
+      <span className="h-wrap">
+        H
+        <svg className="h-scale" width={size * 0.46} height={size * 0.34} viewBox="0 0 24 16" fill="none" stroke="#C9A84C" strokeWidth="0.9">
+          <path d="M12 2v12M4 6h16M6 6l-3 5h6zM18 6l-3 5h6z" />
+        </svg>
+      </span>
+      <span>aqDaar</span>
+    </a>
+  );
+
   // ---------- left panel ----------
   const Left = (
     <div className="hd-left">
       <div className="hd-logo">
+        <Brand size={30} onClick={() => navigate("/")} />
         <div className="ur">حق · عدل · انصاف</div>
       </div>
       <div className="hd-quote-wrap">
@@ -363,11 +377,6 @@ const Auth = () => {
         <div className="hd-dots">
           {QUOTES.map((_, i) => <span key={i} className={`hd-dot ${i === quoteIndex ? "on" : ""}`} />)}
         </div>
-      </div>
-      <div className="hd-bottom">
-        <span><b>12.4k+</b> citizens helped</span>
-        <span className="sep">·</span>
-        <span><b>340</b> volunteer lawyers</span>
       </div>
     </div>
   );
