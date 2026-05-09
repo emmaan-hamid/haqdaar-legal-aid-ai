@@ -239,12 +239,10 @@ const Auth = () => {
     .hd-bottom{position:absolute;bottom:0;left:0;right:0;padding:24px 28px;border-top:1px solid var(--gold-border);font-size:.75rem;color:var(--text-secondary);display:flex;gap:14px;align-items:center;}
     .hd-bottom b{color:var(--gold);font-weight:600;}
     .hd-bottom .sep{color:var(--gold-border);}
-    .hd-rpanel{padding:48px;max-width:520px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;}
-    .hd-langtoggle{position:absolute;top:24px;right:32px;display:flex;border:1px solid var(--gold-border);border-radius:999px;overflow:hidden;font-size:.72rem;letter-spacing:.05em;font-weight:500;z-index:3;}
-    .hd-langtoggle button{padding:6px 14px;background:transparent;border:none;color:var(--text-muted);cursor:pointer;font-family:inherit;}
-    .hd-langtoggle button.on{background:var(--gold);color:#0A0A0A;}
-    .hd-foot{position:absolute;bottom:0;left:0;right:0;padding:20px 40px;display:flex;justify-content:space-between;font-size:.7rem;color:var(--text-muted);}
-    .hd-foot a{color:var(--text-muted);text-decoration:none;margin-left:14px;}
+    .hd-rpanel{padding:40px 48px 80px;max-width:520px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;}
+    .hd-foot{position:absolute;bottom:0;left:0;right:0;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:var(--text-muted);border-top:1px solid var(--gold-border);background:var(--bg-right);}
+    .hd-foot a{color:var(--text-muted);text-decoration:none;margin-left:18px;transition:color .2s;}
+    .hd-foot a:hover{color:var(--gold);}
     .hd-form{max-width:420px;margin:0 auto;width:100%;}
     .hd-h1{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.9rem;line-height:1.2;color:var(--text-primary);}
     .hd-sub{font-family:'DM Sans',sans-serif;font-weight:300;font-size:.82rem;color:var(--text-secondary);margin-top:8px;}
