@@ -626,6 +626,7 @@ const Auth = () => {
 
   const renderForgot = () => (
     <form className="hd-form" onSubmit={submitForgot}>
+      <button type="button" className="hd-back" onClick={() => go("login")}><ArrowLeft size={14}/> Back to Login</button>
       <div style={{ textAlign: "center" }}>
         <div style={{ display:"inline-flex",position:"relative",padding:14,borderRadius:999,background:"var(--gold-glow)",marginBottom:8 }}>
           <KeyRound size={32} color="var(--gold)" />
