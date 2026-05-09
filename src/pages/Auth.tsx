@@ -3,12 +3,12 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import {
   Mail, Lock, Eye, EyeOff, User2, Scale, Handshake, AlertCircle,
   ChevronDown, Phone, FileText, Building2, CheckCircle2, XCircle,
-  Loader2, ShieldCheck, KeyRound, Clock, Circle,
+  Loader2, ShieldCheck, KeyRound, Clock,
 } from "lucide-react";
 
 type AuthState = "login" | "signup_role" | "signup_details" | "signup_verify" | "forgot" | "reset";
 type Role = "citizen" | "lawyer" | "ngo";
-type Lang = "en" | "ur";
+
 
 const QUOTES = [
   {
@@ -66,7 +66,6 @@ const Auth = () => {
   const [animKey, setAnimKey] = useState(0);
   const go = (s: AuthState) => { setState(s); setAnimKey(k => k + 1); };
 
-  const [lang, setLang] = useState<Lang>("en");
   const [quoteIndex, setQuoteIndex] = useState(0);
   useEffect(() => {
     const t = setInterval(() => setQuoteIndex(i => (i + 1) % QUOTES.length), 6000);
@@ -220,11 +219,10 @@ const Auth = () => {
       font-family:'DM Sans',sans-serif;color:var(--text-primary);background:var(--bg-base);min-height:100vh;display:flex;}
     .hd-left{width:45%;background:var(--bg-left);position:relative;overflow:hidden;}
     .hd-left::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 60% 45%, rgba(180,130,40,0.13) 0%, transparent 70%);pointer-events:none;}
-    .hd-right{width:55%;background:var(--bg-right);position:relative;overflow-y:auto;}
+    .hd-right{width:55%;background:var(--bg-right);position:relative;overflow:hidden;}
     .hd-right::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 60%);pointer-events:none;}
     .hd-logo{position:absolute;top:32px;left:32px;z-index:2;}
-    .hd-logo .name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:var(--gold);}
-    .hd-logo .ur{font-family:'Noto Nastaliq Urdu',serif;font-size:13px;color:var(--gold-dim);direction:rtl;margin-top:4px;}
+    .hd-logo .ur{font-family:'Noto Nastaliq Urdu',serif;font-size:15px;color:var(--gold);direction:rtl;}
     .hd-quote-wrap{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:78%;max-width:360px;}
     .hd-bigq{font-family:'Playfair Display',serif;font-size:96px;color:var(--gold);opacity:.4;line-height:1;position:absolute;top:-40px;left:-30px;pointer-events:none;}
     .hd-quote{position:absolute;inset:0;opacity:0;transition:opacity .7s ease-in-out;}
@@ -240,12 +238,10 @@ const Auth = () => {
     .hd-bottom{position:absolute;bottom:0;left:0;right:0;padding:24px 28px;border-top:1px solid var(--gold-border);font-size:.75rem;color:var(--text-secondary);display:flex;gap:14px;align-items:center;}
     .hd-bottom b{color:var(--gold);font-weight:600;}
     .hd-bottom .sep{color:var(--gold-border);}
-    .hd-rpanel{padding:48px;max-width:520px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;}
-    .hd-langtoggle{position:absolute;top:24px;right:32px;display:flex;border:1px solid var(--gold-border);border-radius:999px;overflow:hidden;font-size:.72rem;letter-spacing:.05em;font-weight:500;z-index:3;}
-    .hd-langtoggle button{padding:6px 14px;background:transparent;border:none;color:var(--text-muted);cursor:pointer;font-family:inherit;}
-    .hd-langtoggle button.on{background:var(--gold);color:#0A0A0A;}
-    .hd-foot{position:absolute;bottom:0;left:0;right:0;padding:20px 40px;display:flex;justify-content:space-between;font-size:.7rem;color:var(--text-muted);}
-    .hd-foot a{color:var(--text-muted);text-decoration:none;margin-left:14px;}
+    .hd-rpanel{padding:40px 48px 80px;max-width:520px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;}
+    .hd-foot{position:absolute;bottom:0;left:0;right:0;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:var(--text-muted);border-top:1px solid var(--gold-border);background:var(--bg-right);}
+    .hd-foot a{color:var(--text-muted);text-decoration:none;margin-left:18px;transition:color .2s;}
+    .hd-foot a:hover{color:var(--gold);}
     .hd-form{max-width:420px;margin:0 auto;width:100%;}
     .hd-h1{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.9rem;line-height:1.2;color:var(--text-primary);}
     .hd-sub{font-family:'DM Sans',sans-serif;font-weight:300;font-size:.82rem;color:var(--text-secondary);margin-top:8px;}
@@ -318,10 +314,7 @@ const Auth = () => {
     .hd-pulse::after{content:"";position:absolute;inset:-2px;border:2px solid var(--gold);border-radius:999px;animation:hd-pulsering 2s ease-out infinite;}
     .hd-info{background:rgba(201,168,76,0.06);border:1px solid var(--gold-border);border-radius:10px;padding:14px 16px;display:flex;gap:10px;font-size:.8rem;color:var(--text-secondary);margin-top:18px;}
     .hd-toast{position:absolute;top:20px;left:50%;transform:translateX(-50%);background:rgba(90,176,122,.15);border:1px solid var(--success);color:var(--success);padding:10px 18px;border-radius:10px;font-size:.82rem;display:flex;align-items:center;gap:8px;animation:hd-slidedown .3s ease-out;z-index:4;}
-    .hd-scroll{max-height:65vh;overflow-y:auto;padding-right:6px;}
-    .hd-scroll::-webkit-scrollbar{width:4px;}
-    .hd-scroll::-webkit-scrollbar-track{background:transparent;}
-    .hd-scroll::-webkit-scrollbar-thumb{background:var(--gold-border);border-radius:2px;}
+    .hd-scroll{display:flex;flex-direction:column;}
     .hd-mob-logo{display:none;}
     @media (max-width:768px){
       .hd-left{display:none;}
@@ -338,10 +331,6 @@ const Auth = () => {
   const Left = (
     <div className="hd-left">
       <div className="hd-logo">
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <Scale size={28} color="var(--gold)" />
-          <span className="name">HaqDaar</span>
-        </div>
         <div className="ur">حق · عدل · انصاف</div>
       </div>
       <div className="hd-quote-wrap">
@@ -511,18 +500,6 @@ const Auth = () => {
             {[0,1,2,3].map(i => <div key={i} style={{ background: i < score ? STRENGTH_COLOR[score] : "#2a2723" }} />)}
           </div>
           <div style={{ fontSize: ".72rem", color: STRENGTH_COLOR[score] || "var(--text-muted)", marginTop: 4 }}>{STRENGTH_LABEL[score] || " "}</div>
-          <div className="hd-reqs">
-            {[
-              { t: "At least 8 characters", ok: form.password.length >= 8 },
-              { t: "One uppercase letter", ok: /[A-Z]/.test(form.password) },
-              { t: "One number", ok: /\d/.test(form.password) },
-              { t: "One special character", ok: /[!@#$%^&*]/.test(form.password) },
-            ].map(r => (
-              <div key={r.t} style={{ color: r.ok ? "var(--success)" : "var(--text-muted)" }}>
-                {r.ok ? <CheckCircle2 size={12}/> : <Circle size={12}/>} {r.t}
-              </div>
-            ))}
-          </div>
         </div>
 
         <div>
@@ -553,9 +530,8 @@ const Auth = () => {
         </label>
       </div>
 
-      <div style={{ display: "flex", gap: 12, marginTop: 18, alignItems: "center" }}>
-        <button className="hd-link" onClick={() => go("signup_role")}>← Back</button>
-        <button className="hd-btn primary" style={{ flex: 1 }} disabled={!detailsValid} onClick={submitDetails}>Next</button>
+      <div style={{ marginTop: 18 }}>
+        <button className="hd-btn primary" style={{ width: "100%" }} disabled={!detailsValid} onClick={submitDetails}>Next</button>
       </div>
     </div>
   );
@@ -592,7 +568,7 @@ const Auth = () => {
         <span>Your Bar Council number will be verified by our admin team within 24 hours. You can browse the platform in the meantime.</span>
       </div>}
 
-      <button className="hd-link" style={{ marginTop: 14, display: "inline-block" }} onClick={() => go("signup_details")}>← Back to previous step</button>
+      
     </div>
   );
 
@@ -631,9 +607,6 @@ const Auth = () => {
         </div>
       )}
 
-      <div style={{ marginTop: 18, textAlign: "center" }}>
-        <button type="button" className="hd-link" onClick={() => { setForgotSent(false); go("login"); }}>← Back to Login</button>
-      </div>
     </form>
   );
 
@@ -686,18 +659,10 @@ const Auth = () => {
       <style>{css}</style>
       {Left}
       <div className="hd-right">
-        <div className="hd-langtoggle">
-          <button className={lang === "en" ? "on" : ""} onClick={() => setLang("en")}>EN</button>
-          <button className={lang === "ur" ? "on" : ""} onClick={() => setLang("ur")}>اردو</button>
-        </div>
         {toast && <div className="hd-toast"><CheckCircle2 size={16}/> {toast}</div>}
         <div className="hd-rpanel">
           <div className="hd-mob-logo">
-            <div style={{ display:"flex",alignItems:"center",gap:8 }}>
-              <Scale size={22} color="var(--gold)"/>
-              <span style={{ fontFamily:"'Cormorant Garamond',serif",fontWeight:600,fontSize:22,color:"var(--gold)" }}>HaqDaar</span>
-            </div>
-            <div style={{ fontFamily:"'Noto Nastaliq Urdu',serif",fontSize:12,color:"var(--gold-dim)",direction:"rtl" }}>حق · عدل · انصاف</div>
+            <div style={{ fontFamily:"'Noto Nastaliq Urdu',serif",fontSize:14,color:"var(--gold)",direction:"rtl" }}>حق · عدل · انصاف</div>
           </div>
           <div key={animKey} className="hd-stage">
             {state === "login" && renderLogin()}
@@ -710,7 +675,7 @@ const Auth = () => {
         </div>
         <div className="hd-foot">
           <span>© 2026 HaqDaar — All rights reserved</span>
-          <span><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Help Center</a></span>
+          <span><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Help Center</a><a href="/contact">Contact Us</a></span>
         </div>
       </div>
     </div>
