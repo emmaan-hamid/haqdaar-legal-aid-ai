@@ -447,10 +447,11 @@ const Auth = () => {
 
   const renderRole = () => (
     <div className="hd-form">
+      <div style={{ display:"flex",justifyContent:"center",marginBottom:14 }}><Brand size={30} onClick={() => navigate("/")} /></div>
       <ProgressBar step={1} />
       <div className="hd-divrow">JOIN</div>
-      <h1 className="hd-h1" style={{ fontSize: "1.7rem" }}>Who are you?</h1>
-      <p className="hd-sub">Select your role to create your account.</p>
+      <h1 className="hd-h1" style={{ fontSize: "1.7rem", textAlign:"center" }}>Who are you?</h1>
+      <p className="hd-sub" style={{ textAlign:"center" }}>Select your role to create your account.</p>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 24 }}>
         {[
