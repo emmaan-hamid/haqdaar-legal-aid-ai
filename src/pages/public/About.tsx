@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { PublicLayout } from "@/components/public/PublicLayout";
 import { Shield, Users, Briefcase, FileText, Gavel, Building2, MessageSquareQuote, Check, Scale } from "lucide-react";
+import justiceImg from "@/assets/justice-statue.png";
 
 const EXPLAINS = [
   { Icon: Scale, title: "Child Abuse", desc: "Understand the laws that protect children from abuse, neglect, and exploitation. Know your rights and how to take legal action." },
@@ -70,11 +71,9 @@ const About = () => {
         {/* Hero: Justice image left, We Explain right, side panel "What We Explain" */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           {/* Image card */}
-          <div className="lg:col-span-5 relative rounded-[18px] overflow-hidden haq-reveal-l" style={{ border: "1px solid rgba(201,168,76,.3)", minHeight: 360 }}>
-            <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 30% 30%, rgba(201,168,76,.18), transparent 60%), linear-gradient(180deg,#1a1410,#0a0908)" }} />
-            <div className="absolute inset-0 grid place-items-center opacity-[.18]">
-              <Scale size={220} className="text-[#C9A84C]" strokeWidth={0.6} />
-            </div>
+          <div className="lg:col-span-5 relative rounded-[18px] overflow-hidden haq-reveal-l haq-img-zoom" style={{ border: "1px solid rgba(201,168,76,.3)", minHeight: 360 }}>
+            <img src={justiceImg} alt="Lady Justice statue with scales" loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
+            <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, rgba(10,9,8,.0) 40%, rgba(10,9,8,.85) 100%)" }} />
             {/* Associate Partner's overlay */}
             <div className="absolute left-4 right-4 bottom-4 rounded-xl px-4 py-3" style={{ border: "1px solid rgba(201,168,76,.5)", background: "rgba(10,10,10,.8)", backdropFilter: "blur(6px)" }}>
               <div className="text-[11px] text-white font-semibold mb-2">Associate Partner's</div>

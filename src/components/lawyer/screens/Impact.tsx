@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatedLine } from "../charts/AnimatedLine";
 import { AnimatedPie } from "../charts/AnimatedPie";
-import { Download, CheckCircle2, Users, Clock, Star, Award } from "lucide-react";
+import { Download, CheckCircle2, Users, Clock, Star, Award, Settings as SettingsIcon } from "lucide-react";
 
 const useCount = (target: number) => {
   const [v, setV] = useState(0);
@@ -30,21 +30,33 @@ export const Impact = () => {
           <h2 className="lp-display text-[40px] font-bold text-white leading-tight mt-1">Your Pro Bono Impact</h2>
           <p className="text-[13px] text-[#888] mt-1">Every closed case is a citizen reclaiming their rights.</p>
         </div>
-        <button className="lp-btn lp-btn-gold-solid"><Download size={12} /> Download</button>
+        <div className="flex items-center gap-2">
+          <button className="lp-btn lp-btn-gold"><SettingsIcon size={12} /> Settings</button>
+          <button className="lp-btn lp-btn-gold-solid"><Download size={12} /> Download</button>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {kpis.map((k: any) => (
-          <div key={k.l} className={`lp-kpi ${k.sq === "green" ? "lp-kpi-green" : ""}`}>
-            <div className="flex items-start justify-between">
-              <div>
-                <div className="text-[10px] uppercase tracking-[.12em] text-[#888]">{k.l}</div>
-                <div className="lp-display text-[44px] font-bold mt-1 leading-none lp-pop" style={{ color: k.color }}>
-                  {k.v}{k.suffix && <span className="text-[20px] align-super">{k.suffix}</span>}
+          <div key={k.l} className="lp-kpi-flip">
+            <div className="lp-kpi-flip-inner">
+              <div className="lp-kpi-flip-face">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <div className="text-[10px] uppercase tracking-[.12em] text-[#888]">{k.l}</div>
+                    <div className="lp-display text-[40px] font-bold mt-1 leading-none lp-pop" style={{ color: k.color }}>
+                      {k.v}{k.suffix && <span className="text-[18px] align-super">{k.suffix}</span>}
+                    </div>
+                    <div className="text-[11px] mt-2" style={{ color: k.sq === "green" ? "#5BC68C" : "#C9A84C" }}>{k.sub}</div>
+                  </div>
+                  <div className={`lp-icon-sq ${k.sq || ""}`}><k.Icon size={18} /></div>
                 </div>
-                <div className="text-[11px] mt-2" style={{ color: k.sq === "green" ? "#5BC68C" : "#C9A84C" }}>{k.sub}</div>
               </div>
-              <div className={`lp-icon-sq ${k.sq || ""}`}><k.Icon size={18} /></div>
+              <div className="lp-kpi-flip-face lp-kpi-flip-back">
+                <div className="text-[10px] uppercase tracking-[.18em] text-[#C9A84C] font-bold">{k.l}</div>
+                <div className="text-[12.5px] text-[#E8E0D0] leading-relaxed">{k.sub}. Every metric represents a citizen we stood beside.</div>
+                <div className="lp-display text-[28px] font-bold text-[#C9A84C] leading-none">{k.v}{k.suffix || ""}</div>
+              </div>
             </div>
           </div>
         ))}

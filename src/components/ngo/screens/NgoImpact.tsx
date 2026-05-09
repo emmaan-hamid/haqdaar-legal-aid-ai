@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatedPie } from "@/components/lawyer/charts/AnimatedPie";
-import { AnimatedHistogram } from "@/components/lawyer/charts/AnimatedHistogram";
-import { Download, Users, CheckCircle2, UsersRound, Clock } from "lucide-react";
+import { AnimatedLine } from "@/components/lawyer/charts/AnimatedLine";
+import { Download, Users, CheckCircle2, UsersRound, Clock, Settings as SettingsIcon } from "lucide-react";
 
 const useCount = (target: number) => {
   const [v, setV] = useState(0);
@@ -26,7 +26,10 @@ export const NgoImpact = () => {
     <div className="lp-fade space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-3">
         <h2 className="lp-display text-[28px] font-bold text-white">NGO Impact Dashboard</h2>
-        <button className="lp-btn lp-btn-gold-solid"><Download size={12} /> Download</button>
+        <div className="flex items-center gap-2">
+          <button className="lp-btn lp-btn-gold"><SettingsIcon size={12} /> Settings</button>
+          <button className="lp-btn lp-btn-gold-solid"><Download size={12} /> Download</button>
+        </div>
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {kpis.map(k => (
@@ -61,9 +64,13 @@ export const NgoImpact = () => {
             </ul>
           </div>
         </div>
-        <div className="lp-card p-5 lp-lift">
+        <div className="lp-card p-5 lp-lift lp-no-hover" style={{ background: "linear-gradient(180deg,#1a1f2e,#0e1320)" }}>
           <div className="text-[11px] uppercase tracking-[.15em] text-[#C9A84C] font-semibold mb-3">Weekly Case Activity</div>
-          <div className="lp-chart-glow"><AnimatedHistogram labels={["W1", "W2", "W3", "W4", "W5", "W6", "W7", "W8"]} values={[6, 9, 7, 12, 10, 14, 13, 17]} color="#C9A84C" height={240} /></div>
+          <div className="lp-chart-glow lp-chart-bg p-2">
+            <AnimatedLine labels={["Mo","Tu","We","Th","Fr","Sa","Su"]} series={[
+              { name: "Cases", color: "#FFA94D", data: [16, 12, 33, 18, 23, 17, 36] },
+            ]} height={240} />
+          </div>
         </div>
       </div>
     </div>
