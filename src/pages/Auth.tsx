@@ -586,15 +586,13 @@ const Auth = () => {
     </div>
   );
 
-  const renderVerifyHeader = (
-    <button className="hd-back" onClick={() => go("signup_details")}><ArrowLeft size={14}/> Back</button>
-  );
-
   const renderVerify = () => (
-    <div className="hd-form" style={{ textAlign: "center" }}>
+    <div className="hd-form">
+      <button className="hd-back" onClick={() => go("signup_details")}><ArrowLeft size={14}/> Back</button>
+      <div style={{ textAlign: "center" }}>
       <ProgressBar step={3} />
-      <div className="hd-pulse"><Mail size={28}/></div>
-      <h1 className="hd-h1" style={{ fontSize: "1.6rem" }}>Verify your email</h1>
+      <div className="hd-pulse"><Mail size={24}/></div>
+      <h1 className="hd-h1" style={{ fontSize: "1.4rem" }}>Verify your email</h1>
       <p className="hd-sub">We sent a 6-digit code to <span style={{ color: "var(--gold)" }}>{form.email || "you"}</span>. Enter it below.</p>
 
       <div className={`hd-otp ${otpErr ? "err" : ""} ${otpOk ? "ok" : ""} ${otpShake ? "shake" : ""}`}>
