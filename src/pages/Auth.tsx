@@ -221,8 +221,13 @@ const Auth = () => {
     .hd-left::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 60% 45%, rgba(180,130,40,0.13) 0%, transparent 70%);pointer-events:none;}
     .hd-right{width:55%;background:var(--bg-right);position:relative;overflow:hidden;}
     .hd-right::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 60%);pointer-events:none;}
-    .hd-logo{position:absolute;top:32px;left:32px;z-index:2;}
-    .hd-logo .ur{font-family:'Noto Nastaliq Urdu',serif;font-size:15px;color:var(--gold);direction:rtl;}
+    .hd-logo{position:absolute;top:28px;left:32px;z-index:2;display:flex;flex-direction:column;gap:6px;}
+    .hd-logo .ur{font-family:'Noto Nastaliq Urdu',serif;font-size:14px;color:var(--gold);direction:rtl;}
+    .hd-brand{display:inline-flex;align-items:center;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:30px;line-height:1;color:#fff;letter-spacing:-0.01em;cursor:pointer;transition:color .25s;}
+    .hd-brand:hover{color:var(--gold);}
+    .hd-brand .h-wrap{position:relative;display:inline-block;line-height:1;}
+    .hd-brand .h-scale{position:absolute;left:50%;top:-7px;transform:translateX(-50%);transition:transform .25s;}
+    .hd-brand:hover .h-scale{transform:translateX(-50%) translateY(-2px);}
     .hd-quote-wrap{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:78%;max-width:360px;}
     .hd-bigq{font-family:'Playfair Display',serif;font-size:96px;color:var(--gold);opacity:.4;line-height:1;position:absolute;top:-40px;left:-30px;pointer-events:none;}
     .hd-quote{position:absolute;inset:0;opacity:0;transition:opacity .7s ease-in-out;}
@@ -238,10 +243,13 @@ const Auth = () => {
     .hd-bottom{position:absolute;bottom:0;left:0;right:0;padding:24px 28px;border-top:1px solid var(--gold-border);font-size:.75rem;color:var(--text-secondary);display:flex;gap:14px;align-items:center;}
     .hd-bottom b{color:var(--gold);font-weight:600;}
     .hd-bottom .sep{color:var(--gold-border);}
-    .hd-rpanel{padding:40px 48px 80px;max-width:520px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;}
-    .hd-foot{position:absolute;bottom:0;left:0;right:0;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:var(--text-muted);border-top:1px solid var(--gold-border);background:var(--bg-right);}
-    .hd-foot a{color:var(--text-muted);text-decoration:none;margin-left:18px;transition:color .2s;}
-    .hd-foot a:hover{color:var(--gold);}
+    .hd-rpanel{padding:32px 48px 76px;max-width:520px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;}
+    .hd-foot{position:fixed;bottom:0;left:0;right:0;padding:14px 36px;display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:var(--text-muted);border-top:1px solid var(--gold-border);background:rgba(10,10,10,0.92);backdrop-filter:blur(8px);z-index:5;}
+    .hd-foot .stats{display:flex;gap:14px;align-items:center;}
+    .hd-foot .stats b{color:var(--gold);font-weight:600;}
+    .hd-foot .stats .sep{color:var(--gold-border);}
+    .hd-foot .links a{color:var(--text-muted);text-decoration:none;margin-left:18px;transition:color .2s;}
+    .hd-foot .links a:hover{color:var(--gold);}
     .hd-form{max-width:420px;margin:0 auto;width:100%;}
     .hd-h1{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.9rem;line-height:1.2;color:var(--text-primary);}
     .hd-sub{font-family:'DM Sans',sans-serif;font-weight:300;font-size:.82rem;color:var(--text-secondary);margin-top:8px;}
@@ -249,7 +257,9 @@ const Auth = () => {
     .hd-divrow::before,.hd-divrow::after{content:"";flex:1;height:1px;background:var(--gold-border);}
     .hd-label{font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:6px;display:block;}
     .hd-inputw{position:relative;}
-    .hd-input{background:var(--bg-input);border:1px solid var(--gold-border);border-radius:8px;height:48px;padding:0 16px 0 44px;color:var(--text-primary);font:400 .9rem 'DM Sans',sans-serif;width:100%;transition:border-color .2s,box-shadow .2s;outline:none;}
+    .hd-input{background:var(--bg-input);border:1px solid var(--gold-border);border-radius:8px;height:42px;padding:0 16px 0 42px;color:var(--text-primary);font:400 .88rem 'DM Sans',sans-serif;width:100%;transition:border-color .2s,box-shadow .2s;outline:none;}
+    .hd-compact .hd-input{height:38px;font-size:.84rem;}
+    .hd-compact .hd-label{font-size:.62rem;margin-bottom:3px;}
     .hd-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.12);}
     .hd-input.err{border-color:var(--error);}
     .hd-input.ok{border-color:var(--success);}
@@ -258,7 +268,11 @@ const Auth = () => {
     .hd-msg{font-size:.72rem;margin-top:4px;}
     .hd-msg.err{color:var(--error);}
     .hd-msg.ok{color:var(--success);}
-    .hd-btn{height:48px;width:100%;border-radius:8px;font:600 .88rem 'DM Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:10px;}
+    .hd-btn{height:46px;width:100%;border-radius:8px;font:600 .85rem 'DM Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:10px;}
+    .hd-compact .hd-btn{height:42px;font-size:.8rem;}
+    .hd-quickexit{position:fixed;bottom:64px;right:24px;z-index:60;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:none;color:#fff;font:500 .72rem 'DM Sans',sans-serif;background:hsl(0 72% 51%);box-shadow:0 8px 24px rgba(217,91,91,.4);cursor:pointer;animation:hd-redpulse 2.4s ease-in-out infinite;}
+    .hd-quickexit:hover{filter:brightness(1.1);}
+    @keyframes hd-redpulse{0%,100%{box-shadow:0 0 0 0 rgba(217,91,91,.55);}50%{box-shadow:0 0 0 12px rgba(217,91,91,0);}}
     .hd-btn.primary{background:linear-gradient(135deg,#C9A84C 0%,#A8863A 100%);color:#0A0A0A;border:none;}
     .hd-btn.primary:hover:not(:disabled){filter:brightness(1.1);transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,168,76,.25);}
     .hd-btn.primary:disabled{opacity:.4;cursor:not-allowed;}
@@ -327,10 +341,24 @@ const Auth = () => {
   const Q = QUOTES[quoteIndex];
   const score = passwordScore(form.password);
 
+  // ---------- brand logo (matches Navbar style) ----------
+  const Brand = ({ size = 32, onClick }: { size?: number; onClick?: () => void }) => (
+    <a className="hd-brand" style={{ fontSize: size }} onClick={onClick} role={onClick ? "button" : undefined}>
+      <span className="h-wrap">
+        H
+        <svg className="h-scale" width={size * 0.46} height={size * 0.34} viewBox="0 0 24 16" fill="none" stroke="#C9A84C" strokeWidth="0.9">
+          <path d="M12 2v12M4 6h16M6 6l-3 5h6zM18 6l-3 5h6z" />
+        </svg>
+      </span>
+      <span>aqDaar</span>
+    </a>
+  );
+
   // ---------- left panel ----------
   const Left = (
     <div className="hd-left">
       <div className="hd-logo">
+        <Brand size={30} onClick={() => navigate("/")} />
         <div className="ur">حق · عدل · انصاف</div>
       </div>
       <div className="hd-quote-wrap">
@@ -349,11 +377,6 @@ const Auth = () => {
         <div className="hd-dots">
           {QUOTES.map((_, i) => <span key={i} className={`hd-dot ${i === quoteIndex ? "on" : ""}`} />)}
         </div>
-      </div>
-      <div className="hd-bottom">
-        <span><b>12.4k+</b> citizens helped</span>
-        <span className="sep">·</span>
-        <span><b>340</b> volunteer lawyers</span>
       </div>
     </div>
   );
@@ -377,9 +400,8 @@ const Auth = () => {
 
   const renderLogin = () => (
     <form className="hd-form" onSubmit={handleLogin}>
-      <div style={{ textAlign: "center", marginBottom: 32 }}>
-        <Scale size={28} color="var(--gold)" style={{ margin: "0 auto" }} />
-        <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 600, fontSize: 26, color: "var(--gold)", marginTop: 4 }}>HaqDaar</div>
+      <div style={{ textAlign: "center", marginBottom: 24 }}>
+        <div style={{ display:"flex",justifyContent:"center" }}><Brand size={36} onClick={() => navigate("/")} /></div>
         <div className="hd-divrow">SIGN IN</div>
         <h1 className="hd-h1">Your rights are waiting <em style={{ color: "var(--gold-light)", fontStyle: "italic" }}>for you.</em></h1>
         <p className="hd-sub">Pakistan's free legal aid network — built for every citizen.</p>
@@ -425,10 +447,11 @@ const Auth = () => {
 
   const renderRole = () => (
     <div className="hd-form">
+      <div style={{ display:"flex",justifyContent:"center",marginBottom:14 }}><Brand size={30} onClick={() => navigate("/")} /></div>
       <ProgressBar step={1} />
       <div className="hd-divrow">JOIN</div>
-      <h1 className="hd-h1" style={{ fontSize: "1.7rem" }}>Who are you?</h1>
-      <p className="hd-sub">Select your role to create your account.</p>
+      <h1 className="hd-h1" style={{ fontSize: "1.7rem", textAlign:"center" }}>Who are you?</h1>
+      <p className="hd-sub" style={{ textAlign:"center" }}>Select your role to create your account.</p>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 24 }}>
         {[
@@ -462,75 +485,78 @@ const Auth = () => {
   );
 
   const renderDetails = () => (
-    <div className="hd-form">
+    <div className="hd-form hd-compact">
+      <div style={{ display:"flex",justifyContent:"center",marginBottom:10 }}><Brand size={26} onClick={() => navigate("/")} /></div>
       <ProgressBar step={2} />
-      <div className="hd-divrow">CREATE ACCOUNT</div>
-      <h1 className="hd-h1" style={{ fontSize: "1.7rem" }}>Your details</h1>
+      <h1 className="hd-h1" style={{ fontSize: "1.45rem", textAlign:"center", marginBottom:4 }}>Your details</h1>
+      <p className="hd-sub" style={{ textAlign:"center", marginBottom:14 }}>Complete your registration below.</p>
 
-      <div className="hd-scroll" style={{ marginTop: 18, display: "flex", flexDirection: "column", gap: 14 }}>
-        <Field label="Full Name" icon={<User2 size={16}/>} value={form.fullName} onChange={v => setF("fullName", v)} />
+      <div style={{ display: "grid", gridTemplateColumns:"1fr 1fr", gap: 10 }}>
+        <Field label="Full Name" icon={<User2 size={14}/>} value={form.fullName} onChange={v => setF("fullName", v)} />
         <div>
-          <label className="hd-label">Email Address</label>
+          <label className="hd-label">Email</label>
           <div className="hd-inputw">
-            <Mail size={16} className="hd-ico" />
+            <Mail size={14} className="hd-ico" />
             <input className={`hd-input ${emailTaken ? "err" : ""}`} type="email" value={form.email} onChange={e => setF("email", e.target.value)} onBlur={handleEmailBlur} />
           </div>
-          {emailTaken && <div className="hd-msg err">Email already registered. <button className="hd-link" onClick={() => go("login")}>Log in?</button></div>}
+          {emailTaken && <div className="hd-msg err">Already registered. <button className="hd-link" onClick={() => go("login")}>Log in?</button></div>}
         </div>
-        <Field label="Phone Number" icon={<Phone size={16}/>} value={form.phone} onChange={v => setF("phone", v)} placeholder="+92 300 0000000" />
+        <Field label="Phone" icon={<Phone size={14}/>} value={form.phone} onChange={v => setF("phone", v)} placeholder="+92 300 0000000" />
         <div>
           <label className="hd-label">City</label>
           <div className="hd-inputw">
-            <select className="hd-input" style={{ paddingLeft: 16, appearance: "none" }} value={form.city} onChange={e => setF("city", e.target.value)}>
+            <select className="hd-input" style={{ paddingLeft: 14, appearance: "none" }} value={form.city} onChange={e => setF("city", e.target.value)}>
               <option value="">Select city</option>
               {CITIES.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
-            <ChevronDown size={16} className="hd-ico r" style={{ pointerEvents: "none" }} />
+            <ChevronDown size={14} className="hd-ico r" style={{ pointerEvents: "none" }} />
           </div>
         </div>
 
         <div>
           <label className="hd-label">Password</label>
           <div className="hd-inputw">
-            <Lock size={16} className="hd-ico" />
+            <Lock size={14} className="hd-ico" />
             <input className="hd-input" type={showPw ? "text" : "password"} value={form.password} onChange={e => setF("password", e.target.value)} />
-            <button type="button" className="hd-ico r" onClick={() => setShowPw(s => !s)}>{showPw ? <EyeOff size={16}/> : <Eye size={16}/>}</button>
+            <button type="button" className="hd-ico r" onClick={() => setShowPw(s => !s)}>{showPw ? <EyeOff size={14}/> : <Eye size={14}/>}</button>
           </div>
           <div className="hd-strength">
             {[0,1,2,3].map(i => <div key={i} style={{ background: i < score ? STRENGTH_COLOR[score] : "#2a2723" }} />)}
           </div>
-          <div style={{ fontSize: ".72rem", color: STRENGTH_COLOR[score] || "var(--text-muted)", marginTop: 4 }}>{STRENGTH_LABEL[score] || " "}</div>
         </div>
-
         <div>
           <label className="hd-label">Confirm Password</label>
           <div className="hd-inputw">
-            <Lock size={16} className="hd-ico" />
+            <Lock size={14} className="hd-ico" />
             <input className={`hd-input ${form.confirm && (form.confirm === form.password ? "ok" : "err")}`} type={showCpw ? "text" : "password"} value={form.confirm} onChange={e => setF("confirm", e.target.value)} />
             <button type="button" className="hd-ico r" onClick={() => setShowCpw(s => !s)}>
-              {form.confirm && form.confirm === form.password ? <CheckCircle2 size={16} color="var(--success)"/> : (showCpw ? <EyeOff size={16}/> : <Eye size={16}/>)}
+              {form.confirm && form.confirm === form.password ? <CheckCircle2 size={14} color="var(--success)"/> : (showCpw ? <EyeOff size={14}/> : <Eye size={14}/>)}
             </button>
           </div>
         </div>
 
         {role === "lawyer" && <>
-          <Field label="Bar Council Reg. No." icon={<FileText size={16}/>} value={form.barNo} onChange={v => setF("barNo", v)} />
-          <SelectF label="Primary Specialization" options={SPECS} value={form.spec} onChange={v => setF("spec", v)} />
-          <Field label="Years of Experience" icon={<Clock size={16}/>} value={form.years} onChange={v => setF("years", v)} type="number" />
+          <Field label="Bar Council No." icon={<FileText size={14}/>} value={form.barNo} onChange={v => setF("barNo", v)} />
+          <SelectF label="Specialization" options={SPECS} value={form.spec} onChange={v => setF("spec", v)} />
+          <div style={{ gridColumn:"1 / -1" }}>
+            <Field label="Years of Experience" icon={<Clock size={14}/>} value={form.years} onChange={v => setF("years", v)} type="number" />
+          </div>
         </>}
         {role === "ngo" && <>
-          <Field label="Organization Name" icon={<Building2 size={16}/>} value={form.orgName} onChange={v => setF("orgName", v)} />
-          <Field label="Organization Reg. No." icon={<FileText size={16}/>} value={form.orgNo} onChange={v => setF("orgNo", v)} />
-          <SelectF label="Primary Focus Area" options={SPECS} value={form.focus} onChange={v => setF("focus", v)} />
+          <Field label="Organization Name" icon={<Building2 size={14}/>} value={form.orgName} onChange={v => setF("orgName", v)} />
+          <Field label="Organization Reg. No." icon={<FileText size={14}/>} value={form.orgNo} onChange={v => setF("orgNo", v)} />
+          <div style={{ gridColumn:"1 / -1" }}>
+            <SelectF label="Primary Focus Area" options={SPECS} value={form.focus} onChange={v => setF("focus", v)} />
+          </div>
         </>}
-
-        <label className="hd-cb" style={{ fontSize: ".8rem", color: "var(--text-secondary)" }}>
-          <input type="checkbox" checked={form.terms} onChange={e => setF("terms", e.target.checked)} />
-          I agree to the <a className="hd-link">Terms of Service</a> and <a className="hd-link">Privacy Policy</a>
-        </label>
       </div>
 
-      <div style={{ marginTop: 18 }}>
+      <label className="hd-cb" style={{ fontSize: ".75rem", color: "var(--text-secondary)", marginTop: 12 }}>
+        <input type="checkbox" checked={form.terms} onChange={e => setF("terms", e.target.checked)} />
+        I agree to the <a className="hd-link">Terms</a> and <a className="hd-link">Privacy Policy</a>
+      </label>
+
+      <div style={{ marginTop: 12 }}>
         <button className="hd-btn primary" style={{ width: "100%" }} disabled={!detailsValid} onClick={submitDetails}>Next</button>
       </div>
     </div>
@@ -538,6 +564,7 @@ const Auth = () => {
 
   const renderVerify = () => (
     <div className="hd-form" style={{ textAlign: "center" }}>
+      <div style={{ display:"flex",justifyContent:"center",marginBottom:10 }}><Brand size={28} onClick={() => navigate("/")} /></div>
       <ProgressBar step={3} />
       <div className="hd-pulse"><Mail size={28}/></div>
       <h1 className="hd-h1" style={{ fontSize: "1.6rem" }}>Verify your email</h1>
@@ -575,6 +602,7 @@ const Auth = () => {
   const renderForgot = () => (
     <form className="hd-form" onSubmit={submitForgot}>
       <div style={{ textAlign: "center" }}>
+        <div style={{ display:"flex",justifyContent:"center",marginBottom:14 }}><Brand size={28} onClick={() => navigate("/")} /></div>
         <div style={{ display:"inline-flex",position:"relative",padding:14,borderRadius:999,background:"var(--gold-glow)",marginBottom:8 }}>
           <KeyRound size={32} color="var(--gold)" />
         </div>
@@ -613,6 +641,7 @@ const Auth = () => {
   const renderReset = () => (
     <form className="hd-form" onSubmit={submitReset}>
       <div style={{ textAlign: "center" }}>
+        <div style={{ display:"flex",justifyContent:"center",marginBottom:14 }}><Brand size={28} onClick={() => navigate("/")} /></div>
         <ShieldCheck size={32} color="var(--gold)" style={{ margin: "0 auto" }}/>
         <div className="hd-divrow">NEW PASSWORD</div>
         <h1 className="hd-h1" style={{ fontSize: "1.7rem" }}>{resetDone ? "Password updated!" : "Set a new password"}</h1>
@@ -662,7 +691,8 @@ const Auth = () => {
         {toast && <div className="hd-toast"><CheckCircle2 size={16}/> {toast}</div>}
         <div className="hd-rpanel">
           <div className="hd-mob-logo">
-            <div style={{ fontFamily:"'Noto Nastaliq Urdu',serif",fontSize:14,color:"var(--gold)",direction:"rtl" }}>حق · عدل · انصاف</div>
+            <Brand size={28} onClick={() => navigate("/")} />
+            <div style={{ fontFamily:"'Noto Nastaliq Urdu',serif",fontSize:13,color:"var(--gold)",direction:"rtl",marginTop:4 }}>حق · عدل · انصاف</div>
           </div>
           <div key={animKey} className="hd-stage">
             {state === "login" && renderLogin()}
@@ -673,11 +703,27 @@ const Auth = () => {
             {state === "reset" && renderReset()}
           </div>
         </div>
-        <div className="hd-foot">
-          <span>© 2026 HaqDaar — All rights reserved</span>
-          <span><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Help Center</a><a href="/contact">Contact Us</a></span>
+      </div>
+      <div className="hd-foot">
+        <div className="stats">
+          <span><b>12.4k+</b> citizens helped</span>
+          <span className="sep">·</span>
+          <span><b>340</b> volunteer lawyers</span>
+        </div>
+        <div>© 2026 HaqDaar — All rights reserved</div>
+        <div className="links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Help Center</a>
+          <a href="/contact">Contact Us</a>
         </div>
       </div>
+      <button className="hd-quickexit" onClick={() => { window.location.href = "https://www.weather.com"; }} aria-label="Quick Exit">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        Quick Exit
+      </button>
     </div>
   );
 };
