@@ -1,10 +1,32 @@
 import { Bell, Search, ChevronDown, Scale } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const SEARCH_INDEX = [
+  { type: "Case", label: "HD-2401 Wrongful termination" },
+  { type: "Case", label: "HD-2402 Tenancy eviction" },
+  { type: "Case", label: "HD-3101 Workplace harassment" },
+  { type: "Client", label: "Hassan Ali" },
+  { type: "Client", label: "Ayesha M." },
+  { type: "Page", label: "Active Cases" },
+  { type: "Page", label: "Case Requests" },
+  { type: "Page", label: "Messages" },
+  { type: "Page", label: "Impact Dashboard" },
+  { type: "Page", label: "Legal Resources" },
+];
 
 export const Topbar = ({ sidebarW, name = "Irtiza Rayan", initials = "IR" }: { sidebarW: number; name?: string; initials?: string }) => {
   const [open, setOpen] = useState(false);
   const [notifOpen, setNotifOpen] = useState(false);
   const [filter, setFilter] = useState<"All" | "Messages" | "Responses" | "Requests">("All");
+  const [q, setQ] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const h = (e: MouseEvent) => { if (!searchRef.current?.contains(e.target as Node)) setSearchOpen(false); };
+    document.addEventListener("mousedown", h);
+    return () => document.removeEventListener("mousedown", h);
+  }, []);
+  const results = q.trim() ? SEARCH_INDEX.filter(s => s.label.toLowerCase().includes(q.toLowerCase())).slice(0, 6) : [];
   const notifs = [
     { type: "Requests", text: "New case request from Ali Raza", time: "2m" },
     { type: "Messages", text: "New message from Sara K.", time: "12m" },
@@ -20,9 +42,28 @@ export const Topbar = ({ sidebarW, name = "Irtiza Rayan", initials = "IR" }: { s
         <Scale size={22} className="text-[#C9A84C]" />
         <span className="lp-display text-[22px] font-bold text-white leading-none whitespace-nowrap">HaqDaar</span>
       </div>
-      <div className="flex-1 max-w-[360px] mx-6 relative">
-        <Search size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#888]" />
-        <input className="lp-input" style={{ paddingLeft: 60 }} placeholder="Search cases, clients..." />
+      <div ref={searchRef} className="flex-1 max-w-[360px] mx-6 relative">
+        <Search size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#888] z-[1]" />
+        <input
+          value={q}
+          onChange={e => { setQ(e.target.value); setSearchOpen(true); }}
+          onFocus={() => setSearchOpen(true)}
+          className="lp-input"
+          style={{ paddingLeft: 60 }}
+          placeholder="Search cases, clients..."
+        />
+        {searchOpen && q.trim() && (
+          <div className="absolute left-0 right-0 top-12 rounded-xl py-1 lp-fade z-40" style={{ background: "#141414", border: "1px solid rgba(201,168,76,.4)", boxShadow: "0 20px 50px -10px rgba(0,0,0,.7)", maxHeight: 320, overflowY: "auto" }}>
+            {results.length === 0 ? (
+              <div className="px-4 py-3 text-[12px] text-[#888]">No matches.</div>
+            ) : results.map((r, i) => (
+              <button key={i} onClick={() => { setQ(r.label); setSearchOpen(false); }} className="w-full flex items-center justify-between gap-3 px-4 py-2 text-left hover:bg-[rgba(201,168,76,.1)] transition-colors">
+                <span className="text-[12.5px] text-[#E8E0D0]">{r.label}</span>
+                <span className="text-[9.5px] uppercase tracking-[.14em] text-[#C9A84C]">{r.type}</span>
+              </button>
+            ))}
+          </div>
+        )}
       </div>
       <div className="flex items-center gap-3">
         <div className="relative">
