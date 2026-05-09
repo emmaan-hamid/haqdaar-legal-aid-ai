@@ -262,7 +262,7 @@ const Auth = () => {
     .hd-msg{font-size:.72rem;margin-top:4px;}
     .hd-msg.err{color:var(--error);}
     .hd-msg.ok{color:var(--success);}
-    .hd-btn{height:48px;width:100%;border-radius:8px;font:600 .88rem 'DM Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:10px;}
+    .hd-btn{height:44px;width:100%;border-radius:8px;font:600 .82rem 'DM Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:10px;}
     .hd-btn.primary{background:linear-gradient(135deg,#C9A84C 0%,#A8863A 100%);color:#0A0A0A;border:none;}
     .hd-btn.primary:hover:not(:disabled){filter:brightness(1.1);transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,168,76,.25);}
     .hd-btn.primary:disabled{opacity:.4;cursor:not-allowed;}
