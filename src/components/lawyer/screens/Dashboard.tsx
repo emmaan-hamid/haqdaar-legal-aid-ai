@@ -285,6 +285,7 @@ export const Dashboard = ({ goto }: { goto: (s: any) => void }) => {
           </div>
         </div>
       </div>
+      <Toast msg={toast} />
     </div>
   );
 };
