@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Star, Upload, Check, X, FileCheck, AlertCircle } from "lucide-react";
+import { Star, Upload, Check, X, FileCheck, AlertCircle, MessageCircle, Phone, Video, Calendar, Clock, Edit3, Plus, Folder, User, CheckCircle2, Shield, ChevronDown } from "lucide-react";
 import { AvailabilityCockpit } from "../AvailabilityCockpit";
 
 const tabs = ["Profile", "Availability", "Specialization", "Certifications", "Reputation"] as const;
