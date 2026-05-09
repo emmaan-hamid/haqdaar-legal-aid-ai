@@ -5,6 +5,7 @@ import {
   ChevronDown, Phone, FileText, Building2, CheckCircle2, XCircle,
   Loader2, ShieldCheck, KeyRound, Clock,
 } from "lucide-react";
+import { Cursor } from "@/components/haqdaar/Cursor";
 
 type AuthState = "login" | "signup_role" | "signup_details" | "signup_verify" | "forgot" | "reset";
 type Role = "citizen" | "lawyer" | "ngo";
