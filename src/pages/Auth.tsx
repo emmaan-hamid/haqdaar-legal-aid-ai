@@ -6,6 +6,7 @@ import {
   Loader2, ShieldCheck, KeyRound, Clock,
 } from "lucide-react";
 import { Cursor } from "@/components/haqdaar/Cursor";
+import courtBg from "@/assets/auth-court-bg.jpg";
 
 type AuthState = "login" | "signup_role" | "signup_details" | "signup_verify" | "forgot" | "reset";
 type Role = "citizen" | "lawyer" | "ngo";
