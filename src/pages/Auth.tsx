@@ -531,9 +531,8 @@ const Auth = () => {
         </label>
       </div>
 
-      <div style={{ display: "flex", gap: 12, marginTop: 18, alignItems: "center" }}>
-        <button className="hd-link" onClick={() => go("signup_role")}>← Back</button>
-        <button className="hd-btn primary" style={{ flex: 1 }} disabled={!detailsValid} onClick={submitDetails}>Next</button>
+      <div style={{ marginTop: 18 }}>
+        <button className="hd-btn primary" style={{ width: "100%" }} disabled={!detailsValid} onClick={submitDetails}>Next</button>
       </div>
     </div>
   );
