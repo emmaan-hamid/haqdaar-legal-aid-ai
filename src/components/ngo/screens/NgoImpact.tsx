@@ -16,6 +16,13 @@ const useCount = (target: number) => {
 
 export const NgoImpact = () => {
   const a = useCount(312), b = useCount(187), c = useCount(6), d = useCount(14);
+  const [toast, setToast] = useState("");
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const showToast = (m: string) => { setToast(m); setTimeout(() => setToast(""), 1800); };
+  const handleDownload = () => {
+    showToast("Preparing impact report...");
+    setTimeout(() => showToast("Report downloaded"), 1500);
+  };
   const kpis = [
     { Icon: Users, l: "Citizens Helped", v: a, color: "#C9A84C" },
     { Icon: CheckCircle2, l: "Cases Resolved", v: b, color: "#5BC68C", sq: "green" },
@@ -27,8 +34,8 @@ export const NgoImpact = () => {
       <div className="flex items-center justify-between flex-wrap gap-3">
         <h2 className="lp-display text-[28px] font-bold text-white">NGO Impact Dashboard</h2>
         <div className="flex items-center gap-2">
-          <button className="lp-btn lp-btn-gold"><SettingsIcon size={12} /> Settings</button>
-          <button className="lp-btn lp-btn-gold-solid"><Download size={12} /> Download</button>
+          <button onClick={() => setSettingsOpen(true)} className="lp-btn lp-btn-gold"><SettingsIcon size={12} /> Settings</button>
+          <button onClick={handleDownload} className="lp-btn lp-btn-gold-solid"><Download size={12} /> Download</button>
         </div>
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
