@@ -355,7 +355,7 @@ const Auth = () => {
   // ---------- left panel ----------
   const Left = (
     <div className="hd-left">
-      <div className="hd-quote-wrap">
+      <div className="hd-quote-wrap" onMouseEnter={() => setQuotePaused(true)} onMouseLeave={() => setQuotePaused(false)}>
         <span className="hd-bigq">&ldquo;</span>
         <span className="hd-bigq r">&rdquo;</span>
         <div style={{ position: "relative", minHeight: 320 }}>
