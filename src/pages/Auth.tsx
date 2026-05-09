@@ -315,10 +315,7 @@ const Auth = () => {
     .hd-pulse::after{content:"";position:absolute;inset:-2px;border:2px solid var(--gold);border-radius:999px;animation:hd-pulsering 2s ease-out infinite;}
     .hd-info{background:rgba(201,168,76,0.06);border:1px solid var(--gold-border);border-radius:10px;padding:14px 16px;display:flex;gap:10px;font-size:.8rem;color:var(--text-secondary);margin-top:18px;}
     .hd-toast{position:absolute;top:20px;left:50%;transform:translateX(-50%);background:rgba(90,176,122,.15);border:1px solid var(--success);color:var(--success);padding:10px 18px;border-radius:10px;font-size:.82rem;display:flex;align-items:center;gap:8px;animation:hd-slidedown .3s ease-out;z-index:4;}
-    .hd-scroll{max-height:65vh;overflow-y:auto;padding-right:6px;}
-    .hd-scroll::-webkit-scrollbar{width:4px;}
-    .hd-scroll::-webkit-scrollbar-track{background:transparent;}
-    .hd-scroll::-webkit-scrollbar-thumb{background:var(--gold-border);border-radius:2px;}
+    .hd-scroll{display:flex;flex-direction:column;}
     .hd-mob-logo{display:none;}
     @media (max-width:768px){
       .hd-left{display:none;}
