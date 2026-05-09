@@ -574,6 +574,7 @@ const Auth = () => {
 
   const renderVerify = () => (
     <div className="hd-form" style={{ textAlign: "center" }}>
+      <SignupHead />
       <ProgressBar step={3} />
       <div className="hd-pulse"><Mail size={28}/></div>
       <h1 className="hd-h1" style={{ fontSize: "1.6rem" }}>Verify your email</h1>
