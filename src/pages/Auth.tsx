@@ -68,10 +68,12 @@ const Auth = () => {
   const go = (s: AuthState) => { setState(s); setAnimKey(k => k + 1); };
 
   const [quoteIndex, setQuoteIndex] = useState(0);
+  const [quotePaused, setQuotePaused] = useState(false);
   useEffect(() => {
-    const t = setInterval(() => setQuoteIndex(i => (i + 1) % QUOTES.length), 6000);
+    if (quotePaused) return;
+    const t = setInterval(() => setQuoteIndex(i => (i + 1) % QUOTES.length), 7000);
     return () => clearInterval(t);
-  }, []);
+  }, [quotePaused]);
 
   // form data
   const [form, setForm] = useState({
@@ -216,18 +218,27 @@ const Auth = () => {
   // ---------- styles ----------
   const css = `
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
-    .hd-auth { --bg-base:#090909;--bg-left:#0C0A07;--bg-right:#0F0E0C;--bg-card:#141210;--bg-input:#1A1815;--bg-hover:#221F1A;
-      --gold:#C9A84C;--gold-light:#E2C97E;--gold-dim:#8A6E32;--gold-soft:rgba(201,168,76,0.12);--gold-glow:rgba(201,168,76,0.20);
-      --gold-border:rgba(201,168,76,0.25);--gold-border-strong:rgba(201,168,76,0.6);
-      --text:#F2EDE4;--text-primary:#F2EDE4;--text-secondary:#9A9080;--text-muted:#5C5650;--muted:#9A9080;--dim:#5C5650;
-      --success:#5AB07A;--error:#D95B5B;
-      font-family:'DM Sans',sans-serif;color:var(--text-primary);background:var(--bg-base);height:100vh;overflow:hidden;display:flex;cursor:none;}
+    .hd-auth { --bg-base:#0A0A0A;--bg-left:#0A0A0A;--bg-right:#0A0A0A;--bg-card:#141414;--bg-input:#141414;--bg-hover:#1E1E1E;
+      --gold:#C9A84C;--gold-light:#E2C97E;--gold-dim:rgba(201,168,76,0.15);--gold-soft:rgba(201,168,76,0.10);--gold-glow:rgba(201,168,76,0.20);
+      --gold-border:rgba(201,168,76,0.25);--gold-border-strong:rgba(201,168,76,0.65);
+      --text:#E8E0D0;--text-primary:#FFFFFF;--text-secondary:#E8E0D0;--text-muted:#888880;--muted:#888880;--dim:#5C5650;
+      --success:#5AB07A;--error:#D95B5B;--emergency:#C0392B;
+      font-family:'DM Sans',sans-serif;color:var(--text-secondary);background:var(--bg-base);height:100vh;overflow:hidden;display:flex;cursor:none;}
     .hd-auth *,.hd-auth *::before,.hd-auth *::after{cursor:none !important;}
+    @media (hover:none),(pointer:coarse){.hd-auth,.hd-auth *,.hd-auth *::before,.hd-auth *::after{cursor:auto !important;}}
+    @media (prefers-reduced-motion: reduce){
+      .hd-auth *,.hd-auth *::before,.hd-auth *::after{animation:none !important;transition:opacity .2s ease,color .2s ease,background .2s ease,border-color .2s ease !important;}
+    }
     .hd-left{width:45%;background:var(--bg-left);position:relative;overflow:hidden;}
-    .hd-left::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 60% 45%, rgba(180,130,40,0.18) 0%, transparent 70%);pointer-events:none;}
+    .hd-left::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 60% 45%, rgba(201,168,76,0.12) 0%, transparent 70%);pointer-events:none;}
     .hd-left::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 40% 30% at 20% 90%, rgba(201,168,76,0.06), transparent 70%),radial-gradient(ellipse 30% 25% at 85% 15%, rgba(201,168,76,0.05), transparent 70%);pointer-events:none;}
     .hd-right{width:55%;background:var(--bg-right);position:relative;overflow:hidden;}
     .hd-right::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 60%);pointer-events:none;}
+    .hd-divider-glow{position:absolute;left:45%;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent 0%,rgba(201,168,76,0.7) 20%,rgba(201,168,76,0.95) 50%,rgba(201,168,76,0.7) 80%,transparent 100%);box-shadow:0 0 14px rgba(201,168,76,0.55),0 0 30px rgba(201,168,76,0.25);pointer-events:none;z-index:2;animation:hd-glowpulse 4.5s ease-in-out infinite;}
+    @media (max-width:768px){.hd-divider-glow{display:none;}}
+    .hd-signup-head{text-align:center;margin-bottom:14px;animation:hd-in .5s cubic-bezier(.22,1,.36,1);}
+    .hd-signup-head h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.55rem;color:var(--text-primary);letter-spacing:.3px;}
+    .hd-signup-head p{font-size:.78rem;color:var(--text-muted);margin-top:4px;}
     .hd-quote-wrap{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80%;max-width:380px;animation:hd-floaty 9s ease-in-out infinite;}
     .hd-bigq{font-family:'Playfair Display',serif;font-size:130px;color:var(--gold);opacity:.22;line-height:1;position:absolute;top:-58px;left:-32px;pointer-events:none;text-shadow:0 0 40px rgba(201,168,76,0.25);}
     .hd-bigq.r{left:auto;right:-32px;top:auto;bottom:-90px;transform:scaleX(-1);}
@@ -344,7 +355,7 @@ const Auth = () => {
   // ---------- left panel ----------
   const Left = (
     <div className="hd-left">
-      <div className="hd-quote-wrap">
+      <div className="hd-quote-wrap" onMouseEnter={() => setQuotePaused(true)} onMouseLeave={() => setQuotePaused(false)}>
         <span className="hd-bigq">&ldquo;</span>
         <span className="hd-bigq r">&rdquo;</span>
         <div style={{ position: "relative", minHeight: 320 }}>
@@ -438,14 +449,22 @@ const Auth = () => {
     </form>
   );
 
+  const SignupHead = () => (
+    <div className="hd-signup-head">
+      <h2>Create your account</h2>
+      <p>Join us and begin your journey</p>
+    </div>
+  );
+
   const renderRole = () => (
     <div className="hd-form">
+      <SignupHead />
       <ProgressBar step={1} />
       <div className="hd-divrow">JOIN</div>
-      <h1 className="hd-h1" style={{ fontSize: "1.7rem" }}>Who are you?</h1>
+      <h1 className="hd-h1" style={{ fontSize: "1.55rem" }}>Who are you?</h1>
       <p className="hd-sub">Select your role to create your account.</p>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 18 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 14 }}>
         {[
           { id: "citizen" as Role, icon: <User2 size={20}/>, t: "Citizen / User", d: "I need legal help or information" },
           { id: "lawyer" as Role, icon: <Scale size={20}/>, t: "Volunteer Lawyer", d: "I want to offer free legal help" },
@@ -464,21 +483,22 @@ const Auth = () => {
         ))}
       </div>
 
-      <div style={{ display:"flex",alignItems:"center",gap:6,marginTop:14,fontSize:".72rem",color:"var(--text-muted)" }}>
+      <div style={{ display:"flex",alignItems:"center",gap:6,marginTop:12,fontSize:".72rem",color:"var(--text-muted)" }}>
         <AlertCircle size={12} color="var(--gold)"/> Role cannot be changed after registration
       </div>
 
-      <div style={{ textAlign:"center",margin:"18px 0",fontSize:".82rem",color:"var(--text-secondary)" }}>
+      <button className="hd-btn primary" style={{ marginTop: 16 }} disabled={!role} onClick={() => go("signup_details")}>Next</button>
+
+      <div style={{ textAlign:"center",marginTop:14,fontSize:".82rem",color:"var(--text-secondary)" }}>
         Already have an account? <button className="hd-link" onClick={() => go("login")}>Log in</button>
       </div>
-
-      <button className="hd-btn primary" disabled={!role} onClick={() => go("signup_details")}>Next</button>
     </div>
   );
 
   const renderDetails = () => (
     <div className="hd-form hd-compact">
       <style>{`.hd-compact .hd-input{height:34px;font-size:.78rem;}.hd-compact .hd-label{font-size:.58rem;margin-bottom:2px;}.hd-compact .hd-h1{font-size:1.35rem !important;}.hd-compact .hd-divrow{margin:8px 0 6px;font-size:.58rem;}.hd-compact .hd-progress{margin-bottom:8px;}.hd-compact .hd-circ{width:22px;height:22px;font-size:.68rem;}.hd-compact .hd-strength div{height:2px;}.hd-compact .hd-btn{height:38px;font-size:.76rem;}`}</style>
+      <SignupHead />
       <ProgressBar step={2} />
       <div className="hd-divrow">CREATE ACCOUNT</div>
       <h1 className="hd-h1" style={{ fontSize: "1.35rem" }}>Your details</h1>
@@ -554,6 +574,7 @@ const Auth = () => {
 
   const renderVerify = () => (
     <div className="hd-form" style={{ textAlign: "center" }}>
+      <SignupHead />
       <ProgressBar step={3} />
       <div className="hd-pulse"><Mail size={28}/></div>
       <h1 className="hd-h1" style={{ fontSize: "1.6rem" }}>Verify your email</h1>
@@ -675,6 +696,7 @@ const Auth = () => {
       <style>{css}</style>
       <Cursor />
       {Left}
+      <div className="hd-divider-glow" aria-hidden />
       <div className="hd-right">
         {toast && <div className="hd-toast"><CheckCircle2 size={16}/> {toast}</div>}
         <div className="hd-rpanel">
