@@ -191,7 +191,7 @@ export const NgoDashboard = ({ goto }: { goto: (s: any) => void }) => {
             <div className="grid grid-cols-[68px_1fr_92px_44px_64px] gap-3 px-3 py-3 text-[10px] uppercase tracking-[.14em] text-[#888] font-semibold rounded-lg" style={{ background: "#0F0F0F" }}>
               <div>Case ID</div><div>Title</div><div className="text-center">Status</div><div className="text-center">Due</div><div className="text-right">Action</div>
             </div>
-            {active.map((c) => {
+            {active.slice(0, 6).map((c) => {
               const dnum = parseInt(c.deadline);
               return (
               <div key={c.id}>
