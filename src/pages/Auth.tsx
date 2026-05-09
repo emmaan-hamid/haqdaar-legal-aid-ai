@@ -485,75 +485,78 @@ const Auth = () => {
   );
 
   const renderDetails = () => (
-    <div className="hd-form">
+    <div className="hd-form hd-compact">
+      <div style={{ display:"flex",justifyContent:"center",marginBottom:10 }}><Brand size={26} onClick={() => navigate("/")} /></div>
       <ProgressBar step={2} />
-      <div className="hd-divrow">CREATE ACCOUNT</div>
-      <h1 className="hd-h1" style={{ fontSize: "1.7rem" }}>Your details</h1>
+      <h1 className="hd-h1" style={{ fontSize: "1.45rem", textAlign:"center", marginBottom:4 }}>Your details</h1>
+      <p className="hd-sub" style={{ textAlign:"center", marginBottom:14 }}>Complete your registration below.</p>
 
-      <div className="hd-scroll" style={{ marginTop: 18, display: "flex", flexDirection: "column", gap: 14 }}>
-        <Field label="Full Name" icon={<User2 size={16}/>} value={form.fullName} onChange={v => setF("fullName", v)} />
+      <div style={{ display: "grid", gridTemplateColumns:"1fr 1fr", gap: 10 }}>
+        <Field label="Full Name" icon={<User2 size={14}/>} value={form.fullName} onChange={v => setF("fullName", v)} />
         <div>
-          <label className="hd-label">Email Address</label>
+          <label className="hd-label">Email</label>
           <div className="hd-inputw">
-            <Mail size={16} className="hd-ico" />
+            <Mail size={14} className="hd-ico" />
             <input className={`hd-input ${emailTaken ? "err" : ""}`} type="email" value={form.email} onChange={e => setF("email", e.target.value)} onBlur={handleEmailBlur} />
           </div>
-          {emailTaken && <div className="hd-msg err">Email already registered. <button className="hd-link" onClick={() => go("login")}>Log in?</button></div>}
+          {emailTaken && <div className="hd-msg err">Already registered. <button className="hd-link" onClick={() => go("login")}>Log in?</button></div>}
         </div>
-        <Field label="Phone Number" icon={<Phone size={16}/>} value={form.phone} onChange={v => setF("phone", v)} placeholder="+92 300 0000000" />
+        <Field label="Phone" icon={<Phone size={14}/>} value={form.phone} onChange={v => setF("phone", v)} placeholder="+92 300 0000000" />
         <div>
           <label className="hd-label">City</label>
           <div className="hd-inputw">
-            <select className="hd-input" style={{ paddingLeft: 16, appearance: "none" }} value={form.city} onChange={e => setF("city", e.target.value)}>
+            <select className="hd-input" style={{ paddingLeft: 14, appearance: "none" }} value={form.city} onChange={e => setF("city", e.target.value)}>
               <option value="">Select city</option>
               {CITIES.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
-            <ChevronDown size={16} className="hd-ico r" style={{ pointerEvents: "none" }} />
+            <ChevronDown size={14} className="hd-ico r" style={{ pointerEvents: "none" }} />
           </div>
         </div>
 
         <div>
           <label className="hd-label">Password</label>
           <div className="hd-inputw">
-            <Lock size={16} className="hd-ico" />
+            <Lock size={14} className="hd-ico" />
             <input className="hd-input" type={showPw ? "text" : "password"} value={form.password} onChange={e => setF("password", e.target.value)} />
-            <button type="button" className="hd-ico r" onClick={() => setShowPw(s => !s)}>{showPw ? <EyeOff size={16}/> : <Eye size={16}/>}</button>
+            <button type="button" className="hd-ico r" onClick={() => setShowPw(s => !s)}>{showPw ? <EyeOff size={14}/> : <Eye size={14}/>}</button>
           </div>
           <div className="hd-strength">
             {[0,1,2,3].map(i => <div key={i} style={{ background: i < score ? STRENGTH_COLOR[score] : "#2a2723" }} />)}
           </div>
-          <div style={{ fontSize: ".72rem", color: STRENGTH_COLOR[score] || "var(--text-muted)", marginTop: 4 }}>{STRENGTH_LABEL[score] || " "}</div>
         </div>
-
         <div>
           <label className="hd-label">Confirm Password</label>
           <div className="hd-inputw">
-            <Lock size={16} className="hd-ico" />
+            <Lock size={14} className="hd-ico" />
             <input className={`hd-input ${form.confirm && (form.confirm === form.password ? "ok" : "err")}`} type={showCpw ? "text" : "password"} value={form.confirm} onChange={e => setF("confirm", e.target.value)} />
             <button type="button" className="hd-ico r" onClick={() => setShowCpw(s => !s)}>
-              {form.confirm && form.confirm === form.password ? <CheckCircle2 size={16} color="var(--success)"/> : (showCpw ? <EyeOff size={16}/> : <Eye size={16}/>)}
+              {form.confirm && form.confirm === form.password ? <CheckCircle2 size={14} color="var(--success)"/> : (showCpw ? <EyeOff size={14}/> : <Eye size={14}/>)}
             </button>
           </div>
         </div>
 
         {role === "lawyer" && <>
-          <Field label="Bar Council Reg. No." icon={<FileText size={16}/>} value={form.barNo} onChange={v => setF("barNo", v)} />
-          <SelectF label="Primary Specialization" options={SPECS} value={form.spec} onChange={v => setF("spec", v)} />
-          <Field label="Years of Experience" icon={<Clock size={16}/>} value={form.years} onChange={v => setF("years", v)} type="number" />
+          <Field label="Bar Council No." icon={<FileText size={14}/>} value={form.barNo} onChange={v => setF("barNo", v)} />
+          <SelectF label="Specialization" options={SPECS} value={form.spec} onChange={v => setF("spec", v)} />
+          <div style={{ gridColumn:"1 / -1" }}>
+            <Field label="Years of Experience" icon={<Clock size={14}/>} value={form.years} onChange={v => setF("years", v)} type="number" />
+          </div>
         </>}
         {role === "ngo" && <>
-          <Field label="Organization Name" icon={<Building2 size={16}/>} value={form.orgName} onChange={v => setF("orgName", v)} />
-          <Field label="Organization Reg. No." icon={<FileText size={16}/>} value={form.orgNo} onChange={v => setF("orgNo", v)} />
-          <SelectF label="Primary Focus Area" options={SPECS} value={form.focus} onChange={v => setF("focus", v)} />
+          <Field label="Organization Name" icon={<Building2 size={14}/>} value={form.orgName} onChange={v => setF("orgName", v)} />
+          <Field label="Organization Reg. No." icon={<FileText size={14}/>} value={form.orgNo} onChange={v => setF("orgNo", v)} />
+          <div style={{ gridColumn:"1 / -1" }}>
+            <SelectF label="Primary Focus Area" options={SPECS} value={form.focus} onChange={v => setF("focus", v)} />
+          </div>
         </>}
-
-        <label className="hd-cb" style={{ fontSize: ".8rem", color: "var(--text-secondary)" }}>
-          <input type="checkbox" checked={form.terms} onChange={e => setF("terms", e.target.checked)} />
-          I agree to the <a className="hd-link">Terms of Service</a> and <a className="hd-link">Privacy Policy</a>
-        </label>
       </div>
 
-      <div style={{ marginTop: 18 }}>
+      <label className="hd-cb" style={{ fontSize: ".75rem", color: "var(--text-secondary)", marginTop: 12 }}>
+        <input type="checkbox" checked={form.terms} onChange={e => setF("terms", e.target.checked)} />
+        I agree to the <a className="hd-link">Terms</a> and <a className="hd-link">Privacy Policy</a>
+      </label>
+
+      <div style={{ marginTop: 12 }}>
         <button className="hd-btn primary" style={{ width: "100%" }} disabled={!detailsValid} onClick={submitDetails}>Next</button>
       </div>
     </div>
