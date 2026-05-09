@@ -66,7 +66,6 @@ const Auth = () => {
   const [animKey, setAnimKey] = useState(0);
   const go = (s: AuthState) => { setState(s); setAnimKey(k => k + 1); };
 
-  const [lang, setLang] = useState<Lang>("en");
   const [quoteIndex, setQuoteIndex] = useState(0);
   useEffect(() => {
     const t = setInterval(() => setQuoteIndex(i => (i + 1) % QUOTES.length), 6000);
