@@ -2,12 +2,26 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import {
   Mail, Lock, Eye, EyeOff, User2, Scale, Handshake, AlertCircle,
-  ChevronDown, Phone, FileText, Building2, CheckCircle2, XCircle,
-  Loader2, ShieldCheck, KeyRound, Clock,
+  ChevronDown, Phone, FileText, Building2, CheckCircle2, XCircle, Circle,
+  Loader2, ShieldCheck, KeyRound, Clock, ArrowLeft,
 } from "lucide-react";
+import logoImg from "@/assets/haqdaar-logo.png";
 
 type AuthState = "login" | "signup_role" | "signup_details" | "signup_verify" | "forgot" | "reset";
 type Role = "citizen" | "lawyer" | "ngo";
+
+const QuickExitBtn = () => (
+  <button
+    onClick={() => { window.location.href = "https://www.weather.com"; }}
+    className="hd-quick-exit"
+    aria-label="Quick Exit"
+  >
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+    </svg>
+    Quick Exit
+  </button>
+);
 
 
 const QUOTES = [
