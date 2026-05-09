@@ -498,6 +498,7 @@ const Auth = () => {
   const renderDetails = () => (
     <div className="hd-form hd-compact">
       <style>{`.hd-compact .hd-input{height:34px;font-size:.78rem;}.hd-compact .hd-label{font-size:.58rem;margin-bottom:2px;}.hd-compact .hd-h1{font-size:1.35rem !important;}.hd-compact .hd-divrow{margin:8px 0 6px;font-size:.58rem;}.hd-compact .hd-progress{margin-bottom:8px;}.hd-compact .hd-circ{width:22px;height:22px;font-size:.68rem;}.hd-compact .hd-strength div{height:2px;}.hd-compact .hd-btn{height:38px;font-size:.76rem;}`}</style>
+      <SignupHead />
       <ProgressBar step={2} />
       <div className="hd-divrow">CREATE ACCOUNT</div>
       <h1 className="hd-h1" style={{ fontSize: "1.35rem" }}>Your details</h1>
