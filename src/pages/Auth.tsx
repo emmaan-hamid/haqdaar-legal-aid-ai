@@ -8,7 +8,7 @@ import {
 
 type AuthState = "login" | "signup_role" | "signup_details" | "signup_verify" | "forgot" | "reset";
 type Role = "citizen" | "lawyer" | "ngo";
-type Lang = "en" | "ur";
+
 
 const QUOTES = [
   {
