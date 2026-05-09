@@ -17,7 +17,6 @@ export const NgoCaseRequests = () => {
   return (
     <div className="lp-fade space-y-5">
       <div className="flex items-center gap-3">
-        <div className="lp-display text-[20px] font-semibold text-white">Incoming Requests</div>
         <span className="text-[11px] px-3 py-1 rounded-full font-bold tracking-wider" style={{ border: "1px solid #C9A84C", color: "#C9A84C" }}>{requests.length} NEW</span>
       </div>
       <CasesFilters second={{ label: "Urgency", options: URGENCIES }} />
@@ -90,7 +89,7 @@ export const NgoActiveCases = () => {
   const assign = (id: string, s: string) => { setRows(rows.map(r => r.id === id ? { ...r, staff: s } : r)); setToast(`Assigned ${s} to ${id}`); setTimeout(() => setToast(""), 2200); };
   return (
     <div className="lp-fade space-y-5">
-      <div className="lp-display text-[20px] font-semibold text-white">Active Cases <span className="text-[11px] px-3 py-1 rounded-full font-bold tracking-wider align-middle ml-2" style={{ border: "1px solid #C9A84C", color: "#C9A84C" }}>{rows.length}</span></div>
+      <div><span className="text-[11px] px-3 py-1 rounded-full font-bold tracking-wider align-middle" style={{ border: "1px solid #C9A84C", color: "#C9A84C" }}>{rows.length} ACTIVE</span></div>
       <CasesFilters second={{ label: "Status", options: STATUSES }} />
       <div className="lp-case-card p-0 overflow-hidden">
         <div className="overflow-x-auto lp-gold-scroll" style={{ maxHeight: 480, overflowY: "auto" }}>
@@ -193,7 +192,7 @@ const completed = [
 
 export const NgoCompletedCases = () => (
   <div className="lp-fade space-y-5">
-    <div className="lp-display text-[20px] font-semibold text-white">Completed Cases <span className="text-[11px] px-3 py-1 rounded-full font-bold tracking-wider align-middle ml-2" style={{ border: "1px solid #5BC68C", color: "#5BC68C" }}>{completed.length}</span></div>
+    <div><span className="text-[11px] px-3 py-1 rounded-full font-bold tracking-wider align-middle" style={{ border: "1px solid #5BC68C", color: "#5BC68C" }}>{completed.length} COMPLETED</span></div>
     <CasesFilters second={{ label: "Outcome", options: OUTCOMES }} />
     <div className="lp-case-card p-0 overflow-hidden">
       <div className="overflow-x-auto lp-gold-scroll" style={{ maxHeight: 480, overflowY: "auto" }}>
