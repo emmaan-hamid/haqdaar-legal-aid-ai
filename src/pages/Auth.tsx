@@ -250,7 +250,7 @@ const Auth = () => {
     .hd-sub{font-family:'DM Sans',sans-serif;font-weight:300;font-size:.82rem;color:var(--text-secondary);margin-top:8px;}
     .hd-divrow{display:flex;align-items:center;gap:12px;margin:18px 0 14px;color:var(--text-muted);font-size:.65rem;letter-spacing:.2em;font-weight:500;}
     .hd-divrow::before,.hd-divrow::after{content:"";flex:1;height:1px;background:var(--gold-border);}
-    .hd-label{font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:6px;display:block;}
+    .hd-label{font-weight:500;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:4px;display:block;}
     .hd-inputw{position:relative;}
     .hd-input{background:var(--bg-input);border:1px solid var(--gold-border);border-radius:8px;height:42px;padding:0 14px 0 40px;color:var(--text-primary);font:400 .85rem 'DM Sans',sans-serif;width:100%;transition:border-color .2s,box-shadow .2s;outline:none;}
     .hd-input::placeholder{color:var(--dim);}
