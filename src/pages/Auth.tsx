@@ -673,6 +673,7 @@ const Auth = () => {
   return (
     <div className="hd-auth">
       <style>{css}</style>
+      <Cursor />
       {Left}
       <div className="hd-right">
         {toast && <div className="hd-toast"><CheckCircle2 size={16}/> {toast}</div>}
