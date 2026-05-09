@@ -332,10 +332,6 @@ const Auth = () => {
   const Left = (
     <div className="hd-left">
       <div className="hd-logo">
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <Scale size={28} color="var(--gold)" />
-          <span className="name">HaqDaar</span>
-        </div>
         <div className="ur">حق · عدل · انصاف</div>
       </div>
       <div className="hd-quote-wrap">
