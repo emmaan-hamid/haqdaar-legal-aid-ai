@@ -197,23 +197,23 @@ export const Dashboard = ({ goto }: { goto: (s: any) => void }) => {
           </div>
           <div className="h-px w-full mb-5" style={{ background: "rgba(201,168,76,.25)" }} />
           <div className="overflow-hidden rounded-xl" style={{ border: "1px solid rgba(201,168,76,.18)" }}>
-            <div className="grid grid-cols-[64px_1fr_104px_72px_82px] gap-2 px-4 py-2.5 text-[10px] uppercase tracking-[.14em] text-[#888] font-semibold" style={{ background: "#0F0F0F" }}>
-              <div>Case ID</div><div>Title</div><div className="text-center">Status</div><div className="text-center">Deadline</div><div className="text-right">Action</div>
+            <div className="grid grid-cols-[64px_1fr_104px_56px_82px] gap-2 px-4 py-2.5 text-[10px] uppercase tracking-[.14em] text-[#888] font-semibold" style={{ background: "#0F0F0F" }}>
+              <div>Case ID</div><div>Title</div><div className="text-center">Status</div><div className="text-center">Due</div><div className="text-right">Action</div>
             </div>
             {activeCases.map((c) => (
               <div key={c.id}>
                 <div className="h-px" style={{ background: "rgba(201,168,76,.15)" }} />
-                <div className="grid grid-cols-[64px_1fr_104px_72px_82px] gap-2 items-center px-4 py-3.5 transition-all lp-row-hover">
+                <div className="grid grid-cols-[64px_1fr_104px_56px_82px] gap-2 items-center px-4 py-3 transition-all lp-row-hover">
                   <div className="text-[11px] text-[#C9A84C] font-mono">{c.id}</div>
-                  <div className="text-[13.5px] text-white truncate font-medium">{c.title}</div>
+                  <div className="text-[13px] text-white truncate font-medium">{c.title}</div>
                   <div className="flex justify-center">
-                    <span className={`lp-pill ${c.status === "progress" ? "lp-pill-progress" : c.status === "await" ? "lp-pill-await" : "lp-pill-pending"}`} style={{ width: 92, justifyContent: "center", height: 26, fontSize: 9 }}>
+                    <span className={`lp-pill ${c.status === "progress" ? "lp-pill-progress" : c.status === "await" ? "lp-pill-await" : "lp-pill-pending"}`} style={{ width: 92, justifyContent: "center", height: 24, fontSize: 9 }}>
                       {c.status === "progress" ? "In Progress" : c.status === "await" ? "Awaiting" : "Pending"}
                     </span>
                   </div>
-                  <div className="text-center text-[12px] font-semibold" style={{ color: c.deadline < 3 ? "#E57367" : "#C9C4B0" }}>{c.deadline}d</div>
+                  <div className="text-center text-[12px] font-semibold whitespace-nowrap" style={{ color: c.deadline < 3 ? "#E57367" : "#C9C4B0" }}>{c.deadline}d</div>
                   <div className="flex justify-end">
-                    <button className="lp-btn lp-btn-gold-solid" style={{ height: 30, padding: "0 18px", fontSize: 11 }}>View</button>
+                    <button className="lp-btn-view">View</button>
                   </div>
                 </div>
               </div>
