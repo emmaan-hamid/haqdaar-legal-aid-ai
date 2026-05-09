@@ -215,30 +215,33 @@ const Auth = () => {
   // ---------- styles ----------
   const css = `
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
-    .hd-auth { --bg-base:#090909;--bg-left:#0C0A07;--bg-right:#0F0E0C;--bg-card:#141210;--bg-input:#1A1815;--bg-hover:#1F1D1A;--gold:#C9A84C;--gold-light:#E2C97E;--gold-dim:#8A6E32;--gold-glow:rgba(201,168,76,0.12);--gold-border:rgba(201,168,76,0.25);--gold-border-strong:rgba(201,168,76,0.6);--text-primary:#F2EDE4;--text-secondary:#9A9080;--text-muted:#5C5650;--success:#5AB07A;--error:#D95B5B;
-      font-family:'DM Sans',sans-serif;color:var(--text-primary);background:var(--bg-base);min-height:100vh;display:flex;}
+    .hd-auth { --ink:#07090D;--surface:#0D1117;--raised:#111820;--border:#1C2535;--gold:#C9A84C;--gold-light:#E2C97E;--gold-soft:rgba(201,168,76,0.12);--gold-glow:rgba(201,168,76,0.20);--text:#EDE9E0;--muted:#7A8999;--dim:#3D4E61;--success:#4ADE80;--error:#F87171;
+      --bg-base:var(--ink);--bg-left:var(--ink);--bg-right:var(--surface);--bg-card:var(--raised);--bg-input:var(--raised);--bg-hover:#161E29;--gold-dim:#8A6E32;--gold-border:var(--border);--gold-border-strong:rgba(201,168,76,0.45);--text-primary:var(--text);--text-secondary:var(--muted);--text-muted:var(--dim);
+      font-family:'DM Sans',sans-serif;color:var(--text-primary);background:var(--bg-base);height:100vh;overflow:hidden;display:flex;}
     .hd-left{width:45%;background:var(--bg-left);position:relative;overflow:hidden;}
     .hd-left::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 60% 45%, rgba(180,130,40,0.13) 0%, transparent 70%);pointer-events:none;}
     .hd-right{width:55%;background:var(--bg-right);position:relative;overflow:hidden;}
     .hd-right::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 60%);pointer-events:none;}
-    .hd-logo{position:absolute;top:32px;left:32px;z-index:2;}
-    .hd-logo .ur{font-family:'Noto Nastaliq Urdu',serif;font-size:15px;color:var(--gold);direction:rtl;}
-    .hd-quote-wrap{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:78%;max-width:360px;}
-    .hd-bigq{font-family:'Playfair Display',serif;font-size:96px;color:var(--gold);opacity:.4;line-height:1;position:absolute;top:-40px;left:-30px;pointer-events:none;}
+    .hd-logo{position:absolute;top:28px;left:32px;z-index:2;display:flex;flex-direction:column;align-items:flex-start;gap:2px;}
+    .hd-logo .scale{color:var(--gold);margin-left:18px;margin-bottom:-4px;}
+    .hd-logo .name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:30px;color:var(--text);letter-spacing:.5px;line-height:1;}
+    .hd-logo .ur{font-family:'Noto Nastaliq Urdu',serif;font-size:12px;color:var(--gold);direction:rtl;margin-top:4px;}
+    .hd-quote-wrap{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:78%;max-width:340px;}
+    .hd-bigq{font-family:'Playfair Display',serif;font-size:88px;color:var(--gold);opacity:.4;line-height:1;position:absolute;top:-36px;left:-26px;pointer-events:none;}
     .hd-quote{position:absolute;inset:0;opacity:0;transition:opacity .7s ease-in-out;}
     .hd-quote.active{opacity:1;position:relative;}
-    .hd-quote .en{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:1.25rem;line-height:1.85;color:var(--text-primary);margin-bottom:20px;}
-    .hd-quote .ur{font-family:'Noto Nastaliq Urdu',serif;font-weight:400;font-size:1.1rem;line-height:2.2;color:var(--gold-light);direction:rtl;text-align:right;display:block;margin-bottom:24px;}
-    .hd-quote hr{border:none;border-top:1px solid var(--gold-border);width:40px;margin:16px 0;}
-    .hd-quote .nm{font-family:'DM Sans',sans-serif;font-weight:500;font-size:.8rem;color:var(--gold);letter-spacing:.08em;}
-    .hd-quote .rl{font-weight:300;font-size:.72rem;color:var(--text-secondary);margin-top:2px;}
-    .hd-dots{display:flex;gap:20px;justify-content:center;margin-top:32px;align-items:center;}
+    .hd-quote .en{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:1.1rem;line-height:1.75;color:var(--text-primary);margin-bottom:16px;}
+    .hd-quote .ur{font-family:'Noto Nastaliq Urdu',serif;font-weight:400;font-size:1rem;line-height:2.1;color:var(--gold-light);direction:rtl;text-align:right;display:block;margin-bottom:18px;}
+    .hd-quote hr{border:none;border-top:1px solid var(--gold-border);width:40px;margin:14px 0;}
+    .hd-quote .nm{font-family:'DM Sans',sans-serif;font-weight:500;font-size:.78rem;color:var(--gold);letter-spacing:.08em;}
+    .hd-quote .rl{font-weight:300;font-size:.7rem;color:var(--text-secondary);margin-top:2px;}
+    .hd-dots{display:flex;gap:18px;justify-content:center;margin-top:28px;align-items:center;}
     .hd-dot{height:5px;width:5px;border-radius:999px;background:var(--gold-border);transition:all .4s;}
     .hd-dot.on{height:8px;width:8px;background:var(--gold);}
-    .hd-bottom{position:absolute;bottom:0;left:0;right:0;padding:24px 28px;border-top:1px solid var(--gold-border);font-size:.75rem;color:var(--text-secondary);display:flex;gap:14px;align-items:center;}
+    .hd-bottom{position:absolute;bottom:0;left:0;right:0;padding:20px 28px;font-size:.72rem;color:var(--text-secondary);display:flex;gap:14px;align-items:center;}
     .hd-bottom b{color:var(--gold);font-weight:600;}
     .hd-bottom .sep{color:var(--gold-border);}
-    .hd-rpanel{padding:40px 48px 80px;max-width:520px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;}
+    .hd-rpanel{padding:48px 48px 64px;max-width:500px;margin:0 auto;height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;overflow:hidden;}
     .hd-foot{position:absolute;bottom:0;left:0;right:0;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:var(--text-muted);border-top:1px solid var(--gold-border);background:var(--bg-right);}
     .hd-foot a{color:var(--text-muted);text-decoration:none;margin-left:18px;transition:color .2s;}
     .hd-foot a:hover{color:var(--gold);}
@@ -247,10 +250,11 @@ const Auth = () => {
     .hd-sub{font-family:'DM Sans',sans-serif;font-weight:300;font-size:.82rem;color:var(--text-secondary);margin-top:8px;}
     .hd-divrow{display:flex;align-items:center;gap:12px;margin:18px 0 14px;color:var(--text-muted);font-size:.65rem;letter-spacing:.2em;font-weight:500;}
     .hd-divrow::before,.hd-divrow::after{content:"";flex:1;height:1px;background:var(--gold-border);}
-    .hd-label{font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:6px;display:block;}
+    .hd-label{font-weight:500;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:4px;display:block;}
     .hd-inputw{position:relative;}
-    .hd-input{background:var(--bg-input);border:1px solid var(--gold-border);border-radius:8px;height:48px;padding:0 16px 0 44px;color:var(--text-primary);font:400 .9rem 'DM Sans',sans-serif;width:100%;transition:border-color .2s,box-shadow .2s;outline:none;}
-    .hd-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.12);}
+    .hd-input{background:var(--bg-input);border:1px solid var(--gold-border);border-radius:8px;height:42px;padding:0 14px 0 40px;color:var(--text-primary);font:400 .85rem 'DM Sans',sans-serif;width:100%;transition:border-color .2s,box-shadow .2s;outline:none;}
+    .hd-input::placeholder{color:var(--dim);}
+    .hd-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft);}
     .hd-input.err{border-color:var(--error);}
     .hd-input.ok{border-color:var(--success);}
     .hd-ico{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);pointer-events:none;}
@@ -258,7 +262,7 @@ const Auth = () => {
     .hd-msg{font-size:.72rem;margin-top:4px;}
     .hd-msg.err{color:var(--error);}
     .hd-msg.ok{color:var(--success);}
-    .hd-btn{height:48px;width:100%;border-radius:8px;font:600 .88rem 'DM Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:10px;}
+    .hd-btn{height:44px;width:100%;border-radius:8px;font:600 .82rem 'DM Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:10px;}
     .hd-btn.primary{background:linear-gradient(135deg,#C9A84C 0%,#A8863A 100%);color:#0A0A0A;border:none;}
     .hd-btn.primary:hover:not(:disabled){filter:brightness(1.1);transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,168,76,.25);}
     .hd-btn.primary:disabled{opacity:.4;cursor:not-allowed;}
@@ -291,22 +295,22 @@ const Auth = () => {
     .hd-line{flex:1;height:1px;background:var(--gold-border);}
     .hd-line.on{background:var(--gold);}
     .hd-stelab{font-size:.68rem;color:var(--text-secondary);}
-    .hd-rolecard{background:var(--bg-card);border:1px solid var(--gold-border);border-radius:12px;padding:18px 20px;display:flex;align-items:center;gap:16px;cursor:pointer;transition:all .2s;}
+    .hd-rolecard{background:var(--bg-card);border:1px solid var(--gold-border);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all .2s;}
     .hd-rolecard:hover{background:var(--bg-hover);}
     .hd-rolecard.sel{border-color:var(--gold);background:rgba(201,168,76,0.05);box-shadow:0 0 0 1px var(--gold),0 4px 20px rgba(201,168,76,.1);}
-    .hd-roleicon{width:40px;height:40px;border-radius:999px;background:var(--gold-glow);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0;}
-    .hd-roletitle{font-weight:600;font-size:.9rem;color:var(--text-primary);}
-    .hd-roledesc{font-size:.77rem;color:var(--text-secondary);margin-top:2px;}
-    .hd-radio{width:20px;height:20px;border-radius:999px;border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .hd-roleicon{width:36px;height:36px;border-radius:999px;background:var(--gold-glow);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0;}
+    .hd-roletitle{font-weight:600;font-size:.85rem;color:var(--text-primary);}
+    .hd-roledesc{font-size:.72rem;color:var(--text-secondary);margin-top:2px;}
+    .hd-radio{width:18px;height:18px;border-radius:999px;border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
     .hd-radio.sel{background:var(--gold);border-color:var(--gold);}
     .hd-radio.sel::after{content:"";width:6px;height:6px;border-radius:999px;background:#0A0A0A;}
-    .hd-strength{display:flex;gap:4px;margin-top:8px;}
-    .hd-strength div{flex:1;height:4px;border-radius:2px;background:#2a2723;transition:background .25s;}
-    .hd-reqs{margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:.72rem;color:var(--text-secondary);}
+    .hd-strength{display:flex;gap:4px;margin-top:6px;}
+    .hd-strength div{flex:1;height:3px;border-radius:2px;background:#1c2535;transition:background .25s;}
+    .hd-reqs{margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:.7rem;color:var(--text-secondary);}
     .hd-reqs div{display:flex;align-items:center;gap:6px;}
-    .hd-otp{display:flex;gap:10px;justify-content:center;margin:24px 0;}
-    .hd-otp input{width:52px;height:60px;background:var(--bg-input);border:1.5px solid var(--gold-border);border-radius:10px;text-align:center;font:600 1.5rem 'DM Sans',sans-serif;color:var(--gold-light);outline:none;caret-color:var(--gold);transition:border-color .15s,box-shadow .15s;}
-    .hd-otp input:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow);}
+    .hd-otp{display:flex;gap:8px;justify-content:center;margin:18px 0;}
+    .hd-otp input{width:44px;height:52px;background:var(--bg-input);border:1.5px solid var(--gold-border);border-radius:10px;text-align:center;font:600 1.35rem 'DM Sans',sans-serif;color:var(--gold-light);outline:none;caret-color:var(--gold);transition:border-color .15s,box-shadow .15s;}
+    .hd-otp input:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft);}
     .hd-otp.err input{border-color:var(--error);}
     .hd-otp.ok input{border-color:var(--success);}
     .hd-otp.shake{animation:hd-shake .4s;}
@@ -331,6 +335,8 @@ const Auth = () => {
   const Left = (
     <div className="hd-left">
       <div className="hd-logo">
+        <Scale size={16} className="scale" />
+        <div className="name">HaqDaar</div>
         <div className="ur">حق · عدل · انصاف</div>
       </div>
       <div className="hd-quote-wrap">
@@ -430,7 +436,7 @@ const Auth = () => {
       <h1 className="hd-h1" style={{ fontSize: "1.7rem" }}>Who are you?</h1>
       <p className="hd-sub">Select your role to create your account.</p>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 24 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 18 }}>
         {[
           { id: "citizen" as Role, icon: <User2 size={20}/>, t: "Citizen / User", d: "I need legal help or information" },
           { id: "lawyer" as Role, icon: <Scale size={20}/>, t: "Volunteer Lawyer", d: "I want to offer free legal help" },
@@ -467,7 +473,7 @@ const Auth = () => {
       <div className="hd-divrow">CREATE ACCOUNT</div>
       <h1 className="hd-h1" style={{ fontSize: "1.7rem" }}>Your details</h1>
 
-      <div className="hd-scroll" style={{ marginTop: 18, display: "flex", flexDirection: "column", gap: 14 }}>
+      <div className="hd-scroll" style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 8 }}>
         <Field label="Full Name" icon={<User2 size={16}/>} value={form.fullName} onChange={v => setF("fullName", v)} />
         <div>
           <label className="hd-label">Email Address</label>
