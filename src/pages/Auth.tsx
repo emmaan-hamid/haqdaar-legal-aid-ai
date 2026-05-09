@@ -302,7 +302,7 @@ const Auth = () => {
     .hd-or::before,.hd-or::after{content:"";flex:1;height:1px;background:var(--gold-border);}
     .hd-stage{animation:hd-in .45s cubic-bezier(.22,1,.36,1);}
     @keyframes hd-in{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-    @keyframes hd-floaty{0%,100%{transform:translate(-50%,-50%);}50%{transform:translate(-50%,calc(-50% - 6px));}}
+    @keyframes hd-floaty{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-5px);}}
     @keyframes hd-pulsering{0%{transform:scale(1);opacity:.6;}100%{transform:scale(1.35);opacity:0;}}
     @keyframes hd-shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-6px);}40%{transform:translateX(6px);}60%{transform:translateX(-4px);}80%{transform:translateX(4px);}}
     @keyframes hd-spin{to{transform:rotate(360deg);}}
