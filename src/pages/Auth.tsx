@@ -268,7 +268,11 @@ const Auth = () => {
     .hd-msg{font-size:.72rem;margin-top:4px;}
     .hd-msg.err{color:var(--error);}
     .hd-msg.ok{color:var(--success);}
-    .hd-btn{height:48px;width:100%;border-radius:8px;font:600 .88rem 'DM Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:10px;}
+    .hd-btn{height:46px;width:100%;border-radius:8px;font:600 .85rem 'DM Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:10px;}
+    .hd-compact .hd-btn{height:42px;font-size:.8rem;}
+    .hd-quickexit{position:fixed;bottom:64px;right:24px;z-index:60;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:none;color:#fff;font:500 .72rem 'DM Sans',sans-serif;background:hsl(0 72% 51%);box-shadow:0 8px 24px rgba(217,91,91,.4);cursor:pointer;animation:hd-redpulse 2.4s ease-in-out infinite;}
+    .hd-quickexit:hover{filter:brightness(1.1);}
+    @keyframes hd-redpulse{0%,100%{box-shadow:0 0 0 0 rgba(217,91,91,.55);}50%{box-shadow:0 0 0 12px rgba(217,91,91,0);}}
     .hd-btn.primary{background:linear-gradient(135deg,#C9A84C 0%,#A8863A 100%);color:#0A0A0A;border:none;}
     .hd-btn.primary:hover:not(:disabled){filter:brightness(1.1);transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,168,76,.25);}
     .hd-btn.primary:disabled{opacity:.4;cursor:not-allowed;}
