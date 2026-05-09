@@ -45,16 +45,24 @@ const ProBonoRing = ({ hours }: { hours: number }) => {
   );
 };
 
+const Toast = ({ msg }: { msg: string }) => msg ? (
+  <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-[300] px-4 py-2 rounded-full text-[12px]" style={{ background: "#1E1E1E", border: "1px solid #C9A84C", color: "#C9A84C" }}>{msg}</div>
+) : null;
+
 export const Dashboard = ({ goto }: { goto: (s: any) => void }) => {
   const helped = useCount(124);
   const resolved = useCount(86);
+  const [removed, setRemoved] = useState<string[]>([]);
+  const [toast, setToast] = useState("");
+  const showToast = (m: string) => { setToast(m); setTimeout(() => setToast(""), 1800); };
 
-  const pending = [
+  const pendingAll = [
     { id: "HD-2407", title: "Unpaid wages, factory workers", cat: "Labor Dispute", urgency: "high", city: "Faisalabad", date: "Today", summary: "Group of 12 workers report withheld salaries for 3 months. Documentation available." },
     { id: "HD-2408", title: "Domestic violence protection order", cat: "Domestic Violence", urgency: "high", city: "Lahore", date: "Today", summary: "Citizen seeking protection order. NGO Aurat Foundation involved." },
     { id: "HD-2409", title: "NADRA ID rejection appeal", cat: "NADRA Issues", urgency: "med", city: "Karachi", date: "Yesterday", summary: "ID application rejected without clear reason. Appeal documents ready." },
     { id: "HD-2410", title: "Property fraud, fake transfer", cat: "Property Fraud", urgency: "low", city: "Multan", date: "2 days", summary: "Forged transfer deed; FIR filed but no progress." },
   ];
+  const pending = pendingAll.filter(p => !removed.includes(p.id));
   const activeCases = [
     { id: "HD-2401", title: "Wrongful termination", status: "progress", deadline: 5 },
     { id: "HD-2402", title: "Tenancy eviction notice", status: "await", deadline: 2 },
@@ -177,8 +185,8 @@ export const Dashboard = ({ goto }: { goto: (s: any) => void }) => {
                 <div className="flex flex-wrap gap-2 mb-2"><span className="lp-chip">{p.cat}</span><span className="text-[11px] text-[#888]">{p.city} · {p.date}</span></div>
                 <p className="text-[12px] text-[#aaa] line-clamp-2 mb-3">{p.summary}</p>
                 <div className="grid grid-cols-2 gap-3 mt-3">
-                  <button className="lp-act-accept">Accept</button>
-                  <button className="lp-act-decline">Decline</button>
+                  <button className="lp-act-accept" style={{ height: 36 }} onClick={() => { setRemoved(r => [...r, p.id]); showToast(`Accepted ${p.id}`); }}>Accept</button>
+                  <button className="lp-act-decline" style={{ height: 36 }} onClick={() => { setRemoved(r => [...r, p.id]); showToast(`Declined ${p.id}`); }}>Decline</button>
                 </div>
               </div>
             ))}
@@ -197,23 +205,23 @@ export const Dashboard = ({ goto }: { goto: (s: any) => void }) => {
           </div>
           <div className="h-px w-full mb-5" style={{ background: "rgba(201,168,76,.25)" }} />
           <div className="overflow-hidden rounded-xl" style={{ border: "1px solid rgba(201,168,76,.18)" }}>
-            <div className="grid grid-cols-[64px_1fr_104px_56px_82px] gap-2 px-4 py-2.5 text-[10px] uppercase tracking-[.14em] text-[#888] font-semibold" style={{ background: "#0F0F0F" }}>
+            <div className="grid grid-cols-[58px_1fr_78px_36px_58px] gap-2 px-3 py-2.5 text-[10px] uppercase tracking-[.14em] text-[#888] font-semibold" style={{ background: "#0F0F0F" }}>
               <div>Case ID</div><div>Title</div><div className="text-center">Status</div><div className="text-center">Due</div><div className="text-right">Action</div>
             </div>
             {activeCases.map((c) => (
               <div key={c.id}>
                 <div className="h-px" style={{ background: "rgba(201,168,76,.15)" }} />
-                <div className="grid grid-cols-[64px_1fr_104px_56px_82px] gap-2 items-center px-4 py-3 transition-all lp-row-hover">
-                  <div className="text-[11px] text-[#C9A84C] font-mono">{c.id}</div>
-                  <div className="text-[13px] text-white truncate font-medium">{c.title}</div>
+                <div className="grid grid-cols-[58px_1fr_78px_36px_58px] gap-2 items-center px-3 py-2.5 transition-all lp-row-hover">
+                  <div className="text-[10.5px] text-[#C9A84C] font-mono">{c.id}</div>
+                  <div className="text-[12.5px] text-white truncate font-medium">{c.title}</div>
                   <div className="flex justify-center">
-                    <span className={`lp-pill ${c.status === "progress" ? "lp-pill-progress" : c.status === "await" ? "lp-pill-await" : "lp-pill-pending"}`} style={{ width: 92, justifyContent: "center", height: 24, fontSize: 9 }}>
+                    <span className={`lp-pill ${c.status === "progress" ? "lp-pill-progress" : c.status === "await" ? "lp-pill-await" : "lp-pill-pending"}`} style={{ width: 74, justifyContent: "center", height: 20, fontSize: 8.5, padding: "0 6px" }}>
                       {c.status === "progress" ? "In Progress" : c.status === "await" ? "Awaiting" : "Pending"}
                     </span>
                   </div>
-                  <div className="text-center text-[12px] font-semibold whitespace-nowrap" style={{ color: c.deadline < 3 ? "#E57367" : "#C9C4B0" }}>{c.deadline}d</div>
+                  <div className="text-center text-[11.5px] font-semibold whitespace-nowrap" style={{ color: c.deadline < 3 ? "#E57367" : "#C9C4B0" }}>{c.deadline}d</div>
                   <div className="flex justify-end">
-                    <button className="lp-btn-view">View</button>
+                    <button className="lp-btn-view" style={{ height: 24, minWidth: 54, padding: "0 10px", fontSize: 10 }} onClick={() => goto("cases-active")}>View</button>
                   </div>
                 </div>
               </div>
