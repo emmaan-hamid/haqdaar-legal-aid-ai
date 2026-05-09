@@ -220,7 +220,7 @@ const Auth = () => {
       font-family:'DM Sans',sans-serif;color:var(--text-primary);background:var(--bg-base);min-height:100vh;display:flex;}
     .hd-left{width:45%;background:var(--bg-left);position:relative;overflow:hidden;}
     .hd-left::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 60% 45%, rgba(180,130,40,0.13) 0%, transparent 70%);pointer-events:none;}
-    .hd-right{width:55%;background:var(--bg-right);position:relative;overflow-y:auto;}
+    .hd-right{width:55%;background:var(--bg-right);position:relative;overflow:hidden;}
     .hd-right::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 60%);pointer-events:none;}
     .hd-logo{position:absolute;top:32px;left:32px;z-index:2;}
     .hd-logo .ur{font-family:'Noto Nastaliq Urdu',serif;font-size:15px;color:var(--gold);direction:rtl;}
