@@ -223,8 +223,7 @@ const Auth = () => {
     .hd-right{width:55%;background:var(--bg-right);position:relative;overflow-y:auto;}
     .hd-right::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 60%);pointer-events:none;}
     .hd-logo{position:absolute;top:32px;left:32px;z-index:2;}
-    .hd-logo .name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:var(--gold);}
-    .hd-logo .ur{font-family:'Noto Nastaliq Urdu',serif;font-size:13px;color:var(--gold-dim);direction:rtl;margin-top:4px;}
+    .hd-logo .ur{font-family:'Noto Nastaliq Urdu',serif;font-size:15px;color:var(--gold);direction:rtl;}
     .hd-quote-wrap{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:78%;max-width:360px;}
     .hd-bigq{font-family:'Playfair Display',serif;font-size:96px;color:var(--gold);opacity:.4;line-height:1;position:absolute;top:-40px;left:-30px;pointer-events:none;}
     .hd-quote{position:absolute;inset:0;opacity:0;transition:opacity .7s ease-in-out;}
