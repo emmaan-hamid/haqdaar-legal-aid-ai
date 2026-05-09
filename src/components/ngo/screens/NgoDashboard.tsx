@@ -41,6 +41,11 @@ export const NgoDashboard = ({ goto }: { goto: (s: any) => void }) => {
     { id: "HD-3102", title: "Eviction defense", cat: "Property", status: "await", deadline: "2 days", staff: "Bilal K." },
     { id: "HD-3103", title: "Police misconduct complaint", cat: "Police", status: "progress", deadline: "8 days", staff: "Unassigned" },
     { id: "HD-3104", title: "Consumer fraud refund", cat: "Consumer", status: "pending", deadline: "12 days", staff: "Sana R." },
+    { id: "HD-3111", title: "Child marriage prevention", cat: "Family", status: "progress", deadline: "3 days", staff: "Hina J." },
+    { id: "HD-3112", title: "Bonded labor release", cat: "Labor", status: "await", deadline: "6 days", staff: "Imran T." },
+    { id: "HD-3113", title: "NADRA appeal hearing", cat: "NADRA", status: "pending", deadline: "10 days", staff: "Sana R." },
+    { id: "HD-3114", title: "Domestic violence shelter", cat: "Domestic Violence", status: "progress", deadline: "1 day", staff: "Ayesha M." },
+    { id: "HD-3115", title: "Wage theft mediation", cat: "Labor", status: "progress", deadline: "7 days", staff: "Bilal K." },
   ];
   const acts = [
     { Icon: CheckCircle2, color: "#5BC68C", title: "Request Approved", desc: "Approved case", id: "HD-3106", time: "8m" },
@@ -186,7 +191,7 @@ export const NgoDashboard = ({ goto }: { goto: (s: any) => void }) => {
             <div className="grid grid-cols-[68px_1fr_92px_44px_64px] gap-3 px-3 py-3 text-[10px] uppercase tracking-[.14em] text-[#888] font-semibold rounded-lg" style={{ background: "#0F0F0F" }}>
               <div>Case ID</div><div>Title</div><div className="text-center">Status</div><div className="text-center">Due</div><div className="text-right">Action</div>
             </div>
-            {active.map((c) => {
+            {active.slice(0, 6).map((c) => {
               const dnum = parseInt(c.deadline);
               return (
               <div key={c.id}>
