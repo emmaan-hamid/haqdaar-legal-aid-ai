@@ -14,16 +14,24 @@ const useCount = (target: number, dur = 1200) => {
   return v;
 };
 
+const Toast = ({ msg }: { msg: string }) => msg ? (
+  <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-[300] px-4 py-2 rounded-full text-[12px]" style={{ background: "#1E1E1E", border: "1px solid #C9A84C", color: "#C9A84C" }}>{msg}</div>
+) : null;
+
 export const NgoDashboard = ({ goto }: { goto: (s: any) => void }) => {
   const helped = useCount(312);
   const resolved = useCount(187);
+  const [removed, setRemoved] = useState<string[]>([]);
+  const [toast, setToast] = useState("");
+  const showToast = (m: string) => { setToast(m); setTimeout(() => setToast(""), 1800); };
 
-  const pending = [
+  const pendingAll = [
     { id: "HD-3107", title: "Domestic abuse shelter request", cat: "Domestic Violence", urgency: "high", city: "Lahore", date: "Today", summary: "Mother of two seeks emergency shelter and protection order. Police report attached." },
     { id: "HD-3108", title: "Wage theft, garment workers", cat: "Labor Dispute", urgency: "high", city: "Karachi", date: "Today", summary: "20 garment workers report 4 months unpaid overtime. Documentation available." },
     { id: "HD-3109", title: "NADRA card denial", cat: "NADRA Issues", urgency: "med", city: "Quetta", date: "Yesterday", summary: "Citizen denied ID card without written reason. Family of 5 affected." },
     { id: "HD-3110", title: "Property fraud complaint", cat: "Property Fraud", urgency: "low", city: "Multan", date: "2 days", summary: "Forged signature used to transfer ancestral land." },
   ];
+  const pending = pendingAll.filter(p => !removed.includes(p.id));
   const active = [
     { id: "HD-3101", title: "Workplace harassment case", cat: "Harassment", status: "progress", deadline: "5 days", staff: "Ayesha M." },
     { id: "HD-3102", title: "Eviction defense", cat: "Property", status: "await", deadline: "2 days", staff: "Bilal K." },
@@ -151,8 +159,8 @@ export const NgoDashboard = ({ goto }: { goto: (s: any) => void }) => {
                 <div className="flex flex-wrap gap-2 mb-2"><span className="lp-chip">{p.cat}</span><span className="text-[11px] text-[#888]">{p.city} · {p.date}</span></div>
                 <p className="text-[12px] text-[#aaa] line-clamp-2 mb-3">{p.summary}</p>
                 <div className="grid grid-cols-2 gap-3 mt-3">
-                  <button className="lp-act-accept">Approve</button>
-                  <button className="lp-act-decline">Reject</button>
+                  <button className="lp-act-accept" style={{ height: 36 }} onClick={() => { setRemoved(r => [...r, p.id]); showToast(`Approved ${p.id}`); }}>Approve</button>
+                  <button className="lp-act-decline" style={{ height: 36 }} onClick={() => { setRemoved(r => [...r, p.id]); showToast(`Rejected ${p.id}`); }}>Reject</button>
                 </div>
               </div>
             ))}
@@ -171,25 +179,25 @@ export const NgoDashboard = ({ goto }: { goto: (s: any) => void }) => {
           </div>
           <div className="h-px w-full mb-5" style={{ background: "rgba(201,168,76,.25)" }} />
           <div className="overflow-hidden rounded-xl" style={{ border: "1px solid rgba(201,168,76,.18)" }}>
-            <div className="grid grid-cols-[64px_1fr_104px_72px_82px] gap-2 px-4 py-2.5 text-[10px] uppercase tracking-[.14em] text-[#888] font-semibold" style={{ background: "#0F0F0F" }}>
-              <div>Case ID</div><div>Title</div><div className="text-center">Status</div><div className="text-center">Deadline</div><div className="text-right">Action</div>
+            <div className="grid grid-cols-[58px_1fr_78px_36px_58px] gap-2 px-3 py-2.5 text-[10px] uppercase tracking-[.14em] text-[#888] font-semibold" style={{ background: "#0F0F0F" }}>
+              <div>Case ID</div><div>Title</div><div className="text-center">Status</div><div className="text-center">Due</div><div className="text-right">Action</div>
             </div>
             {active.map((c) => {
               const dnum = parseInt(c.deadline);
               return (
               <div key={c.id}>
                 <div className="h-px" style={{ background: "rgba(201,168,76,.15)" }} />
-                <div className="grid grid-cols-[64px_1fr_104px_72px_82px] gap-2 items-center px-4 py-3.5 transition-all lp-row-hover">
-                  <div className="text-[11px] text-[#C9A84C] font-mono">{c.id}</div>
-                  <div className="text-[13.5px] text-white truncate font-medium">{c.title}</div>
+                <div className="grid grid-cols-[58px_1fr_78px_36px_58px] gap-2 items-center px-3 py-2.5 transition-all lp-row-hover">
+                  <div className="text-[10.5px] text-[#C9A84C] font-mono">{c.id}</div>
+                  <div className="text-[12.5px] text-white truncate font-medium">{c.title}</div>
                   <div className="flex justify-center">
-                    <span className={`lp-pill ${c.status === "progress" ? "lp-pill-progress" : c.status === "await" ? "lp-pill-await" : "lp-pill-pending"}`} style={{ width: 92, justifyContent: "center", height: 26, fontSize: 9 }}>
+                    <span className={`lp-pill ${c.status === "progress" ? "lp-pill-progress" : c.status === "await" ? "lp-pill-await" : "lp-pill-pending"}`} style={{ width: 74, justifyContent: "center", height: 20, fontSize: 8.5, padding: "0 6px" }}>
                       {c.status === "progress" ? "In Progress" : c.status === "await" ? "Awaiting" : "Pending"}
                     </span>
                   </div>
-                  <div className="text-center text-[12px] font-semibold whitespace-nowrap" style={{ color: dnum < 3 ? "#E57367" : "#C9C4B0" }}>{c.deadline}</div>
+                  <div className="text-center text-[11.5px] font-semibold whitespace-nowrap" style={{ color: dnum < 3 ? "#E57367" : "#C9C4B0" }}>{dnum}d</div>
                   <div className="flex justify-end">
-                    <button onClick={() => goto("cases-active")} className="lp-btn-view">View</button>
+                    <button onClick={() => goto("cases-active")} className="lp-btn-view" style={{ height: 24, minWidth: 54, padding: "0 10px", fontSize: 10 }}>View</button>
                   </div>
                 </div>
               </div>
