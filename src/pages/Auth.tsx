@@ -477,12 +477,13 @@ const Auth = () => {
   );
 
   const renderDetails = () => (
-    <div className="hd-form">
+    <div className="hd-form hd-compact">
+      <style>{`.hd-compact .hd-input{height:34px;font-size:.78rem;}.hd-compact .hd-label{font-size:.58rem;margin-bottom:2px;}.hd-compact .hd-h1{font-size:1.35rem !important;}.hd-compact .hd-divrow{margin:8px 0 6px;font-size:.58rem;}.hd-compact .hd-progress{margin-bottom:8px;}.hd-compact .hd-circ{width:22px;height:22px;font-size:.68rem;}.hd-compact .hd-strength div{height:2px;}.hd-compact .hd-btn{height:38px;font-size:.76rem;}`}</style>
       <ProgressBar step={2} />
       <div className="hd-divrow">CREATE ACCOUNT</div>
-      <h1 className="hd-h1" style={{ fontSize: "1.7rem" }}>Your details</h1>
+      <h1 className="hd-h1" style={{ fontSize: "1.35rem" }}>Your details</h1>
 
-      <div className="hd-scroll" style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 8 }}>
+      <div className="hd-scroll" style={{ marginTop: 8, display: "flex", flexDirection: "column", gap: 6 }}>
         <Field label="Full Name" icon={<User2 size={16}/>} value={form.fullName} onChange={v => setF("fullName", v)} />
         <div>
           <label className="hd-label">Email Address</label>
