@@ -68,10 +68,12 @@ const Auth = () => {
   const go = (s: AuthState) => { setState(s); setAnimKey(k => k + 1); };
 
   const [quoteIndex, setQuoteIndex] = useState(0);
+  const [quotePaused, setQuotePaused] = useState(false);
   useEffect(() => {
-    const t = setInterval(() => setQuoteIndex(i => (i + 1) % QUOTES.length), 6000);
+    if (quotePaused) return;
+    const t = setInterval(() => setQuoteIndex(i => (i + 1) % QUOTES.length), 7000);
     return () => clearInterval(t);
-  }, []);
+  }, [quotePaused]);
 
   // form data
   const [form, setForm] = useState({
