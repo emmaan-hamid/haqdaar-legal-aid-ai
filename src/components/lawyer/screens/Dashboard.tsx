@@ -295,6 +295,22 @@ export const Dashboard = ({ goto }: { goto: (s: any) => void }) => {
           </div>
         </div>
       </div>
+      {decline && (
+        <div className="lp-modal-overlay" onClick={() => setDecline(null)}>
+          <div className="lp-modal m-auto max-w-[460px]" onClick={e => e.stopPropagation()}>
+            <h3 className="lp-display text-[22px] text-white font-bold mb-1">Decline Reason</h3>
+            <div className="text-[12px] text-[#888] mb-3">Case <span className="text-[#C9A84C] font-mono">{decline}</span></div>
+            <select className="lp-input mb-3" value={reason} onChange={e => setReason(e.target.value)}>
+              <option>Outside specialization</option><option>At capacity</option><option>Conflict of interest</option><option>Other</option>
+            </select>
+            <textarea className="lp-textarea" placeholder="Optional notes..." value={notes} onChange={e => setNotes(e.target.value)} />
+            <div className="flex gap-2 justify-end mt-4">
+              <button className="lp-btn lp-btn-gold" onClick={() => setDecline(null)}>Cancel</button>
+              <button className="lp-btn lp-btn-red" onClick={submitDecline}>Submit Decline</button>
+            </div>
+          </div>
+        </div>
+      )}
       <Toast msg={toast} />
     </div>
   );
