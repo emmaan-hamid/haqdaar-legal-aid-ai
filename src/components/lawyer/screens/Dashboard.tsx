@@ -54,7 +54,11 @@ export const Dashboard = ({ goto }: { goto: (s: any) => void }) => {
   const resolved = useCount(86);
   const [removed, setRemoved] = useState<string[]>([]);
   const [toast, setToast] = useState("");
+  const [decline, setDecline] = useState<string | null>(null);
+  const [reason, setReason] = useState("Outside specialization");
+  const [notes, setNotes] = useState("");
   const showToast = (m: string) => { setToast(m); setTimeout(() => setToast(""), 1800); };
+  const submitDecline = () => { if (decline) { setRemoved(r => [...r, decline]); showToast(`Declined ${decline} · ${reason}`); setDecline(null); setNotes(""); } };
 
   const pendingAll = [
     { id: "HD-2407", title: "Unpaid wages, factory workers", cat: "Labor Dispute", urgency: "high", city: "Faisalabad", date: "Today", summary: "Group of 12 workers report withheld salaries for 3 months. Documentation available." },
@@ -72,6 +76,12 @@ export const Dashboard = ({ goto }: { goto: (s: any) => void }) => {
     { id: "HD-2406", title: "Workplace harassment claim", status: "await", deadline: 4 },
     { id: "HD-2411", title: "NADRA appeal hearing", status: "pending", deadline: 14 },
     { id: "HD-2412", title: "Domestic violence order", status: "progress", deadline: 1 },
+    { id: "HD-2413", title: "Child custody mediation", status: "await", deadline: 6 },
+    { id: "HD-2414", title: "Bonded labor release petition", status: "progress", deadline: 3 },
+    { id: "HD-2415", title: "Unfair dismissal appeal", status: "pending", deadline: 11 },
+    { id: "HD-2416", title: "Forced eviction injunction", status: "progress", deadline: 7 },
+    { id: "HD-2417", title: "Wage theft class action", status: "await", deadline: 5 },
+    { id: "HD-2418", title: "Property title dispute", status: "pending", deadline: 16 },
   ];
   const acts = [
     { Icon: CheckCircle2, color: "#5BC68C", title: "Case Accepted", desc: "You accepted the case", id: "HD-2406", time: "10m" },
@@ -186,7 +196,7 @@ export const Dashboard = ({ goto }: { goto: (s: any) => void }) => {
                 <p className="text-[12px] text-[#aaa] line-clamp-2 mb-3">{p.summary}</p>
                 <div className="grid grid-cols-2 gap-3 mt-3">
                   <button className="lp-act-accept" style={{ height: 36 }} onClick={() => { setRemoved(r => [...r, p.id]); showToast(`Accepted ${p.id}`); }}>Accept</button>
-                  <button className="lp-act-decline" style={{ height: 36 }} onClick={() => { setRemoved(r => [...r, p.id]); showToast(`Declined ${p.id}`); }}>Decline</button>
+                  <button className="lp-act-decline" style={{ height: 36 }} onClick={() => setDecline(p.id)}>Decline</button>
                 </div>
               </div>
             ))}
@@ -285,6 +295,22 @@ export const Dashboard = ({ goto }: { goto: (s: any) => void }) => {
           </div>
         </div>
       </div>
+      {decline && (
+        <div className="lp-modal-overlay" onClick={() => setDecline(null)}>
+          <div className="lp-modal m-auto max-w-[460px]" onClick={e => e.stopPropagation()}>
+            <h3 className="lp-display text-[22px] text-white font-bold mb-1">Decline Reason</h3>
+            <div className="text-[12px] text-[#888] mb-3">Case <span className="text-[#C9A84C] font-mono">{decline}</span></div>
+            <select className="lp-input mb-3" value={reason} onChange={e => setReason(e.target.value)}>
+              <option>Outside specialization</option><option>At capacity</option><option>Conflict of interest</option><option>Other</option>
+            </select>
+            <textarea className="lp-textarea" placeholder="Optional notes..." value={notes} onChange={e => setNotes(e.target.value)} />
+            <div className="flex gap-2 justify-end mt-4">
+              <button className="lp-btn lp-btn-gold" onClick={() => setDecline(null)}>Cancel</button>
+              <button className="lp-btn lp-btn-red" onClick={submitDecline}>Submit Decline</button>
+            </div>
+          </div>
+        </div>
+      )}
       <Toast msg={toast} />
     </div>
   );

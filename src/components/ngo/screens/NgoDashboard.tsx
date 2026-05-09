@@ -23,7 +23,11 @@ export const NgoDashboard = ({ goto }: { goto: (s: any) => void }) => {
   const resolved = useCount(187);
   const [removed, setRemoved] = useState<string[]>([]);
   const [toast, setToast] = useState("");
+  const [reject, setReject] = useState<string | null>(null);
+  const [reason, setReason] = useState("Outside our scope");
+  const [notes, setNotes] = useState("");
   const showToast = (m: string) => { setToast(m); setTimeout(() => setToast(""), 1800); };
+  const submitReject = () => { if (reject) { setRemoved(r => [...r, reject]); showToast(`Rejected ${reject} · ${reason}`); setReject(null); setNotes(""); } };
 
   const pendingAll = [
     { id: "HD-3107", title: "Domestic abuse shelter request", cat: "Domestic Violence", urgency: "high", city: "Lahore", date: "Today", summary: "Mother of two seeks emergency shelter and protection order. Police report attached." },
@@ -160,7 +164,7 @@ export const NgoDashboard = ({ goto }: { goto: (s: any) => void }) => {
                 <p className="text-[12px] text-[#aaa] line-clamp-2 mb-3">{p.summary}</p>
                 <div className="grid grid-cols-2 gap-3 mt-3">
                   <button className="lp-act-accept" style={{ height: 36 }} onClick={() => { setRemoved(r => [...r, p.id]); showToast(`Approved ${p.id}`); }}>Approve</button>
-                  <button className="lp-act-decline" style={{ height: 36 }} onClick={() => { setRemoved(r => [...r, p.id]); showToast(`Rejected ${p.id}`); }}>Reject</button>
+                  <button className="lp-act-decline" style={{ height: 36 }} onClick={() => setReject(p.id)}>Reject</button>
                 </div>
               </div>
             ))}
@@ -231,6 +235,22 @@ export const NgoDashboard = ({ goto }: { goto: (s: any) => void }) => {
           ))}
         </div>
       </div>
+      {reject && (
+        <div className="lp-modal-overlay" onClick={() => setReject(null)}>
+          <div className="lp-modal m-auto max-w-[460px]" onClick={e => e.stopPropagation()}>
+            <h3 className="lp-display text-[22px] text-white font-bold mb-1">Reject Reason</h3>
+            <div className="text-[12px] text-[#888] mb-3">Request <span className="text-[#C9A84C] font-mono">{reject}</span></div>
+            <select className="lp-input mb-3" value={reason} onChange={e => setReason(e.target.value)}>
+              <option>Outside our scope</option><option>At capacity</option><option>Insufficient documentation</option><option>Duplicate request</option><option>Other</option>
+            </select>
+            <textarea className="lp-textarea" placeholder="Optional notes..." value={notes} onChange={e => setNotes(e.target.value)} />
+            <div className="flex gap-2 justify-end mt-4">
+              <button className="lp-btn lp-btn-gold" onClick={() => setReject(null)}>Cancel</button>
+              <button className="lp-btn lp-btn-red" onClick={submitReject}>Submit Reject</button>
+            </div>
+          </div>
+        </div>
+      )}
       <Toast msg={toast} />
     </div>
   );
