@@ -196,7 +196,7 @@ export const Dashboard = ({ goto }: { goto: (s: any) => void }) => {
                 <p className="text-[12px] text-[#aaa] line-clamp-2 mb-3">{p.summary}</p>
                 <div className="grid grid-cols-2 gap-3 mt-3">
                   <button className="lp-act-accept" style={{ height: 36 }} onClick={() => { setRemoved(r => [...r, p.id]); showToast(`Accepted ${p.id}`); }}>Accept</button>
-                  <button className="lp-act-decline" style={{ height: 36 }} onClick={() => { setRemoved(r => [...r, p.id]); showToast(`Declined ${p.id}`); }}>Decline</button>
+                  <button className="lp-act-decline" style={{ height: 36 }} onClick={() => setDecline(p.id)}>Decline</button>
                 </div>
               </div>
             ))}
