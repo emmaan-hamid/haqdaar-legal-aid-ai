@@ -641,6 +641,7 @@ const Auth = () => {
   const renderReset = () => (
     <form className="hd-form" onSubmit={submitReset}>
       <div style={{ textAlign: "center" }}>
+        <div style={{ display:"flex",justifyContent:"center",marginBottom:14 }}><Brand size={28} onClick={() => navigate("/")} /></div>
         <ShieldCheck size={32} color="var(--gold)" style={{ margin: "0 auto" }}/>
         <div className="hd-divrow">NEW PASSWORD</div>
         <h1 className="hd-h1" style={{ fontSize: "1.7rem" }}>{resetDone ? "Password updated!" : "Set a new password"}</h1>
