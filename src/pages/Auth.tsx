@@ -608,9 +608,6 @@ const Auth = () => {
         </div>
       )}
 
-      <div style={{ marginTop: 18, textAlign: "center" }}>
-        <button type="button" className="hd-link" onClick={() => { setForgotSent(false); go("login"); }}>← Back to Login</button>
-      </div>
     </form>
   );
 
