@@ -456,16 +456,17 @@ const Auth = () => {
 
   const renderRole = () => (
     <div className="hd-form">
+      <button className="hd-back" onClick={() => go("login")}><ArrowLeft size={14}/> Back to Login</button>
       <ProgressBar step={1} />
       <div className="hd-divrow">JOIN</div>
-      <h1 className="hd-h1" style={{ fontSize: "1.7rem" }}>Who are you?</h1>
+      <h1 className="hd-h1" style={{ fontSize: "1.4rem" }}>Who are you?</h1>
       <p className="hd-sub">Select your role to create your account.</p>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 24 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 14 }}>
         {[
-          { id: "citizen" as Role, icon: <User2 size={20}/>, t: "Citizen / User", d: "I need legal help or information" },
-          { id: "lawyer" as Role, icon: <Scale size={20}/>, t: "Volunteer Lawyer", d: "I want to offer free legal help" },
-          { id: "ngo" as Role, icon: <Handshake size={20}/>, t: "NGO Representative", d: "I represent a legal aid organization" },
+          { id: "citizen" as Role, icon: <User2 size={18}/>, t: "Citizen / User", d: "I need legal help or information" },
+          { id: "lawyer" as Role, icon: <Scale size={18}/>, t: "Volunteer Lawyer", d: "I want to offer free legal help" },
+          { id: "ngo" as Role, icon: <Handshake size={18}/>, t: "NGO Representative", d: "I represent a legal aid organization" },
         ].map(r => (
           <div key={r.id} className={`hd-rolecard ${role === r.id ? "sel" : ""}`} onClick={() => setRole(r.id)}>
             <div className="hd-roleicon">{r.icon}</div>
@@ -473,18 +474,16 @@ const Auth = () => {
               <div className="hd-roletitle">{r.t}</div>
               <div className="hd-roledesc">{r.d}</div>
             </div>
-            <div className={`hd-radio ${role === r.id ? "sel" : ""}`}>
-              {role === r.id && <CheckCircle2 size={12} color="#fff" style={{ position:"absolute" }} />}
-            </div>
+            <div className={`hd-radio ${role === r.id ? "sel" : ""}`} />
           </div>
         ))}
       </div>
 
-      <div style={{ display:"flex",alignItems:"center",gap:6,marginTop:14,fontSize:".72rem",color:"var(--text-muted)" }}>
+      <div style={{ display:"flex",alignItems:"center",gap:6,marginTop:10,fontSize:".7rem",color:"var(--text-muted)" }}>
         <AlertCircle size={12} color="var(--gold)"/> Role cannot be changed after registration
       </div>
 
-      <div style={{ textAlign:"center",margin:"18px 0",fontSize:".82rem",color:"var(--text-secondary)" }}>
+      <div style={{ textAlign:"center",margin:"10px 0",fontSize:".78rem",color:"var(--text-secondary)" }}>
         Already have an account? <button className="hd-link" onClick={() => go("login")}>Log in</button>
       </div>
 
@@ -492,74 +491,100 @@ const Auth = () => {
     </div>
   );
 
+  const pwReqs = [
+    { ok: form.password.length >= 8, t: "8+ chars" },
+    { ok: /[A-Z]/.test(form.password), t: "Uppercase" },
+    { ok: /\d/.test(form.password), t: "Number" },
+    { ok: /[!@#$%^&*]/.test(form.password), t: "Symbol" },
+  ];
+
   const renderDetails = () => (
     <div className="hd-form">
+      <button className="hd-back" onClick={() => go("signup_role")}><ArrowLeft size={14}/> Back</button>
       <ProgressBar step={2} />
       <div className="hd-divrow">CREATE ACCOUNT</div>
-      <h1 className="hd-h1" style={{ fontSize: "1.7rem" }}>Your details</h1>
+      <h1 className="hd-h1" style={{ fontSize: "1.4rem", marginBottom: 10 }}>Your details</h1>
 
-      <div className="hd-scroll" style={{ marginTop: 18, display: "flex", flexDirection: "column", gap: 14 }}>
-        <Field label="Full Name" icon={<User2 size={16}/>} value={form.fullName} onChange={v => setF("fullName", v)} />
+      <div className="hd-grid2" style={{ marginTop: 6 }}>
+        <Field label="Full Name" icon={<User2 size={14}/>} value={form.fullName} onChange={v => setF("fullName", v)} />
         <div>
           <label className="hd-label">Email Address</label>
           <div className="hd-inputw">
-            <Mail size={16} className="hd-ico" />
+            <Mail size={14} className="hd-ico" />
             <input className={`hd-input ${emailTaken ? "err" : ""}`} type="email" value={form.email} onChange={e => setF("email", e.target.value)} onBlur={handleEmailBlur} />
           </div>
           {emailTaken && <div className="hd-msg err">Email already registered. <button className="hd-link" onClick={() => go("login")}>Log in?</button></div>}
         </div>
-        <Field label="Phone Number" icon={<Phone size={16}/>} value={form.phone} onChange={v => setF("phone", v)} placeholder="+92 300 0000000" />
+        <Field label="Phone Number" icon={<Phone size={14}/>} value={form.phone} onChange={v => setF("phone", v)} placeholder="+92 300 0000000" />
         <div>
           <label className="hd-label">City</label>
           <div className="hd-inputw">
-            <select className="hd-input" style={{ paddingLeft: 16, appearance: "none" }} value={form.city} onChange={e => setF("city", e.target.value)}>
+            <select className="hd-input" value={form.city} onChange={e => setF("city", e.target.value)}>
               <option value="">Select city</option>
               {CITIES.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
-            <ChevronDown size={16} className="hd-ico r" style={{ pointerEvents: "none" }} />
+            <ChevronDown size={14} className="hd-ico r" style={{ pointerEvents: "none" }} />
           </div>
         </div>
 
-        <div>
+        <div className={role === "citizen" ? "full" : ""}>
           <label className="hd-label">Password</label>
           <div className="hd-inputw">
-            <Lock size={16} className="hd-ico" />
+            <Lock size={14} className="hd-ico" />
             <input className="hd-input" type={showPw ? "text" : "password"} value={form.password} onChange={e => setF("password", e.target.value)} />
-            <button type="button" className="hd-ico r" onClick={() => setShowPw(s => !s)}>{showPw ? <EyeOff size={16}/> : <Eye size={16}/>}</button>
+            <button type="button" className="hd-ico r" onClick={() => setShowPw(s => !s)}>{showPw ? <EyeOff size={14}/> : <Eye size={14}/>}</button>
           </div>
           <div className="hd-strength">
             {[0,1,2,3].map(i => <div key={i} style={{ background: i < score ? STRENGTH_COLOR[score] : "#2a2723" }} />)}
           </div>
-          <div style={{ fontSize: ".72rem", color: STRENGTH_COLOR[score] || "var(--text-muted)", marginTop: 4 }}>{STRENGTH_LABEL[score] || " "}</div>
         </div>
 
-        <div>
+        <div className={role === "citizen" ? "full" : ""}>
           <label className="hd-label">Confirm Password</label>
           <div className="hd-inputw">
-            <Lock size={16} className="hd-ico" />
+            <Lock size={14} className="hd-ico" />
             <input className={`hd-input ${form.confirm && (form.confirm === form.password ? "ok" : "err")}`} type={showCpw ? "text" : "password"} value={form.confirm} onChange={e => setF("confirm", e.target.value)} />
             <button type="button" className="hd-ico r" onClick={() => setShowCpw(s => !s)}>
-              {form.confirm && form.confirm === form.password ? <CheckCircle2 size={16} color="var(--success)"/> : (showCpw ? <EyeOff size={16}/> : <Eye size={16}/>)}
+              {form.confirm && form.confirm === form.password ? <CheckCircle2 size={14} color="var(--success)"/> : (showCpw ? <EyeOff size={14}/> : <Eye size={14}/>)}
             </button>
           </div>
         </div>
 
+        {form.password && (
+          <div className="full">
+            <div className="hd-badges">
+              {pwReqs.map(r => (
+                <span key={r.t} className={`hd-badge ${r.ok ? "met" : "unmet"}`}>
+                  {r.ok ? <CheckCircle2 size={10}/> : <Circle size={10}/>}{r.t}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
         {role === "lawyer" && <>
-          <Field label="Bar Council Reg. No." icon={<FileText size={16}/>} value={form.barNo} onChange={v => setF("barNo", v)} />
-          <SelectF label="Primary Specialization" options={SPECS} value={form.spec} onChange={v => setF("spec", v)} />
-          <Field label="Years of Experience" icon={<Clock size={16}/>} value={form.years} onChange={v => setF("years", v)} type="number" />
+          <Field label="Bar Council Reg. No." icon={<FileText size={14}/>} value={form.barNo} onChange={v => setF("barNo", v)} />
+          <Field label="Years of Experience" icon={<Clock size={14}/>} value={form.years} onChange={v => setF("years", v)} type="number" />
+          <div className="full"><SelectF label="Primary Specialization" options={SPECS} value={form.spec} onChange={v => setF("spec", v)} /></div>
         </>}
         {role === "ngo" && <>
-          <Field label="Organization Name" icon={<Building2 size={16}/>} value={form.orgName} onChange={v => setF("orgName", v)} />
-          <Field label="Organization Reg. No." icon={<FileText size={16}/>} value={form.orgNo} onChange={v => setF("orgNo", v)} />
-          <SelectF label="Primary Focus Area" options={SPECS} value={form.focus} onChange={v => setF("focus", v)} />
+          <Field label="Organization Name" icon={<Building2 size={14}/>} value={form.orgName} onChange={v => setF("orgName", v)} />
+          <Field label="Org. Reg. No." icon={<FileText size={14}/>} value={form.orgNo} onChange={v => setF("orgNo", v)} />
+          <div className="full"><SelectF label="Primary Focus Area" options={SPECS} value={form.focus} onChange={v => setF("focus", v)} /></div>
         </>}
 
-        <label className="hd-cb" style={{ fontSize: ".8rem", color: "var(--text-secondary)" }}>
+        <label className="hd-cb full" style={{ fontSize: ".74rem", color: "var(--text-secondary)" }}>
           <input type="checkbox" checked={form.terms} onChange={e => setF("terms", e.target.checked)} />
-          I agree to the <a className="hd-link">Terms of Service</a> and <a className="hd-link">Privacy Policy</a>
+          <span>I agree to the <a className="hd-link">Terms of Service</a> and <a className="hd-link">Privacy Policy</a></span>
         </label>
       </div>
+
+      <div style={{ marginTop: 12, display: "flex", gap: 12, flexShrink: 0 }}>
+        <button className="hd-btn secondary" style={{ flex: "0 0 100px" }} onClick={() => go("signup_role")}>← Back</button>
+        <button className="hd-btn primary" style={{ flex: 1 }} disabled={!detailsValid} onClick={submitDetails}>Next</button>
+      </div>
+    </div>
+  );
 
       <div style={{ marginTop: 18 }}>
         <button className="hd-btn primary" style={{ width: "100%" }} disabled={!detailsValid} onClick={submitDetails}>Next</button>
