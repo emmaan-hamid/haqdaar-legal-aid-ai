@@ -257,7 +257,9 @@ const Auth = () => {
     .hd-divrow::before,.hd-divrow::after{content:"";flex:1;height:1px;background:var(--gold-border);}
     .hd-label{font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:6px;display:block;}
     .hd-inputw{position:relative;}
-    .hd-input{background:var(--bg-input);border:1px solid var(--gold-border);border-radius:8px;height:48px;padding:0 16px 0 44px;color:var(--text-primary);font:400 .9rem 'DM Sans',sans-serif;width:100%;transition:border-color .2s,box-shadow .2s;outline:none;}
+    .hd-input{background:var(--bg-input);border:1px solid var(--gold-border);border-radius:8px;height:42px;padding:0 16px 0 42px;color:var(--text-primary);font:400 .88rem 'DM Sans',sans-serif;width:100%;transition:border-color .2s,box-shadow .2s;outline:none;}
+    .hd-compact .hd-input{height:38px;font-size:.84rem;}
+    .hd-compact .hd-label{font-size:.62rem;margin-bottom:3px;}
     .hd-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.12);}
     .hd-input.err{border-color:var(--error);}
     .hd-input.ok{border-color:var(--success);}
