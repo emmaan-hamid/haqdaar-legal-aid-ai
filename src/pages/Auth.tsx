@@ -602,6 +602,7 @@ const Auth = () => {
   const renderForgot = () => (
     <form className="hd-form" onSubmit={submitForgot}>
       <div style={{ textAlign: "center" }}>
+        <div style={{ display:"flex",justifyContent:"center",marginBottom:14 }}><Brand size={28} onClick={() => navigate("/")} /></div>
         <div style={{ display:"inline-flex",position:"relative",padding:14,borderRadius:999,background:"var(--gold-glow)",marginBottom:8 }}>
           <KeyRound size={32} color="var(--gold)" />
         </div>
