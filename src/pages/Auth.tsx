@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import {
   Mail, Lock, Eye, EyeOff, User2, Scale, Handshake, AlertCircle,
   ChevronDown, Phone, FileText, Building2, CheckCircle2, XCircle,
-  Loader2, ShieldCheck, KeyRound, Clock, Circle,
+  Loader2, ShieldCheck, KeyRound, Clock,
 } from "lucide-react";
 
 type AuthState = "login" | "signup_role" | "signup_details" | "signup_verify" | "forgot" | "reset";
