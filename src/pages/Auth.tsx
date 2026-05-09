@@ -359,10 +359,11 @@ const Auth = () => {
   // ---------- left panel ----------
   const Left = (
     <div className="hd-left">
+      <div className="hd-left-bg" aria-hidden />
       <div className="hd-quote-wrap" onMouseEnter={() => setQuotePaused(true)} onMouseLeave={() => setQuotePaused(false)}>
         <span className="hd-bigq">&ldquo;</span>
         <span className="hd-bigq r">&rdquo;</span>
-        <div style={{ position: "relative", minHeight: 320 }}>
+        <div className="hd-quote-stack">
           {QUOTES.map((q, i) => (
             <div key={i} className={`hd-quote ${i === quoteIndex ? "active" : ""}`}>
               <p className="en">{q.en}</p>
