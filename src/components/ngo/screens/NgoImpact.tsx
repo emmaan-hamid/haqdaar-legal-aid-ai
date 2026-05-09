@@ -18,10 +18,12 @@ export const NgoImpact = () => {
   const a = useCount(312), b = useCount(187), c = useCount(6), d = useCount(14);
   const [toast, setToast] = useState("");
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [dlPhase, setDlPhase] = useState<"idle" | "loading" | "done">("idle");
   const showToast = (m: string) => { setToast(m); setTimeout(() => setToast(""), 1800); };
   const handleDownload = () => {
-    showToast("Preparing impact report...");
-    setTimeout(() => showToast("Report downloaded"), 1500);
+    setDlPhase("loading");
+    setTimeout(() => setDlPhase("done"), 1500);
+    setTimeout(() => setDlPhase("idle"), 3400);
   };
   const kpis = [
     { Icon: Users, l: "Citizens Helped", v: a, color: "#C9A84C" },
