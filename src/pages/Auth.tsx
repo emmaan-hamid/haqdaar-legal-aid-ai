@@ -231,8 +231,10 @@ const Auth = () => {
       .hd-auth *,.hd-auth *::before,.hd-auth *::after{animation:none !important;transition:opacity .2s ease,color .2s ease,background .2s ease,border-color .2s ease !important;}
     }
     .hd-left{width:45%;background:var(--bg-left);position:relative;overflow:hidden;}
-    .hd-left::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 60% 45%, rgba(201,168,76,0.12) 0%, transparent 70%);pointer-events:none;}
-    .hd-left::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 40% 30% at 20% 90%, rgba(201,168,76,0.06), transparent 70%),radial-gradient(ellipse 30% 25% at 85% 15%, rgba(201,168,76,0.05), transparent 70%);pointer-events:none;}
+    .hd-left-bg{position:absolute;inset:0;background-image:url(${courtBg});background-size:cover;background-position:center top;background-repeat:no-repeat;opacity:.55;filter:saturate(1.05) contrast(1.05);}
+    .hd-left-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.35) 35%, rgba(10,10,10,0.85) 90%, #0A0A0A 100%);}
+    .hd-left::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 60% 45%, rgba(201,168,76,0.10) 0%, transparent 70%);pointer-events:none;z-index:1;}
+    .hd-left::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 40% 30% at 20% 90%, rgba(201,168,76,0.06), transparent 70%),radial-gradient(ellipse 30% 25% at 85% 15%, rgba(201,168,76,0.05), transparent 70%);pointer-events:none;z-index:1;}
     .hd-right{width:55%;background:var(--bg-right);position:relative;overflow:hidden;}
     .hd-right::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 60%);pointer-events:none;}
     .hd-divider-glow{position:absolute;left:45%;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent 0%,rgba(201,168,76,0.7) 20%,rgba(201,168,76,0.95) 50%,rgba(201,168,76,0.7) 80%,transparent 100%);box-shadow:0 0 14px rgba(201,168,76,0.55),0 0 30px rgba(201,168,76,0.25);pointer-events:none;z-index:2;animation:hd-glowpulse 4.5s ease-in-out infinite;}
