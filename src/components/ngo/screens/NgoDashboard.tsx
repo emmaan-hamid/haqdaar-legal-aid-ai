@@ -231,6 +231,7 @@ export const NgoDashboard = ({ goto }: { goto: (s: any) => void }) => {
           ))}
         </div>
       </div>
+      <Toast msg={toast} />
     </div>
   );
 };
