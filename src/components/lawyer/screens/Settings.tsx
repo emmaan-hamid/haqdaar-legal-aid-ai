@@ -78,11 +78,17 @@ const ProfileInner = () => {
 };
 
 const Availability = () => (
-  <div className="space-y-5 lp-fade">
-    <AvailabilityCockpit initialMax={5} active={3} />
-    <div className="lp-card p-6">
-      <div className="text-[11px] uppercase tracking-[.12em] text-[#888] mb-1.5">Typical Response Time</div>
-      <select className="lp-input"><option>Within 24 hours</option><option>Within 48 hours</option><option>Within a week</option></select>
+  <div className="lp-fade">
+    <div className="grid grid-cols-1 md:grid-cols-[minmax(0,420px)_minmax(0,1fr)] gap-5 items-stretch">
+      <div className="aspect-square max-w-[420px]">
+        <AvailabilityCockpit initialMax={5} active={3} />
+      </div>
+      <div className="lp-card p-6 flex flex-col justify-center">
+        <div className="text-[10px] uppercase tracking-[.2em] text-[#C9A84C] font-bold mb-1">Response</div>
+        <div className="lp-display text-[20px] font-bold text-white leading-tight mb-4">Typical Response Time</div>
+        <select className="lp-input"><option>Within 24 hours</option><option>Within 48 hours</option><option>Within a week</option></select>
+        <div className="text-[11px] text-[#888] mt-3 leading-relaxed">Citizens see your usual response window before sending a request. Faster response improves matching priority.</div>
+      </div>
     </div>
   </div>
 );
