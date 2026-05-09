@@ -620,7 +620,7 @@ const Auth = () => {
         <span>Your Bar Council number will be verified by our admin team within 24 hours. You can browse the platform in the meantime.</span>
       </div>}
 
-      
+      </div>
     </div>
   );
 
