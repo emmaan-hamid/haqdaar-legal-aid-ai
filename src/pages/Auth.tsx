@@ -382,11 +382,6 @@ const Auth = () => {
           {QUOTES.map((_, i) => <span key={i} className={`hd-dot ${i === quoteIndex ? "on" : ""}`} />)}
         </div>
       </div>
-      <div className="hd-bottom">
-        <span><b>12.4k+</b> citizens helped</span>
-        <span className="sep">·</span>
-        <span><b>340</b> volunteer lawyers</span>
-      </div>
     </div>
   );
 
