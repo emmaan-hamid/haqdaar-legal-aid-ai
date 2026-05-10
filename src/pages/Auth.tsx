@@ -229,6 +229,10 @@ const Auth = () => {
     @media (hover:none),(pointer:coarse){.hd-auth,.hd-auth *,.hd-auth *::before,.hd-auth *::after{cursor:auto !important;}}
     @media (prefers-reduced-motion: reduce){
       .hd-auth *,.hd-auth *::before,.hd-auth *::after{animation:none !important;transition:opacity .2s ease,color .2s ease,background .2s ease,border-color .2s ease !important;}
+      .hd-quote-wrap{animation:none !important;transform:translateX(-50%) !important;}
+      .hd-left-bg{filter:none !important;}
+      .hd-divider-glow{animation:none !important;}
+      .hd-quote{transition:opacity .3s ease !important;transform:none !important;}
     }
     .hd-left{width:45%;background:var(--bg-left);position:relative;overflow:hidden;}
     .hd-left-bg{position:absolute;inset:0;background-image:url(${courtBg});background-size:cover;background-position:center top;background-repeat:no-repeat;opacity:.55;filter:saturate(1.05) contrast(1.05);}
@@ -493,6 +497,9 @@ const Auth = () => {
       </div>
 
       <button className="hd-btn primary" style={{ marginTop: 16 }} disabled={!role} onClick={() => go("signup_details")}>Next</button>
+      <div style={{ textAlign:"center",marginTop:10 }}>
+        <button type="button" className="hd-link" onClick={() => go("login")}>Back</button>
+      </div>
 
       <div style={{ textAlign:"center",marginTop:14,fontSize:".82rem",color:"var(--text-secondary)" }}>
         Already have an account? <button className="hd-link" onClick={() => go("login")}>Log in</button>
@@ -573,6 +580,9 @@ const Auth = () => {
 
       <div style={{ marginTop: 18 }}>
         <button className="hd-btn primary" style={{ width: "100%" }} disabled={!detailsValid} onClick={submitDetails}>Next</button>
+        <div style={{ textAlign:"center",marginTop:10 }}>
+          <button type="button" className="hd-link" onClick={() => go("signup_role")}>Back</button>
+        </div>
       </div>
     </div>
   );
@@ -604,6 +614,9 @@ const Auth = () => {
       <button className="hd-btn primary" disabled={otp.some(d => !d) || loading} onClick={verifyOtp}>
         {loading ? <><Loader2 size={16} className="hd-spin"/> Please wait...</> : "Verify"}
       </button>
+      <div style={{ textAlign:"center",marginTop:10 }}>
+        <button type="button" className="hd-link" onClick={() => go("signup_details")}>Back</button>
+      </div>
 
       {role === "lawyer" && <div className="hd-info" style={{ textAlign: "left" }}>
         <Clock size={16} color="var(--gold)" />
@@ -637,6 +650,9 @@ const Auth = () => {
           <button className="hd-btn primary" disabled={loading || !form.email}>
             {loading ? <><Loader2 size={16} className="hd-spin"/> Please wait...</> : "Send Reset Link"}
           </button>
+          <div style={{ textAlign:"center" }}>
+            <button type="button" className="hd-link" onClick={() => go("login")}>Back</button>
+          </div>
         </div>
       ) : (
         <div style={{ marginTop: 24, textAlign: "center", fontSize: ".82rem", color: "var(--text-secondary)" }}>
@@ -691,6 +707,9 @@ const Auth = () => {
           <button className="hd-btn primary" disabled={loading || passwordScore(form.password) < 3 || form.password !== form.confirm}>
             {loading ? <><Loader2 size={16} className="hd-spin"/> Please wait...</> : "Reset Password"}
           </button>
+          <div style={{ textAlign:"center" }}>
+            <button type="button" className="hd-link" onClick={() => go("login")}>Back</button>
+          </div>
         </div>
       )}
     </form>
