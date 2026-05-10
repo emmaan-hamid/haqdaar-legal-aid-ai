@@ -650,6 +650,9 @@ const Auth = () => {
           <button className="hd-btn primary" disabled={loading || !form.email}>
             {loading ? <><Loader2 size={16} className="hd-spin"/> Please wait...</> : "Send Reset Link"}
           </button>
+          <div style={{ textAlign:"center" }}>
+            <button type="button" className="hd-link" onClick={() => go("login")}>Back</button>
+          </div>
         </div>
       ) : (
         <div style={{ marginTop: 24, textAlign: "center", fontSize: ".82rem", color: "var(--text-secondary)" }}>
