@@ -614,6 +614,9 @@ const Auth = () => {
       <button className="hd-btn primary" disabled={otp.some(d => !d) || loading} onClick={verifyOtp}>
         {loading ? <><Loader2 size={16} className="hd-spin"/> Please wait...</> : "Verify"}
       </button>
+      <div style={{ textAlign:"center",marginTop:10 }}>
+        <button type="button" className="hd-link" onClick={() => go("signup_details")}>Back</button>
+      </div>
 
       {role === "lawyer" && <div className="hd-info" style={{ textAlign: "left" }}>
         <Clock size={16} color="var(--gold)" />
