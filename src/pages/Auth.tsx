@@ -707,6 +707,9 @@ const Auth = () => {
           <button className="hd-btn primary" disabled={loading || passwordScore(form.password) < 3 || form.password !== form.confirm}>
             {loading ? <><Loader2 size={16} className="hd-spin"/> Please wait...</> : "Reset Password"}
           </button>
+          <div style={{ textAlign:"center" }}>
+            <button type="button" className="hd-link" onClick={() => go("login")}>Back</button>
+          </div>
         </div>
       )}
     </form>
