@@ -443,7 +443,7 @@ const Auth = () => {
         </button>
 
         <div className="hd-or">OR</div>
-        <button type="button" className="hd-btn secondary" onClick={() => go("signup_role")}>Create a free account</button>
+        <button type="button" className="hd-btn secondary" onClick={() => go("signup_role")}>Create account</button>
         <button type="button" className="hd-btn ghost"><ShieldCheck size={16}/> Continue as Guest — for sensitive cases</button>
 
         <div style={{ textAlign: "center", fontSize: ".8rem", color: "var(--text-secondary)", marginTop: 8 }}>
