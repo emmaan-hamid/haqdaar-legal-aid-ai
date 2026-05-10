@@ -234,11 +234,11 @@ const Auth = () => {
       .hd-divider-glow{animation:none !important;}
       .hd-quote{transition:opacity .3s ease !important;transform:none !important;}
     }
-    .hd-left{width:45%;background:var(--bg-left);position:relative;overflow:hidden;}
-    .hd-left-bg{position:absolute;inset:0;background-image:url(${courtBg});background-size:cover;background-position:center top;background-repeat:no-repeat;opacity:.55;filter:saturate(1.05) contrast(1.05);}
-    .hd-left-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.35) 35%, rgba(10,10,10,0.85) 90%, #0A0A0A 100%);}
-    .hd-left::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 60% 45%, rgba(201,168,76,0.10) 0%, transparent 70%);pointer-events:none;z-index:1;}
-    .hd-left::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 40% 30% at 20% 90%, rgba(201,168,76,0.06), transparent 70%),radial-gradient(ellipse 30% 25% at 85% 15%, rgba(201,168,76,0.05), transparent 70%);pointer-events:none;z-index:1;}
+    .hd-left{width:45%;background:#000;position:relative;overflow:hidden;}
+    .hd-left-bg{position:absolute;inset:0;background-image:url(${courtBg});background-size:cover;background-position:center 30%;background-repeat:no-repeat;opacity:1;filter:saturate(1.05) contrast(1.02);}
+    .hd-left-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.55) 100%);}
+    .hd-left::before{display:none;}
+    .hd-left::after{display:none;}
     .hd-right{width:55%;background:var(--bg-right);position:relative;overflow:hidden;}
     .hd-right::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 60%);pointer-events:none;}
     .hd-divider-glow{position:absolute;left:45%;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent 0%,rgba(201,168,76,0.7) 20%,rgba(201,168,76,0.95) 50%,rgba(201,168,76,0.7) 80%,transparent 100%);box-shadow:0 0 14px rgba(201,168,76,0.55),0 0 30px rgba(201,168,76,0.25);pointer-events:none;z-index:2;animation:hd-glowpulse 4.5s ease-in-out infinite;}
@@ -246,17 +246,17 @@ const Auth = () => {
     .hd-signup-head{text-align:center;margin-bottom:14px;animation:hd-in .5s cubic-bezier(.22,1,.36,1);}
     .hd-signup-head h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.55rem;color:var(--text-primary);letter-spacing:.3px;}
     .hd-signup-head p{font-size:.78rem;color:var(--text-muted);margin-top:4px;}
-    .hd-quote-wrap{position:absolute;left:50%;bottom:64px;transform:translateX(-50%);width:84%;max-width:420px;padding:34px 32px 28px;border-radius:18px;background:linear-gradient(180deg, rgba(20,20,20,0.78) 0%, rgba(10,10,10,0.85) 100%);border:1px solid var(--gold-border);box-shadow:0 20px 60px rgba(0,0,0,0.55), 0 0 30px rgba(201,168,76,0.10), inset 0 1px 0 rgba(201,168,76,0.15);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);z-index:2;animation:hd-floaty 9s ease-in-out infinite;}
-    .hd-bigq{font-family:'Playfair Display',serif;font-size:64px;color:var(--gold);opacity:.9;line-height:1;position:absolute;top:8px;left:18px;pointer-events:none;text-shadow:0 0 24px rgba(201,168,76,0.35);}
-    .hd-bigq.r{left:auto;right:18px;top:auto;bottom:38px;transform:scaleX(-1);opacity:.55;}
-    .hd-quote-stack{position:relative;min-height:220px;padding:24px 8px 8px;}
+    .hd-quote-wrap{position:absolute;left:50%;bottom:90px;transform:translateX(-50%);width:86%;max-width:460px;padding:38px 36px 30px;border-radius:20px;background:linear-gradient(180deg, rgba(18,14,8,0.82) 0%, rgba(8,6,3,0.90) 100%);border:1px solid rgba(201,168,76,0.35);box-shadow:0 30px 80px rgba(0,0,0,0.7), 0 0 40px rgba(201,168,76,0.12), inset 0 1px 0 rgba(201,168,76,0.18);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);z-index:2;animation:hd-floaty 9s ease-in-out infinite;}
+    .hd-bigq{font-family:'Playfair Display',serif;font-size:72px;color:var(--gold);opacity:.95;line-height:1;position:absolute;top:14px;left:24px;pointer-events:none;text-shadow:0 0 28px rgba(201,168,76,0.4);}
+    .hd-bigq.r{left:auto;right:24px;top:auto;bottom:18px;transform:scaleX(-1);opacity:.75;}
+    .hd-quote-stack{position:relative;min-height:200px;padding:30px 8px 8px;}
     .hd-quote{position:absolute;inset:0;opacity:0;transform:translateY(8px);transition:opacity .9s ease, transform .9s ease;pointer-events:none;}
     .hd-quote.active{opacity:1;transform:translateY(0);position:relative;pointer-events:auto;}
-    .hd-quote .en{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:1.05rem;line-height:1.7;color:var(--text-primary);margin-bottom:16px;letter-spacing:.2px;}
-    .hd-quote .ur{font-family:'Noto Nastaliq Urdu',serif;font-weight:400;font-size:.95rem;line-height:2.1;color:var(--gold-light);direction:rtl;text-align:right;display:block;margin-bottom:16px;}
-    .hd-quote hr{border:none;border-top:1px solid var(--gold-border);width:42px;margin:12px 0;}
-    .hd-quote .nm{font-family:'DM Sans',sans-serif;font-weight:500;font-size:.78rem;color:var(--gold);letter-spacing:.08em;}
-    .hd-quote .rl{font-weight:300;font-size:.68rem;color:var(--text-secondary);margin-top:3px;letter-spacing:.04em;}
+    .hd-quote .en{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:1.05rem;line-height:1.6;color:var(--text-primary);margin-bottom:18px;letter-spacing:.2px;}
+    .hd-quote .ur{font-family:'Noto Nastaliq Urdu',serif;font-weight:400;font-size:.95rem;line-height:2.1;color:var(--gold-light);direction:rtl;text-align:right;display:block;margin-bottom:18px;}
+    .hd-quote hr{border:none;border-top:1px solid var(--gold-border);width:42px;margin:14px 0;}
+    .hd-quote .nm{font-family:'DM Sans',sans-serif;font-weight:600;font-size:.82rem;color:var(--gold);letter-spacing:.1em;}
+    .hd-quote .rl{font-weight:300;font-size:.68rem;color:var(--text-secondary);margin-top:4px;letter-spacing:.04em;}
     .hd-dots{display:flex;gap:14px;justify-content:center;margin-top:18px;align-items:center;}
     .hd-dot{height:4px;width:4px;border-radius:999px;background:var(--gold-border);transition:all .5s cubic-bezier(.22,1,.36,1);}
     .hd-dot.on{height:5px;width:20px;background:var(--gold);box-shadow:0 0 8px rgba(201,168,76,0.5);}
@@ -381,11 +381,6 @@ const Auth = () => {
         <div className="hd-dots">
           {QUOTES.map((_, i) => <span key={i} className={`hd-dot ${i === quoteIndex ? "on" : ""}`} />)}
         </div>
-      </div>
-      <div className="hd-bottom">
-        <span><b>12.4k+</b> citizens helped</span>
-        <span className="sep">·</span>
-        <span><b>340</b> volunteer lawyers</span>
       </div>
     </div>
   );
