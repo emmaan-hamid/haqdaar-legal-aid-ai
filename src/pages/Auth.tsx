@@ -229,6 +229,10 @@ const Auth = () => {
     @media (hover:none),(pointer:coarse){.hd-auth,.hd-auth *,.hd-auth *::before,.hd-auth *::after{cursor:auto !important;}}
     @media (prefers-reduced-motion: reduce){
       .hd-auth *,.hd-auth *::before,.hd-auth *::after{animation:none !important;transition:opacity .2s ease,color .2s ease,background .2s ease,border-color .2s ease !important;}
+      .hd-quote-wrap{animation:none !important;transform:translateX(-50%) !important;}
+      .hd-left-bg{filter:none !important;}
+      .hd-divider-glow{animation:none !important;}
+      .hd-quote{transition:opacity .3s ease !important;transform:none !important;}
     }
     .hd-left{width:45%;background:var(--bg-left);position:relative;overflow:hidden;}
     .hd-left-bg{position:absolute;inset:0;background-image:url(${courtBg});background-size:cover;background-position:center top;background-repeat:no-repeat;opacity:.55;filter:saturate(1.05) contrast(1.05);}
