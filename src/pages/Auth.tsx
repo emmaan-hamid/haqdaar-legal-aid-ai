@@ -497,6 +497,9 @@ const Auth = () => {
       </div>
 
       <button className="hd-btn primary" style={{ marginTop: 16 }} disabled={!role} onClick={() => go("signup_details")}>Next</button>
+      <div style={{ textAlign:"center",marginTop:10 }}>
+        <button type="button" className="hd-link" onClick={() => go("login")}>Back</button>
+      </div>
 
       <div style={{ textAlign:"center",marginTop:14,fontSize:".82rem",color:"var(--text-secondary)" }}>
         Already have an account? <button className="hd-link" onClick={() => go("login")}>Log in</button>
