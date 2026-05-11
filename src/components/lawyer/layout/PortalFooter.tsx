@@ -10,22 +10,7 @@ const ColLink = ({ to, children }: { to: string; children: React.ReactNode }) =>
 
 export const PortalFooter = () => {
   const ref = useRef<HTMLElement | null>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting),
-      { threshold: 0.08 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-  const reveal = (delay = 0): React.CSSProperties => ({
-    opacity: visible ? 1 : 0,
-    transform: visible ? "translateY(0)" : "translateY(28px)",
-    transition: `opacity .7s cubic-bezier(.22,1,.36,1) ${delay}ms, transform .8s cubic-bezier(.22,1,.36,1) ${delay}ms`,
-  });
+  const reveal = (_delay = 0): React.CSSProperties => ({});
   return (
   <footer ref={ref} style={{ background: "#0B0A09", borderTop: BORDER }}>
     <div className="mx-auto max-w-[1400px] px-8 lg:px-12 pt-12 pb-8">
