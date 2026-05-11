@@ -276,8 +276,9 @@ const Auth = () => {
     .hd-inputw{position:relative;}
     .hd-input{background:var(--bg-input);border:1px solid var(--gold-border);border-radius:8px;height:40px;padding:0 14px 0 40px;color:var(--text-primary);font:400 .85rem 'DM Sans',sans-serif;width:100%;transition:border-color .3s ease,box-shadow .35s ease,background .25s ease,transform .25s ease;outline:none;box-shadow:inset 0 0 0 0 rgba(201,168,76,0);}
     .hd-input::placeholder{color:var(--text-muted);}
-    .hd-input:hover{border-color:var(--gold-border-strong);background:var(--bg-hover);box-shadow:0 0 0 2px rgba(201,168,76,0.05),0 0 14px rgba(201,168,76,0.08);}
-    .hd-input:focus{border-color:var(--gold);background:var(--bg-hover);box-shadow:0 0 0 3px var(--gold-soft),0 0 22px rgba(201,168,76,0.22),inset 0 0 12px rgba(201,168,76,0.05);}
+    .hd-input:hover{border-color:var(--gold);background:var(--bg-hover);box-shadow:0 0 0 2px rgba(201,168,76,0.10),0 0 22px rgba(201,168,76,0.18);transform:translateY(-1px);}
+    .hd-inputw:hover .hd-ico{color:var(--gold-light);}
+    .hd-input:focus{border-color:var(--gold);background:var(--bg-hover);box-shadow:0 0 0 3px var(--gold-soft),0 0 28px rgba(201,168,76,0.28),inset 0 0 14px rgba(201,168,76,0.06);transform:translateY(-1px);}
     .hd-input.err{border-color:var(--error);box-shadow:0 0 0 3px rgba(217,91,91,0.15);}
     .hd-input.ok{border-color:var(--success);box-shadow:0 0 0 3px rgba(90,176,122,0.15);}
     .hd-ico{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);pointer-events:none;transition:color .25s ease;}
