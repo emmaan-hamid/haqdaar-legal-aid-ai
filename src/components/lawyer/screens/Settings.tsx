@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Star, Upload, Check, X, FileCheck, AlertCircle, MessageCircle, Phone, Video, Calendar, Clock, Edit3, Plus, Folder, User, CheckCircle2, Shield, ChevronDown } from "lucide-react";
-import { AvailabilityCockpit } from "../AvailabilityCockpit";
+import { Star, Upload, Check, X, FileCheck, AlertCircle } from "lucide-react";
+import { AvailabilityPanel } from "@/components/shared/AvailabilityPanel";
 
 const tabs = ["Profile", "Availability", "Specialization", "Certifications", "Reputation"] as const;
 type Tab = typeof tabs[number];
@@ -77,7 +77,9 @@ const ProfileInner = () => {
   );
 };
 
-const Availability = () => {
+const Availability = () => <AvailabilityPanel variant="lawyer" queue={{ pending: 4, active: 6, resolved: 11 }} />;
+
+const _AvailabilityLegacy = () => {
   const [mode, setMode] = useState("In-App Chat");
   const [emergency, setEmergency] = useState(true);
   const days = [
