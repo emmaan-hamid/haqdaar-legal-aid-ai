@@ -1,4 +1,4 @@
-import { ArrowRight, Facebook, Twitter, Instagram, Youtube, Scale } from "lucide-react";
+import { Facebook, Twitter, Instagram, Youtube, Scale } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 
@@ -68,9 +68,9 @@ export const PortalFooter = () => {
               onFocus={e => { e.currentTarget.style.borderColor = "#C9A84C"; e.currentTarget.style.boxShadow = "0 0 14px rgba(201,168,76,.3)"; }}
               onBlur={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,.3)"; e.currentTarget.style.boxShadow = ""; }}
             />
-            <button type="submit" className="w-full h-11 rounded-full inline-flex items-center justify-center gap-2 text-[11.5px] font-bold uppercase tracking-[.2em] text-[#0A0A0A] transition-all duration-300 hover:scale-[1.02]"
+            <button type="submit" className="w-full h-11 rounded-full inline-flex items-center justify-center text-[11.5px] font-bold uppercase tracking-[.2em] text-[#0A0A0A] transition-all duration-300 hover:scale-[1.02]"
               style={{ background: "linear-gradient(180deg,#E5C975,#C9A84C)", boxShadow: "0 6px 20px -6px rgba(201,168,76,.6)" }}>
-              Submit Now <ArrowRight size={13} />
+              Submit Now
             </button>
           </form>
           <div className="mt-6 grid grid-cols-3 gap-4 text-center">
