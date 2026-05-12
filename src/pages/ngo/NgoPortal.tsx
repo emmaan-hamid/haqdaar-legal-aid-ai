@@ -14,6 +14,7 @@ import { NgoProfile } from "@/components/ngo/screens/NgoProfile";
 import { NgoTeam } from "@/components/ngo/screens/NgoTeam";
 import { NgoImpact } from "@/components/ngo/screens/NgoImpact";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { AvailabilityPanel } from "@/components/shared/AvailabilityPanel";
 
 const NgoPortal = () => {
   const [section, setSection] = useState<NgoSection>("dashboard");
@@ -41,6 +42,15 @@ const NgoPortal = () => {
           </div>
         )}
         {section === "team" && <NgoTeam />}
+        {section === "availability" && (
+          <div className="space-y-5">
+            <div>
+              <div className="text-[11px] uppercase tracking-[.18em] text-[#C9A84C] font-semibold">Settings</div>
+              <h2 className="lp-display text-[40px] font-bold text-white leading-tight mt-1">NGO Availability</h2>
+            </div>
+            <AvailabilityPanel variant="ngo" queue={{ pending: 4, active: 4, resolved: 4 }} />
+          </div>
+        )}
         {section === "profile" && <NgoProfile />}
         {section === "messages" && <Messages />}
         {section === "resources" && <Resources />}

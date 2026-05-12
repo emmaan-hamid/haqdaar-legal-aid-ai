@@ -1,6 +1,6 @@
-import { LayoutDashboard, FolderOpen, Shield, Heart, MessageSquare, BookOpen, LogOut, Menu, ChevronDown, Scale, Users } from "lucide-react";
+import { LayoutDashboard, FolderOpen, Shield, Heart, MessageSquare, BookOpen, LogOut, Menu, ChevronDown, Scale, Users, Clock } from "lucide-react";
 
-export type NgoSection = "dashboard" | "cases-requests" | "cases-active" | "cases-completed" | "team" | "profile" | "messages" | "resources" | "impact";
+export type NgoSection = "dashboard" | "cases-requests" | "cases-active" | "cases-completed" | "team" | "availability" | "profile" | "messages" | "resources" | "impact";
 
 export const NgoSidebar = ({ section, setSection, collapsed, toggle }: { section: NgoSection; setSection: (s: NgoSection) => void; collapsed: boolean; toggle: () => void }) => {
   const isCase = section.startsWith("cases-");
@@ -40,6 +40,7 @@ export const NgoSidebar = ({ section, setSection, collapsed, toggle }: { section
         )}
 
         {item("team", Users, "Team Members")}
+        {item("availability", Clock, "Availability")}
         {item("profile", Shield, "NGO Profile & Verification")}
         {item("messages", MessageSquare, "Messages")}
         {item("resources", BookOpen, "Legal Resources")}
