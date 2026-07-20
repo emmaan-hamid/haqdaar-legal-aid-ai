@@ -1,3 +1,275 @@
-# Welcome to your Lovable project
+# HaqDaar
 
-TODO: Document your project here
+**AI-Powered Legal Aid Platform for Pakistan**
+
+HaqDaar is a legal technology platform that aims to improve access to legal assistance by helping citizens understand their rights, generate legal documents, and connect with legal aid providers through AI-powered guidance.
+
+The platform combines Natural Language Processing (NLP), Retrieval-Augmented Generation (RAG), recommendation systems, and Large Language Models (LLMs) to simplify complex legal information and make legal support more accessible to individuals with little or no legal knowledge.
+
+---
+
+## Overview
+
+Access to legal assistance remains a significant challenge for many citizens. Legal procedures are often difficult to understand, legal services can be expensive, and many individuals are unaware of the rights available to them under Pakistani law.
+
+HaqDaar addresses this problem by providing a digital legal aid platform capable of:
+
+* Analyzing legal issues described in natural language
+* Retrieving relevant legal provisions
+* Explaining legal rights in simple language
+* Generating legal documents
+* Connecting users with lawyers and NGOs
+* Supporting anonymous reporting for sensitive cases
+
+---
+
+## Key Features
+
+### Legal Rights Analysis
+
+Users can describe their legal issue in plain Urdu or English.
+
+The system automatically:
+
+* Identifies the legal issue category
+* Retrieves relevant legal provisions
+* Explains applicable rights in simple language
+* Suggests appropriate next actions
+
+### Retrieval-Augmented Generation (RAG)
+
+The platform uses a legal knowledge base and semantic retrieval pipeline to provide context-aware legal guidance.
+
+This approach helps improve:
+
+* Response relevance
+* Context awareness
+* Explainability
+* Information grounding
+
+### Lawyer & NGO Recommendation System
+
+Users can receive recommendations for legal aid providers based on:
+
+* Legal specialization
+* Case category
+* Geographic proximity
+* Availability
+* Current workload
+
+### Legal Document Generation
+
+The platform supports generation of legal documents such as:
+
+* FIR Complaints
+* Legal Notices
+* Labor Court Applications
+* NADRA Appeals
+* Tenancy Notices
+* Harassment Complaints
+
+Supported export formats:
+
+* PDF
+* DOCX
+
+### Anonymous Case Submission
+
+Users may submit sensitive cases without revealing personal information, ensuring greater privacy and accessibility.
+
+### Multi-Role Platform
+
+Dedicated portals are provided for:
+
+* Citizens
+* Lawyers
+* NGOs
+* Administrators
+
+---
+
+## System Architecture
+
+```text
+Citizen Input
+      │
+      ▼
+Legal Issue Classification
+      │
+      ▼
+Legal Knowledge Retrieval
+      │
+      ▼
+Rights Analysis
+      │
+ ┌────┴────┐
+ ▼         ▼
+Lawyer    Document
+Matching  Generation
+```
+
+---
+
+## Technology Stack
+
+### Frontend
+
+* Next.js
+* React
+* Tailwind CSS
+
+### Backend
+
+* Django
+* Django REST Framework
+* PostgreSQL
+
+### Artificial Intelligence
+
+* OpenAI GPT
+* LangChain
+* ChromaDB
+* Hugging Face Transformers
+* XLM-RoBERTa
+
+### Infrastructure
+
+* Docker
+* Redis
+* Celery
+* Nginx
+
+---
+
+## Project Structure
+
+```bash
+haqdaar/
+│
+├── frontend/
+├── backend/
+├── ai-services/
+├── docs/
+├── infrastructure/
+│
+├── docker-compose.yml
+├── .env.example
+└── README.md
+```
+
+---
+
+## Project Status
+
+This project is currently under active development as a Final Year Project.
+
+### Completed
+
+* Requirements Analysis
+* Use Case Specifications
+* System Architecture Design
+* Database Design
+* Technology Selection
+* Project Planning
+
+### In Progress
+
+* Backend Development
+* Frontend Development
+* AI Pipeline Development
+* Knowledge Base Construction
+
+### Planned
+
+* Lawyer Recommendation Engine
+* Legal Document Generator
+* Integration Testing
+* Deployment
+
+---
+
+## Roadmap
+
+* [x] Requirements Engineering
+* [x] System Analysis & Design
+* [x] Use Case Modeling
+* [x] Database Design
+* [ ] Citizen Portal
+* [ ] Lawyer Portal
+* [ ] NGO Portal
+* [ ] Legal Rights Analysis Engine
+* [ ] RAG-Based Legal Knowledge Base
+* [ ] Lawyer Recommendation System
+* [ ] Legal Document Generator
+* [ ] Authentication & Authorization
+* [ ] API Development
+* [ ] Testing & Validation
+* [ ] Deployment
+
+---
+
+## Getting Started
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/your-username/haqdaar.git
+cd haqdaar
+```
+
+### Backend Setup
+
+```bash
+cd backend
+
+python -m venv venv
+
+source venv/bin/activate
+# Windows:
+# venv\Scripts\activate
+
+pip install -r requirements.txt
+```
+
+### Frontend Setup
+
+```bash
+cd frontend
+
+npm install
+npm run dev
+```
+
+---
+
+## Future Enhancements
+
+* Mobile Application
+* Voice-Based Legal Assistance
+* Regional Language Support
+* Government Service Integration
+* AI Legal Chat Assistant
+* Advanced Analytics Dashboard
+
+---
+
+## Team
+
+**University of Management and Technology (UMT)**
+Department of Software Engineering
+
+### Team Members
+
+* Muntaha Shahab
+* Eman Hamid
+* Tehreem Naveed
+
+### Supervisor
+
+* Ahtsham Ali
+
+---
+
+## Disclaimer
+
+HaqDaar is intended to improve access to legal information and legal aid resources. Information generated by the platform should not be considered a substitute for professional legal advice.
